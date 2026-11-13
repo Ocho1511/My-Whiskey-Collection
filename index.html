@@ -1549,19 +1549,19 @@ input[type="file"] { display: none; }
       </details>
     </div>
     <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border)">
-      <a class="export-card" href="https://ocho1511.github.io/Weinkeller/datenschutz.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit">
+      <a class="export-card" id="privacy-link" href="datenschutz.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit">
         <div class="export-icon">🔒</div>
         <div class="export-info">
           <div class="title" data-i18n="setup_privacy">Datenschutzerklärung</div>
         </div>
       </a>
-      <a class="export-card" id="guide-link" href="https://ocho1511.github.io/Weinkeller/anleitung.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; margin-top:10px">
+      <a class="export-card" id="guide-link" href="anleitung.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; margin-top:10px">
         <div class="export-icon">📖</div>
         <div class="export-info">
           <div class="title" data-i18n="setup_guide">Anleitung</div>
         </div>
       </a>
-      <a class="export-card" href="https://ocho1511.github.io/Weinkeller/support.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; margin-top:10px">
+      <a class="export-card" id="support-link" href="support.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; margin-top:10px">
         <div class="export-icon">💬</div>
         <div class="export-info">
           <div class="title" data-i18n="setup_support">Support &amp; Hilfe</div>
@@ -1941,7 +1941,7 @@ input[type="file"] { display: none; }
 // DATA
 // ═══════════════════════════════════════
 const APP_VERSION = '2.0';   // = MARKETING_VERSION im iOS-Projekt (ios/App/App.xcodeproj): bei jeder neuen App-Version beide ändern
-const SCAN_PROXY_URL = 'https://weinkeller-scan-proxy.ocho1511.workers.dev';
+const SCAN_PROXY_URL = 'https://whiskey-scan-proxy.ocho1511.workers.dev';   // eigener Worker, Quelltext in worker/ (muss erst deployt werden)
 const STORE_KEY = 'mywhiskey_v1';
 const WISH_KEY  = 'mywhiskey_v1_wish';
 const DRUNK_KEY = 'mywhiskey_v1_drunk';
@@ -2556,7 +2556,7 @@ function formCriteria() {
 // meta.failed = true, wenn die Suche nicht antworten konnte (Begrenzung 429, Netzfehler, Serverfehler): dann gilt NICHT "es gibt kein Bild"
 // Passt der von Vivino gefundene Wein wirklich zum gesuchten? Rebsorten (primitivo, merlot …) und Allerweltswörter zählen nicht als Beleg: sonst gilt
 // "Li Veli Primonero Negroamaro" als Treffer für "Primodoro Negroamaro Primitivo". Bleibt kein unterscheidendes Namenswort übrig, wird jeder Treffer akzeptiert.
-const NAME_STOP = new Set(['weingut', 'weinkellerei', 'weinbau', 'winery', 'wine', 'wines', 'wein', 'weine', 'chateau', 'domaine', 'domaines', 'cantina', 'cantine', 'azienda', 'agricola', 'bodega', 'bodegas', 'tenuta', 'tenute', 'cave', 'caves', 'vineyard', 'vineyards', 'estate', 'estates', 'vino', 'vini', 'vins', 'vigneto', 'vigna', 'schloss', 'castello', 'castel', 'quinta', 'maison', 'riserva', 'reserve', 'reserva', 'classico', 'brut', 'rosso', 'bianco', 'blanc', 'rouge', 'blanco', 'tinto', 'cuvee', 'rose', 'rosato', 'secco', 'trocken', 'dry', 'superiore', 'selection', 'selezione', 'gran', 'grand', 'cru', 'premier', 'vieilles', 'vignes', 'vecchie', 'barrique']);
+const NAME_STOP = new Set(['whisky', 'whiskey', 'whiskeys', 'single', 'malt', 'blended', 'bourbon', 'scotch', 'cask', 'strength', 'years', 'year', 'aged', 'distillery', 'distillers', 'edition', 'limited', 'special', 'finish', 'finished', 'batch', 'proof', 'straight', 'weingut', 'weinkellerei', 'weinbau', 'winery', 'wine', 'wines', 'wein', 'weine', 'chateau', 'domaine', 'domaines', 'cantina', 'cantine', 'azienda', 'agricola', 'bodega', 'bodegas', 'tenuta', 'tenute', 'cave', 'caves', 'vineyard', 'vineyards', 'estate', 'estates', 'vino', 'vini', 'vins', 'vigneto', 'vigna', 'schloss', 'castello', 'castel', 'quinta', 'maison', 'riserva', 'reserve', 'reserva', 'classico', 'brut', 'rosso', 'bianco', 'blanc', 'rouge', 'blanco', 'tinto', 'cuvee', 'rose', 'rosato', 'secco', 'trocken', 'dry', 'superiore', 'selection', 'selezione', 'gran', 'grand', 'cru', 'premier', 'vieilles', 'vignes', 'vecchie', 'barrique']);
 const NAME_GRAPES = new Set(['primitivo', 'negroamaro', 'tempranillo', 'merlot', 'cabernet', 'sauvignon', 'chardonnay', 'riesling', 'pinot', 'noir', 'nero', 'grigio', 'gris', 'syrah', 'shiraz', 'grenache', 'garnacha', 'malbec', 'sangiovese', 'nebbiolo', 'barbera', 'montepulciano', 'zinfandel', 'carmenere', 'verdejo', 'albarino', 'gewurztraminer', 'muller', 'thurgau', 'silvaner', 'spatburgunder', 'grauburgunder', 'weissburgunder', 'lemberger', 'dornfelder', 'blaufrankisch', 'zweigelt', 'gruner', 'veltliner', 'chenin', 'viognier', 'mourvedre', 'cinsault', 'touriga', 'nacional', 'aglianico', 'sagrantino', 'vermentino', 'trebbiano', 'verdicchio', 'fiano', 'greco', 'falanghina', 'prosecco', 'glera', 'cava', 'champagne', 'moscato', 'muscat', 'sekt', 'cuvee', 'rotwein', 'weisswein', 'red', 'white', 'blend', 'bobal', 'monastrell', 'mencia', 'graciano', 'carignan', 'cannonau', 'nerello', 'mascalese', 'frappato', 'catarratto', 'grillo', 'inzolia', 'lambrusco', 'dolcetto', 'corvina', 'rondinella', 'molinara', 'pecorino', 'passerina', 'cesanese', 'lagrein', 'teroldego', 'schiava', 'trollinger', 'portugieser', 'regent', 'acolon', 'scheurebe', 'kerner', 'bacchus', 'ortega', 'muskateller']);
 function wineNameMatches(name, matched) {
   const norm = (x) => String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/&#?\w+;/g, ' ');
@@ -2576,7 +2576,7 @@ async function vivinoImageFor(crit, meta) {
   const c = crit || {};
   try {
     await workerPace();
-    const r = await fetch(SCAN_PROXY_URL + '/wineimg', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: c.name || '', year: c.year || '', grape: c.grape || '', region: c.region || '', country: c.country || '' }) });
+    const r = await fetch(SCAN_PROXY_URL + '/whiskeyimg', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: c.name || '', year: c.year || '', grape: c.grape || '', region: c.region || '', country: c.country || '' }) });
     let j = null; try { j = await r.json(); } catch {}
     if (meta && (!r.ok || !j || j.error)) meta.failed = true;
     if (j && j.image && j.match && !wineNameMatches(c.name, j.match)) return null;   // anderer Wein: lieber kein Bild als eine falsche Flasche
@@ -2881,7 +2881,7 @@ function currencyName() {
 // Das Guthaben liegt serverseitig im Worker (Start: 50 KI-Aufrufe). Die App zeigt es nur an
 // und schickt ihre Installations-ID mit; der Worker zieht pro KI-Aufruf 1 ab und sperrt bei 0.
 // ═══════════════════════════════════════
-const INSTALL_ID_KEY = 'wk_install_id';
+const INSTALL_ID_KEY = 'mw_install_id';
 let aiCredits = null;          // Zahl, 'unlimited' oder null (noch unbekannt)
 let aiOutOfCredits = false;
 function getInstallId() {
@@ -2934,7 +2934,7 @@ async function refreshCredits() {
   } catch (e) { /* offline: Anzeige bleibt wie sie ist */ }
 }
 // Einwilligung: Fotos und Weinnamen gehen für die Auswertung an Anthropic (USA). Einmal bestätigen, danach nicht mehr fragen.
-const AI_CONSENT_KEY = 'wk_ai_consent';
+const AI_CONSENT_KEY = 'mw_ai_consent';
 let aiConsentDeclinedAt = 0;
 function hasAiConsent() { try { return localStorage.getItem(AI_CONSENT_KEY) === '1'; } catch (e) { return false; } }
 function ensureAiConsent() {
@@ -14526,9 +14526,14 @@ window.addEventListener('resize', fitNavLabels);
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNavLabels);
 // Text eines Beschriftungsschlüssels ohne führendes Symbol (z. B. "✏️ Bearbeiten" -> "Bearbeiten")
 function plainLabel(k) { return t(k).replace(/^\p{Extended_Pictographic}\uFE0F?\s*/u, ''); }
+// Anleitung, Datenschutz und Support liegen neben der App: im Web relativ (egal, wo sie gehostet wird); die native App hat sie nicht lokal und nimmt die Webadresse.
+const PAGES_URL = 'https://ocho1511.github.io/My-Whiskey-Collection/';   // Annahme: Repo-Name = App-Ordner; erst nach dem Anlegen des Repos/Pages gueltig
+const siteUrl = (p) => (isNativeApp() ? PAGES_URL : '') + p;
 function applyGuideLink() {
   const a = document.getElementById('guide-link');
-  if (a) a.href = 'https://ocho1511.github.io/Weinkeller/anleitung-' + baseLang() + '.html';
+  if (a) a.href = siteUrl('anleitung-' + baseLang() + '.html');
+  const pv = document.getElementById('privacy-link'); if (pv) pv.href = siteUrl('datenschutz.html');
+  const sp = document.getElementById('support-link'); if (sp) sp.href = siteUrl('support.html');
 }
 function applyVersion() {
   const el = document.getElementById('app-version');
@@ -14851,7 +14856,7 @@ function showTab(name, btn) {
 // ═══════════════════════════════════════
 const TYPES = ['alle','rot','weiß','rosé','sekt','other'];
 // Kleines Weintrauben-Symbol in der Typ-Farbe (ersetzt den farbigen Punkt)
-function grapeSvg(fill) {   // Name bleibt aus dem Weinkeller; zeichnet ein Tumbler-Glas mit Eis in der Typ-Farbe
+function grapeSvg(fill) {   // Name bleibt aus dem Ursprungsprojekt; zeichnet ein Tumbler-Glas mit Eis in der Typ-Farbe
   return `<svg width="17" height="18" viewBox="0 0 17 18" aria-hidden="true" style="display:block">
     <path d="M1.5 2.5 L15.5 2.5 L14.1 15.4 Q13.9 17 12.3 17 L4.7 17 Q3.1 17 2.9 15.4 Z" fill="none" stroke="${fill}" stroke-width="1.3" stroke-linejoin="round"/>
     <path d="M2.1 7.2 Q8.5 8.4 14.9 7.2 L14 14.4 L3 14.4 Z" fill="${fill}"/>
@@ -16420,7 +16425,7 @@ function setRackActive(i) { rackActive = i; rackFilledSlot = null; renderRacks()
 // Setup: Regale verwalten
 // ═══════════════════════════════════════
 // QR-ETIKETTEN FÜR REGALE UND EBENEN
-// Inhalt eines Codes: "weinkeller:1:<Regal-ID>" (Regal) bzw. "weinkeller:1:<Regal-ID>:<Ebene>" (Ebene).
+// Inhalt eines Codes: "mywhiskey:1:<Regal-ID>" (Regal) bzw. "mywhiskey:1:<Regal-ID>:<Ebene>" (Ebene).
 // Ausgabe: Etikettenbogen A4 mit 3 x 7 Etiketten zu je 63,5 x 38,1 mm (gängiges Format, z. B. Avery L7160), als PDF zum Teilen/Drucken
 // (iPhone: Teilen-Menü → Drucken) und im Browser direkt über "Drucken".
 // ═══════════════════════════════════════
@@ -16647,7 +16652,7 @@ async function qrLabelsPrint() {
 // ═══════════════════════════════════════
 let lvlSheet = { rack: null, e: 0 };
 const lvlSheetOpen = () => document.getElementById('lvl-modal').classList.contains('show');
-// "weinkeller:1:<Regal-ID>[:<Ebene>]" → { rack, e } (e = 0 beim Regal-Etikett) oder null
+// "mywhiskey:1:<Regal-ID>[:<Ebene>]" → { rack, e } (e = 0 beim Regal-Etikett) oder null
 function parseShelfCode(text) {
   const m = /^mywhiskey:1:([A-Za-z0-9_-]{1,40})(?::(\d{1,3}))?$/.exec(String(text || '').trim());
   if (!m) return null;
@@ -17626,7 +17631,7 @@ document.addEventListener('visibilitychange', () => {
 splashInit();
 // Setup: Abschnitte einklappbar; der Zustand wird nur auf diesem Gerät gemerkt (Bequemlichkeit, ohne Speicher funktioniert alles). "Allgemein" ist beim ersten Start offen, der Rest zu.
 document.querySelectorAll('details.setup-fold[data-fold]').forEach((d) => {
-  const key = 'wk_fold_' + d.dataset.fold;
+  const key = 'mw_fold_' + d.dataset.fold;
   let v = null;
   try { v = localStorage.getItem(key); } catch (e) {}
   if (v === '1' || (v === null && d.dataset.open === '1')) d.open = true;

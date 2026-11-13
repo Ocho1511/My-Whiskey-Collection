@@ -9,7 +9,7 @@
 <script>
 (function(){var A=["cs","da","de","en","el","es","fr","hr","it","hu","nl","no","pl","pt","ro","ru","sk","fi","sv","uk","ja","ko","zh","hi"],l=null,q=/[?&]lang=([a-z]{2})/.exec(location.search);
 if(q&&A.indexOf(q[1])>=0)l=q[1];
-if(!l){try{var s=localStorage.getItem('wk_guide_lang');if(s&&A.indexOf(s)>=0)l=s}catch(e){}}
+if(!l){try{var s=localStorage.getItem('mw_guide_lang');if(s&&A.indexOf(s)>=0)l=s}catch(e){}}
 if(!l){var n=(navigator.language||'en').toLowerCase().slice(0,2);if(n==='nb'||n==='nn')n='no';l=A.indexOf(n)>=0?n:'en'}
 location.replace('anleitung-'+l+'.html'+location.hash)})();
 </script></body></html>

@@ -1,5 +1,5 @@
 /* My Whiskey Collection Service Worker – App-Shell offline, HTML network-first (Updates), Schriften und Bibliotheken lokal gecacht */
-// Mehrere My Whiskey Collection-Apps liegen unter derselben Herkunft (…github.io/<Repo>/). Jede bekommt deshalb einen eigenen Cache
+// Mehrere Apps liegen unter derselben Herkunft (…github.io/<Repo>/). Jede bekommt deshalb einen eigenen Cache
 // (Version + Pfad), und beim Aufräumen werden nur die eigenen alten Caches gelöscht, nicht die der anderen Apps.
 const SCOPE = new URL(self.registration.scope).pathname;
 const CACHE = 'mywhiskey-v8:' + SCOPE;

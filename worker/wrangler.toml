@@ -1,0 +1,19 @@
+name = "whiskey-scan-proxy"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Create once:  wrangler kv namespace create WK   -> paste the id below
+[[kv_namespaces]]
+binding = "WK"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+# Pages origins that may call the worker (comma separated). localhost and the native app origins are always allowed.
+ALLOWED_ORIGINS = "https://ocho1511.github.io"
+# Per-install AI credits only for the store app: "1" = on, anything else = off (web app unlimited, rate limited)
+GATED = "0"
+FREE_CREDITS = "50"
+
+# Secrets (never in this file):
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put UNLOCK_CODE        (optional, only with GATED = "1")
