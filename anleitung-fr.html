@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guide d'utilisation – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← Vers la collection</a> &nbsp;·&nbsp; </span><a href="support.html">← Retour à l'assistance</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html" selected>Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Guide d'utilisation – My Whiskey Collection</h1>
+<p><small>Mis à jour : 13 novembre 2026 · Version de l'app 2.0</small></p>
+
+<div class="toc">
+
+<strong>Sommaire</strong><ol>
+<li><a href="#start">Aperçu et premiers pas</a></li>
+<li><a href="#add">Ajouter un whisky</a></li>
+<li><a href="#cellar">La collection</a></li>
+<li><a href="#drink">Boire un whisky</a></li>
+<li><a href="#racks">Casiers et rangement</a></li>
+<li><a href="#history">Historique</a></li>
+<li><a href="#wish">Liste de souhaits</a></li>
+<li><a href="#stats">Statistiques</a></li>
+<li><a href="#export">Export, import et sauvegarde</a></li>
+<li><a href="#setup">Réglages (paramètres)</a></li>
+<li><a href="#sync">Synchroniser deux appareils</a></li>
+<li><a href="#privacy">IA, confidentialité et coûts</a></li>
+<li><a href="#faq">Astuces et FAQ</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Aperçu et premiers pas</h2>
+
+<p>My Whiskey Collection est votre collection personnelle de whisky dans la poche : vous gérez les stocks, les emplacements de rangement, une liste de souhaits et des statistiques. Tout fonctionne sur votre appareil ; un code de sync permet de relier plusieurs appareils.</p>
+<p>En bas (sur PC et iPad en paysage : à gauche) se trouve la barre avec sept espaces :</p>
+<table>
+<tbody><tr><th>Espace</th><th>Utilité</th></tr>
+<tr><td><strong>Collection</strong></td><td>Tous les whiskies, recherche, filtres, tri, ajouter un whisky, boire</td></tr>
+<tr><td><strong>Stats</strong></td><td>Analyses du stock, des prix, du rangement, de l'historique de dégustation</td></tr>
+<tr><td><strong>Historique</strong></td><td>Les whiskies que vous avez bus</td></tr>
+<tr><td><strong>Casiers</strong></td><td>Plan de rangement : ranger et déplacer des whiskies, étiquettes QR</td></tr>
+<tr><td><strong>Liste de souhaits</strong></td><td>Les whiskies que vous voulez encore acheter</td></tr>
+<tr><td><strong>Export/Import</strong></td><td>Sauvegarder vos données, importer des tableaux et des sauvegardes</td></tr>
+<tr><td><strong>Réglages</strong></td><td>Nom, devise, langue, cloud, définir les casiers</td></tr>
+</tbody></table>
+<h3>Les cinq premières étapes</h3>
+<ol>
+<li><strong>Choisir la langue et la devise</strong> : Réglages → Général. La devise suit automatiquement la langue.</li>
+<li><strong>Définir des casiers</strong> (facultatif) : Réglages → Casiers (voir <a href="#racks">section 5</a>).</li>
+<li><strong>Ajouter votre premier whisky</strong> : touchez <kbd>+</kbd> dans la collection (<a href="#add">section 2</a>).</li>
+<li><strong>Le ranger</strong> : donnez au whisky un emplacement dans un casier.</li>
+<li><strong>Sauvegarder</strong> : Export/Import → sauvegarde JSON, ou configurer la synchronisation cloud (<a href="#sync">section 11</a>).</li>
+</ol>
+<div class="tip">Les sections des <em>Réglages</em> sont repliables. « Général » est ouvert au premier lancement, les autres sont fermées. L'app se souvient de ce que vous avez ouvert ou fermé en dernier.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Ajouter un whisky</h2>
+
+<p>Touchez <kbd>+</kbd> dans la collection. Il y a plusieurs façons d'ajouter un whisky – elles peuvent être combinées.</p>
+<h3>a) À la main</h3>
+<p>Remplissez les champs : <strong>Nom / Distillerie, Année, Bouteilles, Type de whisky, Région (p. ex. Speyside, Islay, Kentucky), Pays, Distillerie, Âge (ans), ABV %, Fût, Emplacement de rangement, Température de service, Prix, Note, Remarque</strong>. Seul le nom est obligatoire. <em>Enregistrer</em> crée le whisky.</p>
+<ul>
+<li><strong>Année :</strong> L'année est celle de la mise en bouteille ou de la distillation de la bouteille. <strong>Âge</strong> est la durée de maturation en années (p. ex. 12), <strong>ABV</strong> la teneur en alcool en pourcentage et <strong>Fût</strong> le type de fût (p. ex. sherry, fût de bourbon).</li>
+<li><strong>Stock, min. et max. :</strong> Si vous indiquez un minimum, l'app vous avertit quand le stock passe en dessous et propose de mettre le whisky sur la liste de souhaits (<a href="#cellar">section 3</a>).</li>
+<li><strong>Photo personnelle :</strong> « Prendre / choisir une photo » joint une photo au whisky. Elle reste sur cet appareil et est incluse dans la sauvegarde JSON, mais n'est pas synchronisée avec le cloud.</li>
+</ul>
+<h3>b) Scanner l'étiquette (IA)</h3>
+<p>Touchez <em>Scanner l'étiquette (IA)</em> et photographiez l'étiquette de la bouteille. L'IA lit le nom, l'année, le type, la région, le pays, la distillerie, l'âge, l'ABV et le fût, et estime la température de service. Vérifiez les valeurs et enregistrez. Avant la première utilisation, l'app demande votre consentement (<a href="#privacy">section 12</a>).</p>
+<h3>c) Scanner le code-barres</h3>
+<p>Touchez <em>Scanner le code-barres</em> et placez le code-barres de la bouteille dans le cadre. L'app recherche le numéro dans une base de produits gratuite (sans frais, sans crédit IA) et, si elle le trouve, remplit <strong>le nom, le producteur et le type de whisky</strong>. Elle complète l'année à partir du nom ou vous la demande.</p>
+<ul>
+<li>Si la bouteille est déjà dans la collection, l'app demande « Ajouter une autre bouteille ? » – un moyen rapide d'incrémenter quand vous en achetez d'autres.</li>
+<li>Si le code-barres n'est <strong>pas</strong> dans la base (fréquent pour les petites distilleries), une indication avec le bouton <em>Scanner l'étiquette (IA)</em> apparaît. Le numéro est tout de même enregistré avec le whisky, de sorte que la bouteille soit reconnue immédiatement la fois suivante.</li>
+</ul>
+<h3>d) Rechercher le whisky (IA)</h3>
+<p><em>Rechercher le whisky (IA)</em> laisse l'IA chercher sur le web la région, le pays, la distillerie, l'âge, l'ABV, le fût, la température de service, le prix moyen actuel et – dans la version web – une image de la bouteille. Les champs que vous avez déjà remplis ne sont pas écrasés. Cela se fait aussi automatiquement dès que le nom et l'année sont saisis et qu'il n'y a pas encore de prix.</p>
+<div class="note">L'app iPhone ne charge pas d'images de bouteilles depuis internet (règle de l'App Store). Vous pouvez prendre vos propres photos à la place.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. La collection</h2>
+
+<h3>Rechercher, filtrer, trier</h3>
+<ul>
+<li><strong>Recherche</strong> en haut : trouve les whiskies par nom, région, pays et distillerie.</li>
+<li><strong>Filtres :</strong> Tous, Single Malt, Bourbon / Rye, Blended, World, Autre. Un clic sur un type efface automatiquement la recherche.</li>
+<li><strong>Tri :</strong> Plus récents d'abord, Nom, Année, Distillerie, Région ou Pays.</li>
+<li><strong>Liste / cartes :</strong> Le bouton <em>Liste</em> bascule entre une liste compacte et des cartes détaillées.</li>
+</ul>
+<h3>La carte du whisky</h3>
+<p>La carte affiche le nom, l'année, la distillerie, la note (étoiles), la région et le pays (touchez pour ouvrir une carte ou les régions whisky du pays), le nombre de bouteilles, la <strong>température de service</strong> (🌡) et les <strong>emplacements de rangement</strong> (touchez pour aller au casier). Le petit symbole de verre tumbler ouvre Wikipédia pour la distillerie.</p>
+<p>En bas de la carte : <em>Modifier</em>, <em>Boire</em> et 🗑 (supprimer le whisky).</p>
+<h3>Stock, min./max. et liste de courses</h3>
+<p>Si vous indiquez un minimum (et éventuellement un maximum) pour un whisky, la carte affiche « Stock · Min · Max » et avertit par ⚠ lorsque vous êtes en dessous. Le bouton <em>À racheter</em> ouvre la <strong>liste de courses</strong> : elle énumère tous les whiskies sous leur minimum (la cible est le maximum, sinon le minimum). Vous pouvez partager ou copier la liste, ou mettre les whiskies sur la liste de souhaits.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Boire un whisky</h2>
+
+<p>Touchez <em>Boire</em> sur la carte du whisky. La boîte de dialogue <em>Boire un whisky</em> s'ouvre :</p>
+<ul>
+<li><strong>Prise de quel emplacement ?</strong> – choisissez l'emplacement du casier d'où provient la bouteille, ou « Bouteille non rangée ». L'emplacement devient libre.</li>
+<li><strong>Avec qui l'avez-vous bu ?</strong> – noms de vos invités (facultatif).</li>
+<li><strong>Occasion</strong> – Printemps, Été, Automne, Hiver, Anniversaire, Fête ou « Sans raison » (plusieurs possibles).</li>
+</ul>
+<p><em>Boire</em> retire une bouteille et crée une entrée dans l'<a href="#history">Historique</a>. Confettis et son fêtent l'événement (désactivables dans les Réglages). S'il s'agit de la <strong>dernière bouteille</strong>, l'app vous le signale : le whisky disparaît alors de la collection (mais reste dans l'Historique).</p>
+<p>Le whisky se sert de préférence sec, à environ 16–20 °C ; l'app affiche cette estimation comme température de service.</p>
+<div class="tip"><strong>Rapide par scan :</strong> Le bouton rond 🥃 dans la collection photographie une étiquette, reconnaît le whisky dans votre collection et ouvre aussitôt la boîte Boire.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Casiers et rangement</h2>
+
+<h3>Définir et modifier les casiers</h3>
+<p><strong>Réglages → Casiers</strong> (touchez le titre pour l'ouvrir) : saisissez le nom, les niveaux, les emplacements par niveau et les bouteilles par emplacement, puis touchez ＋. « Bouteilles/empl. » vaut 1 pour un casier à bouteilles et davantage pour un sol ou une caisse. Dans la liste, chaque casier propose :</p>
+<ul>
+<li>la <strong>poignée ⠿</strong> pour changer l'ordre, et le bouton <em>Trier de A à Z</em> sous la liste,</li>
+<li>▦ pour les <strong>étiquettes QR</strong>, ✏️ pour modifier, 🧹 pour vider et 🗑 pour supprimer.</li>
+</ul>
+<p>Avec <strong>modifier</strong> (✏️), vous pouvez renommer le casier, changer les emplacements par niveau, ajouter des niveaux en haut ou en bas, supprimer des niveaux et donner à chaque niveau son propre nom et son nombre de bouteilles. Les bouteilles qui perdent ainsi leur emplacement comptent ensuite comme « non rangées » ; les whiskies eux-mêmes restent dans la collection. L'app demande confirmation avant de tels changements.</p>
+<h3>L'espace Casiers</h3>
+<p>En haut, vous choisissez un casier avec les <strong>tuiles</strong> (nom et « occupés / emplacements »). L'ordre peut aussi être modifié ici : sur PC, faites glisser une tuile ; sur écran tactile, maintenez une tuile enfoncée une demi-seconde environ, puis faites-la glisser. Dessous se trouve le <strong>plan de rangement</strong> : chaque niveau avec ses emplacements. Les emplacements occupés montrent une bouteille de la couleur du type de whisky.</p>
+<h3>Ranger</h3>
+<ol>
+<li>Touchez un whisky sous « Non placés » (la liste peut être filtrée par distillerie et pays) – ou touchez une indication « non rangé » dans la collection.</li>
+<li>Touchez un <strong>emplacement libre</strong>. Pour les sols et les caisses, l'app range autant de bouteilles que possible.</li>
+</ol>
+<p><strong>Scanner le whisky &amp; ranger</strong> photographie l'étiquette, trouve le whisky et vous guide dans le rangement.</p>
+<h3>Emplacements occupés, déplacer, retirer</h3>
+<p>Touchez un emplacement occupé : vous voyez le whisky et pouvez l'<em>ouvrir</em>, le <em>retirer de l'emplacement</em> ou le <em>déplacer</em> (touchez ensuite un emplacement libre). <em>Vider l’étagère</em> retire toutes les bouteilles du casier (après confirmation).</p>
+<h3>Étiquettes QR et « Scanner un niveau »</h3>
+<p>Avec les <strong>étiquettes QR</strong> (Réglages → Casiers → ▦), vous créez une étiquette pour le casier et une pour chaque niveau. Partagez-les en PDF ou imprimez-les (planche d'étiquettes de 63,5 × 38,1 mm, 21 par page) et collez-les. Ensuite : <strong>Scanner un niveau</strong> dans l'espace Casiers – vous voyez ce qui se trouve sur ce niveau et pouvez <em>ranger ici</em>, <em>retirer</em>, boire, déplacer une bouteille ou <em>déplacer tout le niveau</em>. Dans le formulaire « Ajouter un whisky », scanner une étiquette de niveau remplit aussi l'emplacement de rangement.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Historique</h2>
+
+<p>L'Historique liste tous les whiskies que vous avez bus avec la date, le whisky, la valeur, les invités et l'occasion. Vous pouvez filtrer par type de whisky et par occasion, et modifier une entrée (invités, occasion). L'Historique alimente les analyses « Bus par mois/année », les dépenses et la fréquence dans les Stats.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Liste de souhaits</h2>
+
+<ul>
+<li><strong>+ Ajouter un souhait</strong> : à la main ou par scan d'étiquette, avec une remarque facultative (« Où acheter ? »).</li>
+<li><strong>Chercher les prix</strong> (💶) : L'app cherche sur le web les prix du whisky, affiche le résultat le moins cher et le multiplie par la quantité. Ce sont des valeurs indicatives sans garantie – vérifiez les frais de port et la disponibilité auprès du magasin.</li>
+<li><strong>Case</strong> à gauche : marquer comme acheté/terminé (la ligne s'estompe).</li>
+<li><strong>→ Collection</strong> : transfère le souhait dans la collection (avec la quantité et, si disponible, le prix le plus bas) et, si vous avez des casiers, vous mène directement au rangement.</li>
+<li>Si un whisky passe sous son minimum, l'app propose de le mettre sur la liste de souhaits avec la quantité manquante (« à racheter »).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statistiques</h2>
+
+<p>De haut en bas :</p>
+<ul>
+<li><strong>Chiffres clés :</strong> bouteilles, whiskies, valeur totale, note moyenne.</li>
+<li><strong>Par type</strong> et <strong>Meilleurs whiskies</strong> (par note ou fréquence, filtrables par étoiles).</li>
+<li><strong>Par pays, région, distillerie :</strong> barres (jusqu'à 8, le reste en « +n de plus ») ; un toucher lance une recherche dans la collection. <strong>Par année :</strong> colonnes, défilables latéralement.</li>
+<li><strong>Prix :</strong> moyenne par bouteille, le moins cher, le plus cher, tranches de prix (adaptées à votre devise) et valeur par pays.</li>
+<li><strong>Stockage :</strong> taux d'occupation en pourcentage, emplacements libres, bouteilles non rangées et une barre par casier (un toucher mène au casier).</li>
+<li><strong>Bus :</strong> par mois (12 derniers) et par année, plus les dépenses en bouteilles bues.</li>
+<li><strong>Meilleurs pays et meilleures distilleries</strong> selon la note moyenne (collection et Historique réunis).</li>
+<li><strong>À racheter :</strong> whiskies sous le stock minimum (ouvre la liste de courses), souhaits ouverts et leur valeur.</li>
+</ul>
+<p>Les sections sans données (p. ex. sans prix) sont masquées.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Export, import et sauvegarde</h2>
+
+<table>
+<tbody><tr><th>Fonction</th><th>Utilité</th></tr>
+<tr><td>Exporter CSV</td><td>Tableau pour Excel ou Numbers</td></tr>
+<tr><td>Exporter Excel</td><td>Sous forme de fichier .xlsx</td></tr>
+<tr><td>Exporter PDF</td><td>Aperçu imprimable</td></tr>
+<tr><td><strong>Sauvegarde JSON</strong></td><td><strong>Sauvegarde complète des données</strong> (whiskies, liste de souhaits, historique, casiers, nom affiché, photos personnelles)</td></tr>
+<tr><td>Dans le presse-papiers</td><td>Copier une liste texte</td></tr>
+<tr><td>Importer JSON / CSV / Excel</td><td>Restaurer une sauvegarde ou importer un tableau</td></tr>
+</tbody></table>
+<p>Les colonnes en CSV et Excel sont : <strong>Nom, Année, Type, Région, Pays, Distillerie, Âge, ABV, Fût, Casier, Niveau, Emplacement, Bouteilles, Note, Prix, Remarque</strong>. L'import accepte aussi les anciens noms de colonnes.</p>
+<div class="tip"><strong>Faites régulièrement une sauvegarde JSON.</strong> L'import JSON remplace la collection par la sauvegarde (l'app demande d'abord). Sur un nouvel appareil, cela restaure tout. Sinon, utilisez la synchronisation cloud (<a href="#sync">section 11</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Réglages (paramètres)</h2>
+
+<h3>Général</h3>
+<ul>
+<li><strong>Nom affiché (titre) :</strong> « Peter » devient « Collection de whisky de Peter », etc. Laissez vide pour le titre par défaut.</li>
+<li><strong>Devise :</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Langue :</strong> 25 variantes de langue, dont l'allemand, l'anglais, l'anglais (US) et bien d'autres. <strong>La devise change automatiquement</strong> (suédois → couronne, anglais (US) → US $, anglais (UK) → £). Exemple : lorsque vous passez au suédois, l'app passe en SEK et demande s'il faut <strong>convertir tous les prix au taux actuel de la Banque centrale européenne</strong> (« OK ») ou seulement changer l'étiquette (« Annuler »). Il n'y a pas de taux pour RUB et UAH. Vous pouvez changer la devise à la main à tout moment.</li>
+<li><strong>Confettis &amp; son en buvant :</strong> les deux, confettis seulement, ou désactivé.</li>
+<li><strong>Police :</strong> dix polices au choix.</li>
+<li><strong>Unité de température :</strong> °C ou °F (anglais (US) règle automatiquement °F).</li>
+</ul>
+<h3>Stockage</h3>
+<p><em>Cet appareil uniquement</em> ou <em>Cloud</em> (code de sync, <a href="#sync">section 11</a>).</p>
+<h3>Crédits IA (app iPhone uniquement)</h3>
+<p>Affiche les scans IA restants, l'ID de l'appareil et – si nécessaire – <em>Recharger des crédits</em> ou un code de déverrouillage. Voir <a href="#privacy">section 12</a>.</p>
+<h3>Base de whiskies</h3>
+<ul>
+<li><strong>Mettre à jour tous les whiskies (IA) :</strong> complète la région, le pays, la distillerie, l'âge, l'ABV, le fût, la température de service et le prix manquants pour tous les whiskies (dans la version web aussi les images de bouteilles). Les valeurs existantes sont conservées. Si des températures de service existent déjà, l'app demande d'abord si elles doivent aussi être remplacées par des valeurs de l'IA. <em>Astuce : exportez d'abord une sauvegarde JSON.</em></li>
+</ul>
+<h3>Casiers</h3>
+<p>Voir <a href="#racks">section 5</a>. Le titre indique le nombre de casiers.</p>
+<h3>Confidentialité, assistance, version</h3>
+<p>Les liens mènent à la politique de confidentialité et à cette page d'assistance. Tout en bas, vous trouvez la <strong>version</strong> de l'app – merci de l'indiquer lorsque vous nous contactez.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Synchroniser deux appareils</h2>
+
+<ol>
+<li><strong>Premier appareil :</strong> Réglages → Stockage → <em>Cloud</em> → <em>Créer un nouveau code de sync</em>. Le code s'affiche à l'écran ; avec <em>Sauvegarder le code par e-mail</em>, vous vous l'envoyez.</li>
+<li><strong>Deuxième appareil :</strong> Réglages → Stockage → <em>Cloud</em> → saisissez le code (en minuscules, sans espaces) → Connecter. Si l'appareil contient déjà des whiskies, l'app demande s'il faut les fusionner avec les données du cloud.</li>
+<li>Ensuite, les deux appareils se synchronisent automatiquement (p. ex. à l'ouverture de l'app) ; <em>Synchroniser maintenant</em> le déclenche à la main. La règle est : <strong>la modification la plus récente l'emporte</strong>.</li>
+</ol>
+<p>Les whiskies, la liste de souhaits, l'historique, les casiers et des réglages comme la langue et la devise sont synchronisés. Les photos personnelles et les données propres à l'appareil <strong>ne sont pas synchronisées</strong>. Toute personne qui connaît votre code peut voir vos whiskies – ne le partagez qu'avec des personnes de confiance. Conservez aussi une sauvegarde JSON.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. IA, confidentialité et coûts</h2>
+
+<ul>
+<li><strong>À quoi sert l'IA ?</strong> Scanner l'étiquette, rechercher le whisky, chercher les prix et « Mettre à jour tous les whiskies ». La photo ou le nom du whisky est envoyé via notre serveur à un service d'IA (Anthropic, États-Unis) pour analyse – sans noms ni comptes. L'app demande votre consentement avant la première utilisation.</li>
+<li>Le <strong>scan de code-barres</strong> n'envoie que le numéro à une base de produits gratuite et ne coûte aucun crédit IA.</li>
+<li><strong>Coûts (app iPhone) :</strong> 50 appels IA par installation sont inclus dans le prix d'achat ; d'autres peuvent être achetés en achat unique facultatif (pas d'abonnement, les crédits n'expirent pas). Tout le reste de l'app est gratuit. Lorsque les crédits sont épuisés, tout fonctionne encore, sauf les fonctions d'IA.</li>
+<li><strong>Données :</strong> Tout reste sur votre appareil tant que vous n'activez pas le cloud. Pas de publicité, pas de suivi, pas de compte utilisateur. Détails dans la <a href="datenschutz.html">politique de confidentialité</a> (en allemand).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Astuces et FAQ</h2>
+
+<ul>
+<li><strong>Sur iPad ou PC</strong>, la mise en page s'adapte : colonne plus large, plusieurs cartes côte à côte et, sur PC (et iPad en paysage), la navigation à gauche. Le téléphone fonctionne aussi en paysage. Sur PC, <kbd>Échap</kbd> ferme la fenêtre du dessus ; sur téléphone, faites glisser une fenêtre vers le bas pour la fermer.</li>
+<li><strong>Mes whiskies ont disparu :</strong> Voir l'<a href="support.html">assistance</a> – restaurez avec le code de sync ou une sauvegarde JSON.</li>
+<li><strong>Aucun résultat de code-barres pour un whisky :</strong> Normal pour les petites distilleries. Utilisez le scan d'étiquette.</li>
+<li><strong>L'IA a mal lu quelque chose :</strong> Corrigez le champ à la main et enregistrez ; les valeurs de l'IA sont des suggestions.</li>
+<li><strong>Faut-il laisser un whisky « vieillir » en bouteille ?</strong> Non. Le whisky ne mûrit que dans le fût, pas en bouteille – une bouteille ne s'améliore pas avec les années, ouverte ou non. C'est pourquoi il n'y a pas de fonction de fenêtre de dégustation ; la température de service (sec, environ 16–20 °C) n'est qu'une indication.</li>
+<li><strong>La page affiche toujours l'ancienne version (web) :</strong> Rechargez la page (sur PC <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>D'autres questions ? Écrivez à <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Guide%20d%27utilisation">t.knecht@web.de</a> en indiquant la version de l'app (Réglages, tout en bas).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ghid de utilizare – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← La colecție</a> &nbsp;·&nbsp; </span><a href="support.html">← Înapoi la asistență</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html" selected>Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Ghid de utilizare – My Whiskey Collection</h1>
+<p><small>Actualizat: 13 noiembrie 2026 · Versiunea aplicației 2.0</small></p>
+
+<div class="toc">
+
+<strong>Cuprins</strong><ol>
+<li><a href="#start">Prezentare generală și primii pași</a></li>
+<li><a href="#add">Adăugarea unui whisky</a></li>
+<li><a href="#cellar">Colecția</a></li>
+<li><a href="#drink">Băutul unui whisky</a></li>
+<li><a href="#racks">Rafturi și depozitare</a></li>
+<li><a href="#history">Istoric</a></li>
+<li><a href="#wish">Listă de dorințe</a></li>
+<li><a href="#stats">Statistici</a></li>
+<li><a href="#export">Export, import și backup</a></li>
+<li><a href="#setup">Setări</a></li>
+<li><a href="#sync">Sincronizarea a două dispozitive</a></li>
+<li><a href="#privacy">IA, confidențialitate și costuri</a></li>
+<li><a href="#faq">Sfaturi și întrebări frecvente</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Prezentare generală și primii pași</h2>
+
+<p>My Whiskey Collection este colecția ta personală de whisky în buzunar: gestionezi stocul, locurile de depozitare, o listă de dorințe și statistici. Totul rulează pe dispozitivul tău; cu un cod de sincronizare poți conecta mai multe dispozitive.</p>
+<p>În partea de jos (pe PC și iPad în mod peisaj: în stânga) găsești bara cu șapte zone:</p>
+<table>
+<tbody><tr><th>Zonă</th><th>Scop</th></tr>
+<tr><td><strong>Colecție</strong></td><td>Toate whisky-urile, căutare, filtre, sortare, adăugarea unui whisky, băutul</td></tr>
+<tr><td><strong>Statistici</strong></td><td>Evaluări ale stocului, prețurilor, depozitării și istoricului de băut</td></tr>
+<tr><td><strong>Istoric</strong></td><td>Whisky-urile pe care le-ai băut</td></tr>
+<tr><td><strong>Rafturi</strong></td><td>Plan de depozitare: depozitarea și mutarea whisky-urilor, etichete QR</td></tr>
+<tr><td><strong>Listă de dorințe</strong></td><td>Whisky-uri pe care vrei să le mai cumperi</td></tr>
+<tr><td><strong>Export/Import</strong></td><td>Backup al datelor, citirea tabelelor și a backup-urilor</td></tr>
+<tr><td><strong>Setări</strong></td><td>Nume, monedă, limbă, cloud, definirea rafturilor</td></tr>
+</tbody></table>
+<h3>Primii cinci pași</h3>
+<ol>
+<li><strong>Alege limba și moneda</strong>: Setări → General. Moneda urmează automat limba.</li>
+<li><strong>Definește rafturile</strong> (opțional): Setări → Rafturi (vezi <a href="#racks">secțiunea 5</a>).</li>
+<li><strong>Adaugă primul tău whisky</strong>: apasă <kbd>+</kbd> în colecție (<a href="#add">secțiunea 2</a>).</li>
+<li><strong>Depozitează-l</strong>: dă whisky-ului un loc pe un raft.</li>
+<li><strong>Fă un backup</strong>: Export/Import → Backup JSON, sau configurează sincronizarea în cloud (<a href="#sync">secțiunea 11</a>).</li>
+</ol>
+<div class="tip">Secțiunile din <em>Setări</em> pot fi restrânse. „General” este deschisă la prima pornire, celelalte sunt închise. Aplicația ține minte ce ai deschis sau închis ultima dată.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Adăugarea unui whisky</h2>
+
+<p>Apasă <kbd>+</kbd> în colecție. Există mai multe moduri de a adăuga un whisky – pot fi combinate.</p>
+<h3>a) Manual</h3>
+<p>Completează câmpurile: <strong>Nume / Distilerie, An, Sticle, Tip de whisky, Regiune (de ex. Speyside, Islay, Kentucky), Țară, Distilerie, Vârstă (ani), ABV %, Butoi, Loc de depozitare, temperatura de servire, Preț, Evaluare, Notă</strong>. Doar numele este obligatoriu. <em>Salvează</em> creează whisky-ul.</p>
+<ul>
+<li><strong>An:</strong> Anul este anul îmbutelierii sau al distilării sticlei. <strong>Vârstă</strong> este timpul de maturare în ani (de ex. 12), <strong>ABV</strong> conținutul de alcool în procente, iar <strong>Butoi</strong> tipul de butoi (de ex. sherry, butoi de bourbon).</li>
+<li><strong>Stoc, Min și Max:</strong> Dacă introduci un minim, aplicația te avertizează când stocul scade sub el și se oferă să pună whisky-ul în lista de dorințe (<a href="#cellar">secțiunea 3</a>).</li>
+<li><strong>Fotografie proprie:</strong> „Fă / alege o fotografie” atașează o fotografie la whisky. Rămâne pe acest dispozitiv și este inclusă în backup-ul JSON, dar nu este sincronizată în cloud.</li>
+</ul>
+<h3>b) Scanează eticheta (IA)</h3>
+<p>Apasă <em>Scanează eticheta (IA)</em> și fotografiază eticheta sticlei. IA citește numele, anul, tipul, regiunea, țara, distileria, vârsta, ABV-ul și butoiul și estimează temperatura de servire. Verifică valorile și salvează. Înainte de prima utilizare, aplicația îți cere consimțământul (<a href="#privacy">secțiunea 12</a>).</p>
+<h3>c) Scanează codul de bare</h3>
+<p>Apasă <em>Scanează codul de bare</em> și ține codul de bare al sticlei în cadru. Aplicația caută numărul într-o bază de date gratuită de produse (fără costuri, fără credit IA) și, dacă îl găsește, completează <strong>numele, producătorul și tipul de whisky</strong>. Completează anul din nume sau îl cere.</p>
+<ul>
+<li>Dacă sticla este deja în colecție, aplicația întreabă „Adaugi încă o sticlă?” – o metodă rapidă de a crește numărul când mai cumperi.</li>
+<li>Dacă codul de bare <strong>nu</strong> este în baza de date (frecvent la distilerii mici), apare un indiciu cu butonul <em>Scanează eticheta (IA)</em>. Numărul este totuși salvat împreună cu whisky-ul, astfel încât sticla să fie recunoscută imediat data viitoare.</li>
+</ul>
+<h3>d) Caută whisky (AI)</h3>
+<p><em>Caută whisky (AI)</em> lasă IA să caute pe web regiunea, țara, distileria, vârsta, ABV-ul, butoiul, temperatura de servire, prețul mediu actual și – în versiunea web – o imagine a sticlei. Câmpurile pe care le-ai completat deja nu sunt suprascrise. Acest lucru se întâmplă și automat odată ce ai introdus numele și anul și nu există încă un preț.</p>
+<div class="note">Aplicația pentru iPhone nu încarcă imagini ale sticlelor de pe internet (regulă App Store). În schimb poți face propriile fotografii.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. Colecția</h2>
+
+<h3>Căutare, filtre, sortare</h3>
+<ul>
+<li><strong>Căutarea</strong> din partea de sus: găsește whisky-uri după nume, regiune, țară și distilerie.</li>
+<li><strong>Filtre:</strong> Toate, Single Malt, Bourbon / Rye, Blended, World, Altele. Un clic pe un tip șterge automat căutarea.</li>
+<li><strong>Sortare:</strong> Cele mai noi întâi, Nume, An, Distilerie, Regiune sau Țară.</li>
+<li><strong>Listă / carduri:</strong> Butonul <em>Listă</em> comută între o listă compactă și carduri detaliate.</li>
+</ul>
+<h3>Cardul whisky-ului</h3>
+<p>Cardul arată numele, anul, distileria, evaluarea (stele), regiunea și țara (apasă pentru a deschide o hartă sau regiunile de whisky ale țării), numărul de sticle, <strong>temperatura de servire</strong> (🌡) și <strong>locurile de depozitare</strong> (apasă pentru a sări la raft). Mica pictogramă cu pahar deschide Wikipedia pentru distilerie.</p>
+<p>În partea de jos a cardului: <em>Editează</em>, <em>Bea</em> și 🗑 (șterge whisky-ul).</p>
+<h3>Stoc, Min/Max și lista de cumpărături</h3>
+<p>Dacă introduci un minim (și opțional un maxim) pentru un whisky, cardul arată „Stoc · Min · Max” și avertizează cu ⚠ când ești sub el. Butonul <em>De recumpărat</em> deschide <strong>lista de cumpărături</strong>: aceasta enumeră toate whisky-urile sub minim (ținta este maximul, altfel minimul). Poți partaja sau copia lista ori pune whisky-urile în lista de dorințe.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Băutul unui whisky</h2>
+
+<p>Apasă <em>Bea</em> pe cardul whisky-ului. Se deschide fereastra <em>Bea whisky</em>:</p>
+<ul>
+<li><strong>Din ce loc a fost luată?</strong> – alege locul de pe raft de unde a fost luată sticla sau „Sticlă fără loc”. Locul devine liber.</li>
+<li><strong>Cu cine ai băut?</strong> – numele invitaților tăi (opțional).</li>
+<li><strong>Ocazie</strong> – Primăvară, Vară, Toamnă, Iarnă, Zi de naștere, Petrecere sau „Pur și simplu” (sunt permise mai multe).</li>
+</ul>
+<p><em>Bea</em> scoate o sticlă și creează o intrare în <a href="#history">Istoric</a>. Confetti și sunet sărbătoresc momentul (pot fi dezactivate în Setări). Dacă este <strong>ultima sticlă</strong>, aplicația te anunță: whisky-ul dispare apoi din colecție (dar rămâne în Istoric).</p>
+<p>Whisky-ul se servește cel mai bine simplu, la aproximativ 16–20 °C; aplicația arată această estimare ca temperatură de servire.</p>
+<div class="tip"><strong>Rapid prin scanare:</strong> Butonul rotund 🥃 din colecție fotografiază o etichetă, recunoaște whisky-ul din colecția ta și deschide imediat fereastra Bea.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Rafturi și depozitare</h2>
+
+<h3>Definirea și editarea rafturilor</h3>
+<p><strong>Setări → Rafturi</strong> (apasă titlul pentru a deschide): introdu numele, nivelurile, locurile pe nivel și sticlele pe loc, apoi apasă ＋. „Sticle/loc” este 1 pentru un suport de sticle și mai mare pentru podea sau ladă. În listă, fiecare raft are:</p>
+<ul>
+<li><strong>mânerul ⠿</strong> pentru a schimba ordinea și butonul <em>Sortează A–Z</em> sub listă,</li>
+<li>▦ pentru <strong>etichete QR</strong>, ✏️ pentru editare, 🧹 pentru golire și 🗑 pentru ștergere.</li>
+</ul>
+<p>Cu <strong>editare</strong> (✏️) poți redenumi raftul, schimba locurile pe nivel, adăuga niveluri sus sau jos, elimina niveluri și da fiecărui nivel propriul nume și număr de sticle. Sticlele care își pierd astfel locul sunt considerate ulterior „nedepozitate”; whisky-urile în sine rămân în colecție. Aplicația întreabă înainte de astfel de modificări.</p>
+<h3>Zona Rafturi</h3>
+<p>Sus alegi un raft cu ajutorul <strong>plăcilor</strong> (nume și „ocupate / locuri”). Ordinea poate fi schimbată și aici: pe PC trage o placă, pe ecrane tactile ține apăsată o placă aproximativ o jumătate de secundă, apoi trage. Dedesubt este <strong>planul de depozitare</strong>: fiecare nivel cu locurile sale. Locurile ocupate arată o sticlă în culoarea tipului de whisky.</p>
+<h3>Depozitarea</h3>
+<ol>
+<li>Apasă un whisky din „Neatribuite” (lista poate fi filtrată după distilerie și țară) – sau apasă o indicație „nedepozitat” în colecție.</li>
+<li>Apasă un <strong>loc liber</strong>. Pentru podele și lăzi, aplicația depozitează câte sticle încap.</li>
+</ol>
+<p><strong>Scanează whisky-ul și depozitează</strong> fotografiază eticheta, găsește whisky-ul și te ghidează prin depozitare.</p>
+<h3>Locuri ocupate, mutare, eliminare</h3>
+<p>Apasă un loc ocupat: vezi whisky-ul și îl poți <em>deschide</em>, <em>elimina din loc</em> sau <em>muta</em> (apoi apasă un loc liber). <em>Golește raftul</em> scoate toate sticlele din raft (după confirmare).</p>
+<h3>Etichete QR și „Scanează nivelul”</h3>
+<p>Cu <strong>Etichete QR</strong> (Setări → Rafturi → ▦) creezi o etichetă pentru raft și câte una pentru fiecare nivel. Partajează ca PDF sau tipărește (coală de etichete 63,5 × 38,1 mm, 21 pe pagină) și lipește-le. Apoi: <strong>Scanează nivelul</strong> în zona Rafturi – vezi ce se află pe acel nivel și poți <em>depozita aici</em>, <em>scoate</em>, bea, muta o sticlă sau <em>muta tot nivelul</em>. În formularul „Adaugă whisky”, scanarea unei etichete de nivel completează și locul de depozitare.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Istoric</h2>
+
+<p>Istoricul listează toate whisky-urile pe care le-ai băut, cu data, whisky-ul, valoarea, invitații și ocazia. Poți filtra după tipul de whisky și ocazie și poți edita o intrare (invitați, ocazie). Istoricul alimentează evaluările „Băute pe lună/an”, cheltuielile și frecvența din Statistici.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Listă de dorințe</h2>
+
+<ul>
+<li><strong>+ Adaugă dorință</strong>: manual sau prin scanarea etichetei, cu o notă opțională („De unde cumperi?”).</li>
+<li><strong>Caută prețuri</strong> (💶): Aplicația caută pe web prețurile whisky-ului, arată cel mai ieftin rezultat și îl înmulțește cu cantitatea. Sunt valori orientative, fără garanție – verifică la magazin costurile de transport și disponibilitatea.</li>
+<li><strong>Bifa</strong> din stânga: marchează ca achiziționat/gata (rândul se estompează).</li>
+<li><strong>→ Colecție</strong>: mută dorința în colecție (cu cantitatea și, dacă există, cel mai mic preț) și, dacă ai rafturi, te duce direct la depozitare.</li>
+<li>Dacă un whisky scade sub minimul său, aplicația se oferă să-l pună în lista de dorințe cu cantitatea lipsă („recumpărare”).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statistici</h2>
+
+<p>De sus în jos:</p>
+<ul>
+<li><strong>Cifre cheie:</strong> sticle, whisky-uri, valoare totală, rating mediu.</li>
+<li><strong>După tip</strong> și <strong>Cele mai bune whisky-uri</strong> (după evaluare sau frecvență, filtrabile după stele).</li>
+<li><strong>După țară, regiune, distilerie:</strong> bare (până la 8, restul ca „+n în plus”); o apăsare caută în colecție. <strong>După an:</strong> coloane, derulabile lateral.</li>
+<li><strong>Prețuri:</strong> medie pe sticlă, cea mai ieftină, cea mai scumpă, categorii de preț (adaptate monedei tale) și valoare pe țară.</li>
+<li><strong>Depozit:</strong> ocupare în procente, locuri libere, sticle nedepozitate și o bară pentru fiecare raft (o apăsare sare la raft).</li>
+<li><strong>Băute:</strong> pe lună (ultimele 12) și pe an, plus cheltuielile pentru sticlele băute.</li>
+<li><strong>Cele mai bune țări și cele mai bune distilerii</strong> după evaluarea medie (colecția și Istoricul împreună).</li>
+<li><strong>De recumpărat:</strong> whisky-uri sub stocul minim (deschide lista de cumpărături), dorințele deschise și valoarea lor.</li>
+</ul>
+<p>Secțiunile fără date (de ex. fără prețuri) sunt ascunse.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Export, import și backup</h2>
+
+<table>
+<tbody><tr><th>Funcție</th><th>Scop</th></tr>
+<tr><td>Exportă CSV</td><td>Tabel pentru Excel sau Numbers</td></tr>
+<tr><td>Exportă Excel</td><td>Ca fișier .xlsx</td></tr>
+<tr><td>Exportă PDF</td><td>Prezentare generală imprimabilă</td></tr>
+<tr><td><strong>Backup JSON</strong></td><td><strong>Backup complet al datelor</strong> (whisky-uri, listă de dorințe, istoric, rafturi, nume afișat, fotografii proprii)</td></tr>
+<tr><td>În clipboard</td><td>Copiază o listă text</td></tr>
+<tr><td>Importă JSON / CSV / Excel</td><td>Restaurează un backup sau citește un tabel</td></tr>
+</tbody></table>
+<p>Coloanele din CSV și Excel sunt: <strong>Nume, An, Tip, Regiune, Țară, Distilerie, Vârstă, ABV, Butoi, Raft, Nivel, Loc, Sticle, Evaluare, Preț, Notă</strong>. Importul acceptă și numele vechi ale coloanelor.</p>
+<div class="tip"><strong>Fă regulat un backup JSON.</strong> Importul JSON înlocuiește colecția cu backup-ul (aplicația întreabă mai întâi). Pe un dispozitiv nou, acesta restaurează totul. Alternativ, folosește sincronizarea în cloud (<a href="#sync">secțiunea 11</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Setări</h2>
+
+<h3>General</h3>
+<ul>
+<li><strong>Nume afișat (titlu):</strong> „Peter” devine, de exemplu, „Colecția de whisky a lui Peter”. Lasă gol pentru titlul implicit.</li>
+<li><strong>Monedă:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Limbă:</strong> 25 de variante de limbă, inclusiv germană, engleză, engleză (US) și multe altele. <strong>Moneda se schimbă automat</strong> (suedeză → coroană, engleză (US) → US $, engleză (UK) → £). Exemplu: când treci la suedeză, aplicația trece la SEK și întreabă dacă să <strong>convertească toate prețurile la cursul de astăzi al Băncii Centrale Europene</strong> („OK”) sau doar să schimbe eticheta („Anulează”). Nu există cursuri pentru RUB și UAH. Poți schimba moneda manual oricând.</li>
+<li><strong>Confetti și sunet la băut:</strong> ambele, doar confetti sau dezactivat.</li>
+<li><strong>Font:</strong> zece fonturi la alegere.</li>
+<li><strong>Unitate de temperatură:</strong> °C sau °F (engleza (US) setează automat °F).</li>
+</ul>
+<h3>Stocare</h3>
+<p><em>Doar acest dispozitiv</em> sau <em>Cloud</em> (cod de sincronizare, <a href="#sync">secțiunea 11</a>).</p>
+<h3>Credite IA (doar aplicația pentru iPhone)</h3>
+<p>Arată scanările IA rămase, ID-ul dispozitivului și – la nevoie – <em>Reîncarcă credite</em> sau un cod de deblocare. Vezi <a href="#privacy">secțiunea 12</a>.</p>
+<h3>Bază de date whisky</h3>
+<ul>
+<li><strong>Actualizează toate whisky-urile (IA):</strong> completează regiunea, țara, distileria, vârsta, ABV-ul, butoiul, temperatura de servire și prețul lipsă pentru toate whisky-urile (în versiunea web și imaginile sticlelor). Valorile existente rămân. Dacă există deja temperaturi de servire, aplicația întreabă mai întâi dacă să fie înlocuite și ele cu valori IA. <em>Sfat: exportă mai întâi un backup JSON.</em></li>
+</ul>
+<h3>Rafturi</h3>
+<p>Vezi <a href="#racks">secțiunea 5</a>. Titlul arată numărul de rafturi.</p>
+<h3>Confidențialitate, asistență, versiune</h3>
+<p>Linkurile duc la politica de confidențialitate și la această pagină de asistență. În partea de jos găsești <strong>versiunea</strong> aplicației – te rugăm să o menționezi când ne contactezi.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Sincronizarea a două dispozitive</h2>
+
+<ol>
+<li><strong>Primul dispozitiv:</strong> Setări → Stocare → <em>Cloud</em> → <em>Creează un cod de sincronizare nou</em>. Codul apare pe ecran; cu <em>Salvează codul prin e-mail</em> ți-l trimiți ție.</li>
+<li><strong>Al doilea dispozitiv:</strong> Setări → Stocare → <em>Cloud</em> → introdu codul (litere mici, fără spații) → Conectează. Dacă dispozitivul conține deja whisky-uri, aplicația întreabă dacă să le îmbine cu datele din cloud.</li>
+<li>După aceea, ambele dispozitive se sincronizează automat (de ex. la deschiderea aplicației); <em>Sincronizează acum</em> o declanșează manual. Regula este: <strong>câștigă cea mai recentă modificare</strong>.</li>
+</ol>
+<p>Whisky-urile, lista de dorințe, istoricul, rafturile și setări precum limba și moneda sunt sincronizate. <strong>Nu sunt sincronizate</strong> fotografiile proprii și datele specifice dispozitivului. Oricine îți cunoaște codul îți poate vedea whisky-urile – partajează-l doar cu persoane în care ai încredere. Păstrează și un backup JSON.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. IA, confidențialitate și costuri</h2>
+
+<ul>
+<li><strong>Pentru ce se folosește IA?</strong> Scanarea etichetei, căutarea whisky-ului, găsirea prețurilor și „Actualizează toate whisky-urile”. Fotografia sau numele whisky-ului este trimis prin serverul nostru către un serviciu IA (Anthropic, SUA) pentru evaluare – fără nume sau conturi. Aplicația îți cere consimțământul înainte de prima utilizare.</li>
+<li><strong>Scanarea codului de bare</strong> trimite doar numărul către o bază de date gratuită de produse și nu consumă niciun credit IA.</li>
+<li><strong>Costuri (aplicația pentru iPhone):</strong> 50 de apeluri IA per instalare sunt incluse în prețul de achiziție; mai multe pot fi cumpărate ca achiziție unică opțională (fără abonament, creditele nu expiră). Tot restul din aplicație nu costă nimic în plus. Când creditele s-au terminat, totul în afară de funcțiile IA continuă să funcționeze.</li>
+<li><strong>Date:</strong> Totul rămâne pe dispozitivul tău atâta timp cât nu activezi cloud-ul. Fără reclame, fără urmărire, fără cont de utilizator. Detalii în <a href="datenschutz.html">politica de confidențialitate</a> (în germană).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Sfaturi și întrebări frecvente</h2>
+
+<ul>
+<li><strong>Pe un iPad sau PC</strong> aspectul se adaptează: coloană mai lată, mai multe carduri alăturate, iar pe PC (și iPad în mod peisaj) navigarea în stânga. Telefonul funcționează și în mod peisaj. Pe PC, <kbd>Esc</kbd> închide fereastra de sus; pe telefon, trage fereastra în jos pentru a o închide.</li>
+<li><strong>Whisky-urile mele au dispărut:</strong> Vezi <a href="support.html">Asistență</a> – restaurează cu codul de sincronizare sau cu un backup JSON.</li>
+<li><strong>Niciun rezultat pentru codul de bare al unui whisky:</strong> Normal pentru distilerii mici. Folosește scanarea etichetei.</li>
+<li><strong>IA a citit greșit ceva:</strong> Corectează câmpul manual și salvează; valorile IA sunt sugestii.</li>
+<li><strong>Să las un whisky să „îmbătrânească” în sticlă?</strong> Nu. Whisky-ul se maturează doar în butoi, nu în sticlă – o sticlă nu devine mai bună cu anii, deschisă sau nedeschisă. De aceea nu există o funcție de fereastră de băut; temperatura de servire (simplu, aproximativ 16–20 °C) este doar orientativă.</li>
+<li><strong>Pagina încă arată versiunea veche (web):</strong> Reîncarcă pagina (pe PC <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>Mai ai întrebări? Scrie la <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Ghid%20de%20utilizare">t.knecht@web.de</a> și menționează versiunea aplicației (Setări, în partea de jos).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

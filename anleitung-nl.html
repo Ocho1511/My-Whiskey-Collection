@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gebruikershandleiding – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← Naar de collectie</a> &nbsp;·&nbsp; </span><a href="support.html">← Terug naar support</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html" selected>Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Gebruikershandleiding – My Whiskey Collection</h1>
+<p><small>Bijgewerkt: 13 november 2026 · App-versie 2.0</small></p>
+
+<div class="toc">
+
+<strong>Inhoud</strong><ol>
+<li><a href="#start">Overzicht en eerste stappen</a></li>
+<li><a href="#add">Een whisky toevoegen</a></li>
+<li><a href="#cellar">De collectie</a></li>
+<li><a href="#drink">Een whisky drinken</a></li>
+<li><a href="#racks">Rekken en opbergen</a></li>
+<li><a href="#history">Historie</a></li>
+<li><a href="#wish">Verlanglijst</a></li>
+<li><a href="#stats">Statistieken</a></li>
+<li><a href="#export">Export, import en back-up</a></li>
+<li><a href="#setup">Opties (instellingen)</a></li>
+<li><a href="#sync">Twee apparaten synchroniseren</a></li>
+<li><a href="#privacy">AI, privacy en kosten</a></li>
+<li><a href="#faq">Tips en veelgestelde vragen</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Overzicht en eerste stappen</h2>
+
+<p>My Whiskey Collection is je persoonlijke whiskycollectie in je zak: je beheert voorraad, opbergplekken, een verlanglijst en statistieken. Alles draait op je eigen apparaat; met een synccode kun je meerdere apparaten koppelen.</p>
+<p>Onderaan (op pc en iPad liggend: links) vind je de balk met zeven onderdelen:</p>
+<table>
+<tbody><tr><th>Onderdeel</th><th>Doel</th></tr>
+<tr><td><strong>Collectie</strong></td><td>Alle whisky's, zoeken, filters, sorteren, een whisky toevoegen, drinken</td></tr>
+<tr><td><strong>Cijfers</strong></td><td>Analyses van voorraad, prijzen, opslag, drinkgeschiedenis</td></tr>
+<tr><td><strong>Historie</strong></td><td>De whisky's die je hebt gedronken</td></tr>
+<tr><td><strong>Rekken</strong></td><td>Opslagplan: whisky's opbergen en verplaatsen, QR-labels</td></tr>
+<tr><td><strong>Verlanglijst</strong></td><td>Whisky's die je nog wilt kopen</td></tr>
+<tr><td><strong>Export/Import</strong></td><td>Een back-up van je gegevens maken, tabellen en back-ups inlezen</td></tr>
+<tr><td><strong>Opties</strong></td><td>Naam, valuta, taal, cloud, rekken definiëren</td></tr>
+</tbody></table>
+<h3>De eerste vijf stappen</h3>
+<ol>
+<li><strong>Kies taal en valuta</strong>: Opties → Algemeen. De valuta volgt automatisch de taal.</li>
+<li><strong>Definieer rekken</strong> (optioneel): Opties → Rekken (zie <a href="#racks">paragraaf 5</a>).</li>
+<li><strong>Voeg je eerste whisky toe</strong>: tik op <kbd>+</kbd> in de collectie (<a href="#add">paragraaf 2</a>).</li>
+<li><strong>Berg hem op</strong>: geef de whisky een plek in een rek.</li>
+<li><strong>Maak een back-up</strong>: Export/Import → JSON-back-up, of stel cloudsynchronisatie in (<a href="#sync">paragraaf 11</a>).</li>
+</ol>
+<div class="tip">De onderdelen van <em>Opties</em> zijn inklapbaar. “Algemeen” staat bij de eerste start open, de andere zijn dicht. De app onthoudt wat je het laatst hebt geopend of gesloten.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Een whisky toevoegen</h2>
+
+<p>Tik op <kbd>+</kbd> in de collectie. Er zijn meerdere manieren om een whisky toe te voegen – ze zijn te combineren.</p>
+<h3>a) Met de hand</h3>
+<p>Vul de velden in: <strong>Naam / Distilleerderij, Jaar, Flessen, Whiskytype, Regio (bijv. Speyside, Islay, Kentucky), Land, Distilleerderij, Leeftijd (jaren), ABV %, Vat, Opslagplaats, Serveertemperatuur, Prijs, Beoordeling, Notitie</strong>. Alleen de naam is verplicht. <em>Opslaan</em> maakt de whisky aan.</p>
+<ul>
+<li><strong>Jaar:</strong> Het jaar is het bottel- of distillatiejaar van de fles. <strong>Leeftijd</strong> is de rijpingstijd in jaren (bijv. 12), <strong>ABV</strong> het alcoholpercentage en <strong>Vat</strong> het soort vat (bijv. sherry, bourbonvat).</li>
+<li><strong>Voorraad, min en max:</strong> Als je een minimum invoert, waarschuwt de app je wanneer de voorraad daaronder zakt en biedt aan de whisky op de verlanglijst te zetten (<a href="#cellar">paragraaf 3</a>).</li>
+<li><strong>Eigen foto:</strong> “Foto maken / kiezen” voegt een foto aan de whisky toe. Hij blijft op dit apparaat en zit in de JSON-back-up, maar wordt niet met de cloud gesynchroniseerd.</li>
+</ul>
+<h3>b) Etiket scannen (AI)</h3>
+<p>Tik op <em>Etiket scannen (AI)</em> en fotografeer het etiket van de fles. De AI leest naam, jaar, type, regio, land, distilleerderij, leeftijd, ABV en vat en schat de serveertemperatuur. Controleer de waarden en sla op. Vóór het eerste gebruik vraagt de app om je toestemming (<a href="#privacy">paragraaf 12</a>).</p>
+<h3>c) Barcode scannen</h3>
+<p>Tik op <em>Barcode scannen</em> en houd de barcode van de fles in het kader. De app zoekt het nummer op in een gratis productdatabase (geen kosten, geen AI-tegoed) en vult, als het gevonden wordt, <strong>naam, producent en whiskytype</strong> in. Het jaar vult ze aan uit de naam of vraagt ze je.</p>
+<ul>
+<li>Staat de fles al in de collectie, dan vraagt de app “Nog een fles toevoegen?” – een snelle manier om bij te tellen als je meer koopt.</li>
+<li>Staat de barcode <strong>niet</strong> in de database (vaak bij kleinere distilleerderijen), dan verschijnt een hint met de knop <em>Etiket scannen (AI)</em>. Het nummer wordt toch bij de whisky opgeslagen, zodat de fles de volgende keer meteen wordt herkend.</li>
+</ul>
+<h3>d) Whisky opzoeken (AI)</h3>
+<p><em>Whisky opzoeken (AI)</em> laat de AI op het web zoeken naar regio, land, distilleerderij, leeftijd, ABV, vat, serveertemperatuur, huidige gemiddelde prijs en – in de webversie – een afbeelding van de fles. Velden die je al hebt ingevuld, worden niet overschreven. Dit gebeurt ook automatisch zodra naam en jaar zijn ingevoerd en er nog geen prijs is.</p>
+<div class="note">De iPhone-app laadt geen flesafbeeldingen van internet (App Store-regel). Je kunt in plaats daarvan eigen foto's maken.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. De collectie</h2>
+
+<h3>Zoeken, filteren, sorteren</h3>
+<ul>
+<li><strong>Zoeken</strong> bovenaan: vindt whisky's op naam, regio, land en distilleerderij.</li>
+<li><strong>Filters:</strong> Alle, Single Malt, Bourbon / Rye, Blended, World, Overig. Klik je op een type, dan wordt de zoekopdracht automatisch gewist.</li>
+<li><strong>Sorteren:</strong> Nieuwste eerst, Naam, Jaar, Distilleerderij, Regio of Land.</li>
+<li><strong>Lijst / kaarten:</strong> De knop <em>Lijst</em> wisselt tussen een compacte lijst en gedetailleerde kaarten.</li>
+</ul>
+<h3>De whiskykaart</h3>
+<p>De kaart toont naam, jaar, distilleerderij, beoordeling (sterren), regio en land (tik om een kaart of de whiskyregio's van het land te openen), het aantal flessen, de <strong>serveertemperatuur</strong> (🌡) en de <strong>opslagplekken</strong> (tik om naar het rek te springen). Het kleine tumblerglas-symbool opent Wikipedia voor de distilleerderij.</p>
+<p>Onderaan de kaart: <em>Bewerken</em>, <em>Drinken</em> en 🗑 (whisky verwijderen).</p>
+<h3>Voorraad, min/max en de boodschappenlijst</h3>
+<p>Voer je voor een whisky een minimum (en eventueel een maximum) in, dan toont de kaart “Voorraad · Min · Max” en waarschuwt met ⚠ als je eronder zit. De knop <em>Bijbestellen</em> opent de <strong>boodschappenlijst</strong>: die toont alle whisky's onder hun minimum (het doel is het maximum, anders het minimum). Je kunt de lijst delen of kopiëren, of de whisky's op de verlanglijst zetten.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Een whisky drinken</h2>
+
+<p>Tik op <em>Drinken</em> op de whiskykaart. Het venster <em>Whisky drinken</em> opent:</p>
+<ul>
+<li><strong>Uit welke plek genomen?</strong> – kies de rekplek waar de fles vandaan kwam, of “Fles zonder plek”. De plek komt vrij.</li>
+<li><strong>Met wie heb je gedronken?</strong> – namen van je gasten (optioneel).</li>
+<li><strong>Gelegenheid</strong> – Lente, Zomer, Herfst, Winter, Verjaardag, Feest of “Zomaar” (meerdere mogelijk).</li>
+</ul>
+<p><em>Drinken</em> haalt één fles weg en maakt een vermelding in de <a href="#history">Historie</a>. Confetti en geluid vieren het (uit te zetten bij Opties). Is het de <strong>laatste fles</strong>, dan meldt de app dat: de whisky verdwijnt dan uit de collectie (maar blijft in de Historie).</p>
+<p>Whisky smaakt het best puur, bij ongeveer 16–20 °C; de app toont deze schatting als serveertemperatuur.</p>
+<div class="tip"><strong>Snel met scannen:</strong> De ronde 🥃-knop in de collectie fotografeert een etiket, herkent de whisky in je collectie en opent meteen het Drinken-venster.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Rekken en opbergen</h2>
+
+<h3>Rekken definiëren en bewerken</h3>
+<p><strong>Opties → Rekken</strong> (tik op de kop om te openen): voer naam, niveaus, plaatsen per niveau en flessen per plek in en tik op ＋. “Flessen/plek” is 1 voor een flessenrek en hoger voor een vloer of kist. In de lijst heeft elk rek:</p>
+<ul>
+<li>de <strong>handgreep ⠿</strong> om de volgorde te wijzigen, en de knop <em>Sorteer A–Z</em> onder de lijst,</li>
+<li>▦ voor <strong>QR-labels</strong>, ✏️ om te bewerken, 🧹 om te legen en 🗑 om te verwijderen.</li>
+</ul>
+<p>Met <strong>bewerken</strong> (✏️) kun je het rek hernoemen, de plaatsen per niveau wijzigen, niveaus bovenaan of onderaan toevoegen, niveaus verwijderen en elk niveau een eigen naam en aantal flessen geven. Flessen die zo hun plek verliezen, tellen daarna als “niet opgeslagen”; de whisky's zelf blijven in de collectie. De app vraagt vóór zulke wijzigingen om bevestiging.</p>
+<h3>Het onderdeel Rekken</h3>
+<p>Bovenaan kies je een rek met de <strong>tegels</strong> (naam en “bezet / plaatsen”). De volgorde kun je ook hier wijzigen: sleep op een pc een tegel; houd op aanraakschermen een tegel ongeveer een halve seconde ingedrukt en sleep daarna. Daaronder staat het <strong>opslagplan</strong>: elk niveau met zijn plaatsen. Bezette plaatsen tonen een fles in de kleur van het whiskytype.</p>
+<h3>Opbergen</h3>
+<ol>
+<li>Tik op een whisky onder “Niet toegewezen” (de lijst kan worden gefilterd op distilleerderij en land) – of tik op een hint “niet opgeslagen” in de collectie.</li>
+<li>Tik op een <strong>vrije plek</strong>. Bij vloeren en kisten bergt de app zoveel flessen op als er passen.</li>
+</ol>
+<p><strong>Whisky scannen en opslaan</strong> fotografeert het etiket, vindt de whisky en leidt je door het opbergen.</p>
+<h3>Bezette plekken, verplaatsen, verwijderen</h3>
+<p>Tik op een bezette plek: je ziet de whisky en kunt hem <em>openen</em>, <em>uit het vak verwijderen</em> of <em>verplaatsen</em> (tik daarna op een vrije plek). <em>Rek legen</em> haalt alle flessen uit het rek (na bevestiging).</p>
+<h3>QR-labels en “Niveau scannen”</h3>
+<p>Met de <strong>QR-labels</strong> (Opties → Rekken → ▦) maak je één label voor het rek en één voor elk niveau. Deel ze als pdf of print ze (etikettenvel 63,5 × 38,1 mm, 21 per pagina) en plak ze op. Daarna: <strong>Niveau scannen</strong> in het onderdeel Rekken – je ziet wat er op dat niveau staat en kunt <em>hier opslaan</em>, <em>uitnemen</em>, drinken, een fles verplaatsen of <em>heel niveau verplaatsen</em>. In het formulier “Whisky toevoegen” vult het scannen van een niveaulabel ook de opslagplek in.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Historie</h2>
+
+<p>De Historie toont alle whisky's die je hebt gedronken met datum, whisky, waarde, gasten en gelegenheid. Je kunt filteren op whiskytype en gelegenheid en een vermelding bewerken (gasten, gelegenheid). De Historie voedt de analyses “Gedronken per maand/jaar”, de uitgaven en de frequentie in de Cijfers.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Verlanglijst</h2>
+
+<ul>
+<li><strong>+ Wens toevoegen</strong>: met de hand of door een etiket te scannen, met een optionele notitie (“Waar kopen?”).</li>
+<li><strong>Prijzen zoeken</strong> (💶): De app zoekt op het web naar prijzen van de whisky, toont de goedkoopste treffer en vermenigvuldigt die met het aantal. Dit zijn richtwaarden zonder garantie – controleer verzendkosten en beschikbaarheid bij de winkel.</li>
+<li><strong>Vinkje</strong> links: markeren als gekocht/klaar (de rij vervaagt).</li>
+<li><strong>→ Collectie</strong>: verplaatst de wens naar de collectie (met aantal en, indien beschikbaar, de goedkoopste prijs) en brengt je, als je rekken hebt, meteen naar het opbergen.</li>
+<li>Zakt een whisky onder zijn minimum, dan biedt de app aan hem met de ontbrekende hoeveelheid op de verlanglijst te zetten (“bijbestellen”).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statistieken</h2>
+
+<p>Van boven naar beneden:</p>
+<ul>
+<li><strong>Kerncijfers:</strong> flessen, whisky's, totale waarde, gemiddelde beoordeling.</li>
+<li><strong>Per type</strong> en <strong>Topwhisky's</strong> (op beoordeling of frequentie, te filteren op sterren).</li>
+<li><strong>Per land, regio, distilleerderij:</strong> balken (tot 8, de rest als “+n meer”); een tik doorzoekt de collectie. <strong>Per jaar:</strong> kolommen, zijwaarts scrollbaar.</li>
+<li><strong>Prijzen:</strong> gemiddelde per fles, goedkoopste, duurste, prijsklassen (afgestemd op je valuta) en waarde per land.</li>
+<li><strong>Opslag:</strong> bezetting in procenten, vrije plekken, niet opgeslagen flessen en een balk per rek (een tik springt naar het rek).</li>
+<li><strong>Gedronken:</strong> per maand (laatste 12) en per jaar, plus de uitgaven aan gedronken flessen.</li>
+<li><strong>Beste landen en beste distilleerderijen</strong> op gemiddelde beoordeling (collectie en Historie samen).</li>
+<li><strong>Bijkopen:</strong> whisky's onder de minimumvoorraad (opent de boodschappenlijst), openstaande wensen en hun waarde.</li>
+</ul>
+<p>Onderdelen zonder gegevens (bijv. zonder prijzen) worden verborgen.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Export, import en back-up</h2>
+
+<table>
+<tbody><tr><th>Functie</th><th>Doel</th></tr>
+<tr><td>CSV exporteren</td><td>Tabel voor Excel of Numbers</td></tr>
+<tr><td>Excel exporteren</td><td>Als .xlsx-bestand</td></tr>
+<tr><td>PDF exporteren</td><td>Afdrukbaar overzicht</td></tr>
+<tr><td><strong>JSON-back-up</strong></td><td><strong>Volledige gegevensback-up</strong> (whisky's, verlanglijst, historie, rekken, weergavenaam, eigen foto's)</td></tr>
+<tr><td>Naar klembord</td><td>Een tekstlijst kopiëren</td></tr>
+<tr><td>JSON / CSV / Excel importeren</td><td>Een back-up terugzetten of een tabel inlezen</td></tr>
+</tbody></table>
+<p>De kolommen in CSV en Excel zijn: <strong>Naam, Jaar, Type, Regio, Land, Distilleerderij, Leeftijd, ABV, Vat, Rek, Niveau, Plek, Flessen, Beoordeling, Prijs, Notitie</strong>. De import accepteert ook de oude kolomnamen.</p>
+<div class="tip"><strong>Maak regelmatig een JSON-back-up.</strong> De JSON-import vervangt de collectie door de back-up (de app vraagt eerst). Op een nieuw apparaat zet dit alles terug. Gebruik anders de cloudsynchronisatie (<a href="#sync">paragraaf 11</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Opties (instellingen)</h2>
+
+<h3>Algemeen</h3>
+<ul>
+<li><strong>Weergavenaam (titel):</strong> “Peter” wordt “Peters whiskycollectie” enz. Laat leeg voor de standaardtitel.</li>
+<li><strong>Valuta:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Taal:</strong> 25 taalvarianten, waaronder Duits, Engels, Engels (VS) en nog veel meer. <strong>De valuta verandert automatisch</strong> (Zweeds → kroon, Engels (VS) → US $, Engels (VK) → £). Voorbeeld: als je naar Zweeds overschakelt, wisselt de app naar SEK en vraagt of ze <strong>alle prijzen moet omrekenen tegen de koers van vandaag van de Europese Centrale Bank</strong> (“OK”) of alleen het label moet wijzigen (“Annuleren”). Voor RUB en UAH zijn er geen koersen. Je kunt de valuta altijd met de hand wijzigen.</li>
+<li><strong>Confetti &amp; geluid bij het drinken:</strong> beide, alleen confetti of uit.</li>
+<li><strong>Lettertype:</strong> tien lettertypen om uit te kiezen.</li>
+<li><strong>Temperatuureenheid:</strong> °C of °F (Engels (VS) stelt automatisch °F in).</li>
+</ul>
+<h3>Opslaglocatie</h3>
+<p><em>Alleen dit apparaat</em> of <em>Cloud</em> (synccode, <a href="#sync">paragraaf 11</a>).</p>
+<h3>AI-tegoed (alleen iPhone-app)</h3>
+<p>Toont de resterende AI-scans, het apparaat-ID en – indien nodig – <em>Tegoed opwaarderen</em> of een ontgrendelcode. Zie <a href="#privacy">paragraaf 12</a>.</p>
+<h3>Whiskydatabase</h3>
+<ul>
+<li><strong>Alle whisky's bijwerken (AI):</strong> vult ontbrekende regio, land, distilleerderij, leeftijd, ABV, vat, serveertemperatuur en prijs aan voor alle whisky's (in de webversie ook flesafbeeldingen). Bestaande waarden blijven. Bestaan er al serveertemperaturen, dan vraagt de app eerst of die ook door AI-waarden vervangen moeten worden. <em>Tip: exporteer eerst een JSON-back-up.</em></li>
+</ul>
+<h3>Rekken</h3>
+<p>Zie <a href="#racks">paragraaf 5</a>. De kop toont het aantal rekken.</p>
+<h3>Privacy, support, versie</h3>
+<p>De links leiden naar het privacybeleid en naar deze supportpagina. Helemaal onderaan vind je de <strong>versie</strong> van de app – vermeld die als je contact met ons opneemt.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Twee apparaten synchroniseren</h2>
+
+<ol>
+<li><strong>Eerste apparaat:</strong> Opties → Opslaglocatie → <em>Cloud</em> → <em>Nieuwe synccode aanmaken</em>. De code verschijnt op het scherm; met <em>Code opslaan via e-mail</em> stuur je hem naar jezelf.</li>
+<li><strong>Tweede apparaat:</strong> Opties → Opslaglocatie → <em>Cloud</em> → voer de code in (kleine letters, geen spaties) → Verbinden. Bevat het apparaat al whisky's, dan vraagt de app of ze met de cloudgegevens samengevoegd moeten worden.</li>
+<li>Daarna synchroniseren beide apparaten automatisch (bijv. wanneer de app wordt geopend); <em>Nu synchroniseren</em> start het handmatig. De regel is: <strong>de nieuwste wijziging wint</strong>.</li>
+</ol>
+<p>Whisky's, verlanglijst, historie, rekken en instellingen zoals taal en valuta worden gesynchroniseerd. <strong>Niet gesynchroniseerd</strong> worden eigen foto's en apparaatspecifieke gegevens. Iedereen die je code kent, kan je whisky's zien – deel hem alleen met mensen die je vertrouwt. Bewaar ook een JSON-back-up.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. AI, privacy en kosten</h2>
+
+<ul>
+<li><strong>Waarvoor wordt AI gebruikt?</strong> Etiket scannen, whisky opzoeken, prijzen zoeken en “Alle whisky's bijwerken”. De foto of de naam van de whisky wordt via onze server naar een AI-dienst (Anthropic, VS) gestuurd voor beoordeling – zonder namen of accounts. De app vraagt om je toestemming vóór het eerste gebruik.</li>
+<li>Het <strong>scannen van barcodes</strong> stuurt alleen het nummer naar een gratis productdatabase en kost geen AI-tegoed.</li>
+<li><strong>Kosten (iPhone-app):</strong> 50 AI-aanroepen per installatie zijn bij de aankoopprijs inbegrepen; meer kun je kopen als optionele eenmalige aankoop (geen abonnement, tegoed verloopt niet). Al het andere in de app kost niets extra. Is het tegoed op, dan werkt alles behalve de AI-functies gewoon door.</li>
+<li><strong>Gegevens:</strong> Alles blijft op je apparaat zolang je de cloud niet inschakelt. Geen advertenties, geen tracking, geen gebruikersaccount. Details in het <a href="datenschutz.html">privacybeleid</a> (in het Duits).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Tips en veelgestelde vragen</h2>
+
+<ul>
+<li><strong>Op een iPad of pc</strong> past de indeling zich aan: bredere kolom, meerdere kaarten naast elkaar en op pc (en iPad liggend) de navigatie links. De telefoon werkt ook liggend. Op een pc sluit <kbd>Esc</kbd> het bovenste venster; op een telefoon veeg je een venster omlaag om het te sluiten.</li>
+<li><strong>Mijn whisky's zijn weg:</strong> Zie <a href="support.html">Support</a> – herstel met de synccode of een JSON-back-up.</li>
+<li><strong>Geen barcodetreffer voor een whisky:</strong> Normaal bij kleine distilleerderijen. Gebruik de etiketscan.</li>
+<li><strong>De AI heeft iets verkeerd gelezen:</strong> Corrigeer het veld met de hand en sla op; de AI-waarden zijn suggesties.</li>
+<li><strong>Moet ik een whisky in de fles laten “rijpen”?</strong> Nee. Whisky rijpt alleen in het vat, niet in de fles – een fles wordt niet beter met de jaren, geopend of ongeopend. Daarom is er geen drinkvenster-functie; de serveertemperatuur (puur, ongeveer 16–20 °C) is slechts een richtlijn.</li>
+<li><strong>De pagina toont nog de oude versie (web):</strong> Laad de pagina opnieuw (op pc <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>Nog vragen? Schrijf naar <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Gebruikershandleiding">t.knecht@web.de</a> en vermeld de app-versie (Opties, helemaal onderaan).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

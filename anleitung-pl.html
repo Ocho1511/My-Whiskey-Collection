@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instrukcja obsługi – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← Do kolekcji</a> &nbsp;·&nbsp; </span><a href="support.html">← Wróć do wsparcia</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html" selected>Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Instrukcja obsługi – My Whiskey Collection</h1>
+<p><small>Zaktualizowano: 13 listopada 2026 · Wersja aplikacji 2.0</small></p>
+
+<div class="toc">
+
+<strong>Spis treści</strong><ol>
+<li><a href="#start">Przegląd i pierwsze kroki</a></li>
+<li><a href="#add">Dodawanie whisky</a></li>
+<li><a href="#cellar">Kolekcja</a></li>
+<li><a href="#drink">Picie whisky</a></li>
+<li><a href="#racks">Regały i przechowywanie</a></li>
+<li><a href="#history">Historia</a></li>
+<li><a href="#wish">Lista życzeń</a></li>
+<li><a href="#stats">Statystyki</a></li>
+<li><a href="#export">Eksport, import i kopia zapasowa</a></li>
+<li><a href="#setup">Ustawienia</a></li>
+<li><a href="#sync">Synchronizacja dwóch urządzeń</a></li>
+<li><a href="#privacy">AI, prywatność i koszty</a></li>
+<li><a href="#faq">Wskazówki i FAQ</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Przegląd i pierwsze kroki</h2>
+
+<p>My Whiskey Collection to Twoja osobista kolekcja whisky w kieszeni: zarządzasz zapasem, miejscami przechowywania, listą życzeń i statystykami. Wszystko działa na Twoim urządzeniu; kodem synchronizacji możesz połączyć kilka urządzeń.</p>
+<p>Na dole (na komputerze i iPadzie w poziomie: po lewej stronie) znajdziesz pasek z siedmioma obszarami:</p>
+<table>
+<tbody><tr><th>Obszar</th><th>Przeznaczenie</th></tr>
+<tr><td><strong>Kolekcja</strong></td><td>Wszystkie whisky, wyszukiwanie, filtry, sortowanie, dodawanie whisky, picie</td></tr>
+<tr><td><strong>Statystyki</strong></td><td>Zestawienia zapasu, cen, przechowywania i historii picia</td></tr>
+<tr><td><strong>Historia</strong></td><td>Whisky, które wypiłeś</td></tr>
+<tr><td><strong>Regały</strong></td><td>Plan przechowywania: układanie i przenoszenie whisky, etykiety QR</td></tr>
+<tr><td><strong>Lista życzeń</strong></td><td>Whisky, które jeszcze chcesz kupić</td></tr>
+<tr><td><strong>Eksport/Import</strong></td><td>Zrób kopię zapasową danych, wczytaj tabele i kopie zapasowe</td></tr>
+<tr><td><strong>Ustawienia</strong></td><td>Nazwa, waluta, język, chmura, definiowanie regałów</td></tr>
+</tbody></table>
+<h3>Pierwsze pięć kroków</h3>
+<ol>
+<li><strong>Wybierz język i walutę</strong>: Ustawienia → Ogólne. Waluta automatycznie podąża za językiem.</li>
+<li><strong>Zdefiniuj regały</strong> (opcjonalnie): Ustawienia → Regały (patrz <a href="#racks">rozdział 5</a>).</li>
+<li><strong>Dodaj pierwszą whisky</strong>: dotknij <kbd>+</kbd> w kolekcji (<a href="#add">rozdział 2</a>).</li>
+<li><strong>Ułóż ją</strong>: przypisz whisky miejsce na regale.</li>
+<li><strong>Zrób kopię zapasową</strong>: Eksport/Import → kopia JSON lub skonfiguruj synchronizację z chmurą (<a href="#sync">rozdział 11</a>).</li>
+</ol>
+<div class="tip">Sekcje w <em>Ustawieniach</em> można zwijać. „Ogólne” jest otwarte przy pierwszym uruchomieniu, pozostałe są zamknięte. Aplikacja pamięta, co ostatnio otworzyłeś lub zamknąłeś.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Dodawanie whisky</h2>
+
+<p>Dotknij <kbd>+</kbd> w kolekcji. Whisky można dodać na kilka sposobów – można je łączyć.</p>
+<h3>a) Ręcznie</h3>
+<p>Wypełnij pola: <strong>Nazwa, Rok, Butelki, Rodzaj whisky, Region (np. Speyside, Islay, Kentucky), Kraj, Destylarnia, Wiek (lata), ABV %, Beczka, Miejsce przechowywania, Temperatura podawania, Cena, Ocena, Notatka</strong>. Wymagana jest tylko nazwa. <em>Zapisz</em> tworzy whisky.</p>
+<ul>
+<li><strong>Rok:</strong> Rok to rok butelkowania lub destylacji butelki. <strong>Wiek (lata)</strong> to czas dojrzewania w latach (np. 12), <strong>ABV %</strong> zawartość alkoholu w procentach, a <strong>Beczka</strong> rodzaj beczki (np. sherry, beczka po bourbonie).</li>
+<li><strong>Zapas, Min i Maks:</strong> Jeśli podasz minimum, aplikacja ostrzeże, gdy zapas spadnie poniżej niego, i zaproponuje dodanie whisky do listy życzeń (<a href="#cellar">rozdział 3</a>).</li>
+<li><strong>Własne zdjęcie:</strong> „Zrób / wybierz zdjęcie” dołącza zdjęcie do whisky. Pozostaje ono na tym urządzeniu i jest zawarte w kopii JSON, ale nie jest synchronizowane z chmurą.</li>
+</ul>
+<h3>b) Skanuj etykietę (AI)</h3>
+<p>Dotknij <em>Skanuj etykietę (AI)</em> i sfotografuj etykietę butelki. AI odczytuje nazwę, rok, rodzaj, region, kraj, destylarnię, wiek, ABV i beczkę oraz szacuje temperaturę podawania. Sprawdź wartości i zapisz. Przed pierwszym użyciem aplikacja prosi o Twoją zgodę (<a href="#privacy">rozdział 12</a>).</p>
+<h3>c) Skanuj kod kreskowy</h3>
+<p>Dotknij <em>Skanuj kod kreskowy</em> i ustaw kod kreskowy butelki w ramce. Aplikacja wyszukuje numer w darmowej bazie produktów (bez kosztów, bez kredytu AI) i – jeśli go znajdzie – wypełnia <strong>nazwę, producenta i rodzaj whisky</strong>. Rok uzupełnia na podstawie nazwy albo o niego pyta.</p>
+<ul>
+<li>Jeśli butelka jest już w kolekcji, aplikacja pyta „Dodać kolejną butelkę?” – szybki sposób na zwiększenie liczby, gdy kupujesz więcej.</li>
+<li>Jeśli kodu kreskowego <strong>nie ma</strong> w bazie (często zdarza się to w przypadku mniejszych destylarni), pojawia się wskazówka z przyciskiem <em>Skanuj etykietę (AI)</em>. Numer i tak zostaje zapisany przy whisky, dzięki czemu następnym razem butelka zostanie od razu rozpoznana.</li>
+</ul>
+<h3>d) Wyszukaj whisky (AI)</h3>
+<p><em>Wyszukaj whisky (AI)</em> pozwala AI przeszukać internet pod kątem regionu, kraju, destylarni, wieku, ABV, beczki, temperatury podawania, aktualnej średniej ceny oraz – w wersji webowej – zdjęcia butelki. Pola, które już wypełniłeś, nie są nadpisywane. Dzieje się to też automatycznie, gdy tylko podasz nazwę i rok, a ceny jeszcze nie ma.</p>
+<div class="note">Aplikacja na iPhone'a nie pobiera zdjęć butelek z internetu (zasada App Store). Zamiast tego możesz robić własne zdjęcia.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. Kolekcja</h2>
+
+<h3>Wyszukiwanie, filtrowanie, sortowanie</h3>
+<ul>
+<li><strong>Wyszukiwanie</strong> u góry: znajduje whisky według nazwy, regionu, kraju i destylarni.</li>
+<li><strong>Filtry:</strong> Wszystkie, Single Malt, Bourbon / Rye, Blended, World, Inne. Kliknięcie rodzaju automatycznie czyści wyszukiwanie.</li>
+<li><strong>Sortowanie:</strong> Najnowsze najpierw, Nazwa, Rok, Destylarnia, Region lub Kraj.</li>
+<li><strong>Lista / karty:</strong> Przycisk <em>Lista</em> przełącza między zwartą listą a szczegółowymi kartami.</li>
+</ul>
+<h3>Karta whisky</h3>
+<p>Karta pokazuje nazwę, rok, destylarnię, ocenę (gwiazdki), region i kraj (dotknij, aby otworzyć mapę lub regiony whisky danego kraju), liczbę butelek, <strong>temperaturę podawania</strong> (🌡) i <strong>miejsca przechowywania</strong> (dotknij, aby przejść do regału). Mała szklanka tumbler otwiera Wikipedię dla destylarni.</p>
+<p>Na dole karty: <em>Edytuj</em>, <em>Wypij</em> i 🗑 (usuń whisky).</p>
+<h3>Zapas, Min/Maks i lista zakupów</h3>
+<p>Jeśli podasz minimum (i opcjonalnie maksimum) dla whisky, karta pokazuje „Zapas · Min · Maks” i ostrzega znakiem ⚠, gdy jesteś poniżej. Przycisk <em>Do dokupienia</em> otwiera <strong>listę zakupów</strong>: zawiera wszystkie whisky poniżej minimum (celem jest maksimum, w przeciwnym razie minimum). Możesz udostępnić lub skopiować listę albo dodać whisky do listy życzeń.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Picie whisky</h2>
+
+<p>Dotknij <em>Wypij</em> na karcie whisky. Otworzy się okno <em>Wypij whisky</em>:</p>
+<ul>
+<li><strong>Z którego miejsca zabrano?</strong> – wybierz miejsce na regale, z którego pochodziła butelka, albo „Butelka bez miejsca”. Miejsce zostaje zwolnione.</li>
+<li><strong>Z kim piłeś?</strong> – imiona gości (opcjonalnie).</li>
+<li><strong>Okazja</strong> – Wiosna, Lato, Jesień, Zima, Urodziny, Impreza lub „Bez okazji” (można wybrać kilka).</li>
+</ul>
+<p><em>Wypij</em> usuwa jedną butelkę i tworzy wpis w <a href="#history">Historii</a>. Konfetti i dźwięk uświetniają tę chwilę (można wyłączyć w Ustawieniach). Jeśli to <strong>ostatnia butelka</strong>, aplikacja Cię o tym poinformuje: whisky znika wtedy z kolekcji (ale pozostaje w Historii).</p>
+<p>Whisky najlepiej podawać czystą w temperaturze ok. 16–20 °C; aplikacja pokazuje to oszacowanie jako temperaturę podawania.</p>
+<div class="tip"><strong>Szybko dzięki skanowaniu:</strong> Okrągły przycisk 🥃 w kolekcji fotografuje etykietę, rozpoznaje whisky w Twojej kolekcji i od razu otwiera okno Wypij.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Regały i przechowywanie</h2>
+
+<h3>Definiowanie i edycja regałów</h3>
+<p><strong>Ustawienia → Regały</strong> (dotknij nagłówka, aby otworzyć): podaj nazwę, poziomy, miejsca na poziom i butelek na miejsce, a następnie dotknij ＋. „Butelek/miejsce” wynosi 1 dla regału na butelki i więcej dla podłogi lub skrzynki. Na liście każdy regał ma:</p>
+<ul>
+<li><strong>uchwyt ⠿</strong> do zmiany kolejności oraz przycisk <em>Sortuj A–Z</em> pod listą,</li>
+<li>▦ dla <strong>etykiet QR</strong>, ✏️ do edycji, 🧹 do opróżnienia i 🗑 do usunięcia.</li>
+</ul>
+<p>Po <strong>edycji</strong> (✏️) możesz zmienić nazwę regału, zmienić liczbę miejsc na poziom, dodać poziomy na górze lub na dole, usunąć poziomy i nadać każdemu poziomowi własną nazwę i liczbę butelek. Butelki, które w ten sposób stracą swoje miejsce, są potem liczone jako „nieprzypisane”; same whisky pozostają w kolekcji. Aplikacja pyta przed takimi zmianami.</p>
+<h3>Obszar Regały</h3>
+<p>Na górze wybierasz regał za pomocą <strong>kafelków</strong> (nazwa i „zajęte / miejsca”). Kolejność można zmienić także tutaj: na komputerze przeciągnij kafelek, na ekranach dotykowych przytrzymaj kafelek przez ok. pół sekundy, a potem przeciągnij. Poniżej znajduje się <strong>plan przechowywania</strong>: każdy poziom z jego miejscami. Zajęte miejsca pokazują butelkę w kolorze rodzaju whisky.</p>
+<h3>Układanie</h3>
+<ol>
+<li>Dotknij whisky w sekcji „Nieprzypisane” (listę można filtrować według destylarni i kraju) – albo dotknij wskazówki „nieprzypisane” w kolekcji.</li>
+<li>Dotknij <strong>wolnego miejsca</strong>. Na podłogach i w skrzynkach aplikacja układa tyle butelek, ile się zmieści.</li>
+</ol>
+<p><strong>Skanuj whisky i umieść</strong> fotografuje etykietę, znajduje whisky i prowadzi Cię przez umieszczanie.</p>
+<h3>Zajęte miejsca, przenoszenie, usuwanie</h3>
+<p>Dotknij zajętego miejsca: zobaczysz whisky i możesz ją <em>otworzyć</em>, <em>usunąć z miejsca</em> lub <em>przenieść</em> (następnie dotknij wolnego miejsca). <em>Opróżnij regał</em> wyjmuje wszystkie butelki z regału (po potwierdzeniu).</p>
+<h3>Etykiety QR i „Skanuj poziom”</h3>
+<p>Za pomocą <strong>etykiet QR</strong> (Ustawienia → Regały → ▦) tworzysz jedną etykietę dla regału i po jednej dla każdego poziomu. Udostępnij jako PDF lub wydrukuj (arkusz etykiet 63,5 × 38,1 mm, 21 na stronę) i naklej. Potem: <strong>Skanuj poziom</strong> w obszarze Regały – zobaczysz, co stoi na tym poziomie, i możesz <em>odłożyć tutaj</em>, <em>wyjąć</em>, wypić, przenieść butelkę lub <em>przenieść cały poziom</em>. W formularzu „Dodaj whisky” zeskanowanie etykiety poziomu wypełnia także miejsce przechowywania.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Historia</h2>
+
+<p>Historia zawiera listę wszystkich wypitych whisky z datą, whisky, wartością, gośćmi i okazją. Możesz filtrować według rodzaju whisky i okazji oraz edytować wpis (goście, okazja). Historia zasila zestawienia „Wypite miesięcznie/rocznie”, wydatki i częstotliwość w Statystykach.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Lista życzeń</h2>
+
+<ul>
+<li><strong>+ Dodaj życzenie</strong>: ręcznie lub przez skan etykiety, z opcjonalną notatką („Gdzie kupić?”).</li>
+<li><strong>Szukaj cen</strong> (💶): Aplikacja przeszukuje internet w poszukiwaniu cen whisky, pokazuje najtańszy wynik i mnoży go przez ilość. Są to wartości orientacyjne bez gwarancji – sprawdź koszty wysyłki i dostępność w sklepie.</li>
+<li><strong>Ptaszek</strong> po lewej: oznacz jako kupione/załatwione (wiersz blednie).</li>
+<li><strong>→ Kolekcja</strong>: przenosi życzenie do kolekcji (z ilością i, jeśli jest, najtańszą ceną) i – jeśli masz regały – od razu przechodzi do układania.</li>
+<li>Jeśli whisky spadnie poniżej minimum, aplikacja proponuje dodanie jej do listy życzeń z brakującą ilością („dokupienie”).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statystyki</h2>
+
+<p>Od góry do dołu:</p>
+<ul>
+<li><strong>Kluczowe liczby:</strong> butelki, whisky, wartość całkowita, średnia ocena.</li>
+<li><strong>Według typu</strong> i <strong>Najlepsze whisky</strong> (według oceny lub częstotliwości, z filtrem gwiazdek).</li>
+<li><strong>Wg kraju, regionu, destylarni:</strong> słupki (do 8, reszta jako „+n więcej”); dotknięcie przeszukuje kolekcję. <strong>Wg roku:</strong> kolumny, przewijane na boki.</li>
+<li><strong>Ceny:</strong> średnia za butelkę, najtańsza, najdroższa, przedziały cenowe (dopasowane do Twojej waluty) i wartość według kraju.</li>
+<li><strong>Magazyn:</strong> zapełnienie w procentach, wolne miejsca, butelki niezałożone i słupek dla każdego regału (dotknięcie przechodzi do regału).</li>
+<li><strong>Wypite:</strong> miesięcznie (ostatnie 12) i rocznie oraz wydatki na wypite butelki.</li>
+<li><strong>Najlepsze kraje i najlepsze destylarnie</strong> według średniej oceny (kolekcja i Historia łącznie).</li>
+<li><strong>Do dokupienia:</strong> whisky poniżej minimalnego zapasu (otwiera listę zakupów), otwarte życzenia i ich wartość.</li>
+</ul>
+<p>Sekcje bez danych (np. bez cen) są ukryte.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Eksport, import i kopia zapasowa</h2>
+
+<table>
+<tbody><tr><th>Funkcja</th><th>Przeznaczenie</th></tr>
+<tr><td>Eksportuj CSV</td><td>Tabela dla Excela lub Numbers</td></tr>
+<tr><td>Eksportuj Excel</td><td>Jako plik .xlsx</td></tr>
+<tr><td>Eksportuj PDF</td><td>Przegląd do wydruku</td></tr>
+<tr><td><strong>Kopia JSON</strong></td><td><strong>Kompletna kopia zapasowa danych</strong> (whisky, lista życzeń, historia, regały, nazwa wyświetlana, własne zdjęcia)</td></tr>
+<tr><td>Do schowka</td><td>Skopiuj listę tekstową</td></tr>
+<tr><td>Importuj JSON / CSV / Excel</td><td>Przywróć kopię zapasową lub wczytaj tabelę</td></tr>
+</tbody></table>
+<p>Kolumny w CSV i Excelu to: <strong>Nazwa, Rok, Rodzaj, Region, Kraj, Destylarnia, Wiek, ABV, Beczka, Regał, Poziom, Miejsce, Butelki, Ocena, Cena, Notatka</strong>. Import akceptuje także stare nazwy kolumn.</p>
+<div class="tip"><strong>Regularnie rób kopię JSON.</strong> Import JSON zastępuje kolekcję kopią zapasową (aplikacja najpierw pyta). Na nowym urządzeniu przywraca to wszystko. Alternatywnie użyj synchronizacji z chmurą (<a href="#sync">rozdział 11</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Ustawienia</h2>
+
+<h3>Ogólne</h3>
+<ul>
+<li><strong>Nazwa wyświetlana (tytuł):</strong> „Piotr” zmienia się w „Kolekcja whisky Piotra” itp. Zostaw puste, aby użyć domyślnego tytułu.</li>
+<li><strong>Waluta:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Język:</strong> 25 wariantów językowych, m.in. niemiecki, angielski, angielski (USA) i wiele innych. <strong>Waluta zmienia się automatycznie</strong> (szwedzki → korona, angielski (USA) → US $, angielski (UK) → £). Przykład: po przełączeniu na szwedzki aplikacja zmienia walutę na SEK i pyta, czy <strong>przeliczyć wszystkie ceny po dzisiejszym kursie Europejskiego Banku Centralnego</strong> („OK”), czy tylko zmienić oznaczenie („Anuluj”). Dla RUB i UAH nie ma kursów. Walutę możesz w każdej chwili zmienić ręcznie.</li>
+<li><strong>Konfetti i dźwięk przy piciu:</strong> oba, tylko konfetti lub wyłączone.</li>
+<li><strong>Czcionka:</strong> dziesięć czcionek do wyboru.</li>
+<li><strong>Jednostka temperatury:</strong> °C lub °F (angielski (USA) ustawia °F automatycznie).</li>
+</ul>
+<h3>Miejsce zapisu</h3>
+<p><em>Tylko to urządzenie</em> lub <em>Chmura</em> (kod synchronizacji, <a href="#sync">rozdział 11</a>).</p>
+<h3>Kredyty AI (tylko aplikacja na iPhone'a)</h3>
+<p>Pokazuje pozostałe skany AI, identyfikator urządzenia i – w razie potrzeby – <em>Dodaj kredyty</em> lub kod odblokowujący. Zobacz <a href="#privacy">rozdział 12</a>.</p>
+<h3>Baza whisky</h3>
+<ul>
+<li><strong>Zaktualizuj wszystkie whisky (AI):</strong> uzupełnia brakujący region, kraj, destylarnię, wiek, ABV, beczkę, temperaturę podawania i cenę dla wszystkich whisky (w wersji webowej także zdjęcia butelek). Istniejące wartości pozostają. Jeśli temperatury podawania już istnieją, aplikacja najpierw pyta, czy zastąpić je również wartościami AI. <em>Wskazówka: najpierw wyeksportuj kopię JSON.</em></li>
+</ul>
+<h3>Regały</h3>
+<p>Zobacz <a href="#racks">rozdział 5</a>. Nagłówek pokazuje liczbę regałów.</p>
+<h3>Prywatność, wsparcie, wersja</h3>
+<p>Linki prowadzą do polityki prywatności i do tej strony wsparcia. Na samym dole znajdziesz <strong>wersję</strong> aplikacji – podaj ją, kontaktując się z nami.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Synchronizacja dwóch urządzeń</h2>
+
+<ol>
+<li><strong>Pierwsze urządzenie:</strong> Ustawienia → Miejsce zapisu → <em>Chmura</em> → <em>Utwórz nowy kod synchronizacji</em>. Kod pojawia się na ekranie; przez <em>Zapisz kod przez e-mail</em> wysyłasz go do siebie.</li>
+<li><strong>Drugie urządzenie:</strong> Ustawienia → Miejsce zapisu → <em>Chmura</em> → wpisz kod (małe litery, bez spacji) → Połącz. Jeśli urządzenie zawiera już whisky, aplikacja pyta, czy połączyć je z danymi z chmury.</li>
+<li>Potem oba urządzenia synchronizują się automatycznie (np. przy otwarciu aplikacji); <em>Synchronizuj teraz</em> uruchamia to ręcznie. Zasada brzmi: <strong>wygrywa ostatnia zmiana</strong>.</li>
+</ol>
+<p>Synchronizowane są whisky, lista życzeń, historia, regały i ustawienia takie jak język i waluta. <strong>Nie są synchronizowane</strong> własne zdjęcia i dane specyficzne dla urządzenia. Każdy, kto zna Twój kod, może zobaczyć Twoje whisky – udostępniaj go tylko zaufanym osobom. Miej też kopię JSON.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. AI, prywatność i koszty</h2>
+
+<ul>
+<li><strong>Do czego służy AI?</strong> Skanowanie etykiety, wyszukiwanie whisky, szukanie cen i „Zaktualizuj wszystkie whisky”. Zdjęcie lub nazwa whisky jest wysyłana przez nasz serwer do usługi AI (Anthropic, USA) w celu oceny – bez imion i nazwisk ani kont. Aplikacja prosi o Twoją zgodę przed pierwszym użyciem.</li>
+<li><strong>Skanowanie kodu kreskowego</strong> wysyła tylko numer do darmowej bazy produktów i nie kosztuje kredytu AI.</li>
+<li><strong>Koszty (aplikacja na iPhone'a):</strong> 50 wywołań AI na instalację jest wliczone w cenę zakupu; więcej można dokupić jako opcjonalny zakup jednorazowy (bez subskrypcji, kredyty nie wygasają). Wszystko inne w aplikacji nie kosztuje nic dodatkowo. Gdy kredyty się skończą, wszystko poza funkcjami AI nadal działa.</li>
+<li><strong>Dane:</strong> Wszystko pozostaje na Twoim urządzeniu, dopóki nie włączysz chmury. Bez reklam, bez śledzenia, bez konta użytkownika. Szczegóły w <a href="datenschutz.html">polityce prywatności</a> (po niemiecku).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Wskazówki i FAQ</h2>
+
+<ul>
+<li><strong>Na iPadzie lub komputerze</strong> układ dostosowuje się: szersza kolumna, kilka kart obok siebie, a na komputerze (i iPadzie w poziomie) nawigacja po lewej stronie. Telefon działa też w poziomie. Na komputerze <kbd>Esc</kbd> zamyka górne okno; na telefonie przesuń okno w dół, aby je zamknąć.</li>
+<li><strong>Moje whisky zniknęły:</strong> Zobacz <a href="support.html">Wsparcie</a> – przywróć za pomocą kodu synchronizacji lub kopii JSON.</li>
+<li><strong>Brak trafienia kodu kreskowego dla whisky:</strong> To normalne dla małych destylarni. Użyj skanowania etykiety.</li>
+<li><strong>AI źle coś odczytało:</strong> Popraw pole ręcznie i zapisz; wartości AI są sugestiami.</li>
+<li><strong>Czy powinienem pozwolić whisky „dojrzewać” w butelce?</strong> Nie. Whisky dojrzewa tylko w beczce, nie w butelce – butelka nie staje się lepsza z biegiem lat, otwarta czy nieotwarta. Dlatego nie ma funkcji okna picia; temperatura podawania (czysta, ok. 16–20 °C) jest tylko wskazówką.</li>
+<li><strong>Strona nadal pokazuje starą wersję (web):</strong> Odśwież stronę (na komputerze <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>Masz więcej pytań? Napisz na <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Instrukcja%20obs%C5%82ugi">t.knecht@web.de</a> i podaj wersję aplikacji (Ustawienia, na samym dole).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

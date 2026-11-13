@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>사용 설명서 – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← 컬렉션으로</a> &nbsp;·&nbsp; </span><a href="support.html">← 지원으로 돌아가기</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html" selected>한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>사용 설명서 – My Whiskey Collection</h1>
+<p><small>업데이트: 2026년 11월 13일 · 앱 버전 2.0</small></p>
+
+<div class="toc">
+
+<strong>목차</strong><ol>
+<li><a href="#start">개요 및 첫 단계</a></li>
+<li><a href="#add">위스키 추가하기</a></li>
+<li><a href="#cellar">컬렉션</a></li>
+<li><a href="#drink">위스키 마시기</a></li>
+<li><a href="#racks">랙과 보관</a></li>
+<li><a href="#history">기록</a></li>
+<li><a href="#wish">위시리스트</a></li>
+<li><a href="#stats">통계</a></li>
+<li><a href="#export">내보내기, 가져오기, 백업</a></li>
+<li><a href="#setup">설정</a></li>
+<li><a href="#sync">두 기기 동기화</a></li>
+<li><a href="#privacy">AI, 개인정보, 비용</a></li>
+<li><a href="#faq">팁과 자주 묻는 질문</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. 개요 및 첫 단계</h2>
+
+<p>My Whiskey Collection은 주머니 속의 나만의 위스키 컬렉션입니다. 재고, 보관 위치, 위시리스트, 통계를 관리할 수 있습니다. 모든 것이 기기에서 작동하며, 동기화 코드로 여러 기기를 연결할 수 있습니다.</p>
+<p>하단(PC와 가로 모드 iPad에서는 왼쪽)에 일곱 개의 영역이 있는 막대가 있습니다.</p>
+<table>
+<tbody><tr><th>영역</th><th>용도</th></tr>
+<tr><td><strong>컬렉션</strong></td><td>모든 위스키, 검색, 필터, 정렬, 위스키 추가, 마시기</td></tr>
+<tr><td><strong>통계</strong></td><td>재고, 가격, 보관, 음용 기록 분석</td></tr>
+<tr><td><strong>기록</strong></td><td>마신 위스키</td></tr>
+<tr><td><strong>랙</strong></td><td>보관 계획: 위스키 보관 및 이동, QR 라벨</td></tr>
+<tr><td><strong>위시</strong></td><td>앞으로 사고 싶은 위스키</td></tr>
+<tr><td><strong>백업</strong></td><td>데이터 백업, 표와 백업 파일 가져오기</td></tr>
+<tr><td><strong>설정</strong></td><td>이름, 통화, 언어, 클라우드, 랙 정의</td></tr>
+</tbody></table>
+<h3>처음 다섯 단계</h3>
+<ol>
+<li><strong>언어와 통화 선택</strong>: 설정 → 일반. 통화는 언어에 따라 자동으로 바뀝니다.</li>
+<li><strong>랙 정의</strong>(선택 사항): 설정 → 랙(<a href="#racks">5장</a> 참조).</li>
+<li><strong>첫 위스키 추가</strong>: 컬렉션에서 <kbd>+</kbd>를 누릅니다(<a href="#add">2장</a>).</li>
+<li><strong>보관하기</strong>: 위스키에 랙의 칸을 지정합니다.</li>
+<li><strong>백업</strong>: 백업 → JSON 백업, 또는 클라우드 동기화를 설정합니다(<a href="#sync">11장</a>).</li>
+</ol>
+<div class="tip"><em>설정</em>의 각 섹션은 접을 수 있습니다. 처음 시작할 때는 "일반"이 열려 있고 나머지는 닫혀 있습니다. 앱은 마지막으로 열거나 닫은 상태를 기억합니다.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. 위스키 추가하기</h2>
+
+<p>컬렉션에서 <kbd>+</kbd>를 누릅니다. 위스키를 추가하는 방법은 여러 가지이며, 서로 조합할 수 있습니다.</p>
+<h3>a) 직접 입력</h3>
+<p>항목을 채웁니다: <strong>이름 / 증류소, 연도, 병 수, 위스키 종류, 지역(예: 스페이사이드, 아일라, 켄터키), 국가, 증류소, 숙성 연수, ABV %, 캐스크, 보관 위치, 음용 온도, 가격, 평점, 메모</strong>. 이름만 필수입니다. <em>저장</em>을 누르면 위스키가 생성됩니다.</p>
+<ul>
+<li><strong>연도:</strong> 연도는 병입 연도 또는 증류 연도입니다. <strong>숙성 연수</strong>는 숙성 기간(년, 예: 12), <strong>ABV</strong>는 알코올 도수(%), <strong>캐스크</strong>는 통의 종류(예: 셰리, 버번 배럴)입니다.</li>
+<li><strong>재고, 최소, 최대:</strong> 최소값을 입력하면 재고가 그 아래로 내려갈 때 앱이 경고하고 위스키를 위시리스트에 넣도록 제안합니다(<a href="#cellar">3장</a>).</li>
+<li><strong>나만의 사진:</strong> "사진 촬영 / 선택"으로 위스키에 사진을 첨부합니다. 사진은 이 기기에 남고 JSON 백업에는 포함되지만 클라우드에는 동기화되지 않습니다.</li>
+</ul>
+<h3>b) 라벨 스캔 (AI)</h3>
+<p><em>라벨 스캔 (AI)</em>을 누르고 병의 라벨을 촬영합니다. AI가 이름, 연도, 종류, 지역, 국가, 증류소, 숙성 연수, ABV, 캐스크를 읽고 음용 온도를 추정합니다. 값을 확인한 뒤 저장하세요. 처음 사용하기 전에 앱이 동의를 요청합니다(<a href="#privacy">12장</a>).</p>
+<h3>c) 바코드 스캔</h3>
+<p><em>바코드 스캔</em>을 누르고 병의 바코드를 프레임 안에 맞춥니다. 앱이 무료 상품 데이터베이스에서 번호를 조회하고(무료, AI 크레딧 불필요), 찾으면 <strong>이름, 생산자, 위스키 종류</strong>를 채웁니다. 연도는 이름에서 보완하거나 입력을 요청합니다.</p>
+<ul>
+<li>병이 이미 컬렉션에 있으면 앱이 "병을 하나 더 추가할까요?"라고 묻습니다. 더 구입했을 때 수량을 빠르게 늘리는 방법입니다.</li>
+<li>바코드가 데이터베이스에 <strong>없으면</strong>(소규모 증류소에서 흔합니다) <em>라벨 스캔 (AI)</em> 버튼이 있는 안내가 나타납니다. 번호는 위스키와 함께 저장되므로 다음에는 병이 바로 인식됩니다.</li>
+</ul>
+<h3>d) 위스키 조회 (AI)</h3>
+<p><em>위스키 조회 (AI)</em>는 AI가 웹에서 지역, 국가, 증류소, 숙성 연수, ABV, 캐스크, 음용 온도, 현재 평균 가격, 그리고 웹 버전에서는 병 이미지를 검색하게 합니다. 이미 입력한 항목은 덮어쓰지 않습니다. 이름과 연도를 입력했고 아직 가격이 없으면 자동으로도 실행됩니다.</p>
+<div class="note">iPhone 앱은 인터넷에서 병 이미지를 불러오지 않습니다(App Store 규정). 대신 직접 사진을 촬영할 수 있습니다.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. 컬렉션</h2>
+
+<h3>검색, 필터, 정렬</h3>
+<ul>
+<li><strong>검색</strong>(상단): 이름, 지역, 국가, 증류소로 위스키를 찾습니다.</li>
+<li><strong>필터:</strong> 전체, Single Malt, Bourbon / Rye, Blended, World, 기타. 종류를 누르면 검색어가 자동으로 지워집니다.</li>
+<li><strong>정렬:</strong> 최신순, 이름, 연도, 증류소, 지역, 국가.</li>
+<li><strong>목록 / 카드:</strong> <em>목록</em> 버튼으로 간단한 목록과 자세한 카드를 전환합니다.</li>
+</ul>
+<h3>위스키 카드</h3>
+<p>카드에는 이름, 연도, 증류소, 평점(별), 지역과 국가(눌러서 지도 또는 해당 국가의 위스키 산지 지도 열기), 병 수, <strong>음용 온도</strong>(🌡), <strong>보관 칸</strong>(눌러서 랙으로 이동)이 표시됩니다. 작은 텀블러 잔 아이콘은 증류소의 Wikipedia를 엽니다.</p>
+<p>카드 하단에는 <em>수정</em>, <em>마시기</em>, 🗑(위스키 삭제)가 있습니다.</p>
+<h3>재고, 최소/최대, 장보기 목록</h3>
+<p>위스키에 최소값(선택적으로 최대값)을 입력하면 카드에 "재고 · 최소 · 최대"가 표시되고, 최소값 미만이면 ⚠로 경고합니다. <em>재주문</em> 버튼은 <strong>장보기 목록</strong>을 엽니다. 최소값 미만인 모든 위스키가 나열됩니다(목표는 최대값, 없으면 최소값). 목록을 공유하거나 복사할 수 있고, 위스키를 위시리스트에 넣을 수도 있습니다.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. 위스키 마시기</h2>
+
+<p>위스키 카드에서 <em>마시기</em>를 누르면 <em>위스키 마시기</em> 대화상자가 열립니다.</p>
+<ul>
+<li><strong>어느 칸에서 꺼냈나요?</strong> – 병을 꺼낸 랙의 칸을 선택하거나 "칸에 없는 병"을 선택합니다. 그 칸은 비게 됩니다.</li>
+<li><strong>누구와 마셨나요?</strong> – 함께한 사람의 이름(선택 사항).</li>
+<li><strong>계기</strong> – 봄, 여름, 가을, 겨울, 생일, 파티, "그냥"(여러 개 선택 가능).</li>
+</ul>
+<p><em>마시기</em>는 병 하나를 줄이고 <a href="#history">기록</a>에 항목을 만듭니다. 색종이와 소리로 축하합니다(설정에서 끌 수 있습니다). <strong>마지막 병</strong>이면 앱이 알려 줍니다. 그러면 위스키는 컬렉션에서 사라집니다(기록에는 남습니다).</p>
+<p>위스키는 스트레이트로 약 16–20 °C에서 마시는 것이 가장 좋으며, 앱은 이 추정치를 음용 온도로 표시합니다.</p>
+<div class="tip"><strong>스캔으로 빠르게:</strong> 컬렉션의 둥근 🥃 버튼은 라벨을 촬영하고, 컬렉션에서 위스키를 인식해 바로 마시기 대화상자를 엽니다.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. 랙과 보관</h2>
+
+<h3>랙 정의 및 편집</h3>
+<p><strong>설정 → 랙</strong>(제목을 눌러 열기): 이름, 단 수, 단당 칸 수, 칸당 병 수를 입력한 뒤 ＋를 누릅니다. "칸당 병 수"는 병 랙이면 1, 바닥이나 상자이면 더 큰 값입니다. 목록에서 각 랙에는 다음이 있습니다.</p>
+<ul>
+<li>순서를 바꾸는 <strong>핸들 ⠿</strong>과 목록 아래의 <em>A–Z 정렬</em> 버튼,</li>
+<li><strong>QR 라벨</strong>용 ▦, 편집용 ✏️, 비우기용 🧹, 삭제용 🗑.</li>
+</ul>
+<p><strong>편집</strong>(✏️)으로 랙 이름 변경, 단당 칸 수 변경, 위나 아래에 단 추가, 단 삭제, 각 단에 고유한 이름과 병 수 지정이 가능합니다. 이렇게 해서 칸을 잃은 병은 이후 "미보관"으로 간주되며, 위스키 자체는 컬렉션에 남습니다. 이런 변경 전에 앱이 확인을 요청합니다.</p>
+<h3>랙 영역</h3>
+<p>상단에서 <strong>타일</strong>(이름과 "사용 중 / 칸")로 랙을 선택합니다. 순서는 여기서도 바꿀 수 있습니다. PC에서는 타일을 드래그하고, 터치 화면에서는 타일을 약 0.5초 길게 누른 뒤 드래그합니다. 그 아래는 <strong>보관 계획</strong>으로, 각 단과 그 칸이 표시됩니다. 사용 중인 칸에는 위스키 종류 색상의 병이 표시됩니다.</p>
+<h3>보관하기</h3>
+<ol>
+<li>"미배정"에서 위스키를 누릅니다(목록은 증류소와 국가로 필터링할 수 있습니다). 또는 컬렉션의 "미보관" 안내를 누릅니다.</li>
+<li><strong>빈 칸</strong>을 누릅니다. 바닥과 상자의 경우 앱이 들어가는 만큼의 병을 보관합니다.</li>
+</ol>
+<p><strong>위스키 스캔 후 보관</strong>은 라벨을 촬영하고 위스키를 찾아 보관까지 안내합니다.</p>
+<h3>사용 중인 칸, 이동, 제거</h3>
+<p>사용 중인 칸을 누르면 위스키가 표시되고, <em>열기</em>, <em>칸에서 제거</em>, <em>이동</em>(그다음 빈 칸 누르기)을 할 수 있습니다. <em>랙 비우기</em>는 랙의 모든 병을 꺼냅니다(확인 후).</p>
+<h3>QR 라벨과 "단 스캔"</h3>
+<p><strong>QR 라벨</strong>(설정 → 랙 → ▦)로 랙 하나에 라벨 한 장, 각 단마다 라벨 한 장을 만듭니다. PDF로 공유하거나 인쇄(라벨 용지 63.5 × 38.1 mm, 페이지당 21장)해서 붙입니다. 그다음 랙 영역의 <strong>단 스캔</strong>을 사용하면 그 단에 놓인 것이 표시되고 <em>여기에 보관</em>, <em>꺼내기</em>, 마시기, 병 이동, <em>단 전체 이동</em>을 할 수 있습니다. "위스키 추가" 양식에서 단 라벨을 스캔하면 보관 위치도 채워집니다.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. 기록</h2>
+
+<p>기록에는 마신 모든 위스키가 날짜, 위스키, 가치, 함께한 사람, 계기와 함께 나열됩니다. 위스키 종류와 계기로 필터링하고 항목(함께한 사람, 계기)을 편집할 수 있습니다. 기록은 통계의 "월별/연도별 음용", 지출, 빈도 분석에 사용됩니다.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. 위시리스트</h2>
+
+<ul>
+<li><strong>+ 위시 추가</strong>: 직접 입력 또는 라벨 스캔으로, 선택적 메모("어디서 살까요?")와 함께 추가합니다.</li>
+<li><strong>가격 검색</strong>(💶): 앱이 웹에서 해당 위스키의 가격을 검색해 가장 저렴한 결과를 보여 주고 수량을 곱합니다. 보증 없는 참고값이므로 배송비와 재고는 상점에서 확인하세요.</li>
+<li>왼쪽의 <strong>체크</strong>: 구매/완료로 표시합니다(줄이 흐려집니다).</li>
+<li><strong>→ 컬렉션</strong>: 위시를 컬렉션으로 옮기고(수량과, 있다면 최저가 포함) 랙이 있으면 바로 보관으로 이동합니다.</li>
+<li>위스키가 최소값 아래로 내려가면 앱이 부족한 수량으로 위시리스트에 넣도록 제안합니다("재주문").</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. 통계</h2>
+
+<p>위에서 아래로:</p>
+<ul>
+<li><strong>주요 수치:</strong> 병, 위스키, 총 가치, 평균 평점.</li>
+<li><strong>종류별</strong>과 <strong>인기 위스키</strong>(평점 또는 빈도순, 별로 필터링 가능).</li>
+<li><strong>국가별, 지역별, 증류소별:</strong> 막대(최대 8개, 나머지는 "외 n개"). 누르면 컬렉션을 검색합니다. <strong>연도별:</strong> 열, 가로로 스크롤할 수 있습니다.</li>
+<li><strong>가격:</strong> 병당 평균, 최저가, 최고가, 가격대(사용 중인 통화에 맞춤), 국가별 가치.</li>
+<li><strong>보관:</strong> 사용률(%), 빈 자리, 미보관 병, 랙별 막대(누르면 랙으로 이동).</li>
+<li><strong>마신 양:</strong> 월별(최근 12개월)과 연도별, 그리고 마신 병의 지출.</li>
+<li>평균 평점 기준의 <strong>평점 높은 국가와 평점 높은 증류소</strong>(컬렉션과 기록 합산).</li>
+<li><strong>재구매:</strong> 최소 재고 미달 위스키(장보기 목록을 엽니다), 진행 중인 위시와 그 금액.</li>
+</ul>
+<p>데이터가 없는 섹션(예: 가격이 없을 때)은 숨겨집니다.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. 내보내기, 가져오기, 백업</h2>
+
+<table>
+<tbody><tr><th>기능</th><th>용도</th></tr>
+<tr><td>CSV 내보내기</td><td>Excel 또는 Numbers용 표</td></tr>
+<tr><td>Excel 내보내기</td><td>.xlsx 파일로</td></tr>
+<tr><td>PDF 내보내기</td><td>인쇄용 개요</td></tr>
+<tr><td><strong>JSON 백업</strong></td><td><strong>전체 데이터 백업</strong>(위스키, 위시리스트, 기록, 랙, 표시 이름, 나만의 사진)</td></tr>
+<tr><td>클립보드로</td><td>텍스트 목록 복사</td></tr>
+<tr><td>JSON / CSV / Excel 가져오기</td><td>백업 복원 또는 표 가져오기</td></tr>
+</tbody></table>
+<p>CSV와 Excel의 열은 다음과 같습니다: <strong>이름, 연도, 종류, 지역, 국가, 증류소, 숙성 연수, ABV, 캐스크, 랙, 단, 칸, 병 수, 평점, 가격, 메모</strong>. 가져오기에서는 이전 열 이름도 인식합니다.</p>
+<div class="tip"><strong>JSON 백업을 정기적으로 만드세요.</strong> JSON 가져오기는 컬렉션을 백업 내용으로 교체합니다(앱이 먼저 확인합니다). 새 기기에서는 이것으로 모든 것이 복원됩니다. 대안으로 클라우드 동기화를 사용할 수 있습니다(<a href="#sync">11장</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. 설정</h2>
+
+<h3>일반</h3>
+<ul>
+<li><strong>표시 이름 (제목):</strong> "Peter"는 "Peter's Whiskey Collection" 등이 됩니다. 비워 두면 기본 제목이 사용됩니다.</li>
+<li><strong>통화:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>언어:</strong> 독일어, 영어, 영어(미국) 등 25개 언어 변형이 있습니다. <strong>통화는 자동으로 바뀝니다</strong>(스웨덴어 → 크로나, 영어(미국) → US $, 영어(영국) → £). 예: 스웨덴어로 바꾸면 앱이 SEK로 바뀌고 <strong>오늘의 유럽중앙은행 환율로 모든 가격을 환산할지</strong>("확인") 아니면 표시만 바꿀지("취소") 묻습니다. RUB와 UAH는 환율이 없습니다. 통화는 언제든 직접 바꿀 수 있습니다.</li>
+<li><strong>마실 때 색종이 &amp; 소리:</strong> 둘 다, 색종이만, 또는 끔.</li>
+<li><strong>글꼴:</strong> 열 가지 글꼴 중에서 선택합니다.</li>
+<li><strong>온도 단위:</strong> °C 또는 °F(영어(미국)는 자동으로 °F로 설정됩니다).</li>
+</ul>
+<h3>저장 방식</h3>
+<p><em>이 기기에만</em> 또는 <em>클라우드</em>(동기화 코드, <a href="#sync">11장</a>).</p>
+<h3>AI 크레딧 (iPhone 앱 전용)</h3>
+<p>남은 AI 스캔 횟수, 기기 ID, 그리고 필요할 때 <em>크레딧 추가</em> 또는 잠금 해제 코드가 표시됩니다. <a href="#privacy">12장</a>을 참조하세요.</p>
+<h3>위스키 데이터베이스</h3>
+<ul>
+<li><strong>모든 위스키 업데이트 (AI):</strong> 모든 위스키의 누락된 지역, 국가, 증류소, 숙성 연수, ABV, 캐스크, 음용 온도, 가격을 채웁니다(웹 버전에서는 병 이미지도). 기존 값은 유지됩니다. 음용 온도가 이미 있으면 AI 값으로도 교체할지 먼저 묻습니다. <em>팁: 먼저 JSON 백업을 내보내세요.</em></li>
+</ul>
+<h3>랙</h3>
+<p><a href="#racks">5장</a>을 참조하세요. 제목에 랙의 개수가 표시됩니다.</p>
+<h3>개인정보, 지원, 버전</h3>
+<p>링크는 개인정보 처리방침과 이 지원 페이지로 연결됩니다. 맨 아래에서 앱 <strong>버전</strong>을 확인할 수 있으며, 문의하실 때 함께 알려 주세요.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. 두 기기 동기화</h2>
+
+<ol>
+<li><strong>첫 번째 기기:</strong> 설정 → 저장 방식 → <em>클라우드</em> → <em>새 동기화 코드 만들기</em>. 코드가 화면에 표시되며, <em>이메일로 코드 저장</em>으로 나에게 보낼 수 있습니다.</li>
+<li><strong>두 번째 기기:</strong> 설정 → 저장 방식 → <em>클라우드</em> → 코드 입력(소문자, 공백 없음) → 연결. 기기에 이미 위스키가 있으면 클라우드 데이터와 병합할지 앱이 묻습니다.</li>
+<li>그 후에는 두 기기가 자동으로 동기화됩니다(예: 앱을 열 때). <em>지금 동기화</em>로 직접 실행할 수도 있습니다. 규칙은 <strong>가장 최근 변경이 우선</strong>입니다.</li>
+</ol>
+<p>위스키, 위시리스트, 기록, 랙, 그리고 언어와 통화 같은 설정이 동기화됩니다. 나만의 사진과 기기별 데이터는 <strong>동기화되지 않습니다</strong>. 코드를 아는 사람은 누구나 내 위스키를 볼 수 있으므로 신뢰하는 사람과만 공유하세요. JSON 백업도 함께 보관하세요.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. AI, 개인정보, 비용</h2>
+
+<ul>
+<li><strong>AI는 무엇에 사용되나요?</strong> 라벨 스캔, 위스키 조회, 가격 검색, "모든 위스키 업데이트"입니다. 사진 또는 위스키 이름이 당사 서버를 거쳐 AI 서비스(Anthropic, 미국)로 전송되어 분석됩니다. 이름이나 계정 정보는 포함되지 않습니다. 처음 사용하기 전에 앱이 동의를 요청합니다.</li>
+<li><strong>바코드 스캔</strong>은 번호만 무료 상품 데이터베이스로 보내며 AI 크레딧이 들지 않습니다.</li>
+<li><strong>비용(iPhone 앱):</strong> 설치당 AI 호출 50회가 구입 가격에 포함되어 있으며, 추가분은 선택적 1회성 구매로 살 수 있습니다(구독 아님, 크레딧은 만료되지 않음). 앱의 그 밖의 모든 기능은 추가 비용이 없습니다. 크레딧을 다 쓰면 AI 기능을 제외한 모든 기능이 계속 작동합니다.</li>
+<li><strong>데이터:</strong> 클라우드를 켜지 않는 한 모든 것이 기기에 남습니다. 광고 없음, 추적 없음, 사용자 계정 없음. 자세한 내용은 <a href="datenschutz.html">개인정보 처리방침</a>(독일어)을 참조하세요.</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. 팁과 자주 묻는 질문</h2>
+
+<ul>
+<li><strong>iPad나 PC에서는</strong> 레이아웃이 맞춰집니다. 열이 넓어지고, 카드가 여러 개 나란히 표시되며, PC(와 가로 모드 iPad)에서는 내비게이션이 왼쪽에 나타납니다. 휴대폰도 가로 모드로 사용할 수 있습니다. PC에서는 <kbd>Esc</kbd>로 맨 위 창을 닫고, 휴대폰에서는 창을 아래로 밀어 닫습니다.</li>
+<li><strong>위스키가 사라졌어요:</strong> <a href="support.html">지원</a>을 참조하세요. 동기화 코드나 JSON 백업으로 복원합니다.</li>
+<li><strong>위스키의 바코드를 찾을 수 없어요:</strong> 소규모 증류소에서는 정상입니다. 라벨 스캔을 사용하세요.</li>
+<li><strong>AI가 잘못 읽었어요:</strong> 항목을 직접 수정하고 저장하세요. AI 값은 제안일 뿐입니다.</li>
+<li><strong>위스키를 병 안에서 "숙성"시켜야 하나요?</strong> 아니요. 위스키는 캐스크에서만 숙성되며 병 안에서는 숙성되지 않습니다. 병은 개봉 여부와 관계없이 세월이 지나도 좋아지지 않습니다. 그래서 음용 시기 기능은 없으며, 음용 온도(스트레이트로 약 16–20 °C)는 참고용일 뿐입니다.</li>
+<li><strong>페이지가 아직 예전 버전으로 보여요(웹):</strong> 페이지를 새로고침하세요(PC에서는 <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>더 궁금한 점이 있으신가요? <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20User%20guide">t.knecht@web.de</a>로 문의하시고 앱 버전(설정 맨 아래)을 알려 주세요.</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

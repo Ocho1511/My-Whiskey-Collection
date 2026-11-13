@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ユーザーガイド – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← コレクションへ戻る</a> &nbsp;·&nbsp; </span><a href="support.html">← サポートに戻る</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html" selected>日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>ユーザーガイド – My Whiskey Collection</h1>
+<p><small>更新日：2026年11月13日 · アプリバージョン 2.0</small></p>
+
+<div class="toc">
+
+<strong>目次</strong><ol>
+<li><a href="#start">概要と最初のステップ</a></li>
+<li><a href="#add">ウイスキーを追加する</a></li>
+<li><a href="#cellar">コレクション</a></li>
+<li><a href="#drink">ウイスキーを飲む</a></li>
+<li><a href="#racks">ラックと保管</a></li>
+<li><a href="#history">履歴</a></li>
+<li><a href="#wish">ウィッシュリスト</a></li>
+<li><a href="#stats">統計</a></li>
+<li><a href="#export">書き出し、読み込み、バックアップ</a></li>
+<li><a href="#setup">設定</a></li>
+<li><a href="#sync">2台のデバイスを同期する</a></li>
+<li><a href="#privacy">AI、プライバシー、費用</a></li>
+<li><a href="#faq">ヒントとFAQ</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. 概要と最初のステップ</h2>
+
+<p>My Whiskey Collection は、ポケットに入るあなただけのウイスキーコレクションです。在庫、保管場所、ウィッシュリスト、統計を管理できます。すべてお使いのデバイス上で動作し、同期コードを使えば複数のデバイスを接続できます。</p>
+<p>画面下部（PCおよび横向きのiPadでは左側）に、7つのエリアを持つバーがあります。</p>
+<table>
+<tbody><tr><th>エリア</th><th>用途</th></tr>
+<tr><td><strong>コレクション</strong></td><td>すべてのウイスキー、検索、フィルター、並び替え、ウイスキーの追加、「飲む」</td></tr>
+<tr><td><strong>統計</strong></td><td>在庫、価格、保管、飲んだ履歴の集計</td></tr>
+<tr><td><strong>履歴</strong></td><td>これまでに飲んだウイスキー</td></tr>
+<tr><td><strong>ラック</strong></td><td>保管プラン：ウイスキーの保管と移動、QRラベル</td></tr>
+<tr><td><strong>ほしい</strong></td><td>これから買いたいウイスキー</td></tr>
+<tr><td><strong>入出力</strong></td><td>データのバックアップ、表やバックアップの読み込み</td></tr>
+<tr><td><strong>設定</strong></td><td>名前、通貨、言語、クラウド、ラックの定義</td></tr>
+</tbody></table>
+<h3>最初の5つのステップ</h3>
+<ol>
+<li><strong>言語と通貨を選ぶ</strong>：設定 → 一般。通貨は言語に合わせて自動的に切り替わります。</li>
+<li><strong>ラックを定義する</strong>（任意）：設定 → ラック（<a href="#racks">セクション5</a>を参照）。</li>
+<li><strong>最初のウイスキーを追加する</strong>：コレクションで <kbd>+</kbd> をタップします（<a href="#add">セクション2</a>）。</li>
+<li><strong>保管する</strong>：ウイスキーにラックの場所を割り当てます。</li>
+<li><strong>バックアップする</strong>：入出力 → JSONバックアップ、またはクラウド同期を設定します（<a href="#sync">セクション11</a>）。</li>
+</ol>
+<div class="tip"><em>設定</em>の各セクションは折りたたみ式です。初回起動時は「一般」が開いており、他は閉じています。アプリは最後に開いた／閉じた状態を記憶します。</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. ウイスキーを追加する</h2>
+
+<p>コレクションで <kbd>+</kbd> をタップします。ウイスキーを追加する方法はいくつかあり、組み合わせて使えます。</p>
+<h3>a) 手入力</h3>
+<p>各項目を入力します：<strong>名前 / 蒸溜所、年、ボトル数、ウイスキーの種類、地域（例：スペイサイド、アイラ、ケンタッキー）、国、蒸溜所、熟成年数、ABV %、樽、保管場所、飲用温度、価格、評価、メモ</strong>。必須なのは名前だけです。<em>保存</em>でウイスキーが作成されます。</p>
+<ul>
+<li><strong>年：</strong>年は、そのボトルの瓶詰め年または蒸溜年です。<strong>熟成年数</strong>は熟成期間（年数、例：12）、<strong>ABV</strong>はアルコール度数（％）、<strong>樽</strong>は樽の種類（例：シェリー、バーボンバレル）です。</li>
+<li><strong>在庫、最小、最大：</strong>最小値を入力すると、在庫がそれを下回ったときにアプリが警告し、ウイスキーをウィッシュリストに入れるよう提案します（<a href="#cellar">セクション3</a>）。</li>
+<li><strong>自分の写真：</strong>「写真を撮る / 選ぶ」で、ウイスキーに写真を添付できます。写真はこのデバイスに保存され、JSONバックアップには含まれますが、クラウドには同期されません。</li>
+</ul>
+<h3>b) ラベルをスキャン（AI）</h3>
+<p><em>ラベルをスキャン（AI）</em>をタップして、ボトルのラベルを撮影します。AIが名前、年、種類、地域、国、蒸溜所、熟成年数、ABV、樽を読み取り、飲用温度を推定します。値を確認して保存してください。初回の使用前に、アプリが同意を求めます（<a href="#privacy">セクション12</a>）。</p>
+<h3>c) バーコードをスキャン</h3>
+<p><em>バーコードをスキャン</em>をタップして、ボトルのバーコードを枠内に合わせます。アプリは無料の商品データベースで番号を検索し（無料、AIクレジットは不要）、見つかれば<strong>名前、生産者、ウイスキーの種類</strong>を入力します。年は名前から補完するか、入力を求めます。</p>
+<ul>
+<li>そのボトルがすでにコレクションにある場合、アプリは「もう1本追加しますか？」と尋ねます。買い足したときに本数を増やす手軽な方法です。</li>
+<li>バーコードがデータベースに<strong>ない</strong>場合（小規模な蒸溜所ではよくあります）、<em>ラベルをスキャン（AI）</em>ボタン付きのヒントが表示されます。番号はウイスキーと一緒に保存されるため、次回はすぐにボトルが認識されます。</li>
+</ul>
+<h3>d) ウイスキーを調べる（AI）</h3>
+<p><em>ウイスキーを調べる（AI）</em>は、AIにウェブで地域、国、蒸溜所、熟成年数、ABV、樽、飲用温度、現在の平均価格、そしてウェブ版ではボトル画像を検索させます。すでに入力済みの項目は上書きされません。名前と年を入力し、まだ価格がない場合は、自動的にも実行されます。</p>
+<div class="note">iPhoneアプリは、インターネットからボトル画像を読み込みません（App Storeの規則）。代わりに自分で写真を撮影できます。</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. コレクション</h2>
+
+<h3>検索、フィルター、並び替え</h3>
+<ul>
+<li><strong>検索</strong>（上部）：名前、地域、国、蒸溜所でウイスキーを探します。</li>
+<li><strong>フィルター：</strong>すべて、Single Malt、Bourbon / Rye、Blended、World、その他。種類をタップすると、検索は自動的にクリアされます。</li>
+<li><strong>並び替え：</strong>新しい順、名前、年、蒸溜所、地域、国。</li>
+<li><strong>リスト / カード：</strong><em>リスト</em>ボタンで、コンパクトなリストと詳細なカードを切り替えます。</li>
+</ul>
+<h3>ウイスキーカード</h3>
+<p>カードには、名前、年、蒸溜所、評価（星）、地域と国（タップすると地図またはその国のウイスキー産地マップが開きます）、ボトル数、<strong>飲用温度</strong>（🌡）、<strong>保管場所</strong>（タップするとラックへ移動）が表示されます。小さなタンブラーグラスのマークをタップすると、蒸溜所のWikipediaが開きます。</p>
+<p>カードの下部には、<em>編集</em>、<em>飲む</em>、🗑（ウイスキーを削除）があります。</p>
+<h3>在庫、最小/最大、買い物リスト</h3>
+<p>ウイスキーに最小値（任意で最大値）を入力すると、カードに「在庫 · 最小 · 最大」が表示され、下回ると ⚠ で警告されます。<em>買い足し</em>ボタンで<strong>買い物リスト</strong>が開きます。最小値を下回るすべてのウイスキーが並びます（目標は最大値、なければ最小値）。リストは共有やコピーができ、ウイスキーをウィッシュリストに入れることもできます。</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. ウイスキーを飲む</h2>
+
+<p>ウイスキーカードの<em>飲む</em>をタップすると、<em>ウイスキーを飲む</em>ダイアログが開きます。</p>
+<ul>
+<li><strong>どの場所から取り出しましたか？</strong> – ボトルを取り出したラックの場所、または「場所に置かれていないボトル」を選びます。その場所は空きになります。</li>
+<li><strong>誰と飲みましたか？</strong> – ゲストの名前（任意）。</li>
+<li><strong>シーン</strong> – 春、夏、秋、冬、誕生日、パーティー、「何となく」（複数選択可）。</li>
+</ul>
+<p><em>飲む</em>で1本が減り、<a href="#history">履歴</a>にエントリーが作成されます。紙吹雪とサウンドでお祝いします（設定でオフにできます）。<strong>最後の1本</strong>の場合はアプリが知らせます。ウイスキーはコレクションから消えます（履歴には残ります）。</p>
+<p>ウイスキーはストレートで約16〜20 °Cが最適です。アプリはこの目安を飲用温度として表示します。</p>
+<div class="tip"><strong>スキャンで素早く：</strong>コレクションの丸い 🥃 ボタンは、ラベルを撮影し、コレクション内のウイスキーを認識して、すぐに「飲む」ダイアログを開きます。</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. ラックと保管</h2>
+
+<h3>ラックの定義と編集</h3>
+<p><strong>設定 → ラック</strong>（見出しをタップして開く）：名前、段数、1段あたりの場所の数、1か所あたりのボトル数を入力して、＋をタップします。「ボトル数/場所」は、ボトルラックなら1、床や木箱ならそれより大きくします。一覧では、各ラックに次のものがあります。</p>
+<ul>
+<li>順序を変える<strong>ハンドル ⠿</strong>と、一覧の下にある<em>A–Zで並べ替え</em>ボタン、</li>
+<li><strong>QRラベル</strong>用の ▦、編集用の ✏️、空にする 🧹、削除する 🗑。</li>
+</ul>
+<p><strong>編集</strong>（✏️）では、ラック名の変更、1段あたりの場所の数の変更、上または下への段の追加、段の削除、各段への個別の名前とボトル数の設定ができます。これによって場所を失ったボトルは「未収納」として扱われますが、ウイスキー自体はコレクションに残ります。このような変更の前には、アプリが確認します。</p>
+<h3>ラックエリア</h3>
+<p>上部で<strong>タイル</strong>（名前と「使用中 / 場所」）を使ってラックを選びます。ここでも順序を変更できます。PCではタイルをドラッグし、タッチ画面ではタイルを約0.5秒長押ししてからドラッグします。その下が<strong>保管プラン</strong>で、各段とその場所が表示されます。使用中の場所には、ウイスキーの種類の色のボトルが表示されます。</p>
+<h3>保管する</h3>
+<ol>
+<li>「未割り当て」にあるウイスキーをタップします（一覧は蒸溜所と国で絞り込めます）。または、コレクションの「未収納」のヒントをタップします。</li>
+<li><strong>空いている場所</strong>をタップします。床や木箱では、入るだけのボトルを保管します。</li>
+</ol>
+<p><strong>ウイスキーをスキャンして保管</strong>は、ラベルを撮影してウイスキーを見つけ、保管までを案内します。</p>
+<h3>使用中の場所、移動、取り外し</h3>
+<p>使用中の場所をタップすると、ウイスキーが表示され、<em>開く</em>、<em>場所から外す</em>、<em>移動</em>（そのあと空いている場所をタップ）ができます。<em>ラックを空にする</em>は、ラックのすべてのボトルを取り出します（確認後）。</p>
+<h3>QRラベルと「段をスキャン」</h3>
+<p><strong>QRラベル</strong>（設定 → ラック → ▦）で、ラック用に1枚、各段用に1枚のラベルを作成します。PDFで共有するか印刷して（ラベルシート 63.5 × 38.1 mm、1ページ21枚）、貼り付けます。その後、ラックエリアの<strong>段をスキャン</strong>を使うと、その段にあるものが表示され、<em>ここに保管</em>、<em>取り出す</em>、飲む、ボトルの移動、<em>段ごと移動</em>ができます。「ウイスキーを追加」フォームで段のラベルをスキャンすると、保管場所も入力されます。</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. 履歴</h2>
+
+<p>履歴には、飲んだウイスキーすべてが、日付、ウイスキー、金額、ゲスト、シーンとともに一覧表示されます。ウイスキーの種類とシーンで絞り込み、エントリー（ゲスト、シーン）を編集できます。履歴は、統計の「月別/年別の消費」、支出、頻度の集計に使われます。</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. ウィッシュリスト</h2>
+
+<ul>
+<li><strong>+ ウィッシュを追加</strong>：手入力またはラベルのスキャンで、任意のメモ（「購入先」）を付けられます。</li>
+<li><strong>価格を検索</strong>（💶）：アプリがウェブでそのウイスキーの価格を検索し、最安のものを表示して数量を掛けます。これは保証のない目安の値です。送料や在庫は店舗でご確認ください。</li>
+<li>左の<strong>チェック</strong>：購入済み／完了としてマークします（行が薄くなります）。</li>
+<li><strong>→ コレクションへ</strong>：ウィッシュをコレクションに移し（数量と、あれば最安値付き）、ラックがある場合はそのまま保管へ進みます。</li>
+<li>ウイスキーが最小値を下回ると、アプリは不足数量でウィッシュリストに入れるよう提案します（「買い足し」）。</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. 統計</h2>
+
+<p>上から順に：</p>
+<ul>
+<li><strong>主要な数値：</strong>ボトル、ウイスキー、合計評価額、平均評価。</li>
+<li><strong>タイプ別</strong>と<strong>トップウイスキー</strong>（評価または頻度順、星で絞り込み可）。</li>
+<li><strong>国別、地域別、蒸溜所別：</strong>バー（最大8件、残りは「他 n 件」）。タップするとコレクションを検索します。<strong>年別：</strong>列表示で、横にスクロールできます。</li>
+<li><strong>価格：</strong>1本あたり平均、最安、最高額、価格帯（お使いの通貨に合わせて調整）、国別の価値。</li>
+<li><strong>保管：</strong>使用率（％）、空き、未収納のボトル、ラックごとのバー（タップするとラックへ移動）。</li>
+<li><strong>飲んだ量：</strong>月別（直近12か月）と年別、そして飲んだボトルの支出。</li>
+<li>平均評価による<strong>高評価の国と高評価の蒸溜所</strong>（コレクションと履歴を合わせて）。</li>
+<li><strong>買い足し：</strong>最低在庫を下回るウイスキー（買い物リストを開きます）、未購入のウィッシュとその金額。</li>
+</ul>
+<p>データのないセクション（価格がない場合など）は非表示になります。</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. 書き出し、読み込み、バックアップ</h2>
+
+<table>
+<tbody><tr><th>機能</th><th>用途</th></tr>
+<tr><td>CSVを書き出し</td><td>ExcelやNumbers用の表</td></tr>
+<tr><td>Excelを書き出し</td><td>.xlsxファイルとして</td></tr>
+<tr><td>PDFを書き出し</td><td>印刷用の一覧</td></tr>
+<tr><td><strong>JSONバックアップ</strong></td><td><strong>データの完全バックアップ</strong>（ウイスキー、ウィッシュリスト、履歴、ラック、表示名、自分の写真）</td></tr>
+<tr><td>クリップボードへ</td><td>テキストリストをコピー</td></tr>
+<tr><td>JSON / CSV / Excelを読み込み</td><td>バックアップの復元、または表の読み込み</td></tr>
+</tbody></table>
+<p>CSVとExcelの列は次のとおりです：<strong>名前、年、種類、地域、国、蒸溜所、熟成年数、ABV、樽、ラック、段、場所、ボトル数、評価、価格、メモ</strong>。読み込みでは、以前の列名も受け付けます。</p>
+<div class="tip"><strong>JSONバックアップを定期的に作成してください。</strong>JSONの読み込みは、コレクションをバックアップの内容で置き換えます（事前にアプリが確認します）。新しいデバイスでは、これですべてが復元されます。代わりにクラウド同期も使えます（<a href="#sync">セクション11</a>）。</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. 設定</h2>
+
+<h3>一般</h3>
+<ul>
+<li><strong>表示名（タイトル）：</strong>「Peter」と入力すると「Peter's Whiskey Collection」のようになります。空のままにすると標準のタイトルです。</li>
+<li><strong>通貨：</strong>€、$、£、CHF、A$、C$、SEK、NOK、DKK、PLN、HUF、CZK、RON、RUB、UAH、JPY、CNY、KRW、INR。</li>
+<li><strong>言語：</strong>ドイツ語、英語、英語（米国）など、25の言語バリエーションがあります。<strong>通貨は自動的に切り替わります</strong>（スウェーデン語 → クローナ、英語（米国）→ US $、英語（英国）→ £）。例：スウェーデン語に切り替えるとSEKに変わり、<strong>すべての価格を本日の欧州中央銀行レートで換算する</strong>（「OK」）か、表示だけを変更する（「キャンセル」）かを尋ねられます。RUBとUAHにはレートがありません。通貨はいつでも手動で変更できます。</li>
+<li><strong>飲むときの紙吹雪＆サウンド：</strong>両方、紙吹雪のみ、またはオフ。</li>
+<li><strong>フォント：</strong>10種類のフォントから選べます。</li>
+<li><strong>温度の単位：</strong>°Cまたは°F（英語（米国）では自動的に°Fになります）。</li>
+</ul>
+<h3>保存先</h3>
+<p><em>このデバイスのみ</em>または<em>クラウド</em>（同期コード、<a href="#sync">セクション11</a>）。</p>
+<h3>AIクレジット（iPhoneアプリのみ）</h3>
+<p>残りのAIスキャン数、デバイスID、そして必要に応じて<em>クレジットを追加</em>またはロック解除コードが表示されます。<a href="#privacy">セクション12</a>を参照してください。</p>
+<h3>ウイスキーデータベース</h3>
+<ul>
+<li><strong>すべてのウイスキーを更新（AI）：</strong>すべてのウイスキーについて、不足している地域、国、蒸溜所、熟成年数、ABV、樽、飲用温度、価格を補完します（ウェブ版ではボトル画像も）。既存の値は保持されます。飲用温度がすでにある場合は、AIの値で置き換えるかどうかをまず尋ねます。<em>ヒント：先にJSONバックアップを書き出しておきましょう。</em></li>
+</ul>
+<h3>ラック</h3>
+<p><a href="#racks">セクション5</a>を参照してください。見出しにはラックの数が表示されます。</p>
+<h3>プライバシー、サポート、バージョン</h3>
+<p>リンク先は、プライバシーポリシーとこのサポートページです。一番下にアプリの<strong>バージョン</strong>が表示されます。お問い合わせの際はお知らせください。</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. 2台のデバイスを同期する</h2>
+
+<ol>
+<li><strong>1台目のデバイス：</strong>設定 → 保存先 → <em>クラウド</em> → <em>新しい同期コードを作成</em>。コードが画面に表示されます。<em>コードをメールで保存</em>で自分宛てに送れます。</li>
+<li><strong>2台目のデバイス：</strong>設定 → 保存先 → <em>クラウド</em> → コードを入力（小文字、スペースなし）→ 接続。デバイスにすでにウイスキーがある場合は、クラウドのデータと統合するかどうかをアプリが尋ねます。</li>
+<li>その後は、両方のデバイスが自動的に同期します（アプリを開いたときなど）。<em>今すぐ同期</em>で手動実行もできます。ルールは<strong>最新の変更が優先</strong>です。</li>
+</ol>
+<p>ウイスキー、ウィッシュリスト、履歴、ラック、言語や通貨などの設定が同期されます。自分の写真とデバイス固有のデータは<strong>同期されません</strong>。コードを知っている人は誰でもあなたのウイスキーを見られるため、信頼できる人とだけ共有してください。JSONバックアップも併せて保管しておきましょう。</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. AI、プライバシー、費用</h2>
+
+<ul>
+<li><strong>AIは何に使われますか？</strong>ラベルのスキャン、ウイスキーの検索、価格の検索、「すべてのウイスキーを更新」です。写真またはウイスキー名は、当社のサーバーを経由してAIサービス（Anthropic、米国）に送られ、解析されます。氏名やアカウント情報は含まれません。初回の使用前に、アプリが同意を求めます。</li>
+<li><strong>バーコードのスキャン</strong>は、番号だけを無料の商品データベースに送信し、AIクレジットは消費しません。</li>
+<li><strong>費用（iPhoneアプリ）：</strong>1インストールあたり50回のAI利用が購入価格に含まれています。追加分は任意の1回限りの購入で入手できます（サブスクリプションではなく、クレジットに有効期限はありません）。アプリのそれ以外の機能に追加費用はかかりません。クレジットを使い切っても、AI機能以外はすべて引き続き使えます。</li>
+<li><strong>データ：</strong>クラウドを有効にしない限り、すべてお使いのデバイスに保存されます。広告なし、トラッキングなし、ユーザーアカウントなし。詳細は<a href="datenschutz.html">プライバシーポリシー</a>（ドイツ語）をご覧ください。</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. ヒントとFAQ</h2>
+
+<ul>
+<li><strong>iPadやPCでは</strong>レイアウトが調整されます。列が広くなり、複数のカードが横に並び、PC（と横向きのiPad）ではナビゲーションが左側に表示されます。スマートフォンも横向きで使えます。PCでは <kbd>Esc</kbd> で一番上のウィンドウが閉じます。スマートフォンではウィンドウを下にスワイプして閉じます。</li>
+<li><strong>ウイスキーが消えた：</strong><a href="support.html">サポート</a>を参照してください。同期コードまたはJSONバックアップで復元できます。</li>
+<li><strong>ウイスキーのバーコードが見つからない：</strong>小規模な蒸溜所では普通のことです。ラベルのスキャンを使ってください。</li>
+<li><strong>AIが読み間違えた：</strong>項目を手動で修正して保存してください。AIの値は提案です。</li>
+<li><strong>ウイスキーをボトルの中で「熟成」させるべき？</strong>いいえ。ウイスキーが熟成するのは樽の中だけで、ボトルの中では熟成しません。開栓済みでも未開栓でも、ボトルが年月とともに良くなることはありません。そのため飲み頃の機能はなく、飲用温度（ストレートで約16〜20 °C）はあくまで目安です。</li>
+<li><strong>ページが古いバージョンのまま（ウェブ）：</strong>ページを再読み込みしてください（PCでは <kbd>Ctrl</kbd>+<kbd>F5</kbd>）。</li>
+</ul>
+<p>ほかにご質問がありますか？ <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20User%20guide">t.knecht@web.de</a> までご連絡ください。その際は、アプリのバージョン（設定の一番下）をお知らせください。</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

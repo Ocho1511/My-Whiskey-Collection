@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brukerveiledning – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← Til samlingen</a> &nbsp;·&nbsp; </span><a href="support.html">← Tilbake til support</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html" selected>Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Brukerveiledning – My Whiskey Collection</h1>
+<p><small>Oppdatert: 13. november 2026 · Appversjon 2.0</small></p>
+
+<div class="toc">
+
+<strong>Innhold</strong><ol>
+<li><a href="#start">Oversikt og første steg</a></li>
+<li><a href="#add">Legge til en whisky</a></li>
+<li><a href="#cellar">Samlingen</a></li>
+<li><a href="#drink">Drikke en whisky</a></li>
+<li><a href="#racks">Hyller og lagring</a></li>
+<li><a href="#history">Historikk</a></li>
+<li><a href="#wish">Ønskeliste</a></li>
+<li><a href="#stats">Statistikk</a></li>
+<li><a href="#export">Eksport, import og sikkerhetskopi</a></li>
+<li><a href="#setup">Oppsett (innstillinger)</a></li>
+<li><a href="#sync">Synkronisere to enheter</a></li>
+<li><a href="#privacy">KI, personvern og kostnader</a></li>
+<li><a href="#faq">Tips og vanlige spørsmål</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Oversikt og første steg</h2>
+
+<p>My Whiskey Collection er din personlige whiskysamling i lommen: du holder orden på beholdning, lagringsplasser, en ønskeliste og statistikk. Alt kjører på enheten din; med en synk-kode kan du koble sammen flere enheter.</p>
+<p>Nederst (på PC og iPad i liggende format: til venstre) finner du linjen med sju områder:</p>
+<table>
+<tbody><tr><th>Område</th><th>Formål</th></tr>
+<tr><td><strong>Samling</strong></td><td>Alle whiskyer, søk, filtre, sortering, legge til en whisky, drikke</td></tr>
+<tr><td><strong>Statistikk</strong></td><td>Oversikter over beholdning, priser, lagring og drikkehistorikk</td></tr>
+<tr><td><strong>Historikk</strong></td><td>Whiskyene du har drukket</td></tr>
+<tr><td><strong>Hyller</strong></td><td>Lagringsplan: plassere og flytte whiskyer, QR-etiketter</td></tr>
+<tr><td><strong>Ønskeliste</strong></td><td>Whiskyer du fortsatt vil kjøpe</td></tr>
+<tr><td><strong>Eksport/Import</strong></td><td>Sikkerhetskopier dataene dine, les inn tabeller og sikkerhetskopier</td></tr>
+<tr><td><strong>Oppsett</strong></td><td>Navn, valuta, språk, sky, definere hyller</td></tr>
+</tbody></table>
+<h3>De fem første stegene</h3>
+<ol>
+<li><strong>Velg språk og valuta</strong>: Oppsett → Generelt. Valutaen følger språket automatisk.</li>
+<li><strong>Definer hyller</strong> (valgfritt): Oppsett → Hyller (se <a href="#racks">avsnitt 5</a>).</li>
+<li><strong>Legg til din første whisky</strong>: trykk på <kbd>+</kbd> i samlingen (<a href="#add">avsnitt 2</a>).</li>
+<li><strong>Lagre den</strong>: gi whiskyen en plass i en hylle.</li>
+<li><strong>Ta sikkerhetskopi</strong>: Eksport/Import → JSON-sikkerhetskopi, eller sett opp skysynkronisering (<a href="#sync">avsnitt 11</a>).</li>
+</ol>
+<div class="tip">Avsnittene i <em>Oppsett</em> kan foldes sammen. «Generelt» er åpent ved første oppstart, de andre er lukket. Appen husker hva du sist åpnet eller lukket.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Legge til en whisky</h2>
+
+<p>Trykk på <kbd>+</kbd> i samlingen. Det finnes flere måter å legge til en whisky på – de kan kombineres.</p>
+<h3>a) For hånd</h3>
+<p>Fyll ut feltene: <strong>Navn, År, Flasker, Whiskytype, Region (f.eks. Speyside, Islay, Kentucky), Land, Destilleri, Alder (år), ABV %, Fat, Lagringsplass, Serveringstemperatur, Pris, Vurdering, Notat</strong>. Bare navnet er påkrevd. <em>Lagre</em> oppretter whiskyen.</p>
+<ul>
+<li><strong>År:</strong> Året er flaskens tappe- eller destillasjonsår. <strong>Alder (år)</strong> er modningstiden i år (f.eks. 12), <strong>ABV %</strong> alkoholinnholdet i prosent og <strong>Fat</strong> typen fat (f.eks. sherry, bourbonfat).</li>
+<li><strong>Beholdning, Min og Maks:</strong> Hvis du oppgir et minimum, advarer appen når beholdningen havner under det, og tilbyr å sette whiskyen på ønskelisten (<a href="#cellar">avsnitt 3</a>).</li>
+<li><strong>Eget bilde:</strong> «Ta / velg bilde» legger ved et bilde til whiskyen. Det blir på denne enheten og er med i JSON-sikkerhetskopien, men synkroniseres ikke til skyen.</li>
+</ul>
+<h3>b) Skann etikett (KI)</h3>
+<p>Trykk på <em>Skann etikett (KI)</em> og ta bilde av flaskeetiketten. KI-en leser navn, år, type, region, land, destilleri, alder, ABV og fat og anslår serveringstemperaturen. Kontroller verdiene og lagre. Før første gangs bruk ber appen om samtykke (<a href="#privacy">avsnitt 12</a>).</p>
+<h3>c) Skann strekkode</h3>
+<p>Trykk på <em>Skann strekkode</em> og hold flaskens strekkode inne i rammen. Appen slår opp nummeret i en gratis produktdatabase (koster ingenting, ingen KI-kreditt) og fyller, hvis den finner det, ut <strong>navn, produsent og whiskytype</strong>. Året utledes fra navnet, ellers spør appen om det.</p>
+<ul>
+<li>Hvis flasken allerede finnes i samlingen, spør appen «Legge til en flaske til?» – en rask måte å telle opp på når du kjøper flere.</li>
+<li>Hvis strekkoden <strong>ikke</strong> finnes i databasen (vanlig for mindre destillerier), vises et tips med knappen <em>Skann etikett (KI)</em>. Nummeret lagres likevel sammen med whiskyen, slik at flasken gjenkjennes med en gang neste gang.</li>
+</ul>
+<h3>d) Slå opp whisky (KI)</h3>
+<p><em>Slå opp whisky (KI)</em> lar KI-en søke på nettet etter region, land, destilleri, alder, ABV, fat, serveringstemperatur, gjeldende gjennomsnittspris og – i nettversjonen – et flaskebilde. Felt du allerede har fylt ut, overskrives ikke. Det skjer også automatisk så snart navn og år er oppgitt og det ennå ikke finnes noen pris.</p>
+<div class="note">iPhone-appen laster ikke flaskebilder fra internett (App Store-regel). Du kan ta egne bilder i stedet.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. Samlingen</h2>
+
+<h3>Søke, filtrere, sortere</h3>
+<ul>
+<li><strong>Søk</strong> øverst: finner whiskyer etter navn, region, land og destilleri.</li>
+<li><strong>Filtre:</strong> Alle, Single Malt, Bourbon / Rye, Blended, World, Annet. Et klikk på en type tømmer søket automatisk.</li>
+<li><strong>Sortering:</strong> Nyeste først, Navn, År, Destilleri, Region eller Land.</li>
+<li><strong>Liste / kort:</strong> Knappen <em>Liste</em> bytter mellom en kompakt liste og detaljerte kort.</li>
+</ul>
+<h3>Whiskykortet</h3>
+<p>Kortet viser navn, år, destilleri, vurdering (stjerner), region og land (trykk for å åpne et kart eller landets whiskyregioner), antall flasker, <strong>serveringstemperaturen</strong> (🌡) og <strong>lagringsplassene</strong> (trykk for å hoppe til hyllen). Det lille tumblerglasset åpner Wikipedia for destilleriet.</p>
+<p>Nederst på kortet: <em>Rediger</em>, <em>Drikk</em> og 🗑 (slett whisky).</p>
+<h3>Beholdning, Min/Maks og handlelisten</h3>
+<p>Hvis du oppgir et minimum (og eventuelt et maksimum) for en whisky, viser kortet «Beholdning · Min · Maks» og advarer med ⚠ når du er under. Knappen <em>Kjøp på nytt</em> åpner <strong>handlelisten</strong>: den viser alle whiskyer under minimum (målet er maksimum, ellers minimum). Du kan dele eller kopiere listen, eller sette whiskyene på ønskelisten.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Drikke en whisky</h2>
+
+<p>Trykk på <em>Drikk</em> på whiskykortet. Dialogen <em>Drikk whisky</em> åpnes:</p>
+<ul>
+<li><strong>Fra hvilken plass ble den tatt?</strong> – velg hylleplassen flasken kom fra, eller «Flaske uten plass». Plassen blir ledig.</li>
+<li><strong>Hvem drakk du med?</strong> – navn på gjestene dine (valgfritt).</li>
+<li><strong>Anledning</strong> – Vår, Sommer, Høst, Vinter, Bursdag, Fest eller «Bare fordi» (flere kan velges).</li>
+</ul>
+<p><em>Drikk</em> fjerner én flaske og oppretter en oppføring i <a href="#history">Historikk</a>. Konfetti og lyd markerer det (kan slås av i Oppsett). Hvis det er den <strong>siste flasken</strong>, sier appen fra: whiskyen forsvinner da fra samlingen (men blir værende i Historikk).</p>
+<p>Whisky serveres best ren ved ca. 16–20 °C; appen viser dette anslaget som serveringstemperatur.</p>
+<div class="tip"><strong>Raskt med skanning:</strong> Den runde 🥃-knappen i samlingen tar bilde av en etikett, gjenkjenner whiskyen i samlingen din og åpner Drikk-dialogen med en gang.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Hyller og lagring</h2>
+
+<h3>Definere og redigere hyller</h3>
+<p><strong>Oppsett → Hyller</strong> (trykk på overskriften for å åpne): oppgi navn, nivåer, plasser per nivå og flasker per plass, og trykk deretter på ＋. «Flasker/plass» er 1 for en flaskehylle og større for gulv eller kasse. I listen har hver hylle:</p>
+<ul>
+<li><strong>håndtaket ⠿</strong> for å endre rekkefølgen, og knappen <em>Sorter A–Å</em> under listen,</li>
+<li>▦ for <strong>QR-etiketter</strong>, ✏️ for å redigere, 🧹 for å tømme og 🗑 for å slette.</li>
+</ul>
+<p>Med <strong>rediger</strong> (✏️) kan du gi hyllen nytt navn, endre plassene per nivå, legge til nivåer øverst eller nederst, fjerne nivåer og gi hvert nivå sitt eget navn og antall flasker. Flasker som på den måten mister plassen sin, regnes etterpå som «ikke plassert»; selve whiskyene blir i samlingen. Appen spør før slike endringer utføres.</p>
+<h3>Området Hyller</h3>
+<p>Øverst velger du en hylle med <strong>flisene</strong> (navn og «opptatt / plasser»). Rekkefølgen kan også endres her: på PC drar du en flis, på berøringsskjermer holder du en flis nede i omtrent et halvt sekund og drar deretter. Under ser du <strong>lagringsplanen</strong>: hvert nivå med sine plasser. Opptatte plasser viser en flaske i fargen til whiskytypen.</p>
+<h3>Lagre</h3>
+<ol>
+<li>Trykk på en whisky under «Ikke plassert» (listen kan filtreres etter destilleri og land) – eller trykk på et «ikke plassert»-tips i samlingen.</li>
+<li>Trykk på en <strong>ledig plass</strong>. For gulv og kasser plasserer appen så mange flasker som det er plass til.</li>
+</ol>
+<p><strong>Skann whisky og lagre</strong> tar bilde av etiketten, finner whiskyen og veileder deg gjennom lagringen.</p>
+<h3>Opptatte plasser, flytte, fjerne</h3>
+<p>Trykk på en opptatt plass: du ser whiskyen og kan <em>åpne</em> den, <em>fjerne den fra plassen</em> eller <em>flytte</em> den (trykk deretter på en ledig plass). <em>Tøm hylle</em> tar alle flasker ut av hyllen (etter bekreftelse).</p>
+<h3>QR-etiketter og «Skann nivå»</h3>
+<p>Med <strong>QR-etiketter</strong> (Oppsett → Hyller → ▦) lager du én etikett for hyllen og én for hvert nivå. Del som PDF eller skriv ut (etikettark 63,5 × 38,1 mm, 21 per side) og lim dem på. Deretter: <strong>Skann nivå</strong> i området Hyller – du ser hva som står på det nivået og kan <em>legge inn her</em>, <em>ta ut</em>, drikke, flytte en flaske eller <em>flytte hele nivået</em>. I skjemaet «Legg til whisky» fyller også en skanning av en nivåetikett ut lagringsplassen.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Historikk</h2>
+
+<p>Historikken viser alle whiskyer du har drukket med dato, whisky, verdi, gjester og anledning. Du kan filtrere etter whiskytype og anledning og redigere en oppføring (gjester, anledning). Historikken mater oversiktene «Drukket per måned/år», utgiftene og hyppigheten i Statistikk.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Ønskeliste</h2>
+
+<ul>
+<li><strong>+ Legg til ønske</strong>: for hånd eller med etikettskanning, med et valgfritt notat («Hvor kan den kjøpes?»).</li>
+<li><strong>Søk priser</strong> (💶): Appen søker på nettet etter priser på whiskyen, viser det billigste treffet og ganger med antallet. Dette er veiledende verdier uten garanti – sjekk fraktkostnader og tilgjengelighet hos butikken.</li>
+<li><strong>Hake</strong> til venstre: marker som kjøpt/ferdig (raden blir blek).</li>
+<li><strong>→ Samling</strong>: flytter ønsket inn i samlingen (med antall og, hvis den finnes, den billigste prisen) og tar deg, hvis du har hyller, rett videre til lagringen.</li>
+<li>Hvis en whisky kommer under minimum, tilbyr appen å sette den på ønskelisten med den manglende mengden («kjøp på nytt»).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statistikk</h2>
+
+<p>Fra topp til bunn:</p>
+<ul>
+<li><strong>Nøkkeltall:</strong> flasker, whiskyer, total verdi, gjennomsnittlig vurdering.</li>
+<li><strong>Etter type</strong> og <strong>Beste whiskyer</strong> (etter vurdering eller hyppighet, kan filtreres etter stjerner).</li>
+<li><strong>Etter land, region, destilleri:</strong> stolper (opptil 8, resten som «+n til»); et trykk søker i samlingen. <strong>Etter år:</strong> kolonner, kan rulles sideveis.</li>
+<li><strong>Priser:</strong> snitt per flaske, billigst, dyrest, prisklasser (tilpasset valutaen din) og verdi per land.</li>
+<li><strong>Lager:</strong> belegg i prosent, ledige plasser, flasker som ikke er innlagt og en stolpe per hylle (et trykk hopper til hyllen).</li>
+<li><strong>Drukket:</strong> per måned (siste 12) og per år, pluss utgiftene til drukne flasker.</li>
+<li><strong>Beste land og beste destillerier</strong> etter gjennomsnittlig vurdering (samling og Historikk samlet).</li>
+<li><strong>Kjøp på nytt:</strong> whiskyer under minimumsbeholdning (åpner handlelisten), åpne ønsker og verdien deres.</li>
+</ul>
+<p>Avsnitt uten data (f.eks. uten priser) skjules.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Eksport, import og sikkerhetskopi</h2>
+
+<table>
+<tbody><tr><th>Funksjon</th><th>Formål</th></tr>
+<tr><td>Eksporter CSV</td><td>Tabell for Excel eller Numbers</td></tr>
+<tr><td>Eksporter Excel</td><td>Som .xlsx-fil</td></tr>
+<tr><td>Eksporter PDF</td><td>Utskriftsvennlig oversikt</td></tr>
+<tr><td><strong>JSON-sikkerhetskopi</strong></td><td><strong>Fullstendig sikkerhetskopi av dataene</strong> (whiskyer, ønskeliste, historikk, hyller, visningsnavn, egne bilder)</td></tr>
+<tr><td>Til utklippstavlen</td><td>Kopier en tekstliste</td></tr>
+<tr><td>Importer JSON / CSV / Excel</td><td>Gjenopprett en sikkerhetskopi eller les inn en tabell</td></tr>
+</tbody></table>
+<p>Kolonnene i CSV og Excel er: <strong>Navn, År, Type, Region, Land, Destilleri, Alder, ABV, Fat, Hylle, Nivå, Plass, Flasker, Vurdering, Pris, Notat</strong>. Importen godtar også de gamle kolonnenavnene.</p>
+<div class="tip"><strong>Ta jevnlig en JSON-sikkerhetskopi.</strong> JSON-importen erstatter samlingen med sikkerhetskopien (appen spør først). På en ny enhet gjenoppretter det alt. Alternativt kan du bruke skysynkronisering (<a href="#sync">avsnitt 11</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Oppsett (innstillinger)</h2>
+
+<h3>Generelt</h3>
+<ul>
+<li><strong>Visningsnavn (tittel):</strong> «Peter» blir til «Peters whiskysamling» osv. La feltet stå tomt for standardtittelen.</li>
+<li><strong>Valuta:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Språk:</strong> 25 språkvarianter, blant annet tysk, engelsk, engelsk (USA) og mange flere. <strong>Valutaen byttes automatisk</strong> (svensk → krone, engelsk (USA) → US $, engelsk (UK) → £). Eksempel: når du bytter til svensk, bytter appen til SEK og spør om den skal <strong>regne om alle priser til dagens kurs fra Den europeiske sentralbanken</strong> («OK») eller bare endre betegnelsen («Avbryt»). Det finnes ingen kurser for RUB og UAH. Du kan når som helst endre valutaen for hånd.</li>
+<li><strong>Konfetti og lyd når du drikker:</strong> begge deler, bare konfetti eller av.</li>
+<li><strong>Skrifttype:</strong> ti skrifttyper å velge mellom.</li>
+<li><strong>Temperaturenhet:</strong> °C eller °F (engelsk (USA) setter automatisk °F).</li>
+</ul>
+<h3>Lagringssted</h3>
+<p><em>Kun denne enheten</em> eller <em>Sky</em> (synk-kode, <a href="#sync">avsnitt 11</a>).</p>
+<h3>KI-kreditter (bare iPhone-appen)</h3>
+<p>Viser gjenværende KI-skanninger, enhets-ID-en og – ved behov – <em>Legg til kreditter</em> eller en opplåsingskode. Se <a href="#privacy">avsnitt 12</a>.</p>
+<h3>Whiskydatabase</h3>
+<ul>
+<li><strong>Oppdater alle whiskyer (AI):</strong> fyller ut manglende region, land, destilleri, alder, ABV, fat, serveringstemperatur og pris for alle whiskyer (i nettversjonen også flaskebilder). Eksisterende verdier blir stående. Hvis det allerede finnes serveringstemperaturer, spør appen først om de også skal erstattes med KI-verdier. <em>Tips: eksporter først en JSON-sikkerhetskopi.</em></li>
+</ul>
+<h3>Hyller</h3>
+<p>Se <a href="#racks">avsnitt 5</a>. Overskriften viser antall hyller.</p>
+<h3>Personvern, support, versjon</h3>
+<p>Lenkene fører til personvernerklæringen og til denne supportsiden. Helt nederst finner du appens <strong>versjon</strong> – oppgi den når du kontakter oss.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Synkronisere to enheter</h2>
+
+<ol>
+<li><strong>Første enhet:</strong> Oppsett → Lagringssted → <em>Sky</em> → <em>Opprett ny synk-kode</em>. Koden vises på skjermen; med <em>Lagre koden via e-post</em> sender du den til deg selv.</li>
+<li><strong>Andre enhet:</strong> Oppsett → Lagringssted → <em>Sky</em> → skriv inn koden (små bokstaver, ingen mellomrom) → Koble til. Hvis enheten allerede inneholder whiskyer, spør appen om de skal slås sammen med skydataene.</li>
+<li>Etter det synkroniserer begge enhetene automatisk (f.eks. når appen åpnes); <em>Synkroniser nå</em> utløser det for hånd. Regelen er: <strong>den siste endringen vinner</strong>.</li>
+</ol>
+<p>Whiskyer, ønskeliste, historikk, hyller og innstillinger som språk og valuta synkroniseres. <strong>Synkroniseres ikke</strong> gjør egne bilder og enhetsspesifikke data. Alle som kjenner koden din kan se whiskyene dine – del den bare med personer du stoler på. Ta også en JSON-sikkerhetskopi.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. KI, personvern og kostnader</h2>
+
+<ul>
+<li><strong>Hva brukes KI til?</strong> Skann etikett, slå opp whisky, søk priser og «Oppdater alle whiskyer». Bildet eller whiskyens navn sendes via serveren vår til en KI-tjeneste (Anthropic, USA) for vurdering – uten navn eller kontoer. Appen ber om samtykke før første gangs bruk.</li>
+<li><strong>Strekkodeskanning</strong> sender bare nummeret til en gratis produktdatabase og koster ingen KI-kreditt.</li>
+<li><strong>Kostnader (iPhone-appen):</strong> 50 KI-kall per installasjon er inkludert i kjøpsprisen; flere kan kjøpes som et valgfritt engangskjøp (ikke abonnement, kredittene utløper ikke). Alt annet i appen koster ikke ekstra. Når kredittene er brukt opp, fungerer alt unntatt KI-funksjonene fortsatt.</li>
+<li><strong>Data:</strong> Alt blir på enheten din så lenge du ikke aktiverer skyen. Ingen annonser, ingen sporing, ingen brukerkonto. Detaljer i <a href="datenschutz.html">personvernerklæringen</a> (på tysk).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Tips og vanlige spørsmål</h2>
+
+<ul>
+<li><strong>På en iPad eller PC</strong> tilpasser layouten seg: bredere kolonne, flere kort side om side, og på PC (og iPad i liggende format) navigasjonen til venstre. Telefonen fungerer også i liggende format. På en PC lukker <kbd>Esc</kbd> det øverste vinduet; på en telefon sveiper du et vindu nedover for å lukke det.</li>
+<li><strong>Whiskyene mine er borte:</strong> Se <a href="support.html">Support</a> – gjenopprett med synk-koden eller en JSON-sikkerhetskopi.</li>
+<li><strong>Ingen strekkodetreff for en whisky:</strong> Normalt for små destillerier. Bruk etikettskanningen.</li>
+<li><strong>KI-en leste noe feil:</strong> Rett feltet for hånd og lagre; KI-verdiene er forslag.</li>
+<li><strong>Bør jeg la en whisky «modne» på flasken?</strong> Nei. Whisky modner bare på fat, ikke på flaske – en flaske blir ikke bedre med årene, verken åpnet eller uåpnet. Derfor finnes det ingen drikkevindu-funksjon; serveringstemperaturen (ren, ca. 16–20 °C) er bare en rettesnor.</li>
+<li><strong>Siden viser fortsatt den gamle versjonen (nett):</strong> Last siden på nytt (på PC <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>Flere spørsmål? Skriv til <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Brukerveiledning">t.knecht@web.de</a> og oppgi appversjonen (Oppsett, helt nederst).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

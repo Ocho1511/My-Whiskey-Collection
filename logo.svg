@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="512" height="512">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dfa0"/><stop offset=".5" stop-color="#d4af5a"/><stop offset="1" stop-color="#a98532"/></linearGradient>
+<radialGradient id="bg" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#2a1d12"/><stop offset="1" stop-color="#120d08"/></radialGradient></defs>
+<rect width="72" height="72" fill="url(#bg)"/>
+<circle cx="36" cy="36" r="30" fill="rgba(212,175,90,.06)" stroke="url(#g)" stroke-width="1.6"/>
+<circle cx="36" cy="36" r="27" fill="none" stroke="url(#g)" stroke-width=".6" opacity=".8"/>
+<g transform="translate(36 36) scale(.9) translate(-36 -36)"><g>
+          <path d="M19 21 L53 21 L49.6 54 Q49.3 57.4 45.8 57.4 L26.2 57.4 Q22.7 57.4 22.4 54 Z" fill="rgba(212,175,90,.10)" stroke="url(#g)" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M19.8 29 Q36 31.6 52.2 29 L49.5 50.5 L22.5 50.5 Z" fill="url(#g)" opacity=".78"/>
+          <path d="M22.5 50.5 L49.5 50.5" stroke="url(#g)" stroke-width="1" opacity=".7"/>
+          <g fill="rgba(255,255,255,.34)" stroke="url(#g)" stroke-width="1.2" stroke-linejoin="round">
+            <rect x="25.5" y="32" width="11" height="11" rx="2.2" transform="rotate(-13 31 37.5)"/>
+            <rect x="36.5" y="36" width="10" height="10" rx="2.2" transform="rotate(12 41.5 41)"/>
+            <rect x="29" y="42.5" width="8" height="6" rx="1.6" transform="rotate(-6 33 45.5)" fill="rgba(255,255,255,.22)"/>
+          </g>
+          <path d="M22.2 25.5 L24 47" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.5" stroke-linecap="round"/>
+        </g></g></svg>

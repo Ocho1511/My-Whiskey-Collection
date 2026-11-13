@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Felhasználói útmutató – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← A gyűjteményhez</a> &nbsp;·&nbsp; </span><a href="support.html">← Vissza a támogatáshoz</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html" selected>Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Felhasználói útmutató – My Whiskey Collection</h1>
+<p><small>Frissítve: 2026. november 13. · Az alkalmazás verziója: 2.0</small></p>
+
+<div class="toc">
+
+<strong>Tartalom</strong><ol>
+<li><a href="#start">Áttekintés és az első lépések</a></li>
+<li><a href="#add">Whisky hozzáadása</a></li>
+<li><a href="#cellar">A gyűjtemény</a></li>
+<li><a href="#drink">Whisky elfogyasztása</a></li>
+<li><a href="#racks">Polcok és elhelyezés</a></li>
+<li><a href="#history">Napló</a></li>
+<li><a href="#wish">Kívánságlista</a></li>
+<li><a href="#stats">Statisztika</a></li>
+<li><a href="#export">Export, import és biztonsági mentés</a></li>
+<li><a href="#setup">Beállítások</a></li>
+<li><a href="#sync">Két eszköz szinkronizálása</a></li>
+<li><a href="#privacy">MI, adatvédelem és költségek</a></li>
+<li><a href="#faq">Tippek és GYIK</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Áttekintés és az első lépések</h2>
+
+<p>A My Whiskey Collection a személyes whiskygyűjteményed a zsebedben: kezeled benne a készletet, a tárolóhelyeket, egy kívánságlistát és a statisztikákat. Minden az eszközödön fut; egy szinkronkóddal több eszközt is összekapcsolhatsz.</p>
+<p>Alul (PC-n és fekvő iPaden: balra) található a sáv hét területtel:</p>
+<table>
+<tbody><tr><th>Terület</th><th>Feladat</th></tr>
+<tr><td><strong>Gyűjtemény</strong></td><td>Az összes whisky, keresés, szűrők, rendezés, whisky hozzáadása, elfogyasztás</td></tr>
+<tr><td><strong>Statisztika</strong></td><td>Kimutatások a készletről, az árakról, a tárolásról és az ivási naplóról</td></tr>
+<tr><td><strong>Napló</strong></td><td>A megivott whiskyk</td></tr>
+<tr><td><strong>Polcok</strong></td><td>Tárolási terv: whiskyk elhelyezése és áthelyezése, QR-címkék</td></tr>
+<tr><td><strong>Kívánság</strong></td><td>Whiskyk, amelyeket még meg szeretnél venni</td></tr>
+<tr><td><strong>Export/Import</strong></td><td>Adataid mentése, táblázatok és mentések beolvasása</td></tr>
+<tr><td><strong>Beállítások</strong></td><td>Név, pénznem, nyelv, felhő, polcok megadása</td></tr>
+</tbody></table>
+<h3>Az első öt lépés</h3>
+<ol>
+<li><strong>Válassz nyelvet és pénznemet</strong>: Beállítások → Általános. A pénznem automatikusan követi a nyelvet.</li>
+<li><strong>Add meg a polcokat</strong> (nem kötelező): Beállítások → Polcok (lásd az <a href="#racks">5. fejezetet</a>).</li>
+<li><strong>Add hozzá az első whiskydet</strong>: koppints a <kbd>+</kbd> gombra a gyűjteményben (<a href="#add">2. fejezet</a>).</li>
+<li><strong>Helyezd el</strong>: adj a whiskynek egy helyet egy polcon.</li>
+<li><strong>Készíts mentést</strong>: Export/Import → JSON biztonsági mentés, vagy állítsd be a felhős szinkronizálást (<a href="#sync">11. fejezet</a>).</li>
+</ol>
+<div class="tip">A <em>Beállítások</em> szakaszai összecsukhatók. Az „Általános” az első indításkor nyitva van, a többi zárva. Az alkalmazás megjegyzi, mit nyitottál ki vagy csuktál össze utoljára.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Whisky hozzáadása</h2>
+
+<p>Koppints a <kbd>+</kbd> gombra a gyűjteményben. Többféleképpen is hozzáadhatsz egy whiskyt – ezek kombinálhatók.</p>
+<h3>a) Kézzel</h3>
+<p>Töltsd ki a mezőket: <strong>Név / Lepárló, Év, Palackok, Whisky típusa, Régió (pl. Speyside, Islay, Kentucky), Ország, Lepárló, Kor (év), ABV %, Hordó, Tárolóhely, felszolgálási hőmérséklet, Ár, Értékelés, Megjegyzés</strong>. Csak a név kötelező. A <em>Mentés</em> létrehozza a whiskyt.</p>
+<ul>
+<li><strong>Év:</strong> Az év az üveg palackozásának vagy a lepárlásnak az éve. A <strong>Kor</strong> az érlelési idő években (pl. 12), az <strong>ABV</strong> az alkoholtartalom százalékban, a <strong>Hordó</strong> pedig a hordó fajtája (pl. sherry, bourbonhordó).</li>
+<li><strong>Készlet, Min és Max:</strong> Ha megadsz egy minimumot, az alkalmazás figyelmeztet, ha a készlet ez alá csökken, és felajánlja, hogy a whiskyt a kívánságlistára teszi (<a href="#cellar">3. fejezet</a>).</li>
+<li><strong>Saját fotó:</strong> A „Fotó készítése / kiválasztása” egy fotót csatol a whiskyhez. Ez ezen az eszközön marad, bekerül a JSON biztonsági mentésbe, de a felhővel nem szinkronizálódik.</li>
+</ul>
+<h3>b) Címke beolvasása (MI)</h3>
+<p>Koppints a <em>Címke beolvasása (MI)</em> gombra, és fényképezd le az üveg címkéjét. Az MI kiolvassa a nevet, az évet, a típust, a régiót, az országot, a lepárlót, a kort, az ABV-t és a hordót, és megbecsüli a felszolgálási hőmérsékletet. Ellenőrizd az értékeket, és mentsd el. Az első használat előtt az alkalmazás hozzájárulásodat kéri (<a href="#privacy">12. fejezet</a>).</p>
+<h3>c) Vonalkód beolvasása</h3>
+<p>Koppints a <em>Vonalkód beolvasása</em> gombra, és tartsd az üveg vonalkódját a keretbe. Az alkalmazás egy ingyenes termékadatbázisban megkeresi a számot (költség és MI-kredit nélkül), és ha megtalálja, kitölti a <strong>nevet, a gyártót és a whisky típusát</strong>. Az évet a névből egészíti ki, vagy rákérdez.</p>
+<ul>
+<li>Ha az üveg már szerepel a gyűjteményben, az alkalmazás megkérdezi: „Hozzáadsz még egy palackot?” – gyors módja annak, hogy növeld a darabszámot, ha többet vásárolsz.</li>
+<li>Ha a vonalkód <strong>nincs</strong> az adatbázisban (kisebb lepárlóknál gyakori), megjelenik egy tipp a <em>Címke beolvasása (MI)</em> gombbal. A szám ettől még elmentődik a whiskyvel, így legközelebb az üveget azonnal felismeri.</li>
+</ul>
+<h3>d) Whisky keresése (MI)</h3>
+<p>A <em>Whisky keresése (MI)</em> funkcióval az MI az interneten keresi a régiót, az országot, a lepárlót, a kort, az ABV-t, a hordót, a felszolgálási hőmérsékletet, az aktuális átlagárat és – a webes változatban – egy palackképet. A már kitöltött mezőket nem írja felül. Ez automatikusan is megtörténik, ha megadtad a nevet és az évet, és még nincs ár.</p>
+<div class="note">Az iPhone-alkalmazás nem tölt le palackképeket az internetről (App Store-szabály). Helyette készíthetsz saját fotókat.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. A gyűjtemény</h2>
+
+<h3>Keresés, szűrés, rendezés</h3>
+<ul>
+<li><strong>Keresés</strong> felül: név, régió, ország és lepárló szerint talál whiskyket.</li>
+<li><strong>Szűrők:</strong> Mind, Single Malt, Bourbon / Rye, Blended, World, Egyéb. Egy típusra kattintva a keresés automatikusan törlődik.</li>
+<li><strong>Rendezés:</strong> Legújabb elöl, Név, Év, Lepárló, Régió vagy Ország.</li>
+<li><strong>Lista / kártyák:</strong> A <em>Lista</em> gomb vált a kompakt lista és a részletes kártyák között.</li>
+</ul>
+<h3>A whiskykártya</h3>
+<p>A kártya mutatja a nevet, az évet, a lepárlót, az értékelést (csillagok), a régiót és az országot (koppintásra megnyílik egy térkép vagy az ország whiskyrégiói), a palackok számát, a <strong>felszolgálási hőmérsékletet</strong> (🌡) és a <strong>tárolóhelyeket</strong> (koppintásra a polchoz ugrik). A kis poharas szimbólum megnyitja a lepárló Wikipedia-oldalát.</p>
+<p>A kártya alján: <em>Szerkesztés</em>, <em>Iszom</em> és 🗑 (whisky törlése).</p>
+<h3>Készlet, Min/Max és a bevásárlólista</h3>
+<p>Ha egy whiskyhez megadsz egy minimumot (és igény szerint egy maximumot), a kártya a „Készlet · Min · Max” értékeket mutatja, és ⚠ jellel figyelmeztet, ha alatta vagy. Az <em>Utánrendelés</em> gomb megnyitja a <strong>bevásárlólistát</strong>: felsorolja az összes minimum alatti whiskyt (a cél a maximum, ennek hiányában a minimum). A listát megoszthatod vagy átmásolhatod, vagy a whiskyket a kívánságlistára teheted.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Whisky elfogyasztása</h2>
+
+<p>Koppints az <em>Iszom</em> gombra a whiskykártyán. Megnyílik a <em>Whisky elfogyasztása</em> ablak:</p>
+<ul>
+<li><strong>Melyik helyről vették ki?</strong> – válaszd ki a polchelyet, ahonnan az üveg származik, vagy az „Elhelyezetlen üveg” lehetőséget. A hely felszabadul.</li>
+<li><strong>Kivel ittad?</strong> – a vendégeid nevei (nem kötelező).</li>
+<li><strong>Alkalom</strong> – Tavasz, Nyár, Ősz, Tél, Születésnap, Buli vagy „Csak úgy” (több is választható).</li>
+</ul>
+<p>Az <em>Iszom</em> eltávolít egy palackot, és bejegyzést hoz létre a <a href="#history">Naplóban</a>. Konfetti és hang ünnepli (a Beállításokban kikapcsolható). Ha ez az <strong>utolsó palack</strong>, az alkalmazás szól: a whisky ekkor eltűnik a gyűjteményből (de megmarad a Naplóban).</p>
+<p>A whiskyt legjobb tisztán, kb. 16–20 °C-on felszolgálni; az alkalmazás ezt a becslést mutatja felszolgálási hőmérsékletként.</p>
+<div class="tip"><strong>Gyorsan beolvasással:</strong> A gyűjteményben a kerek 🥃 gomb lefényképez egy címkét, felismeri a whiskyt a gyűjteményedben, és azonnal megnyitja az Iszom ablakot.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Polcok és elhelyezés</h2>
+
+<h3>Polcok megadása és szerkesztése</h3>
+<p><strong>Beállítások → Polcok</strong> (koppints a címsorra a megnyitáshoz): add meg a nevet, a szinteket, a helyek számát szintenként és a palackok számát helyenként, majd koppints a ＋ gombra. Az „Üveg/hely” értéke palacktartónál 1, padlónál vagy rekesznél nagyobb. A listában minden polchoz tartozik:</p>
+<ul>
+<li>a <strong>fogantyú ⠿</strong> a sorrend módosításához, valamint a lista alatti <em>Rendezés A–Z</em> gomb,</li>
+<li>▦ a <strong>QR-címkékhez</strong>, ✏️ a szerkesztéshez, 🧹 a kiürítéshez és 🗑 a törléshez.</li>
+</ul>
+<p>A <strong>szerkesztéssel</strong> (✏️) átnevezheted a polcot, módosíthatod a helyek számát szintenként, szinteket adhatsz hozzá felül vagy alul, szinteket távolíthatsz el, és minden szintnek saját nevet és palackszámot adhatsz. Azok a palackok, amelyek így elvesztik a helyüket, utána „elhelyezetlennek” számítanak; maguk a whiskyk a gyűjteményben maradnak. Az alkalmazás ilyen módosítások előtt rákérdez.</p>
+<h3>A Polcok terület</h3>
+<p>Felül a <strong>csempékkel</strong> választasz polcot (név és „foglalt / helyek”). A sorrend itt is módosítható: PC-n húzd a csempét, érintőképernyőn nyomd meg és tartsd kb. fél másodpercig a csempét, majd húzd. Alatta van a <strong>tárolási terv</strong>: minden szint a helyeivel. A foglalt helyeken a whisky típusának színében egy palack látható.</p>
+<h3>Elhelyezés</h3>
+<ol>
+<li>Koppints egy whiskyre a „Nincs elhelyezve” alatt (a lista szűrhető lepárló és ország szerint) – vagy koppints egy „elhelyezetlen” jelzésre a gyűjteményben.</li>
+<li>Koppints egy <strong>szabad helyre</strong>. Padlónál és rekesznél az alkalmazás annyi palackot helyez el, amennyi elfér.</li>
+</ol>
+<p>A <strong>Whisky beolvasása és berakás</strong> lefényképezi a címkét, megkeresi a whiskyt, és végigvezet az elhelyezésen.</p>
+<h3>Foglalt helyek, áthelyezés, eltávolítás</h3>
+<p>Koppints egy foglalt helyre: látod a whiskyt, és <em>megnyithatod</em>, <em>eltávolíthatod a helyről</em> vagy <em>áthelyezheted</em> (ekkor koppints egy szabad helyre). Az <em>Állvány kiürítése</em> minden palackot kivesz a polcról (megerősítés után).</p>
+<h3>QR-címkék és a „Szint beolvasása”</h3>
+<p>A <strong>QR-címkékkel</strong> (Beállítások → Polcok → ▦) egy címkét készítesz a polcnak és egyet-egyet minden szintnek. Oszd meg PDF-ként vagy nyomtasd ki (címkelap 63,5 × 38,1 mm, oldalanként 21 darab), és ragaszd fel őket. Ezután: <strong>Szint beolvasása</strong> a Polcok területen – látod, mi áll azon a szinten, és <em>itt elhelyezhetsz</em>, <em>kivehetsz</em>, megihatsz, áthelyezhetsz egy palackot, vagy <em>áthelyezheted a teljes szintet</em>. A „Whisky hozzáadása” űrlapban egy szintcímke beolvasása a tárolóhelyet is kitölti.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Napló</h2>
+
+<p>A Napló felsorol minden megivott whiskyt dátummal, whiskyvel, értékkel, vendégekkel és alkalommal. Szűrhetsz whisky típusa és alkalom szerint, és szerkeszthetsz egy bejegyzést (vendégek, alkalom). A Napló táplálja a Statisztika „Megivott havonta/évente” kimutatásait, a költéseket és a gyakoriságot.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Kívánságlista</h2>
+
+<ul>
+<li><strong>+ Kívánság hozzáadása</strong>: kézzel vagy címkebeolvasással, egy opcionális megjegyzéssel („Hol vehető?”).</li>
+<li><strong>Árak keresése</strong> (💶): Az alkalmazás az interneten keresi a whisky árait, megmutatja a legolcsóbb találatot, és megszorozza a mennyiséggel. Ezek tájékoztató értékek, garancia nélkül – kérjük, a szállítási költségeket és az elérhetőséget egyeztesd a bolttal.</li>
+<li><strong>Pipa</strong> a bal oldalon: megvásároltként/késznek jelölés (a sor elhalványul).</li>
+<li><strong>→ Gyűjtemény</strong>: áthelyezi a kívánságot a gyűjteménybe (a mennyiséggel és, ha van, a legolcsóbb árral), és ha vannak polcaid, rögtön az elhelyezéshez visz.</li>
+<li>Ha egy whisky a minimum alá csökken, az alkalmazás felajánlja, hogy a hiányzó mennyiséggel a kívánságlistára teszi („utánrendelés”).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statisztika</h2>
+
+<p>Fentről lefelé:</p>
+<ul>
+<li><strong>Főbb számok:</strong> palackok, whiskyk, összérték, átlagos értékelés.</li>
+<li><strong>Típus szerint</strong> és <strong>Legjobb whiskyk</strong> (értékelés vagy gyakoriság szerint, csillagok szerint szűrhető).</li>
+<li><strong>Ország, régió, lepárló szerint:</strong> oszlopok (legfeljebb 8, a többi „+n további”); egy koppintás keres a gyűjteményben. <strong>Év szerint:</strong> oszlopok, oldalirányban görgethető.</li>
+<li><strong>Árak:</strong> átlag palackonként, legolcsóbb, legdrágább, ársávok (a pénznemedhez igazítva) és érték országonként.</li>
+<li><strong>Raktár:</strong> kihasználtság százalékban, szabad helyek, elhelyezetlen palackok és polconként egy oszlop (koppintásra a polchoz ugrik).</li>
+<li><strong>Megivott:</strong> havonta (utolsó 12) és évente, valamint a megivott palackok költsége.</li>
+<li><strong>Legjobb országok és legjobb lepárlók</strong> átlagos értékelés szerint (gyűjtemény és Napló együtt).</li>
+<li><strong>Újravásárlás:</strong> a minimumkészlet alatti whiskyk (megnyitja a bevásárlólistát), a nyitott kívánságok és az értékük.</li>
+</ul>
+<p>Az adatok nélküli szakaszok (pl. árak nélkül) rejtve maradnak.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Export, import és biztonsági mentés</h2>
+
+<table>
+<tbody><tr><th>Funkció</th><th>Feladat</th></tr>
+<tr><td>CSV exportálása</td><td>Táblázat Excelhez vagy Numbershöz</td></tr>
+<tr><td>Excel exportálása</td><td>.xlsx fájlként</td></tr>
+<tr><td>PDF exportálása</td><td>Nyomtatható áttekintés</td></tr>
+<tr><td><strong>JSON biztonsági mentés</strong></td><td><strong>Teljes adatmentés</strong> (whiskyk, kívánságlista, napló, polcok, megjelenített név, saját fotók)</td></tr>
+<tr><td>Vágólapra</td><td>Szöveges lista másolása</td></tr>
+<tr><td>JSON / CSV / Excel importálása</td><td>Mentés visszaállítása vagy táblázat beolvasása</td></tr>
+</tbody></table>
+<p>A CSV és az Excel oszlopai: <strong>Név, Év, Típus, Régió, Ország, Lepárló, Kor, ABV, Hordó, Polc, Szint, Hely, Palackok, Értékelés, Ár, Megjegyzés</strong>. Az import a régi oszlopneveket is elfogadja.</p>
+<div class="tip"><strong>Rendszeresen készíts JSON biztonsági mentést.</strong> A JSON-import a gyűjteményt a mentéssel váltja le (az alkalmazás előbb rákérdez). Új eszközön ezzel minden visszaáll. Használhatod helyette a felhős szinkronizálást is (<a href="#sync">11. fejezet</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Beállítások</h2>
+
+<h3>Általános</h3>
+<ul>
+<li><strong>Megjelenített név (cím):</strong> a „Peter” például „Peter whiskygyűjteménye” lesz. Hagyd üresen az alapértelmezett címhez.</li>
+<li><strong>Pénznem:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Nyelv:</strong> 25 nyelvi változat, köztük német, angol, angol (US) és sok más. <strong>A pénznem automatikusan változik</strong> (svéd → korona, angol (US) → US $, angol (UK) → £). Példa: ha svédre váltasz, az alkalmazás SEK-re vált, és megkérdezi, hogy <strong>az összes árat átszámítsa-e a mai Európai Központi Banki árfolyamon</strong> („OK”), vagy csak a jelölést módosítsa („Mégse”). RUB-ra és UAH-ra nincs árfolyam. A pénznemet bármikor kézzel is módosíthatod.</li>
+<li><strong>Konfetti és hang ivásnál:</strong> mindkettő, csak konfetti, vagy kikapcsolva.</li>
+<li><strong>Betűtípus:</strong> tíz betűtípus közül választhatsz.</li>
+<li><strong>Hőmérséklet-mértékegység:</strong> °C vagy °F (az angol (US) automatikusan °F-ot állít be).</li>
+</ul>
+<h3>Tárolás helye</h3>
+<p><em>Csak ezen az eszközön</em> vagy <em>Felhő</em> (szinkronkód, <a href="#sync">11. fejezet</a>).</p>
+<h3>MI-kreditek (csak az iPhone-alkalmazásban)</h3>
+<p>Mutatja a hátralévő MI-beolvasásokat, az eszközazonosítót és – szükség esetén – a <em>Kredit feltöltése</em> lehetőséget vagy egy feloldó kódot. Lásd a <a href="#privacy">12. fejezetet</a>.</p>
+<h3>Whiskyadatbázis</h3>
+<ul>
+<li><strong>Összes whisky frissítése (MI):</strong> kitölti az összes whisky hiányzó régióját, országát, lepárlóját, korát, ABV-jét, hordóját, felszolgálási hőmérsékletét és árát (a webes változatban a palackképeket is). A meglévő értékek megmaradnak. Ha már vannak felszolgálási hőmérsékletek, az alkalmazás előbb megkérdezi, hogy MI-értékekre is cserélje-e őket. <em>Tipp: előbb készíts JSON biztonsági mentést.</em></li>
+</ul>
+<h3>Polcok</h3>
+<p>Lásd az <a href="#racks">5. fejezetet</a>. A címsor a polcok számát mutatja.</p>
+<h3>Adatvédelem, támogatás, verzió</h3>
+<p>A hivatkozások az adatvédelmi nyilatkozathoz és ehhez a támogatási oldalhoz vezetnek. Legalul találod az alkalmazás <strong>verzióját</strong> – kérjük, add meg, ha kapcsolatba lépsz velünk.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Két eszköz szinkronizálása</h2>
+
+<ol>
+<li><strong>Első eszköz:</strong> Beállítások → Tárolás helye → <em>Felhő</em> → <em>Új szinkronkód létrehozása</em>. A kód megjelenik a képernyőn; a <em>Kód mentése e-mailben</em> gombbal elküldheted magadnak.</li>
+<li><strong>Második eszköz:</strong> Beállítások → Tárolás helye → <em>Felhő</em> → add meg a kódot (kisbetűkkel, szóközök nélkül) → Csatlakozás. Ha az eszközön már vannak whiskyk, az alkalmazás megkérdezi, egyesítse-e őket a felhős adatokkal.</li>
+<li>Ezután mindkét eszköz automatikusan szinkronizál (pl. az alkalmazás megnyitásakor); a <em>Szinkronizálás most</em> kézzel indítja el. A szabály: <strong>a legújabb módosítás nyer</strong>.</li>
+</ol>
+<p>A whiskyk, a kívánságlista, a napló, a polcok és az olyan beállítások, mint a nyelv és a pénznem, szinkronizálódnak. <strong>Nem szinkronizálódnak</strong> a saját fotók és az eszközspecifikus adatok. Aki ismeri a kódodat, láthatja a whiskyidet – csak megbízható személyekkel oszd meg. Emellett tarts egy JSON biztonsági mentést is.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. MI, adatvédelem és költségek</h2>
+
+<ul>
+<li><strong>Mire használják az MI-t?</strong> Címke beolvasása, whisky keresése, árak keresése és az „Összes whisky frissítése”. A fotót vagy a whisky nevét a szerverünkön keresztül egy MI-szolgáltatásnak (Anthropic, USA) küldjük kiértékelésre – nevek és fiókok nélkül. Az alkalmazás az első használat előtt hozzájárulásodat kéri.</li>
+<li>A <strong>vonalkód-beolvasás</strong> csak a számot küldi egy ingyenes termékadatbázisnak, és nem fogyaszt MI-kreditet.</li>
+<li><strong>Költségek (iPhone-alkalmazás):</strong> telepítésenként 50 MI-hívás benne van a vételárban; továbbiak opcionális egyszeri vásárlással szerezhetők (nincs előfizetés, a kreditek nem járnak le). Az alkalmazásban minden más ingyenes. Ha a kreditek elfogytak, az MI-funkciókon kívül minden tovább működik.</li>
+<li><strong>Adatok:</strong> Minden az eszközödön marad, amíg nem kapcsolod be a felhőt. Nincs reklám, nincs követés, nincs felhasználói fiók. A részletek az <a href="datenschutz.html">adatvédelmi nyilatkozatban</a> (németül).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Tippek és GYIK</h2>
+
+<ul>
+<li><strong>iPaden vagy PC-n</strong> az elrendezés alkalmazkodik: szélesebb oszlop, több kártya egymás mellett, PC-n (és fekvő iPaden) a navigáció balra kerül. A telefon fekvő módban is működik. PC-n az <kbd>Esc</kbd> bezárja a legfelső ablakot; telefonon húzd lefelé az ablakot a bezáráshoz.</li>
+<li><strong>Eltűntek a whiskyim:</strong> Lásd a <a href="support.html">Támogatást</a> – állítsd vissza a szinkronkóddal vagy egy JSON biztonsági mentéssel.</li>
+<li><strong>Egy whiskyhez nincs vonalkód-találat:</strong> Kis lepárlóknál ez normális. Használd a címkebeolvasást.</li>
+<li><strong>Az MI félreolvasott valamit:</strong> Javítsd ki a mezőt kézzel, és mentsd el; az MI értékei csak javaslatok.</li>
+<li><strong>Hagyjam „érni” a whiskyt az üvegben?</strong> Nem. A whisky csak a hordóban érik, az üvegben nem – egy palack az évek során nem lesz jobb, sem bontatlanul, sem bontva. Ezért nincs ivási időablak funkció; a felszolgálási hőmérséklet (tisztán, kb. 16–20 °C) csak iránymutatás.</li>
+<li><strong>Az oldal még a régi verziót mutatja (web):</strong> Töltsd újra az oldalt (PC-n <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>További kérdés? Írj a <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Felhaszn%C3%A1l%C3%B3i%20%C3%BAtmutat%C3%B3">t.knecht@web.de</a> címre, és add meg az alkalmazás verzióját (Beállítások, legalul).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>

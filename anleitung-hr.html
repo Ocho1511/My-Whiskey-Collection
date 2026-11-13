@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="hr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Korisnički priručnik – My Whiskey Collection</title>
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans CJK SC","Noto Sans JP","Noto Sans KR","Noto Sans Devanagari",sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 70px;line-height:1.6;color:#222;background:#fff}
+  h1{font-size:28px;margin:6px 0 4px} h2{font-size:20px;margin-top:34px;padding-top:6px;border-top:1px solid #e3e3e3} h3{font-size:16px;margin:20px 0 4px}
+  small{color:#666} a{color:#0a58ca} p{margin:8px 0} ul,ol{margin:6px 0 10px;padding-left:22px} li{margin:3px 0}
+  code,kbd{background:#f2f2f2;border-radius:4px;padding:1px 5px;font-size:.92em}
+  .tip,.note{border-left:4px solid #b88a2a;background:#fbf6ea;padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0}
+  .note{border-color:#0a58ca;background:#eef4fd}
+  .toc{background:#f7f7f7;border-radius:10px;padding:10px 16px;margin:16px 0} .toc ol{margin:4px 0}
+  .lang{position:sticky;top:0;background:#fff;padding:8px 0;margin:0 0 6px;border-bottom:1px solid #eee;z-index:5}
+  .lang select{font:inherit;font-size:15px;padding:5px 10px;border:1px solid #bbb;border-radius:16px;background:#fff;max-width:100%}
+  table{border-collapse:collapse;width:100%;margin:8px 0} td,th{border:1px solid #ddd;padding:6px 9px;text-align:left;vertical-align:top;font-size:15px} th{background:#f4f4f4}
+  .back{margin:0 0 6px} .toapp{display:none} @media (display-mode: standalone){.toapp{display:inline}}
+  @media print{.lang,.back{display:none} body{max-width:none} h2{page-break-after:avoid}}
+</style></head><body>
+<p class="back"><span class="toapp"><a href="index.html">← U kolekciju</a> &nbsp;·&nbsp; </span><a href="support.html">← Natrag na podršku</a></p>
+<div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('wk_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html" selected>Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
+
+<h1>Korisnički priručnik – My Whiskey Collection</h1>
+<p><small>Ažurirano: 13. studenoga 2026. · Verzija aplikacije 2.0</small></p>
+
+<div class="toc">
+
+<strong>Sadržaj</strong><ol>
+<li><a href="#start">Pregled i prvi koraci</a></li>
+<li><a href="#add">Dodavanje viskija</a></li>
+<li><a href="#cellar">Kolekcija</a></li>
+<li><a href="#drink">Pijenje viskija</a></li>
+<li><a href="#racks">Police i pohrana</a></li>
+<li><a href="#history">Povijest</a></li>
+<li><a href="#wish">Lista želja</a></li>
+<li><a href="#stats">Statistika</a></li>
+<li><a href="#export">Izvoz, uvoz i sigurnosna kopija</a></li>
+<li><a href="#setup">Postavke</a></li>
+<li><a href="#sync">Sinkronizacija dvaju uređaja</a></li>
+<li><a href="#privacy">UI, privatnost i troškovi</a></li>
+<li><a href="#faq">Savjeti i česta pitanja</a></li></ol>
+</div>
+
+<!-- ───────────────── 1 ───────────────── -->
+<h2 id="start">1. Pregled i prvi koraci</h2>
+
+<p>My Whiskey Collection vaša je osobna kolekcija viskija u džepu: upravljate zalihama, mjestima pohrane, listom želja i statistikom. Sve radi na vašem uređaju; kodom za sinkronizaciju možete povezati više uređaja.</p>
+<p>Na dnu (na računalu i iPadu u položenom prikazu: lijevo) nalazi se traka sa sedam područja:</p>
+<table>
+<tbody><tr><th>Područje</th><th>Namjena</th></tr>
+<tr><td><strong>Kolekcija</strong></td><td>Svi viskiji, pretraživanje, filtri, razvrstavanje, dodavanje viskija, pijenje</td></tr>
+<tr><td><strong>Statistika</strong></td><td>Analize zaliha, cijena, pohrane i povijesti pijenja</td></tr>
+<tr><td><strong>Povijest</strong></td><td>Viskiji koje ste popili</td></tr>
+<tr><td><strong>Police</strong></td><td>Plan pohrane: pohrana i premještanje viskija, QR naljepnice</td></tr>
+<tr><td><strong>Lista želja</strong></td><td>Viskiji koje još želite kupiti</td></tr>
+<tr><td><strong>Izvoz/Uvoz</strong></td><td>Sigurnosna kopija podataka, učitavanje tablica i sigurnosnih kopija</td></tr>
+<tr><td><strong>Postavke</strong></td><td>Ime, valuta, jezik, oblak, definiranje polica</td></tr>
+</tbody></table>
+<h3>Prvih pet koraka</h3>
+<ol>
+<li><strong>Odaberite jezik i valutu</strong>: Postavke → Općenito. Valuta automatski slijedi jezik.</li>
+<li><strong>Definirajte police</strong> (neobavezno): Postavke → Police (vidi <a href="#racks">poglavlje 5</a>).</li>
+<li><strong>Dodajte svoj prvi viski</strong>: dodirnite <kbd>+</kbd> u kolekciji (<a href="#add">poglavlje 2</a>).</li>
+<li><strong>Pohranite ga</strong>: dajte viskiju mjesto na polici.</li>
+<li><strong>Napravite sigurnosnu kopiju</strong>: Izvoz/Uvoz → JSON sigurnosna kopija, ili postavite sinkronizaciju u oblaku (<a href="#sync">poglavlje 11</a>).</li>
+</ol>
+<div class="tip">Odjeljci u <em>Postavkama</em> mogu se sklapati. „Općenito” je pri prvom pokretanju otvoreno, ostali su zatvoreni. Aplikacija pamti što ste zadnje otvorili ili zatvorili.</div>
+
+<!-- ───────────────── 2 ───────────────── -->
+<h2 id="add">2. Dodavanje viskija</h2>
+
+<p>Dodirnite <kbd>+</kbd> u kolekciji. Viski možete dodati na nekoliko načina – mogu se kombinirati.</p>
+<h3>a) Ručno</h3>
+<p>Ispunite polja: <strong>Naziv / Destilerija, Godina, Boce, Vrsta viskija, Regija (npr. Speyside, Islay, Kentucky), Zemlja, Destilerija, Starost (godine), ABV %, Bačva, Mjesto pohrane, temperatura posluživanja, Cijena, Ocjena, Bilješka</strong>. Obavezan je samo naziv. <em>Spremi</em> stvara viski.</p>
+<ul>
+<li><strong>Godina:</strong> Godina je godina punjenja ili destilacije boce. <strong>Starost</strong> je vrijeme odležavanja u godinama (npr. 12), <strong>ABV</strong> udio alkohola u postocima, a <strong>Bačva</strong> vrsta bačve (npr. šeri, bourbon bačva).</li>
+<li><strong>Zalihe, Min i Max:</strong> Ako unesete minimum, aplikacija vas upozorava kad zalihe padnu ispod njega i nudi da viski stavi na listu želja (<a href="#cellar">poglavlje 3</a>).</li>
+<li><strong>Vlastita fotografija:</strong> „Snimi / odaberi fotografiju” prilaže fotografiju viskiju. Ostaje na ovom uređaju i uključena je u JSON sigurnosnu kopiju, ali se ne sinkronizira s oblakom.</li>
+</ul>
+<h3>b) Skeniraj etiketu (UI)</h3>
+<p>Dodirnite <em>Skeniraj etiketu (UI)</em> i fotografirajte etiketu boce. UI očitava naziv, godinu, vrstu, regiju, zemlju, destileriju, starost, ABV i bačvu te procjenjuje temperaturu posluživanja. Provjerite vrijednosti i spremite. Prije prve upotrebe aplikacija traži vaš pristanak (<a href="#privacy">poglavlje 12</a>).</p>
+<h3>c) Skeniraj barkod</h3>
+<p>Dodirnite <em>Skeniraj barkod</em> i držite barkod boce unutar okvira. Aplikacija traži broj u besplatnoj bazi proizvoda (bez troška, bez UI kredita) i, ako ga pronađe, popunjava <strong>naziv, proizvođača i vrstu viskija</strong>. Godinu nadopunjuje iz naziva ili je traži.</p>
+<ul>
+<li>Ako je boca već u kolekciji, aplikacija pita „Dodati još jednu bocu?” – brz način za povećanje broja kad kupite više.</li>
+<li>Ako barkoda <strong>nema</strong> u bazi (često kod manjih destilerija), pojavljuje se savjet s gumbom <em>Skeniraj etiketu (UI)</em>. Broj se ipak sprema uz viski pa se boca sljedeći put odmah prepoznaje.</li>
+</ul>
+<h3>d) Potraži viski (UI)</h3>
+<p><em>Potraži viski (UI)</em> pušta UI da na webu potraži regiju, zemlju, destileriju, starost, ABV, bačvu, temperaturu posluživanja, trenutnu prosječnu cijenu i – u web verziji – sliku boce. Polja koja ste već ispunili ne prepisuju se. To se događa i automatski čim su uneseni naziv i godina, a cijene još nema.</p>
+<div class="note">Aplikacija za iPhone ne učitava slike boca s interneta (pravilo App Storea). Umjesto toga možete snimati vlastite fotografije.</div>
+
+<!-- ───────────────── 3 ───────────────── -->
+<h2 id="cellar">3. Kolekcija</h2>
+
+<h3>Pretraživanje, filtriranje, razvrstavanje</h3>
+<ul>
+<li><strong>Pretraživanje</strong> na vrhu: pronalazi viskije po nazivu, regiji, zemlji i destileriji.</li>
+<li><strong>Filtri:</strong> Sve, Single Malt, Bourbon / Rye, Blended, World, Ostalo. Klik na vrstu automatski briše pretragu.</li>
+<li><strong>Razvrstavanje:</strong> Najnovije prvo, Naziv, Godina, Destilerija, Regija ili Zemlja.</li>
+<li><strong>Popis / kartice:</strong> Gumb <em>Popis</em> prebacuje između kompaktnog popisa i detaljnih kartica.</li>
+</ul>
+<h3>Kartica viskija</h3>
+<p>Kartica prikazuje naziv, godinu, destileriju, ocjenu (zvjezdice), regiju i zemlju (dodir otvara kartu ili viski regije te zemlje), broj boca, <strong>temperaturu posluživanja</strong> (🌡) i <strong>mjesta pohrane</strong> (dodir vodi do police). Mali simbol čaše otvara Wikipediju za destileriju.</p>
+<p>Na dnu kartice: <em>Uredi</em>, <em>Popij</em> i 🗑 (izbriši viski).</p>
+<h3>Zalihe, Min/Max i popis za kupnju</h3>
+<p>Ako za viski unesete minimum (a po želji i maksimum), kartica prikazuje „Zalihe · Min · Max” i upozorava znakom ⚠ kad ste ispod njega. Gumb <em>Dokupi</em> otvara <strong>popis za kupnju</strong>: navodi sve viskije ispod minimuma (cilj je maksimum, inače minimum). Popis možete podijeliti ili kopirati, ili viskije staviti na listu želja.</p>
+
+<!-- ───────────────── 4 ───────────────── -->
+<h2 id="drink">4. Pijenje viskija</h2>
+
+<p>Dodirnite <em>Popij</em> na kartici viskija. Otvara se dijalog <em>Popij viski</em>:</p>
+<ul>
+<li><strong>Iz kojeg je mjesta uzeta?</strong> – odaberite mjesto na polici iz kojeg je boca uzeta ili „Boca bez mjesta”. Mjesto postaje slobodno.</li>
+<li><strong>S kim ste pili?</strong> – imena vaših gostiju (neobavezno).</li>
+<li><strong>Prigoda</strong> – Proljeće, Ljeto, Jesen, Zima, Rođendan, Zabava ili „Bez razloga” (dopušteno je više njih).</li>
+</ul>
+<p><em>Popij</em> uklanja jednu bocu i stvara unos u <a href="#history">Povijesti</a>. Konfeti i zvuk slave taj trenutak (može se isključiti u Postavkama). Ako je to <strong>posljednja boca</strong>, aplikacija vas obavještava: viski tada nestaje iz kolekcije (ali ostaje u Povijesti).</p>
+<p>Viski se najbolje poslužuje čist na oko 16–20 °C; aplikacija prikazuje tu procjenu kao temperaturu posluživanja.</p>
+<div class="tip"><strong>Brzo skeniranjem:</strong> Okrugli gumb 🥃 u kolekciji fotografira etiketu, prepoznaje viski u vašoj kolekciji i odmah otvara dijalog Popij.</div>
+
+<!-- ───────────────── 5 ───────────────── -->
+<h2 id="racks">5. Police i pohrana</h2>
+
+<h3>Definiranje i uređivanje polica</h3>
+<p><strong>Postavke → Police</strong> (dodirnite naslov za otvaranje): unesite naziv, razine, mjesta po razini i boce po mjestu, zatim dodirnite ＋. „Boca/mjesto” je 1 za stalak za boce, a veće za pod ili sanduk. U popisu svaka polica ima:</p>
+<ul>
+<li><strong>ručku ⠿</strong> za promjenu redoslijeda i gumb <em>Sortiraj A–Ž</em> ispod popisa,</li>
+<li>▦ za <strong>QR naljepnice</strong>, ✏️ za uređivanje, 🧹 za pražnjenje i 🗑 za brisanje.</li>
+</ul>
+<p>Pomoću <strong>uređivanja</strong> (✏️) možete preimenovati policu, promijeniti mjesta po razini, dodati razine gore ili dolje, ukloniti razine i svakoj razini dati vlastiti naziv i broj boca. Boce koje na taj način izgube mjesto poslije se računaju kao „nepohranjene”; sami viskiji ostaju u kolekciji. Aplikacija pita prije takvih promjena.</p>
+<h3>Područje Police</h3>
+<p>Na vrhu birate policu pomoću <strong>pločica</strong> (naziv i „zauzeto / mjesta”). Redoslijed se može mijenjati i ovdje: na računalu povucite pločicu, na zaslonima osjetljivima na dodir držite pločicu otprilike pola sekunde, a zatim povucite. Ispod je <strong>plan pohrane</strong>: svaka razina sa svojim mjestima. Zauzeta mjesta prikazuju bocu u boji vrste viskija.</p>
+<h3>Pohrana</h3>
+<ol>
+<li>Dodirnite viski pod „Nerazvrstano” (popis se može filtrirati po destileriji i zemlji) – ili dodirnite oznaku „nepohranjeno” u kolekciji.</li>
+<li>Dodirnite <strong>slobodno mjesto</strong>. Za podove i sanduke aplikacija pohranjuje onoliko boca koliko stane.</li>
+</ol>
+<p><strong>Skeniraj viski i pohrani</strong> fotografira etiketu, pronalazi viski i vodi vas kroz pohranu.</p>
+<h3>Zauzeta mjesta, premještanje, uklanjanje</h3>
+<p>Dodirnite zauzeto mjesto: vidite viski i možete ga <em>otvoriti</em>, <em>ukloniti s mjesta</em> ili <em>premjestiti</em> (zatim dodirnite slobodno mjesto). <em>Isprazni regal</em> vadi sve boce iz police (nakon potvrde).</p>
+<h3>QR naljepnice i „Skeniraj razinu”</h3>
+<p>Pomoću <strong>QR naljepnica</strong> (Postavke → Police → ▦) izrađujete jednu naljepnicu za policu i jednu za svaku razinu. Podijelite kao PDF ili ispišite (arak naljepnica 63,5 × 38,1 mm, 21 po stranici) i zalijepite. Zatim: <strong>Skeniraj razinu</strong> u području Police – vidite što stoji na toj razini i možete <em>pohraniti ovdje</em>, <em>izvaditi</em>, popiti, premjestiti bocu ili <em>premjestiti cijelu razinu</em>. U obrascu „Dodaj viski” skeniranje naljepnice razine popunjava i mjesto pohrane.</p>
+
+<!-- ───────────────── 6 ───────────────── -->
+<h2 id="history">6. Povijest</h2>
+
+<p>Povijest navodi sve viskije koje ste popili s datumom, viskijem, vrijednošću, gostima i prigodom. Možete filtrirati po vrsti viskija i prigodi te urediti unos (gosti, prigoda). Povijest hrani analize „Popijeno po mjesecu/godini”, potrošnju i učestalost u Statistici.</p>
+
+<!-- ───────────────── 7 ───────────────── -->
+<h2 id="wish">7. Lista želja</h2>
+
+<ul>
+<li><strong>+ Dodaj želju</strong>: ručno ili skeniranjem etikete, s neobaveznom bilješkom („Gdje kupiti?”).</li>
+<li><strong>Traži cijene</strong> (💶): Aplikacija na webu traži cijene viskija, prikazuje najjeftiniji pogodak i množi ga količinom. To su okvirne vrijednosti bez jamstva – troškove dostave i dostupnost provjerite u trgovini.</li>
+<li><strong>Kvačica</strong> s lijeve strane: označava kao kupljeno/gotovo (redak blijedi).</li>
+<li><strong>→ Kolekcija</strong>: premješta želju u kolekciju (s količinom i, ako postoji, najnižom cijenom) i, ako imate police, odmah vodi do pohrane.</li>
+<li>Ako viski padne ispod svog minimuma, aplikacija nudi da ga stavi na listu želja s količinom koja nedostaje („dokupi”).</li>
+</ul>
+
+<!-- ───────────────── 8 ───────────────── -->
+<h2 id="stats">8. Statistika</h2>
+
+<p>Od vrha prema dnu:</p>
+<ul>
+<li><strong>Ključni brojevi:</strong> boce, viskiji, ukupna vrijednost, prosječna ocjena.</li>
+<li><strong>Po vrsti</strong> i <strong>Najbolji viskiji</strong> (po ocjeni ili učestalosti, s filtriranjem po zvjezdicama).</li>
+<li><strong>Po zemlji, regiji, destileriji:</strong> trake (do 8, ostalo kao „+n još”); dodir pretražuje kolekciju. <strong>Po godini:</strong> stupci, pomični u stranu.</li>
+<li><strong>Cijene:</strong> prosjek po boci, najjeftinije, najskuplje, cjenovni razredi (prilagođeni vašoj valuti) i vrijednost po zemlji.</li>
+<li><strong>Skladište:</strong> popunjenost u postocima, slobodna mjesta, nepohranjene boce i traka za svaku policu (dodir vodi do police).</li>
+<li><strong>Popijeno:</strong> po mjesecu (zadnjih 12) i po godini, plus troškovi popijenih boca.</li>
+<li><strong>Najbolje zemlje i najbolje destilerije</strong> po prosječnoj ocjeni (kolekcija i Povijest zajedno).</li>
+<li><strong>Za dokupiti:</strong> viskiji ispod minimalnih zaliha (otvara popis za kupnju), otvorene želje i njihova vrijednost.</li>
+</ul>
+<p>Odjeljci bez podataka (npr. bez cijena) skriveni su.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="export">9. Izvoz, uvoz i sigurnosna kopija</h2>
+
+<table>
+<tbody><tr><th>Funkcija</th><th>Namjena</th></tr>
+<tr><td>Izvezi CSV</td><td>Tablica za Excel ili Numbers</td></tr>
+<tr><td>Izvezi Excel</td><td>Kao .xlsx datoteka</td></tr>
+<tr><td>Izvezi PDF</td><td>Pregled za ispis</td></tr>
+<tr><td><strong>JSON sigurnosna kopija</strong></td><td><strong>Potpuna sigurnosna kopija podataka</strong> (viskiji, lista želja, povijest, police, prikazano ime, vlastite fotografije)</td></tr>
+<tr><td>U međuspremnik</td><td>Kopiraj tekstualni popis</td></tr>
+<tr><td>Uvezi JSON / CSV / Excel</td><td>Vrati sigurnosnu kopiju ili učitaj tablicu</td></tr>
+</tbody></table>
+<p>Stupci u CSV-u i Excelu su: <strong>Naziv, Godina, Vrsta, Regija, Zemlja, Destilerija, Starost, ABV, Bačva, Polica, Razina, Mjesto, Boce, Ocjena, Cijena, Bilješka</strong>. Uvoz prihvaća i stara imena stupaca.</p>
+<div class="tip"><strong>Redovito pravite JSON sigurnosnu kopiju.</strong> JSON uvoz zamjenjuje kolekciju sigurnosnom kopijom (aplikacija prvo pita). Na novom uređaju time se sve vraća. Alternativno koristite sinkronizaciju u oblaku (<a href="#sync">poglavlje 11</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="setup">10. Postavke</h2>
+
+<h3>Općenito</h3>
+<ul>
+<li><strong>Prikazano ime (naslov):</strong> „Peter” postaje npr. „Kolekcija viskija: Peter”. Ostavite prazno za zadani naslov.</li>
+<li><strong>Valuta:</strong> €, $, £, CHF, A$, C$, SEK, NOK, DKK, PLN, HUF, CZK, RON, RUB, UAH, JPY, CNY, KRW, INR.</li>
+<li><strong>Jezik:</strong> 25 jezičnih varijanti, uključujući njemački, engleski, engleski (US) i mnoge druge. <strong>Valuta se mijenja automatski</strong> (švedski → kruna, engleski (US) → US $, engleski (UK) → £). Primjer: kad prijeđete na švedski, aplikacija prelazi na SEK i pita hoće li <strong>sve cijene preračunati po današnjem tečaju Europske središnje banke</strong> („U redu”) ili samo promijeniti oznaku („Odustani”). Za RUB i UAH nema tečajeva. Valutu možete u svakom trenutku promijeniti ručno.</li>
+<li><strong>Konfeti i zvuk pri pijenju:</strong> oboje, samo konfeti ili isključeno.</li>
+<li><strong>Font:</strong> na izbor je deset fontova.</li>
+<li><strong>Jedinica temperature:</strong> °C ili °F (engleski (US) automatski postavlja °F).</li>
+</ul>
+<h3>Pohrana</h3>
+<p><em>Samo ovaj uređaj</em> ili <em>Oblak</em> (kôd za sinkronizaciju, <a href="#sync">poglavlje 11</a>).</p>
+<h3>UI krediti (samo aplikacija za iPhone)</h3>
+<p>Prikazuje preostala UI skeniranja, ID uređaja i – po potrebi – <em>Dodaj kredite</em> ili kôd za otključavanje. Vidi <a href="#privacy">poglavlje 12</a>.</p>
+<h3>Baza viskija</h3>
+<ul>
+<li><strong>Ažuriraj sve viskije (UI):</strong> popunjava regiju, zemlju, destileriju, starost, ABV, bačvu, temperaturu posluživanja i cijenu koje nedostaju za sve viskije (u web verziji i slike boca). Postojeće vrijednosti ostaju. Ako temperature posluživanja već postoje, aplikacija prvo pita treba li ih zamijeniti i UI vrijednostima. <em>Savjet: prvo izvezite JSON sigurnosnu kopiju.</em></li>
+</ul>
+<h3>Police</h3>
+<p>Vidi <a href="#racks">poglavlje 5</a>. Naslov prikazuje broj polica.</p>
+<h3>Privatnost, podrška, verzija</h3>
+<p>Poveznice vode na pravila privatnosti i na ovu stranicu podrške. Posve na dnu nalazi se <strong>verzija</strong> aplikacije – navedite je kad nas kontaktirate.</p>
+
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="sync">11. Sinkronizacija dvaju uređaja</h2>
+
+<ol>
+<li><strong>Prvi uređaj:</strong> Postavke → Pohrana → <em>Oblak</em> → <em>Stvori novi kôd za sinkronizaciju</em>. Kôd se pojavljuje na zaslonu; s <em>Spremi kôd e-poštom</em> šaljete ga sebi.</li>
+<li><strong>Drugi uređaj:</strong> Postavke → Pohrana → <em>Oblak</em> → unesite kôd (malim slovima, bez razmaka) → Poveži. Ako uređaj već sadrži viskije, aplikacija pita hoće li ih spojiti s podacima u oblaku.</li>
+<li>Nakon toga se oba uređaja sinkroniziraju automatski (npr. pri otvaranju aplikacije); <em>Sinkroniziraj sada</em> to pokreće ručno. Pravilo glasi: <strong>pobjeđuje najnovija promjena</strong>.</li>
+</ol>
+<p>Sinkroniziraju se viskiji, lista želja, povijest, police i postavke poput jezika i valute. <strong>Ne sinkroniziraju se</strong> vlastite fotografije i podaci specifični za uređaj. Svatko tko zna vaš kôd može vidjeti vaše viskije – dijelite ga samo s osobama kojima vjerujete. Čuvajte i JSON sigurnosnu kopiju.</p>
+
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="privacy">12. UI, privatnost i troškovi</h2>
+
+<ul>
+<li><strong>Za što se koristi UI?</strong> Skeniranje etikete, traženje viskija, traženje cijena i „Ažuriraj sve viskije”. Fotografija ili naziv viskija šalje se preko našeg poslužitelja UI usluzi (Anthropic, SAD) na obradu – bez imena i računa. Aplikacija traži vaš pristanak prije prve upotrebe.</li>
+<li><strong>Skeniranje barkoda</strong> šalje samo broj besplatnoj bazi proizvoda i ne troši UI kredit.</li>
+<li><strong>Troškovi (aplikacija za iPhone):</strong> 50 UI poziva po instalaciji uključeno je u kupovnu cijenu; više se može kupiti kao neobavezna jednokratna kupnja (bez pretplate, krediti ne istječu). Sve ostalo u aplikaciji ne košta dodatno. Kad se krediti potroše, sve osim UI funkcija i dalje radi.</li>
+<li><strong>Podaci:</strong> Sve ostaje na vašem uređaju dok ne uključite oblak. Bez oglasa, bez praćenja, bez korisničkog računa. Pojedinosti u <a href="datenschutz.html">pravilima privatnosti</a> (na njemačkom).</li>
+</ul>
+
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="faq">13. Savjeti i česta pitanja</h2>
+
+<ul>
+<li><strong>Na iPadu ili računalu</strong> se izgled prilagođava: šira kolona, više kartica jedna pokraj druge, a na računalu (i iPadu u položenom prikazu) navigacija s lijeve strane. Telefon radi i u položenom prikazu. Na računalu <kbd>Esc</kbd> zatvara gornji prozor; na telefonu prozor zatvarate povlačenjem prema dolje.</li>
+<li><strong>Moji viskiji su nestali:</strong> Vidi <a href="support.html">Podrška</a> – vratite pomoću koda za sinkronizaciju ili JSON sigurnosne kopije.</li>
+<li><strong>Nema pogotka za barkod viskija:</strong> Normalno za male destilerije. Koristite skeniranje etikete.</li>
+<li><strong>UI je nešto krivo pročitao:</strong> Ispravite polje ručno i spremite; UI vrijednosti su prijedlozi.</li>
+<li><strong>Trebam li pustiti viski da „stari” u boci?</strong> Ne. Viski odležava samo u bačvi, ne u boci – boca s godinama ne postaje bolja, otvorena ili neotvorena. Zato nema funkcije prozora za pijenje; temperatura posluživanja (čisti, oko 16–20 °C) samo je smjernica.</li>
+<li><strong>Stranica još prikazuje staru verziju (web):</strong> Ponovno učitajte stranicu (na računalu <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
+</ul>
+<p>Još pitanja? Pišite na <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Korisni%C4%8Dki%20priru%C4%8Dnik">t.knecht@web.de</a> i navedite verziju aplikacije (Postavke, posve na dnu).</p>
+
+<p style="margin-top:36px"><small>My Whiskey Collection · Thomas Knecht · Scheidemannstr. 29 · 42781 Haan · Deutschland</small></p>
+<script>if(window.navigator.standalone){document.querySelectorAll('.toapp').forEach(function(e){e.style.display='inline'})}</script>
+</body></html>
