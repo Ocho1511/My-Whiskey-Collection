@@ -1941,7 +1941,9 @@ input[type="file"] { display: none; }
 // DATA
 // ═══════════════════════════════════════
 const APP_VERSION = '2.0';   // = MARKETING_VERSION im iOS-Projekt (ios/App/App.xcodeproj): bei jeder neuen App-Version beide ändern
-const SCAN_PROXY_URL = 'https://whiskey-scan-proxy.ocho1511.workers.dev';   // eigener Worker, Quelltext in worker/ (muss erst deployt werden)
+const SCAN_PROXY_URL = 'https://gin-factory-scan-proxy.ocho1511.workers.dev';   // Sync, Barcode, Webseiten-Bild (gemeinsamer Worker, Quelltext im Repo Gin-Factory/scan-proxy)
+// KI-Aufrufe, Wechselkurse und Konto der Store-Version laufen über den bestehenden Worker mit dem Anthropic-Key.
+const AI_PROXY_URL = 'https://weinkeller-scan-proxy.ocho1511.workers.dev';
 const STORE_KEY = 'mywhiskey_v1';
 const WISH_KEY  = 'mywhiskey_v1_wish';
 const DRUNK_KEY = 'mywhiskey_v1_drunk';
@@ -2928,7 +2930,7 @@ function setCredits(v) {
 async function refreshCredits() {
   if (!isNativeApp()) return;
   try {
-    const r = await fetch(SCAN_PROXY_URL + '/acct/status', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Install-Id': getInstallId() }, body: '{}' });
+    const r = await fetch(AI_PROXY_URL + '/acct/status', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Install-Id': getInstallId() }, body: '{}' });
     const j = await r.json();
     if (j && j.gated) setCredits(j.unlimited ? 'unlimited' : j.credits);
   } catch (e) { /* offline: Anzeige bleibt wie sie ist */ }
@@ -3031,7 +3033,7 @@ async function topUpCredits() {
   try {
     await iapReady();
     // Welche Pakete es gibt (Produkt-ID und Anzahl), kommt vom Server; Preis und Währung liefert Apple für das Land des Nutzers
-    const pk = await (await fetch(SCAN_PROXY_URL + '/credits/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).json();
+    const pk = await (await fetch(AI_PROXY_URL + '/credits/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).json();
     const ids = (pk.products || []).map((p) => p.id);
     const res = await IAP_PLUGIN().getProducts({ productIdentifiers: ids, productType: 'inapp' });
     const byId = {}; (res.products || []).forEach((p) => { byId[p.identifier] = p; });
@@ -3076,7 +3078,7 @@ async function redeemTransaction(tx, silent) {
   try {
     let r, j;
     try {
-      r = await fetch(SCAN_PROXY_URL + '/credits/redeem', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Install-Id': getInstallId() }, body: JSON.stringify({ signedTransaction: jws }) });
+      r = await fetch(AI_PROXY_URL + '/credits/redeem', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Install-Id': getInstallId() }, body: JSON.stringify({ signedTransaction: jws }) });
       j = await r.json().catch(() => ({}));
     } catch (e) { if (!silent) showToast(t('iap_redeem_later')); return false; }   // offline: bleibt offen, wird nachgeholt
     if (r.ok && j && j.ok) {
@@ -3115,7 +3117,7 @@ async function submitUnlock() {
   const code = inp ? inp.value.trim() : '';
   if (!code) return;
   try {
-    const r = await fetch(SCAN_PROXY_URL + '/acct/unlock', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Install-Id': getInstallId() }, body: JSON.stringify({ code }) });
+    const r = await fetch(AI_PROXY_URL + '/acct/unlock', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Install-Id': getInstallId() }, body: JSON.stringify({ code }) });
     const j = await r.json().catch(() => ({}));
     if (r.ok && j.unlimited) { setCredits('unlimited'); if (inp) inp.value = ''; showToast(t('credits_unlock_ok')); return; }
     if (r.status === 429) showToast(t('credits_unlock_many'));
@@ -3151,7 +3153,7 @@ async function adminLogin() {
 }
 async function loadAdminStats(pw, extra) {
   try {
-    const r = await fetch(SCAN_PROXY_URL + '/admin/stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ password: pw }, extra || {})) });
+    const r = await fetch(AI_PROXY_URL + '/admin/stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ password: pw }, extra || {})) });
     const j = await r.json().catch(() => ({}));
     if (r.status === 403) { showToast('Passwort falsch'); return false; }
     if (r.status === 429) { showToast('Zu viele Versuche – bitte später erneut'); return false; }
@@ -3248,7 +3250,7 @@ function renderAdmin(j) {
 
 // KI-Nachschlagen MIT Web-Suche → liefert Beschreibung + aktuellen Durchschnittspreis
 async function lookupWineData(name, year) {
-  const resp = await aiFetch(SCAN_PROXY_URL, {
+  const resp = await aiFetch(AI_PROXY_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -14775,7 +14777,7 @@ async function offerPriceConversion(fromCur, toCur) {
   if (fromCur === toCur || !CUR_ISO[fromCur] || !CUR_ISO[toCur] || !CURRENCIES[fromCur] || !CURRENCIES[toCur] || !hasAnyPrice()) return;
   if (!confirm(t('cur_convert_ask', { from: t(CURRENCIES[fromCur].key), to: t(CURRENCIES[toCur].key) }))) return;
   try {
-    const resp = await fetch(SCAN_PROXY_URL + '/rates', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    const resp = await fetch(AI_PROXY_URL + '/rates', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     if (!resp.ok) throw new Error('http ' + resp.status);
     const d = await resp.json();
     const rates = d && d.rates;
@@ -15194,7 +15196,7 @@ async function handleDrinkScan(e) {
   showToast(t('toast_reading'));
   try {
     const base64 = await imageToBase64(file);
-    const resp = await aiFetch(SCAN_PROXY_URL, {
+    const resp = await aiFetch(AI_PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -15454,7 +15456,7 @@ async function handleScan(e) {
   showBarcodeMiss(false);
   try {
     const base64 = await imageToBase64(file);
-    const resp = await aiFetch(SCAN_PROXY_URL, {
+    const resp = await aiFetch(AI_PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -15589,13 +15591,12 @@ async function scanBarcodeForWine() {
     const d = await resp.json();
     if (tok !== formToken) return;
     if (!d.found) { showBarcodeMiss(true); return; }
-    if (d.notWine) { document.getElementById('f-ean').value = ''; showToast(t('barcode_notwine')); return; }
+    // Whiskey: Server-Filter 'notWine' und Stil-Vermutung (für Gin gedacht) werden ignoriert
     let name = d.name || d.brand || '';
     if (d.brand && d.name && !d.name.toLowerCase().includes(d.brand.toLowerCase())) name = d.brand + ' – ' + d.name;
     if (!document.getElementById('f-name').value.trim()) document.getElementById('f-name').value = name;
     const ym = /\b(19[5-9]\d|20[0-4]\d)\b/.exec(d.name || '');
     if (ym && !document.getElementById('f-year').value) document.getElementById('f-year').value = ym[1];
-    if (d.type) document.getElementById('f-type').value = d.type;
     showToast(t('barcode_found', { name }));
     if (document.getElementById('f-year').value) maybeAutoLookup();
     else { showToast(t('barcode_year')); document.getElementById('f-year').focus(); }
@@ -15610,7 +15611,7 @@ async function handleLocationScan(e) {
   showToast(t('toast_locreading'));
   try {
     const base64 = await imageToBase64(file);
-    const resp = await aiFetch(SCAN_PROXY_URL, {
+    const resp = await aiFetch(AI_PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -15649,7 +15650,7 @@ async function handleWishScan(e) {
   loading.style.display = 'block';
   try {
     const base64 = await imageToBase64(file);
-    const resp = await aiFetch(SCAN_PROXY_URL, {
+    const resp = await aiFetch(AI_PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -17257,7 +17258,7 @@ function cleanPrices(p) {
 }
 async function lookupWinePrices(w) {
   const cur = currencyName();
-  const resp = await aiFetch(SCAN_PROXY_URL, {
+  const resp = await aiFetch(AI_PROXY_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
