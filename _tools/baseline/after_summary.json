@@ -1,0 +1,16 @@
+{
+  "datum": "2026-11-15",
+  "ergebnis": {
+    "removedFieldsGone": true, "keptFields": true,
+    "cardsSame": true, "historySame": true, "wishSame": true, "racksSame": true, "exportRowsSame": true,
+    "statsTrinkreifeGone": true, "statsRestSame": true,
+    "recipesLen": 746, "exportLen": 392, "setupLen": 1179,
+    "navCount": 8, "trinkreifeTabGone": true,
+    "sweepErrors": [], "langs": 25, "i18nKeysDe": "465 -> 440",
+    "lastBuild": "Last Build: 15.11.2026 (de), 11/15/2026 (en), 2026/11/15 (ja)",
+    "rackTest": {"filledSlots": 3, "toolbar": false, "legend": false, "dots": false, "blinking": false, "drinkFromCard": "ok", "drinkFromSlot": "ok"},
+    "layout": {"320": "ok", "375": "ok", "768": "ok", "1440": "ok (Seitenleiste)"},
+    "bytes": "1016586 -> 951684"
+  },
+  "hinweis": "Behalten bewusst: Serviertemperatur (auf Karten sichtbar), lvlDrink (per onclick-String genutzt)."
+}

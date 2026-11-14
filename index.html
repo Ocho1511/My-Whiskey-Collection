@@ -75,6 +75,7 @@
 /* Glas-Karte: nie hoeher als der Bildschirm (Handy quer), kleine Zeichnung bei wenig Hoehe */
 .glass-card { max-height: 100%; overflow-y: auto; box-sizing: border-box; }
 @media (max-height: 520px) { .glass-card { padding: 12px 16px; } .glass-card svg { width: 84px; height: 84px; } .glass-card p { font-size: 13px; margin-bottom: 8px; } .glass-card .glass-title { margin: 0 0 4px; } .glass-card .glass-link { margin-bottom: 8px; } }
+.contact-build { font-size: 11px; color: var(--text-muted); margin-top: 6px; text-align: center; opacity: .85; }
 </style>
 <style>
 :root {
@@ -390,22 +391,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
   font-size: 12px;
   color: var(--text-muted);
 }
-.wine-ripeness {
-  margin-top: 10px;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.wine-ripeness-bar {
-  height: 100%;
-  border-radius: 2px;
-  transition: width .4s;
-}
-.ripeness-jung { background: var(--sparkling); }
-.ripeness-optimal { background: var(--green); }
-.ripeness-peak { background: var(--gold); }
-.ripeness-over { background: var(--red-alert); }
+
 .wine-actions { display: flex; gap: 8px; margin-top: 12px; }
 .wine-btn {
   flex: 1;
@@ -633,22 +619,20 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
   .qr-page { position: relative; width: 210mm; height: 297mm; page-break-after: always; overflow: hidden; }
   .qr-page img { position: absolute; width: 63.5mm; height: 38.1mm; }
 }
-.rack-ripe { position: absolute; left: 1px; top: 1px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.9); box-shadow: 0 0 0 1px rgba(0,0,0,.45); pointer-events: none; z-index: 2; }
-.rack-slot.tiny .rack-ripe { width: 7px; height: 7px; border-width: 1px; }
+
 .ripeness-loc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -6px 0 10px; }
 .loc-chip { border: 1px solid var(--border); background: var(--bg, transparent); color: var(--gold-light); border-radius: 999px; padding: 4px 10px; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; }
 .loc-chip:active { background: var(--card); }
 .loc-open, .loc-text { font-size: 11px; color: var(--text-muted); }
 .store-scan-btn { background: #1f5c30; color: #fff; border: none; font-weight: 700; }
 .rack-clear-btn { border-color: var(--danger, #c0392b); color: var(--danger, #e57373); }
-.wine-temp, .ripeness-temp { font-size: 12px; font-weight: 600; color: var(--sparkling); margin: 0 0 8px; }
-.wine-temp.est, .ripeness-temp.est { opacity: .75; font-style: italic; }
+.wine-temp { font-size: 12px; font-weight: 600; color: var(--sparkling); margin: 0 0 8px; }
+.wine-temp.est { opacity: .75; font-style: italic; }
 .loc-chip.loc-store { border-color: var(--gold); color: var(--gold); }
 .rack-un-filter { margin-bottom: 10px; }
 .rack-un-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
 .rack-un-chips .filter-chip.zero:not(.active) { color: var(--text-dim); }
-.ripe-country { padding: 4px 16px 8px; }
-.ripe-country .rack-un-country { max-width: 360px; }
+
 .setup-fold > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; -webkit-user-select: none; user-select: none; }
 .setup-fold > summary::-webkit-details-marker { display: none; }
 .setup-fold > summary::before { content: '▸'; color: var(--gold); font-size: 14px; transition: transform .15s; }
@@ -664,28 +648,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 @keyframes slotFlash { 0%, 100% { box-shadow: 0 0 0 0 rgba(196,162,74,0); } 50% { box-shadow: 0 0 0 4px rgba(196,162,74,.95), 0 0 14px 3px rgba(196,162,74,.6); } }
 .rack-slot.slot-flash { border-radius: 6px; animation: slotFlash .8s ease-in-out 3; }
 @media (prefers-reduced-motion: reduce) { .rack-slot.slot-flash { animation: none; } }
-.rack-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: -6px 0 14px; font-size: 11px; color: var(--text-muted); }
-.rack-legend span { display: inline-flex; align-items: center; gap: 5px; }
-.rack-ripe-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(255,255,255,.7); }
-.rack-toolbar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 8px; margin-bottom: 10px; }
-.rack-toolbar-lbl { grid-column: 1 / -1; font-size: 12px; font-weight: 600; color: var(--text-muted); }
-.rack-toggle .rack-ripe-dot { margin-right: -2px; }
-.rack-toggle { display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px; padding: 8px 10px; border-radius: 12px; white-space: normal; line-height: 1.25; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--text-muted); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
-.rack-toggle .rt-dot { width: 22px; height: 12px; border-radius: 6px; background: var(--border); position: relative; transition: background .2s; }
-.rack-toggle .rt-dot::after { content: ''; position: absolute; top: 2px; left: 2px; width: 8px; height: 8px; border-radius: 50%; background: #fff; transition: transform .2s; }
-.rack-toggle.active { color: var(--text); border-color: var(--red-alert); }
-.rack-toggle.active .rt-dot { background: var(--red-alert); }
-.rack-toggle.active .rt-dot::after { transform: translateX(10px); }
-.rack-blink-hint { font-size: 11px; color: var(--text-muted); margin: -4px 0 10px; }
-@keyframes rackBlink { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,90,90,0); } 50% { box-shadow: 0 0 0 3px rgba(255,90,90,.9), 0 0 10px 2px rgba(255,90,90,.6); } }
-@keyframes rackDot { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.6); } }
-.rack-box.blink-on .rack-slot.filled:not(.blinking) > :not(.rack-ripe):not(.rack-slot-count) { opacity: .4; }
-.rack-slot.blinking { border-radius: 6px; animation: rackBlink 1.1s ease-in-out infinite; }
-.rack-slot.blinking .rack-ripe { animation: rackDot 1.1s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .rack-slot.blinking { animation: none; box-shadow: 0 0 0 2px rgba(255,90,90,.9); }
-  .rack-slot.blinking .rack-ripe { animation: none; }
-}
+
 .rack-box { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
 .rack-box::-webkit-scrollbar { height: 6px; }
 .rack-box::-webkit-scrollbar-track { background: transparent; }
@@ -745,9 +708,9 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 .rack-setup-item.editing + .rack-level-editor { border-color: var(--gold); }
 /* Flasche, die gerade umgelagert wird */
 .rack-slot.moving { outline: 2px solid var(--gold-light, var(--gold)); outline-offset: 2px; border-radius: 6px; background: rgba(196,162,74,.22); }
-.rack-slot.moving > :not(.rack-ripe):not(.rack-slot-count) { opacity: .55; }
+.rack-slot.moving > :not(.rack-slot-count) { opacity: .55; }
 /* Rückmeldung beim Antippen aller Schaltflächen */
-.wine-btn:active, .scan-btn:active, .btn-primary:active, .btn-secondary:active, .filter-chip:active, .wish-action-btn:active, .rack-setup-edit:active, .rack-setup-del:active, .rack-toggle:active, .rle-del:active, .loc-chip:active { transform: scale(.96); filter: brightness(1.25); }
+.wine-btn:active, .scan-btn:active, .btn-primary:active, .btn-secondary:active, .filter-chip:active, .wish-action-btn:active, .rack-setup-edit:active, .rack-setup-del:active, .rle-del:active, .loc-chip:active { transform: scale(.96); filter: brightness(1.25); }
 .rack-setup-item { position: relative; }
 .rack-drag { flex-shrink: 0; width: 22px; text-align: center; color: var(--text-dim); font-size: 18px; line-height: 1; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; padding: 6px 0; }
 .rack-drag:active { cursor: grabbing; color: var(--gold); }
@@ -832,29 +795,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 .col-chart .col-bar { width: 100%; background: var(--gold); border-radius: 3px 3px 0 0; min-height: 3px; }
 .col-chart .col-l { font-size: 9px; color: var(--text-dim); margin-top: 4px; white-space: nowrap; }
 .type-bar-count { font-size: 11px; font-weight: 600; color: var(--text); width: 24px; text-align: right; }
-/* ── TRINKREIFE TAB ── */
-.ripeness-card {
-  margin: 0 16px 10px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
-}
-.ripeness-wine-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-.ripeness-meta { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; }
-.ripeness-window { font-size: 12px; font-weight: 600; color: var(--text); margin: -6px 0 8px; }
-.ripeness-timeline {
-  display: flex;
-  gap: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  height: 20px;
-  margin-bottom: 8px;
-}
+
 .rt-seg {
   flex: 1;
   min-width: 0;
@@ -887,23 +828,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
   border-radius: 1px;
   transform: translateX(-50%);
 }
-.ripeness-status {
-  font-size: 12px;
-  font-weight: 500;
-}
-.ripeness-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 8px;
-}
-.ripeness-drink-btn {
-  flex-shrink: 0;
-  width: auto;
-  padding: 7px 14px;
-  white-space: nowrap;
-}
+
 /* ── WISHLIST TAB ── */
 .wish-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
 .wish-card {
@@ -1044,10 +969,8 @@ input[type="file"] { display: none; }
   .bottom-nav { max-width: 780px; }
   .page-header { padding-top: 30px; }
   .wine-list, .wish-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
-  #trinkreife-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
-  #trinkreife-list > .empty-state, #trinkreife-list > .stats-title { grid-column: 1 / -1; }
-  .ripeness-card { margin: 0 8px 12px 16px; }
-  #trinkreife-list > :nth-child(even) .ripeness-card, #trinkreife-list > .ripeness-card:nth-child(even) { margin: 0 16px 12px 8px; }
+
+  
   #rack-chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .modal-overlay { align-items: center; justify-content: center; padding: 20px; }
@@ -1070,8 +993,7 @@ input[type="file"] { display: none; }
   .nav-btn { flex: 0 0 auto; padding: 14px 4px; font-size: 10px; }
   .nav-icon { font-size: 22px; }
   .wine-list, .wish-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  #trinkreife-list { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 10px; }
-  .ripeness-card, #trinkreife-list > :nth-child(even) .ripeness-card, #trinkreife-list > .ripeness-card:nth-child(even) { margin: 0 6px 12px 6px; }
+
   #rack-chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .fab { bottom: 28px; right: 32px; }
   .fab-drink { bottom: 96px; }
@@ -1254,17 +1176,6 @@ input[type="file"] { display: none; }
   <div id="recipes-content"></div>
 </div>
 
-<div class="tab" id="tab-trinkreife">
-  <div class="page-header">
-    <h1 data-i18n="ripe_title">Trinkreife</h1>
-    <div class="subtitle" data-i18n="ripe_sub">Wann trinken?</div>
-  </div>
-  <div class="filter-scroll" id="ripe-filter-type" style="padding-bottom:8px"></div>
-  <div class="filter-scroll" id="ripe-filter-status"></div>
-  <div class="ripe-country" id="ripe-filter-country"></div>
-  <div id="trinkreife-list"></div>
-</div>
-
 <!-- ════════════════════════════════════════
      HISTORIE TAB
 ════════════════════════════════════════ -->
@@ -1382,6 +1293,7 @@ input[type="file"] { display: none; }
         <a class="contact-line" href="mailto:t.knecht@web.de">✉️ t.knecht@web.de</a>
         <a class="contact-line" href="tel:+491722644305">📞 +49 172 2644305</a>
         <div class="contact-copyright">© 2026 Thomas Knecht. All rights reserved.</div>
+        <div class="contact-build" id="last-build"></div>
       </div>
     </details>
   </div>
@@ -1555,13 +1467,6 @@ input[type="file"] { display: none; }
         <div class="export-info">
           <div class="title" data-i18n="enrich_btn">Alle Weine aktualisieren (KI)</div>
           <div class="desc" data-i18n="enrich_desc">Fehlende Region, Land, Rebsorte, Trinkfenster & Preis ergänzen</div>
-        </div>
-      </div>
-      <div class="export-card" id="drinkrule-btn" onclick="recalcDrinkWindows()" style="margin-top:10px;display:none">
-        <div class="export-icon">📅</div>
-        <div class="export-info">
-          <div class="title" data-i18n="drinkrule_btn">Trinkfenster neu berechnen</div>
-          <div class="desc" data-i18n="drinkrule_desc">Trinken ab = Jahrgang + 1; Trinken bis nach Weinart und Rebsorte</div>
         </div>
       </div>
       <div id="enrich-progress" style="display:none; margin-top:12px">
@@ -1750,16 +1655,6 @@ input[type="file"] { display: none; }
         <input id="f-loc-platz" placeholder="Platz v.l." data-i18n-ph="ph_platz" type="text">
         <button type="button" class="mini-scan-btn" onclick="document.getElementById('location-camera-input').click()" title="Lagerplatz scannen">📷</button>
         <button type="button" class="mini-scan-btn" onclick="scanShelfForForm()" title="QR">▦</button>
-      </div>
-    </div>
-    <div class="form-row" style="display:none">
-      <div class="form-group">
-        <label data-i18n="l_from">Trinken ab</label>
-        <input id="f-drink-from" placeholder="" type="number">
-      </div>
-      <div class="form-group">
-        <label data-i18n="l_to">Trinken bis</label>
-        <input id="f-drink-to" placeholder="" type="number">
       </div>
     </div>
     <div class="form-row">
@@ -1998,6 +1893,7 @@ input[type="file"] { display: none; }
 // DATA
 // ═══════════════════════════════════════
 const APP_VERSION = '2.0';   // = MARKETING_VERSION im iOS-Projekt (ios/App/App.xcodeproj): bei jeder neuen App-Version beide ändern
+const BUILD_DATE = '2026-11-15';   // bei jedem Build auf das aktuelle Datum setzen (Anzeige: Kontakt → Last Build)
 const SCAN_PROXY_URL = 'https://gin-factory-scan-proxy.ocho1511.workers.dev';   // Sync, Barcode, Webseiten-Bild (gemeinsamer Worker, Quelltext im Repo Gin-Factory/scan-proxy)
 // KI-Aufrufe, Wechselkurse und Konto der Store-Version laufen über den bestehenden Worker mit dem Anthropic-Key.
 const AI_PROXY_URL = 'https://weinkeller-scan-proxy.ocho1511.workers.dev';
@@ -2044,12 +1940,6 @@ function applyTempLabels() {
   ['f-temp-from', 'f-temp-to'].forEach(id => { const e = document.getElementById(id); if (e) { e.min = f ? 32 : 0; e.max = f ? 86 : 30; } });
 }
 function setTempUnit(u) { settings.tempUnit = u === 'F' ? 'F' : 'C'; saveSettings(); applyTempLabels(); rerenderActive(); touchData(); }
-// Richtwert für die Trinktemperatur, wenn ein Wein keinen eigenen Wert hat (nach Weintyp, bei einigen Rebsorten feiner); in °C, reihenfolgeabhängig (erster Treffer gilt)
-const TEMP_GRAPE = [
-  ['rot', ['gamay', 'beaujolais'], [12, 14]],
-  ['rot', ['pinot noir', 'spätburgunder', 'pinot nero', 'blauburgunder', 'portugieser', 'zweigelt', 'lemberger', 'trollinger', 'st. laurent', 'sankt laurent'], [14, 16]],
-  ['weiß', ['chardonnay', 'weißburgunder', 'weissburgunder', 'pinot blanc', 'grauburgunder', 'pinot gris', 'viognier', 'chenin', 'marsanne', 'roussanne'], [10, 12]]
-];
 function estimateTemp(w) {
   if (!w) return null;
   const type = w.type, grape = String(w.grape || '').toLowerCase();
@@ -2122,19 +2012,7 @@ function cleanCellars(arr) {
   if (!ids.has(DEFAULT_CELLAR_ID)) out.unshift({ id: DEFAULT_CELLAR_ID, name: 'Keller' });
   return out;
 }
-// Trinkfenster plausibel machen (KI-Schätzungen sind manchmal unsinnig, z. B. Jahrgang 2025, trinken ab 2023): "ab" liegt nie vor dem Jahrgang, "bis" nie vor "ab".
-// Regel: "Trinken ab" = Jahrgang + 1; "Trinken bis" richtet sich nach Weinart und Rebsorte (Tabelle MATURATION_*, ab dem Jahrgang gerechnet).
-const drinkYearOk = (y) => y >= 1900 && y <= 2100;
-const ruleFrom = (year, other) => drinkYearOk(year) ? year + 1 : other;   // mit gültigem Jahrgang gilt immer die Regel, KI-Schätzungen für "ab" werden ignoriert
-function fixDrinkWindow(year, type, grape, from, to) {
-  if (!year || year < 1900 || year > 2100) return { from, to };
-  let off;
-  try { off = maturationOffset(grape, type); } catch (e) { off = [0, 50]; }
-  let f = from, tt = to;
-  if (f && f < year) f = year + 1;
-  if (tt && (tt < year || (f && tt < f))) tt = Math.max(year + off[1], (f || year) + 1);
-  return { from: f, to: tt };
-}
+   // mit gültigem Jahrgang gilt immer die Regel, KI-Schätzungen für "ab" werden ignoriert
 function cleanAbv(v) { const n = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isFinite(n) && n > 0 && n <= 100 ? Math.round(n * 10) / 10 : null; }
 function cleanWine(w, used) {
   if (!w || typeof w !== 'object' || Array.isArray(w)) return null;
@@ -2142,7 +2020,6 @@ function cleanWine(w, used) {
   if (!name) return null;
   const count = Math.max(1, Math.min(9999, parseInt(w.count) || 1));
   const yearV = cleanInt(w.year, 1000, 2200);
-  const dw = fixDrinkWindow(yearV, w.type, w.grape, cleanInt(w.drinkFrom, 1000, 2300), cleanInt(w.drinkTo, 1000, 2300));
   return {
     id: cleanId(w.id, used), name,
     year: yearV,
@@ -2156,7 +2033,6 @@ function cleanWine(w, used) {
     photo: ID_RE.test(String(w.photo || '')) ? String(w.photo) : null,
     minMax: cleanMinMax(w.minMax),
     location: cleanText(w.location, 200),
-    drinkFrom: dw.from, drinkTo: dw.to,
     ...cleanTemps(w),
     serve: cleanServe(w.serve),
     price: parsePrice(w.price), image: cleanImage(w.image), imageUser: !!w.imageUser,
@@ -2251,10 +2127,11 @@ let drunkWines = cleanDrunk(safeParse(DRUNK_KEY, []));
 const DEFAULT_OWNER = "";
 const STAMP_KEY = 'mywhiskey_v1_stamp';
 const SYNCBASE_KEY = 'mywhiskey_v1_syncbase';
-let settings = Object.assign({currency:'€', lang:'de', racks:[], cellars:[], blinkUrgent:false, blinkOver:false, blinkPeak:false, blinkOptimal:false, celeb:'both', owner:'', storage:'local', syncCode:'', email:'', font:'inter', recipes:[], favRecipes:[], herbs:[]}, safeParse(SETTINGS_KEY, {}));
+let settings = Object.assign({currency:'€', lang:'de', racks:[], cellars:[], celeb:'both', owner:'', storage:'local', syncCode:'', email:'', font:'inter', recipes:[], favRecipes:[], herbs:[]}, safeParse(SETTINGS_KEY, {}));
 settings.recipes = cleanRecipes(settings.recipes); settings.favRecipes = cleanIdList(settings.favRecipes); settings.herbs = cleanIdList(settings.herbs);
 settings.cellars = cleanCellars(settings.cellars);
 settings.racks = cleanRacks(settings.racks);
+['blinkUrgent', 'blinkOver', 'blinkPeak', 'blinkOptimal'].forEach(k => { delete settings[k]; });   // frühere Blink-Einstellungen aus gespeicherten Daten entfernen
 fixRackCellars();
 let dataStamp = parseInt(localStorage.getItem(STAMP_KEY) || '0') || 0;    // Zeitpunkt der letzten Änderung hier
 let syncBase = parseInt(localStorage.getItem(SYNCBASE_KEY) || '0') || 0;  // Stand der Cloud beim letzten Abgleich
@@ -2263,9 +2140,7 @@ let currentStar = 0;
 let activeFilter = 'alle';
 let viewMode = 'card';
 let sortMode = 'added';
-let ripeFilterType = 'alle';
-let ripeFilterStatus = 'alle';
-let ripeFilterCountry = '*';   // Land-Filter der Trinkreife ('*' = alle)
+   // Land-Filter der Trinkreife ('*' = alle)
 let histFilterType = 'alle';
 let histFilterOcc = 'alle';
 
@@ -2288,7 +2163,7 @@ function collectData() {
   return { dv: 3, wines, wishes, drunkWines, racks: settings.racks || [], cellars: settings.cellars || [], owner: settings.owner || '', prefs: collectPrefs(), recipes: settings.recipes || [], favRecipes: settings.favRecipes || [], herbs: settings.herbs || [] };
 }
 // Einstellungen, die mit in die Cloud gehen (gerätegebundenes bleibt draußen: Sync-Code und Speicherort, E-Mail, KI-Einwilligung, Gerätekennung)
-const PREF_KEYS = ['lang', 'currency', 'font', 'celeb', 'tempUnit', 'blinkUrgent', 'blinkOver', 'blinkPeak', 'blinkOptimal'];
+const PREF_KEYS = ['lang', 'currency', 'font', 'celeb', 'tempUnit'];
 function collectPrefs() { const p = {}; PREF_KEYS.forEach(k => { if (settings[k] !== undefined) p[k] = settings[k]; }); return p; }
 function cleanPrefs(p) {
   const o = {};
@@ -2298,7 +2173,6 @@ function cleanPrefs(p) {
   if (typeof p.font === 'string' && FONTS[p.font]) o.font = p.font;
   if (['both', 'confetti', 'off'].includes(p.celeb)) o.celeb = p.celeb;
   if (p.tempUnit === 'C' || p.tempUnit === 'F') o.tempUnit = p.tempUnit;
-  ['blinkUrgent', 'blinkOver', 'blinkPeak', 'blinkOptimal'].forEach(k => { if (typeof p[k] === 'boolean') o[k] = p[k]; });
   return o;
 }
 // Einstellungen aus der Cloud übernehmen (nur beim Übernehmen des Cloud-Stands; beim Zusammenführen gewinnen die lokalen)
@@ -2477,7 +2351,6 @@ function rerenderActive() {
   const a = document.querySelector('.tab.active'); if (!a) return;
   if (a.id === 'tab-keller') renderKeller();
   else if (a.id === 'tab-stats') renderStats();
-  else if (a.id === 'tab-trinkreife') renderTrinkreife();
   else if (a.id === 'tab-rezepte') renderRecipes();
   else if (a.id === 'tab-history') renderHistory();
   else if (a.id === 'tab-racks') renderRacks();
@@ -2618,19 +2491,6 @@ function formCriteria() {
   const v = id => (document.getElementById(id) ? document.getElementById(id).value.trim() : '');
   return { name: v('f-name'), year: v('f-year'), region: v('f-region'), country: v('f-country'), grape: v('f-grape') };
 }
-// Echtes Flaschenbild über Vivino-Suche (via Worker) – beste Quelle; es werden ALLE Kriterien gebündelt übergeben
-// meta.failed = true, wenn die Suche nicht antworten konnte (Begrenzung 429, Netzfehler, Serverfehler): dann gilt NICHT "es gibt kein Bild"
-// Passt der von Vivino gefundene Wein wirklich zum gesuchten? Rebsorten (primitivo, merlot …) und Allerweltswörter zählen nicht als Beleg: sonst gilt
-// "Li Veli Primonero Negroamaro" als Treffer für "Primodoro Negroamaro Primitivo". Bleibt kein unterscheidendes Namenswort übrig, wird jeder Treffer akzeptiert.
-const NAME_STOP = new Set(['whisky', 'whiskey', 'whiskeys', 'single', 'malt', 'blended', 'bourbon', 'scotch', 'cask', 'strength', 'years', 'year', 'aged', 'distillery', 'distillers', 'edition', 'limited', 'special', 'finish', 'finished', 'batch', 'proof', 'straight', 'weingut', 'weinkellerei', 'weinbau', 'winery', 'wine', 'wines', 'wein', 'weine', 'chateau', 'domaine', 'domaines', 'cantina', 'cantine', 'azienda', 'agricola', 'bodega', 'bodegas', 'tenuta', 'tenute', 'cave', 'caves', 'vineyard', 'vineyards', 'estate', 'estates', 'vino', 'vini', 'vins', 'vigneto', 'vigna', 'schloss', 'castello', 'castel', 'quinta', 'maison', 'riserva', 'reserve', 'reserva', 'classico', 'brut', 'rosso', 'bianco', 'blanc', 'rouge', 'blanco', 'tinto', 'cuvee', 'rose', 'rosato', 'secco', 'trocken', 'dry', 'superiore', 'selection', 'selezione', 'gran', 'grand', 'cru', 'premier', 'vieilles', 'vignes', 'vecchie', 'barrique']);
-const NAME_GRAPES = new Set(['primitivo', 'negroamaro', 'tempranillo', 'merlot', 'cabernet', 'sauvignon', 'chardonnay', 'riesling', 'pinot', 'noir', 'nero', 'grigio', 'gris', 'syrah', 'shiraz', 'grenache', 'garnacha', 'malbec', 'sangiovese', 'nebbiolo', 'barbera', 'montepulciano', 'zinfandel', 'carmenere', 'verdejo', 'albarino', 'gewurztraminer', 'muller', 'thurgau', 'silvaner', 'spatburgunder', 'grauburgunder', 'weissburgunder', 'lemberger', 'dornfelder', 'blaufrankisch', 'zweigelt', 'gruner', 'veltliner', 'chenin', 'viognier', 'mourvedre', 'cinsault', 'touriga', 'nacional', 'aglianico', 'sagrantino', 'vermentino', 'trebbiano', 'verdicchio', 'fiano', 'greco', 'falanghina', 'prosecco', 'glera', 'cava', 'champagne', 'moscato', 'muscat', 'sekt', 'cuvee', 'rotwein', 'weisswein', 'red', 'white', 'blend', 'bobal', 'monastrell', 'mencia', 'graciano', 'carignan', 'cannonau', 'nerello', 'mascalese', 'frappato', 'catarratto', 'grillo', 'inzolia', 'lambrusco', 'dolcetto', 'corvina', 'rondinella', 'molinara', 'pecorino', 'passerina', 'cesanese', 'lagrein', 'teroldego', 'schiava', 'trollinger', 'portugieser', 'regent', 'acolon', 'scheurebe', 'kerner', 'bacchus', 'ortega', 'muskateller']);
-function wineNameMatches(name, matched) {
-  const norm = (x) => String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/&#?\w+;/g, ' ');
-  const toks = norm(name).replace(/[^a-z0-9\s-]/g, ' ').split(/[\s-]+/).filter(w => w.length >= 4 && !/^\d{4}$/.test(w) && !NAME_STOP.has(w) && !NAME_GRAPES.has(w));
-  if (!toks.length) return true;
-  const m = norm(matched);
-  return toks.some(w => m.includes(w));
-}
 let workerPaceMs = 1200, lastWorkerCall = 0;   // der Worker erlaubt 60 Anfragen pro Minute und IP: bei "Alle Weine aktualisieren" höchstens etwa jede 1,2 s anfragen
 async function workerPace() {
   if (!enrichRunning) return;
@@ -2638,23 +2498,10 @@ async function workerPace() {
   if (wait > 0) await new Promise(r => setTimeout(r, wait));
   lastWorkerCall = Date.now();
 }
-async function vivinoImageFor(crit, meta) {
-  const c = crit || {};
-  try {
-    await workerPace();
-    const r = await fetch(SCAN_PROXY_URL + '/whiskeyimg', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: c.name || '', year: c.year || '', grape: c.grape || '', region: c.region || '', country: c.country || '' }) });
-    let j = null; try { j = await r.json(); } catch {}
-    if (meta && (!r.ok || !j || j.error)) meta.failed = true;
-    if (j && j.image && j.match && !wineNameMatches(c.name, j.match)) return null;   // anderer Wein: lieber kein Bild als eine falsche Flasche
-    return j && j.image ? j.image : null;
-  } catch { if (meta) meta.failed = true; return null; }
-}
 // Reihenfolge: Vivino-Flaschenbild (alle Kriterien gebündelt) → KI-Direktbild → og:image der Wein-Seite. Gibt nur eine NACHWEISLICH ladbare URL zurück (sonst null).
 // crit = { name, year, region, country, grape }
 async function resolveWineImage(info, crit, meta) {
   if (autoImagesOff()) return null;   // Store-Version: keine automatischen Fremdbilder
-  const viv = (meta && meta.noVivino) ? null : await vivinoImageFor(crit, meta);
-  if (viv) { if (await verifyImageLoads(viv)) return viv; if (meta) meta.failed = true; }   // Bild gefunden, aber gerade nicht ladbar: kein Urteil
   if (info && isImageUrl(info.image) && await verifyImageLoads(info.image.trim())) return info.image.trim();
   if (info && info.page) { const og = await ogImageFor(info.page); if (og && await verifyImageLoads(og)) return og; }
   return null;
@@ -2882,61 +2729,7 @@ function updateImagePreview() {
 }
 
 // Reifezeit (Jahre nach Jahrgang) je Rebsorte bzw. Typ → lokale Trinkfenster-Schätzung
-const MATURATION_GRAPE = {}; const MATURATION_GRAPE_WINE = {
-  'barolo':[4,30],'barbaresco':[4,25],'nebbiolo':[4,25],'brunello':[5,30],'sangiovese':[3,15],
-  'cabernet':[5,25],'bordeaux':[5,30],'merlot':[3,15],'malbec':[3,12],'carmenère':[3,12],
-  'syrah':[4,20],'shiraz':[4,20],'grenache':[3,12],'garnacha':[3,12],'tempranillo':[4,20],'rioja':[3,20],
-  'pinot noir':[3,15],'spätburgunder':[3,15],'zinfandel':[2,8],'primitivo':[2,8],'barbera':[2,8],
-  'montepulciano':[3,12],'touriga':[4,20],'portugieser':[1,5],'dornfelder':[1,6],'zweigelt':[2,8],'blaufränkisch':[3,12],
-  'riesling':[2,20],'chardonnay':[1,8],'sauvignon':[0,3],'grüner veltliner':[1,7],'chenin':[2,15],
-  'gewürztraminer':[1,8],'grauburgunder':[1,6],'pinot gris':[1,6],'weißburgunder':[1,6],'pinot blanc':[1,6],
-  'silvaner':[1,5],'müller-thurgau':[0,3],'viognier':[1,5],'sémillon':[2,15],'albariño':[1,4],
-  'vermentino':[0,3],'muskateller':[0,3],'scheurebe':[1,6],'kerner':[1,6],
-  'champagne':[1,10],'champagner':[1,10],'crémant':[1,5],'cava':[1,4],'prosecco':[0,2]
-};
-// Whiskey reift nur im Fass, nicht in der Flasche: Trinkfenster = sehr lang
-const MATURATION_TYPE = { rot:[0,50], 'weiß':[0,50], 'rosé':[0,50], sekt:[0,50], other:[0,50] };
-function maturationOffset(grape, type) {
-  const g = (grape||'').toLowerCase();
-  for (const key in MATURATION_GRAPE) if (g.includes(key)) return MATURATION_GRAPE[key];
-  return MATURATION_TYPE[type] || MATURATION_TYPE.other;
-}
-let autoDrink = { from: null, to: null };
-// Einmalig für alle Weine: "ab" = Jahrgang + 1 (auch von Hand eingetragene Werte werden überschrieben); "bis" bleibt, wenn es nach "ab" liegt, sonst Tabellenwert nach Weinart/Rebsorte. Weine ohne Jahrgang bleiben unverändert.
-function recalcDrinkWindows() {
-  const plan = [];
-  wines.forEach(w => {
-    if (!drinkYearOk(w.year)) return;
-    const from = w.year + 1;
-    let to = w.drinkTo;
-    if (!to || to <= from) to = Math.max(w.year + maturationOffset(w.grape, w.type)[1], from + 1);
-    if (w.drinkFrom !== from || w.drinkTo !== to) plan.push([w, from, to]);
-  });
-  if (!plan.length) { showToast(t('drinkrule_done', { n: 0 })); return; }
-  if (!confirm(t('drinkrule_confirm', { n: plan.length }))) return;
-  plan.forEach(([w, from, to]) => { w.drinkFrom = from; w.drinkTo = to; });
-  save();
-  renderKeller();
-  if (typeof renderTrinkreife === 'function') renderTrinkreife();
-  showToast(t('drinkrule_done', { n: plan.length }));
-}
-function fixFormDrinkWindow() {
-  const y = parseInt(document.getElementById('f-year').value);
-  const dfEl = document.getElementById('f-drink-from'), dtEl = document.getElementById('f-drink-to');
-  const fx = fixDrinkWindow(y, document.getElementById('f-type').value, document.getElementById('f-grape').value, parseInt(dfEl.value) || null, parseInt(dtEl.value) || null);
-  if (fx.from && String(fx.from) !== dfEl.value) dfEl.value = fx.from;
-  if (fx.to && String(fx.to) !== dtEl.value) dtEl.value = fx.to;
-}
-function autoFillDrinkWindow() {
-  const y = parseInt(document.getElementById('f-year').value);
-  if (!y || y < 1900 || y > 2100) return;
-  const off2 = maturationOffset(document.getElementById('f-grape').value, document.getElementById('f-type').value)[1];
-  const nf = y + 1, nt = Math.max(y + off2, y + 2);
-  const dfEl = document.getElementById('f-drink-from'), dtEl = document.getElementById('f-drink-to');
-  if (!dfEl.value || String(dfEl.value) === String(autoDrink.from)) dfEl.value = nf;
-  if (!dtEl.value || String(dtEl.value) === String(autoDrink.to)) dtEl.value = nt;
-  autoDrink = { from: nf, to: nt };
-}
+ 
 
 function currencyName() {
   return (CURRENCIES[settings.currency] || {}).name || 'Euro';
@@ -3321,8 +3114,8 @@ async function lookupWineData(name, year) {
       model: 'claude-sonnet-4-6',
       max_tokens: 1200,
       tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
-      system: `Du bist ein Whiskey-Experte. Recherchiere den aktuellen durchschnittlichen Marktpreis (Endverbraucher, 0,7-l-Flasche) mit der Websuche. Antworte am Ende mit GENAU EINEM JSON-Objekt (ohne Markdown) mit den Feldern: type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf Deutsch oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), drinkFrom (Jahr als Zahl oder null), drinkTo (Jahr als Zahl oder null), tempFrom (empfohlene Trinktemperatur, untere Grenze in °C als ganze Zahl, z. B. 16, oder null), tempTo (obere Grenze in °C als ganze Zahl, z. B. 18, oder null), price (aktueller Durchschnittspreis pro Flasche in ${currencyName()} als Zahl ohne Währungssymbol, gerundet, oder null), image (eine direkte, öffentlich erreichbare URL zu einem Foto DER FLASCHE, die direkt auf eine Bilddatei zeigt und auf .jpg/.jpeg/.png/.webp endet; nur eine URL, die du über die Websuche tatsächlich gesehen hast, sonst null), page (die URL EINER Webseite, auf der die Flasche abgebildet ist – bevorzugt Wikipedia, die Seite des Weinguts oder ein Wein-Shop/Vivino; eine echte, über die Websuche gefundene Seiten-URL, sonst null). Für Beschreibungsfelder nutze dein Wissen; für Preis, Bild und Seite die Websuche. Nutze null nur wenn keine sinnvolle Angabe möglich ist. Das Trinkfenster beginnt nie vor dem Jahrgang, und drinkTo liegt immer nach drinkFrom.`,
-      messages: [{ role: 'user', content: `Wein: ${name}${year ? ' (Jahrgang ' + year + ')' : ''}. Nenne Typ, Region, Land, Hauptrebsorte, ein geschätztes Trinkfenster, den aktuellen Durchschnittspreis pro Flasche in ${currencyName()}, eine direkte Bild-URL der Flasche und die URL einer Webseite, auf der die Flasche abgebildet ist.` }]
+      system: `Du bist ein Whiskey-Experte. Recherchiere den aktuellen durchschnittlichen Marktpreis (Endverbraucher, 0,7-l-Flasche) mit der Websuche. Antworte am Ende mit GENAU EINEM JSON-Objekt (ohne Markdown) mit den Feldern: type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf Deutsch oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), tempFrom (empfohlene Trinktemperatur, untere Grenze in °C als ganze Zahl, z. B. 16, oder null), tempTo (obere Grenze in °C als ganze Zahl, z. B. 18, oder null), price (aktueller Durchschnittspreis pro Flasche in ${currencyName()} als Zahl ohne Währungssymbol, gerundet, oder null), image (eine direkte, öffentlich erreichbare URL zu einem Foto DER FLASCHE, die direkt auf eine Bilddatei zeigt und auf .jpg/.jpeg/.png/.webp endet; nur eine URL, die du über die Websuche tatsächlich gesehen hast, sonst null), page (die URL EINER Webseite, auf der die Flasche abgebildet ist – bevorzugt Wikipedia, die Seite des Weinguts oder ein Wein-Shop/Vivino; eine echte, über die Websuche gefundene Seiten-URL, sonst null). Für Beschreibungsfelder nutze dein Wissen; für Preis, Bild und Seite die Websuche. Nutze null nur wenn keine sinnvolle Angabe möglich ist.`,
+      messages: [{ role: 'user', content: `Wein: ${name}${year ? ' (Jahrgang ' + year + ')' : ''}. Nenne Typ, Region, Land, Hauptrebsorte, den aktuellen Durchschnittspreis pro Flasche in ${currencyName()}, eine direkte Bild-URL der Flasche und die URL einer Webseite, auf der die Flasche abgebildet ist.` }]
     })
   });
   const data = await resp.json();
@@ -3332,8 +3125,6 @@ async function lookupWineData(name, year) {
   if (!m) return null;
   try {
     const info = JSON.parse(m[0]);
-    const y = parseInt(year);
-    if (info && drinkYearOk(y)) info.drinkFrom = ruleFrom(y, info.drinkFrom);
     return info;
   } catch { return null; }
 }
@@ -3354,16 +3145,13 @@ async function lookupWine() {
     setIfEmpty('f-country', info.land);
     setIfEmpty('f-grape', info.grape);
     setIfEmpty('f-age', info.age); setIfEmpty('f-abv', info.abv); setIfEmpty('f-cask', info.cask);
-    setIfEmpty('f-drink-from', info.drinkFrom);
-    setIfEmpty('f-drink-to', info.drinkTo);
-    fixFormDrinkWindow();
     setIfEmpty('f-temp-from', info.tempFrom != null ? tempToDisplay(info.tempFrom) : null);
     setIfEmpty('f-temp-to', info.tempTo != null ? tempToDisplay(info.tempTo) : null);
     if (info.price != null) setIfEmpty('f-price', info.price);
     const img = await resolveWineImage(info, formCriteria());
     if (tok !== formToken) return;
     if (img) { setIfEmpty('f-image', img); updateImagePreview(); }
-    const found = info.region || info.land || info.grape || info.drinkFrom || info.drinkTo || info.tempFrom != null || info.price != null;
+    const found = info.region || info.land || info.grape || info.tempFrom != null || info.price != null;
     showToast(found ? t('toast_lookup_ok') : t('toast_lookup_none'));
   } catch {
     showToast(t('toast_scanfail'));
@@ -3397,9 +3185,6 @@ async function maybeAutoLookup() {
     setIfEmpty('f-country', info.land);
     setIfEmpty('f-grape', info.grape);
     setIfEmpty('f-age', info.age); setIfEmpty('f-abv', info.abv); setIfEmpty('f-cask', info.cask);
-    setIfEmpty('f-drink-from', info.drinkFrom);
-    setIfEmpty('f-drink-to', info.drinkTo);
-    fixFormDrinkWindow();
     setIfEmpty('f-temp-from', info.tempFrom != null ? tempToDisplay(info.tempFrom) : null);
     setIfEmpty('f-temp-to', info.tempTo != null ? tempToDisplay(info.tempTo) : null);
     if (info.price != null) { setIfEmpty('f-price', info.price); showToast(t('toast_price_ok', {p: fmtMoney(Math.round(info.price))})); }
@@ -3410,7 +3195,7 @@ async function maybeAutoLookup() {
     endSingleProgress();
   }
 }
-function onVintageInput() { autoFillDrinkWindow(); maybeAutoLookup(); }
+function onVintageInput() { maybeAutoLookup(); }
 
 // ── Globale, überall sichtbare Fortschrittsanzeige (oben fixiert) ──
 function showGlobalProgress(opts) {
@@ -3511,7 +3296,7 @@ async function enrichAllWines() {
   const overwriteTemp = targets.some(w => w.tempFrom != null) && confirm(t('confirm_enrich_temp'));
   // Native App: reicht das KI-Guthaben nicht für alle Weine mit fehlenden Angaben, vorher darauf hinweisen
   if (isNativeApp() && typeof aiCredits === 'number') {
-    const needAi = overwriteTemp ? targets.length : targets.filter(w => !w.region || !w.country || !w.grape || !w.drinkFrom || !w.drinkTo || w.tempFrom == null || !w.price).length;
+    const needAi = overwriteTemp ? targets.length : targets.filter(w => !w.region || !w.country || !w.grape || w.tempFrom == null || !w.price).length;
     if (needAi > aiCredits && !confirm(t('credits_enrich_warn', { n: needAi, c: aiCredits }))) return;
   }
   enrichRunning = true;
@@ -3551,7 +3336,7 @@ async function enrichAllWines() {
           }
         }   // Store-Version: Bilder bleiben unangetastet (auch von der Web-App synchronisierte)
         // 2) Langsamen KI-Websuche-Aufruf nur, wenn Textfelder fehlen (sonst überspringen → Lauf bleibt schnell)
-        const needsFields = overwriteTemp || !w.region || !w.country || !w.grape || !w.drinkFrom || !w.drinkTo || w.tempFrom == null || !w.price;
+        const needsFields = overwriteTemp || !w.region || !w.country || !w.grape || w.tempFrom == null || !w.price;
         // Ist das KI-Guthaben aufgebraucht, werden die übrigen Weine nur noch mit Bildern bearbeitet (kostenlos)
         const needsImageFallback = !w.image && !autoImagesOff();
         if ((needsFields || needsImageFallback) && !(isNativeApp() && aiOutOfCredits)) {
@@ -3561,13 +3346,10 @@ async function enrichAllWines() {
             if (!w.region && info.region) { w.region = info.region; changed = true; }
             if (!w.country && info.land) { w.country = info.land; changed = true; }
             if (!w.grape && info.grape) { w.grape = info.grape; changed = true; }
-            if (!w.drinkFrom && info.drinkFrom) { w.drinkFrom = parseInt(info.drinkFrom)||null; changed = true; }
-            if (!w.drinkTo && info.drinkTo) { w.drinkTo = parseInt(info.drinkTo)||null; changed = true; }
-            { const fx = fixDrinkWindow(w.year, w.type, w.grape, w.drinkFrom, w.drinkTo); if (fx.from !== w.drinkFrom || fx.to !== w.drinkTo) { w.drinkFrom = fx.from; w.drinkTo = fx.to; changed = true; } }
             if ((w.tempFrom == null || overwriteTemp) && info.tempFrom != null) { const tt = cleanTemps({ tempFrom: info.tempFrom, tempTo: info.tempTo }); if (tt.tempFrom != null && (tt.tempFrom !== w.tempFrom || tt.tempTo !== w.tempTo)) { w.tempFrom = tt.tempFrom; w.tempTo = tt.tempTo; changed = true; } }
             if (!w.price && info.price != null) { w.price = parseFloat(info.price)||null; changed = true; }
-            // Falls Vivino kein Bild hatte: KI-Direktbild / og:image als Rückfall (mit jetzt ggf. ergänzten Kriterien)
-            if (!w.image && !autoImagesOff()) { const alt = await resolveWineImage(info, wineCriteria(w), { noVivino: true }); if (alt) { w.image = alt; changed = true; } }
+            // KI-Direktbild / og:image (mit jetzt ggf. ergänzten Kriterien)
+            if (!w.image && !autoImagesOff()) { const alt = await resolveWineImage(info, wineCriteria(w)); if (alt) { w.image = alt; changed = true; } }
           } else failed = true;
         }
         if (changed) { updated++; save(); }
@@ -3639,7 +3421,6 @@ de: {
   fav_none: "Keine Whiskeys für diese Auswahl.",
   nav_keller: "Sammlung",
   nav_stats: "Statistik",
-  nav_ripe: "Trinkreife",
   nav_history: "Historie",
   nav_racks: "Regale",
   nav_wish: "Wunsch\u00adliste",
@@ -3672,8 +3453,6 @@ de: {
   he_title: "Eintrag bearbeiten",
   stats_title: "Ocho's Statistik",
   stats_sub: "Überblick",
-  ripe_title: "Trinkreife",
-  ripe_sub: "Wann trinken?",
   wish_title: "Ocho's Wunschliste",
   wish_sub: "Noch zu kaufen",
   exp_title: "Export & Import",
@@ -3742,18 +3521,7 @@ de: {
   s_drunk: "Getrunkene Whiskeys",
   s_drunkvalue: "Wert der getrunkenen Whiskeys",
   s_nodrunk: "Noch keine Whiskeys als getrunken markiert.",
-  ripe_empty: "Noch keine Whiskeys mit<br>Trinkreife-Angabe.<br>Beim Hinzufügen „Trinken ab/bis\" ausfüllen.",
-  seg_young: "Jung",
-  seg_optimal: "Optimal",
-  seg_peak: "Peak",
-  seg_over: "Überschritten",
   ripe_nomatch: "Keine Whiskeys für diese Filter.",
-  st_wait1: "Noch 1 Jahr warten",
-  st_wait: "Noch {n} Jahre warten",
-  st_optimal: "Optimal trinken — bis {to}",
-  st_peak: "Jetzt auf dem Höhepunkt!",
-  st_over1: "Überschritten seit 1 Jahr",
-  st_over: "Überschritten seit {n} Jahren",
   wish_empty: "Noch keine Wünsche.<br>Füge Whiskeys hinzu, die du kaufen möchtest.",
   to_cellar: "→ Sammlung",
   wish_add: "+ Wunsch hinzufügen",
@@ -3808,8 +3576,6 @@ de: {
   ph_regal: "Regal",
   ph_ebene: "Ebene",
   ph_platz: "Platz v.l.",
-  l_from: "Trinken ab",
-  l_to: "Trinken bis",
   l_price: "Preis",
   l_rating: "Bewertung",
   l_note: "Notiz",
@@ -3838,7 +3604,6 @@ de: {
   toast_name: "Bitte Name eingeben",
   toast_scanfail: "Scan fehlgeschlagen",
   toast_label: "Etikett erkannt ✓",
-  toast_label_ripe: "Etikett erkannt ✓ (Trinkreife geschätzt)",
   toast_loc: "Lagerplatz erkannt ✓",
   toast_noloc: "Kein Lagerplatz erkannt",
   toast_nomatch: "Kein passender Whiskey in der Sammlung gefunden",
@@ -3871,7 +3636,6 @@ de: {
   setup_version: "Version",
   rack_delete_btn: "Regal löschen",
   setup_general: "Allgemein",
-  s_over_warn: "{n} Flaschen sind überschritten – bald trinken",
   s_bycountry: "Nach Land",
   s_byregion: "Nach Region",
   s_bygrape: "Nach Destillerie",
@@ -3903,10 +3667,6 @@ de: {
   cur_huf: "Ungarischer Forint",
   cur_czk: "Tschechische Krone",
   cur_ron: "Rumänischer Leu",
-  drinkrule_btn: "Trinkfenster neu berechnen",
-  drinkrule_desc: "Trinken ab = Jahr + 1; Trinken bis nach Whiskey-Typ und Destillerie",
-  drinkrule_confirm: "Für {n} Whiskeys wird „Trinken ab“ auf Jahr + 1 gesetzt (auch von Hand eingetragene Werte werden überschrieben) und „Trinken bis“ bei Bedarf nach Whiskey-Typ und Destillerie angepasst. Whiskeys ohne Jahr bleiben unverändert. Tipp: vorher ein JSON-Backup exportieren. Fortfahren?",
-  drinkrule_done: "{n} Whiskey(s) aktualisiert ✓",
   barcode_miss_text: "Dieser Barcode steht nicht in der Datenbank. Die Nummer wird trotzdem am Whiskey gespeichert, damit die Flasche beim nächsten Scan erkannt wird. Jetzt das Etikett fotografieren?",
   confirm_enrich_temp: "Auch bereits vorhandene Trinktemperaturen durch KI-Werte ersetzen (auch selbst eingetragene)?\n\nOK = ersetzen (jeder Whiskey wird per KI abgefragt, das dauert länger)\nAbbrechen = nur fehlende Temperaturen ergänzen",
   cur_auto_set: "Währung automatisch auf {name} gestellt – änderbar unter „Währung“.",
@@ -3947,9 +3707,6 @@ de: {
   rack_ph_cap: "Flaschen/Platz",
   rack_levels_title: "Ebenen: Name und Flaschen pro Platz",
   rack_level_name: "Name",
-  rack_blink_hint: "Überschritten oder spätestens nächstes Jahr am Ende der Trinkreife",
-  rack_blink_lbl: "Blinken:",
-  rack_blink_first: "Zuerst trinken",
   rack_delete: "Whiskey löschen",
   dm_slot: "Aus welchem Platz genommen?",
   dm_slot_none: "Nicht eingelagerte Flasche",
@@ -4106,7 +3863,6 @@ en: {
   fav_none: "No whiskeys for this selection.",
   nav_keller: "Collection",
   nav_stats: "Statistics",
-  nav_ripe: "Readiness",
   nav_history: "History",
   nav_racks: "Racks",
   nav_wish: "Wishlist",
@@ -4139,8 +3895,6 @@ en: {
   he_title: "Edit entry",
   stats_title: "Ocho's Statistics",
   stats_sub: "Overview",
-  ripe_title: "Drinking Window",
-  ripe_sub: "When to drink?",
   wish_title: "Ocho's Wishlist",
   wish_sub: "Still to buy",
   exp_title: "Export & Import",
@@ -4209,18 +3963,7 @@ en: {
   s_drunk: "Whiskeys drunk",
   s_drunkvalue: "Value of whiskeys drunk",
   s_nodrunk: "No whiskeys marked as drunk yet.",
-  ripe_empty: "No whiskeys with a<br>drinking window yet.<br>Fill in \"Drink from/until\" when adding.",
-  seg_young: "Young",
-  seg_optimal: "Optimal",
-  seg_peak: "Peak",
-  seg_over: "Overdue",
   ripe_nomatch: "No whiskeys match these filters.",
-  st_wait1: "Wait 1 more year",
-  st_wait: "Wait {n} more years",
-  st_optimal: "Drink now — until {to}",
-  st_peak: "At its peak now!",
-  st_over1: "Past its window by 1 year",
-  st_over: "Past its window by {n} years",
   wish_empty: "No wishes yet.<br>Add whiskeys you would like to buy.",
   to_cellar: "→ Collection",
   wish_add: "+ Add wish",
@@ -4275,8 +4018,6 @@ en: {
   ph_regal: "Rack",
   ph_ebene: "Level",
   ph_platz: "Slot f.l.",
-  l_from: "Drink from",
-  l_to: "Drink until",
   l_price: "Price",
   l_rating: "Rating",
   l_note: "Note",
@@ -4305,7 +4046,6 @@ en: {
   toast_name: "Please enter a name",
   toast_scanfail: "Scan failed",
   toast_label: "Label recognized ✓",
-  toast_label_ripe: "Label recognized ✓ (window estimated)",
   toast_loc: "Storage location recognized ✓",
   toast_noloc: "No storage location recognized",
   toast_nomatch: "No matching whiskey found in the collection",
@@ -4338,7 +4078,6 @@ en: {
   setup_version: "Version",
   rack_delete_btn: "Delete rack",
   setup_general: "General",
-  s_over_warn: "{n} bottles are past their window – drink soon",
   s_bycountry: "By country",
   s_byregion: "By region",
   s_bygrape: "By distillery",
@@ -4370,10 +4109,6 @@ en: {
   cur_huf: "Hungarian Forint",
   cur_czk: "Czech Koruna",
   cur_ron: "Romanian Leu",
-  drinkrule_btn: "Recalculate drinking windows",
-  drinkrule_desc: "Drink from = year + 1; drink until by whiskey type and distillery",
-  drinkrule_confirm: "For {n} whiskeys, “drink from” will be set to year + 1 (values you entered by hand are overwritten) and “drink until” adjusted by whiskey type and distillery where needed. Whiskeys without a year stay unchanged. Tip: export a JSON backup first. Continue?",
-  drinkrule_done: "{n} whiskey(s) updated ✓",
   barcode_miss_text: "This barcode is not in the database. The number is still saved with the whiskey so the bottle is recognised next time. Photograph the label now?",
   confirm_enrich_temp: "Also replace serving temperatures that already exist with AI values (including ones you entered yourself)?\n\nOK = replace (every whiskey is queried by AI, which takes longer)\nCancel = only fill in missing temperatures",
   cur_auto_set: "Currency automatically set to {name} – you can change it under “Currency”.",
@@ -4414,9 +4149,6 @@ en: {
   rack_ph_cap: "Bottles/slot",
   rack_levels_title: "Levels: name and bottles per slot",
   rack_level_name: "Name",
-  rack_blink_hint: "Past their drinking window, or ending by next year",
-  rack_blink_lbl: "Blink:",
-  rack_blink_first: "Drink first",
   rack_delete: "Delete whiskey",
   dm_slot: "Taken from which slot?",
   dm_slot_none: "Bottle not in a slot",
@@ -4563,7 +4295,6 @@ es: {
   fav_none: "Ningún whisky para esta selección.",
   nav_keller: "Colección",
   nav_stats: "Datos",
-  nav_ripe: "Madurez",
   nav_history: "Historial",
   nav_racks: "Estantes",
   nav_wish: "Deseos",
@@ -4596,8 +4327,6 @@ es: {
   he_title: "Editar entrada",
   stats_title: "Estadísticas de Ocho",
   stats_sub: "Resumen",
-  ripe_title: "Ventana de consumo",
-  ripe_sub: "¿Cuándo beber?",
   wish_title: "Lista de deseos de Ocho",
   wish_sub: "Por comprar",
   exp_title: "Exportar e importar",
@@ -4666,18 +4395,7 @@ es: {
   s_drunk: "Whiskies bebidos",
   s_drunkvalue: "Valor de los whiskies bebidos",
   s_nodrunk: "Aún no hay whiskies marcados como bebidos.",
-  ripe_empty: "Aún no hay whiskies con<br>ventana de consumo.<br>Rellena \"Beber desde/hasta\" al añadir.",
-  seg_young: "Joven",
-  seg_optimal: "Óptimo",
-  seg_peak: "Pico",
-  seg_over: "Pasado",
   ripe_nomatch: "Ningún whisky coincide con estos filtros.",
-  st_wait1: "Espera 1 año más",
-  st_wait: "Espera {n} años más",
-  st_optimal: "Beber ahora — hasta {to}",
-  st_peak: "¡Ahora en su mejor momento!",
-  st_over1: "Pasado desde hace 1 año",
-  st_over: "Pasado desde hace {n} años",
   wish_empty: "Aún no hay deseos.<br>Añade whiskies que quieras comprar.",
   to_cellar: "→ Colección",
   wish_add: "+ Añadir deseo",
@@ -4732,8 +4450,6 @@ es: {
   ph_regal: "Estante",
   ph_ebene: "Nivel",
   ph_platz: "Sitio izq.",
-  l_from: "Beber desde",
-  l_to: "Beber hasta",
   l_price: "Precio",
   l_rating: "Valoración",
   l_note: "Nota",
@@ -4762,7 +4478,6 @@ es: {
   toast_name: "Introduce un nombre",
   toast_scanfail: "Error al escanear",
   toast_label: "Etiqueta reconocida ✓",
-  toast_label_ripe: "Etiqueta reconocida ✓ (ventana estimada)",
   toast_loc: "Ubicación reconocida ✓",
   toast_noloc: "Ubicación no reconocida",
   toast_nomatch: "Ningún whisky coincidente en la colección",
@@ -4795,7 +4510,6 @@ es: {
   setup_version: "Versión",
   rack_delete_btn: "Eliminar estante",
   setup_general: "General",
-  s_over_warn: "{n} botellas han pasado su momento – a beber pronto",
   s_bycountry: "Por país",
   s_byregion: "Por región",
   s_bygrape: "Por destilería",
@@ -4827,10 +4541,6 @@ es: {
   cur_huf: "Forinto húngaro",
   cur_czk: "Corona checa",
   cur_ron: "Leu rumano",
-  drinkrule_btn: "Recalcular ventana de consumo",
-  drinkrule_desc: "Beber desde = año + 1; beber hasta según tipo de whisky y destilería",
-  drinkrule_confirm: "En {n} whiskies, «beber desde» se fijará en año + 1 (también se sobrescriben los valores escritos a mano) y «beber hasta» se ajustará según el tipo de whisky y la destilería cuando haga falta. Los whiskies sin año no cambian. Consejo: exporta antes una copia JSON. ¿Continuar?",
-  drinkrule_done: "{n} whisky(s) actualizados ✓",
   barcode_miss_text: "Este código de barras no está en la base de datos. El número se guarda igualmente con el whisky para reconocer la botella la próxima vez. ¿Fotografiar la etiqueta ahora?",
   confirm_enrich_temp: "¿Reemplazar también las temperaturas de servicio ya existentes por valores de la IA (incluidas las que introdujiste tú)?\n\nAceptar = reemplazar (se consulta cada whisky con la IA, tarda más)\nCancelar = completar solo las temperaturas que faltan",
   cur_auto_set: "Moneda cambiada automáticamente a {name} – puedes cambiarla en «Moneda».",
@@ -4871,9 +4581,6 @@ es: {
   rack_ph_cap: "Botellas/hueco",
   rack_levels_title: "Niveles: nombre y botellas por hueco",
   rack_level_name: "Nombre",
-  rack_blink_hint: "Pasados de su ventana de consumo o que terminan como tarde el año que viene",
-  rack_blink_lbl: "Parpadear:",
-  rack_blink_first: "Beber primero",
   rack_delete: "Eliminar whisky",
   dm_slot: "¿De qué hueco se sacó?",
   dm_slot_none: "Botella sin colocar",
@@ -5020,7 +4727,6 @@ sv: {
   fav_none: "Inga whiskyer för detta urval.",
   nav_keller: "Samling",
   nav_stats: "Statistik",
-  nav_ripe: "Mognad",
   nav_history: "Historik",
   nav_racks: "Hyllor",
   nav_wish: "Önskelista",
@@ -5053,8 +4759,6 @@ sv: {
   he_title: "Redigera post",
   stats_title: "Statistik",
   stats_sub: "Översikt",
-  ripe_title: "Dryckesmognad",
-  ripe_sub: "När ska man dricka?",
   wish_title: "Önskelista",
   wish_sub: "Kvar att köpa",
   exp_title: "Export & Import",
@@ -5123,18 +4827,7 @@ sv: {
   s_drunk: "Drucken whisky",
   s_drunkvalue: "Värde av drucken whisky",
   s_nodrunk: "Ingen whisky markerad som drucken ännu.",
-  ripe_empty: "Inga whiskyer med<br>uppgift om dryckesfönster.<br>Fyll i „Drick från/till\" när du lägger till.",
-  seg_young: "Ungt",
-  seg_optimal: "Optimalt",
-  seg_peak: "Topp",
-  seg_over: "Överskridet",
   ripe_nomatch: "Inga whiskyer för dessa filter.",
-  st_wait1: "Vänta 1 år till",
-  st_wait: "Vänta {n} år till",
-  st_optimal: "Drick nu — till {to}",
-  st_peak: "På sin topp nu!",
-  st_over1: "Överskridet sedan 1 år",
-  st_over: "Överskridet sedan {n} år",
   wish_empty: "Inga önskningar ännu.<br>Lägg till whiskyer du vill köpa.",
   to_cellar: "→ Samling",
   wish_add: "+ Lägg till önskan",
@@ -5189,8 +4882,6 @@ sv: {
   ph_regal: "Hylla",
   ph_ebene: "Hyllplan",
   ph_platz: "Plats fr.v.",
-  l_from: "Drick från",
-  l_to: "Drick till",
   l_price: "Pris",
   l_rating: "Betyg",
   l_note: "Anteckning",
@@ -5219,7 +4910,6 @@ sv: {
   toast_name: "Ange ett namn",
   toast_scanfail: "Skanning misslyckades",
   toast_label: "Etikett igenkänd ✓",
-  toast_label_ripe: "Etikett igenkänd ✓ (dryckesmognad uppskattad)",
   toast_loc: "Lagringsplats igenkänd ✓",
   toast_noloc: "Ingen lagringsplats igenkänd",
   toast_nomatch: "Ingen matchande whisky i samlingen",
@@ -5252,7 +4942,6 @@ sv: {
   setup_version: "Version",
   rack_delete_btn: "Ta bort hylla",
   setup_general: "Allmänt",
-  s_over_warn: "{n} flaskor har passerat sitt fönster – drick snart",
   s_bycountry: "Per land",
   s_byregion: "Per region",
   s_bygrape: "Per destilleri",
@@ -5284,10 +4973,6 @@ sv: {
   cur_huf: "Ungersk forint",
   cur_czk: "Tjeckisk krona",
   cur_ron: "Rumänsk leu",
-  drinkrule_btn: "Räkna om dryckesfönster",
-  drinkrule_desc: "Dricka från = år + 1; dricka till efter whiskytyp och destilleri",
-  drinkrule_confirm: "För {n} whiskyer sätts ”dricka från” till år + 1 (även värden du skrivit in själv skrivs över) och ”dricka till” justeras vid behov efter whiskytyp och destilleri. Whiskyer utan år lämnas oförändrade. Tips: exportera en JSON-säkerhetskopia först. Fortsätta?",
-  drinkrule_done: "{n} whisky(er) uppdaterade ✓",
   barcode_miss_text: "Den här streckkoden finns inte i databasen. Numret sparas ändå med whiskyn så att flaskan känns igen nästa gång. Fotografera etiketten nu?",
   confirm_enrich_temp: "Ersätta även befintliga serveringstemperaturer med AI-värden (även sådana du angett själv)?\n\nOK = ersätt (varje whisky frågas av AI, det tar längre tid)\nAvbryt = komplettera bara saknade temperaturer",
   cur_auto_set: "Valutan ställdes automatiskt in på {name} – kan ändras under ”Valuta”.",
@@ -5328,9 +5013,6 @@ sv: {
   rack_ph_cap: "Flaskor/plats",
   rack_levels_title: "Hyllor: namn och flaskor per plats",
   rack_level_name: "Namn",
-  rack_blink_hint: "Förbi dryckesfönstret eller slutar senast nästa år",
-  rack_blink_lbl: "Blinka:",
-  rack_blink_first: "Drick först",
   rack_delete: "Ta bort whisky",
   dm_slot: "Från vilken plats togs den?",
   dm_slot_none: "Flaska utan plats",
@@ -5477,7 +5159,6 @@ da: {
   fav_none: "Ingen whiskyer for dette valg.",
   nav_keller: "Samling",
   nav_stats: "Statistik",
-  nav_ripe: "Modenhed",
   nav_history: "Historik",
   nav_racks: "Reoler",
   nav_wish: "Ønskeliste",
@@ -5510,8 +5191,6 @@ da: {
   he_title: "Rediger post",
   stats_title: "Statistik",
   stats_sub: "Oversigt",
-  ripe_title: "Drikkemodenhed",
-  ripe_sub: "Hvornår skal man drikke?",
   wish_title: "Ønskeliste",
   wish_sub: "Mangler at købe",
   exp_title: "Eksport & Import",
@@ -5580,18 +5259,7 @@ da: {
   s_drunk: "Drukne whiskyer",
   s_drunkvalue: "Værdi af drukne whiskyer",
   s_nodrunk: "Ingen whiskyer markeret som drukket endnu.",
-  ripe_empty: "Ingen whiskyer med<br>angivelse af drikkevindue.<br>Udfyld „Drik fra/til\" når du tilføjer.",
-  seg_young: "Ung",
-  seg_optimal: "Optimal",
-  seg_peak: "Top",
-  seg_over: "Overskredet",
   ripe_nomatch: "Ingen whiskyer for disse filtre.",
-  st_wait1: "Vent 1 år mere",
-  st_wait: "Vent {n} år mere",
-  st_optimal: "Drik nu — indtil {to}",
-  st_peak: "På sit højdepunkt nu!",
-  st_over1: "Overskredet for 1 år siden",
-  st_over: "Overskredet for {n} år siden",
   wish_empty: "Ingen ønsker endnu.<br>Tilføj whiskyer, du vil købe.",
   to_cellar: "→ Samling",
   wish_add: "+ Tilføj ønske",
@@ -5646,8 +5314,6 @@ da: {
   ph_regal: "Reol",
   ph_ebene: "Hylde",
   ph_platz: "Plads fra v.",
-  l_from: "Drik fra",
-  l_to: "Drik til",
   l_price: "Pris",
   l_rating: "Bedømmelse",
   l_note: "Note",
@@ -5676,7 +5342,6 @@ da: {
   toast_name: "Indtast et navn",
   toast_scanfail: "Scanning mislykkedes",
   toast_label: "Etiket genkendt ✓",
-  toast_label_ripe: "Etiket genkendt ✓ (drikkemodenhed estimeret)",
   toast_loc: "Lagerplads genkendt ✓",
   toast_noloc: "Ingen lagerplads genkendt",
   toast_nomatch: "Ingen matchende whisky i samlingen",
@@ -5709,7 +5374,6 @@ da: {
   setup_version: "Version",
   rack_delete_btn: "Slet reol",
   setup_general: "Generelt",
-  s_over_warn: "{n} flasker er over deres vindue – drik snart",
   s_bycountry: "Efter land",
   s_byregion: "Efter region",
   s_bygrape: "Efter destilleri",
@@ -5741,10 +5405,6 @@ da: {
   cur_huf: "Ungarsk forint",
   cur_czk: "Tjekkisk koruna",
   cur_ron: "Rumænsk leu",
-  drinkrule_btn: "Genberegn drikkevindue",
-  drinkrule_desc: "Drik fra = år + 1; drik til efter whiskytype og destilleri",
-  drinkrule_confirm: "For {n} whiskyer sættes »drik fra« til år + 1 (også værdier, du selv har indtastet, overskrives), og »drik til« justeres efter behov efter whiskytype og destilleri. Whiskyer uden år forbliver uændrede. Tip: eksportér en JSON-sikkerhedskopi først. Fortsæt?",
-  drinkrule_done: "{n} whisky(er) opdateret ✓",
   barcode_miss_text: "Denne stregkode findes ikke i databasen. Nummeret gemmes alligevel sammen med whiskyen, så flasken genkendes næste gang. Skal etiketten fotograferes nu?",
   confirm_enrich_temp: "Skal eksisterende serveringstemperaturer også erstattes med AI-værdier (også dem, du selv har indtastet)?\n\nOK = erstat (hver whisky forespørges via AI, det tager længere tid)\nAnnuller = udfyld kun manglende temperaturer",
   cur_auto_set: "Valutaen er automatisk sat til {name} – kan ændres under »Valuta«.",
@@ -5785,9 +5445,6 @@ da: {
   rack_ph_cap: "Flasker/plads",
   rack_levels_title: "Hylder: navn og flasker pr. plads",
   rack_level_name: "Navn",
-  rack_blink_hint: "Over drikkevinduet eller slutter senest næste år",
-  rack_blink_lbl: "Blink:",
-  rack_blink_first: "Drik først",
   rack_delete: "Slet whisky",
   dm_slot: "Fra hvilken plads blev den taget?",
   dm_slot_none: "Flaske uden plads",
@@ -5934,7 +5591,6 @@ fi: {
   fav_none: "Ei viskejä tälle valinnalle.",
   nav_keller: "Kokoelma",
   nav_stats: "Tilastot",
-  nav_ripe: "Kypsyys",
   nav_history: "Historia",
   nav_racks: "Hyllyt",
   nav_wish: "Toivelista",
@@ -5967,8 +5623,6 @@ fi: {
   he_title: "Muokkaa merkintää",
   stats_title: "Tilastot",
   stats_sub: "Yleiskatsaus",
-  ripe_title: "Juomakypsyys",
-  ripe_sub: "Milloin juoda?",
   wish_title: "Toivelista",
   wish_sub: "Vielä ostettavana",
   exp_title: "Vienti & Tuonti",
@@ -6037,18 +5691,7 @@ fi: {
   s_drunk: "Juodut viskit",
   s_drunkvalue: "Juotujen viskien arvo",
   s_nodrunk: "Yhtään viskiä ei ole vielä merkitty juoduksi.",
-  ripe_empty: "Ei viskejä, joilla on<br>juomakypsyystieto.<br>Täytä „Juo alkaen/asti\" lisätessäsi.",
-  seg_young: "Nuori",
-  seg_optimal: "Optimaalinen",
-  seg_peak: "Huippu",
-  seg_over: "Ylitetty",
   ripe_nomatch: "Ei viskejä näillä suodattimilla.",
-  st_wait1: "Odota vielä 1 vuosi",
-  st_wait: "Odota vielä {n} vuotta",
-  st_optimal: "Juo nyt — {to} asti",
-  st_peak: "Huipussaan nyt!",
-  st_over1: "Ylitetty 1 vuosi sitten",
-  st_over: "Ylitetty {n} vuotta sitten",
   wish_empty: "Ei vielä toiveita.<br>Lisää viskejä, jotka haluat ostaa.",
   to_cellar: "→ Kokoelma",
   wish_add: "+ Lisää toive",
@@ -6103,8 +5746,6 @@ fi: {
   ph_regal: "Hylly",
   ph_ebene: "Taso",
   ph_platz: "Paikka vas.",
-  l_from: "Juo alkaen",
-  l_to: "Juo asti",
   l_price: "Hinta",
   l_rating: "Arvosana",
   l_note: "Muistiinpano",
@@ -6133,7 +5774,6 @@ fi: {
   toast_name: "Anna nimi",
   toast_scanfail: "Skannaus epäonnistui",
   toast_label: "Etiketti tunnistettu ✓",
-  toast_label_ripe: "Etiketti tunnistettu ✓ (juomakypsyys arvioitu)",
   toast_loc: "Säilytyspaikka tunnistettu ✓",
   toast_noloc: "Säilytyspaikkaa ei tunnistettu",
   toast_nomatch: "Kokoelmasta ei löytynyt vastaavaa viskiä",
@@ -6166,7 +5806,6 @@ fi: {
   setup_version: "Versio",
   rack_delete_btn: "Poista hylly",
   setup_general: "Yleiset",
-  s_over_warn: "{n} pulloa on ohittanut parhaan ajan – juo pian",
   s_bycountry: "Maittain",
   s_byregion: "Alueittain",
   s_bygrape: "Tislaamoittain",
@@ -6198,10 +5837,6 @@ fi: {
   cur_huf: "Unkarin forintti",
   cur_czk: "Tšekin koruna",
   cur_ron: "Romanian leu",
-  drinkrule_btn: "Laske juomaikkuna uudelleen",
-  drinkrule_desc: "Juo alkaen = vuosi + 1; juo asti viskityypin ja tislaamon mukaan",
-  drinkrule_confirm: "{n} viskille ”juo alkaen” asetetaan arvoon vuosi + 1 (myös itse kirjoitetut arvot korvataan) ja ”juo asti” sovitetaan tarvittaessa viskityypin ja tislaamon mukaan. Viskit ilman vuotta pysyvät ennallaan. Vinkki: vie ensin JSON-varmuuskopio. Jatketaanko?",
-  drinkrule_done: "{n} viskiä päivitetty ✓",
   barcode_miss_text: "Tätä viivakoodia ei löydy tietokannasta. Numero tallennetaan silti viskin mukana, jotta pullo tunnistetaan ensi kerralla. Kuvataanko etiketti nyt?",
   confirm_enrich_temp: "Korvataanko myös jo olemassa olevat tarjoilulämpötilat tekoälyn arvoilla (myös itse syöttämäsi)?\n\nOK = korvaa (jokainen viski kysytään tekoälyltä, mikä kestää kauemmin)\nPeruuta = täydennä vain puuttuvat lämpötilat",
   cur_auto_set: "Valuutaksi asetettiin automaattisesti {name} – muutettavissa kohdassa ”Valuutta”.",
@@ -6242,9 +5877,6 @@ fi: {
   rack_ph_cap: "Pulloa/paikka",
   rack_levels_title: "Tasot: nimi ja pulloja per paikka",
   rack_level_name: "Nimi",
-  rack_blink_hint: "Juomakypsyys ohi tai päättyy viimeistään ensi vuonna",
-  rack_blink_lbl: "Vilku:",
-  rack_blink_first: "Juo ensin",
   rack_delete: "Poista viski",
   dm_slot: "Miltä paikalta otettu?",
   dm_slot_none: "Pullo ilman paikkaa",
@@ -6391,7 +6023,6 @@ ru: {
   fav_none: "Нет виски для этого выбора.",
   nav_keller: "Коллекция",
   nav_stats: "Итоги",
-  nav_ripe: "Зрелость",
   nav_history: "История",
   nav_racks: "Полки",
   nav_wish: "Список желаний",
@@ -6424,8 +6055,6 @@ ru: {
   he_title: "Изменить запись",
   stats_title: "Статистика",
   stats_sub: "Обзор",
-  ripe_title: "Зрелость",
-  ripe_sub: "Когда пить?",
   wish_title: "Список желаний",
   wish_sub: "Ещё купить",
   exp_title: "Экспорт и импорт",
@@ -6494,18 +6123,7 @@ ru: {
   s_drunk: "Выпитое виски",
   s_drunkvalue: "Стоимость выпитого виски",
   s_nodrunk: "Пока нет виски, отмеченного как выпитое.",
-  ripe_empty: "Нет виски с указанием<br>срока употребления.<br>Заполните „Пить с/до\" при добавлении.",
-  seg_young: "Молодое",
-  seg_optimal: "Оптимально",
-  seg_peak: "Пик",
-  seg_over: "Просрочено",
   ripe_nomatch: "Нет виски по этим фильтрам.",
-  st_wait1: "Подождать ещё 1 год",
-  st_wait: "Подождать ещё {n} г.",
-  st_optimal: "Пить сейчас — до {to}",
-  st_peak: "Сейчас на пике!",
-  st_over1: "Просрочено 1 год",
-  st_over: "Просрочено {n} лет",
   wish_empty: "Пока нет желаний.<br>Добавьте виски, которое хотите купить.",
   to_cellar: "→ Коллекция",
   wish_add: "+ Добавить желание",
@@ -6560,8 +6178,6 @@ ru: {
   ph_regal: "Полка",
   ph_ebene: "Ярус",
   ph_platz: "Место сл.",
-  l_from: "Пить с",
-  l_to: "Пить до",
   l_price: "Цена",
   l_rating: "Оценка",
   l_note: "Заметка",
@@ -6590,7 +6206,6 @@ ru: {
   toast_name: "Введите название",
   toast_scanfail: "Сканирование не удалось",
   toast_label: "Этикетка распознана ✓",
-  toast_label_ripe: "Этикетка распознана ✓ (зрелость оценена)",
   toast_loc: "Место хранения распознано ✓",
   toast_noloc: "Место хранения не распознано",
   toast_nomatch: "Подходящее виски в коллекции не найдено",
@@ -6623,7 +6238,6 @@ ru: {
   setup_version: "Версия",
   rack_delete_btn: "Удалить стеллаж",
   setup_general: "Общие",
-  s_over_warn: "{n} бутылок прошли срок – пейте скорее",
   s_bycountry: "По странам",
   s_byregion: "По регионам",
   s_bygrape: "По винокурням",
@@ -6655,10 +6269,6 @@ ru: {
   cur_huf: "Венгерский форинт",
   cur_czk: "Чешская крона",
   cur_ron: "Румынский лей",
-  drinkrule_btn: "Пересчитать окно употребления",
-  drinkrule_desc: "Пить с = год + 1; пить до — по типу виски и винокурне",
-  drinkrule_confirm: "Для {n} виски «пить с» будет установлено на год + 1 (введённые вручную значения тоже перезаписываются), а «пить до» при необходимости скорректируется по типу виски и винокурне. Виски без указания года не меняется. Совет: сначала экспортируйте резервную копию JSON. Продолжить?",
-  drinkrule_done: "Обновлено виски: {n} ✓",
   barcode_miss_text: "Этого штрихкода нет в базе данных. Номер всё равно сохранится вместе с виски, чтобы бутылку узнали при следующем сканировании. Сфотографировать этикетку сейчас?",
   confirm_enrich_temp: "Заменить также уже имеющиеся температуры подачи значениями ИИ (в том числе введённые вами вручную)?\n\nОК = заменить (по каждому виски запрашивается ИИ, это дольше)\nОтмена = дополнить только отсутствующие температуры",
   cur_auto_set: "Валюта автоматически изменена на {name} – её можно изменить в разделе «Валюта».",
@@ -6699,9 +6309,6 @@ ru: {
   rack_ph_cap: "Бутылок/место",
   rack_levels_title: "Ярусы: название и бутылок на место",
   rack_level_name: "Название",
-  rack_blink_hint: "Срок истёк или заканчивается не позже следующего года",
-  rack_blink_lbl: "Мигание:",
-  rack_blink_first: "Пить первыми",
   rack_delete: "Удалить виски",
   dm_slot: "Из какого места взята?",
   dm_slot_none: "Бутылка без места",
@@ -6848,7 +6455,6 @@ it: {
   fav_none: "Nessun whisky per questa selezione.",
   nav_keller: "Collezione",
   nav_stats: "Statistiche",
-  nav_ripe: "Maturità",
   nav_history: "Cronologia",
   nav_racks: "Scaffali",
   nav_wish: "Lista desideri",
@@ -6881,8 +6487,6 @@ it: {
   he_title: "Modifica voce",
   stats_title: "Statistiche",
   stats_sub: "Panoramica",
-  ripe_title: "Maturità",
-  ripe_sub: "Quando berlo?",
   wish_title: "Lista desideri",
   wish_sub: "Ancora da acquistare",
   exp_title: "Esporta & Importa",
@@ -6951,18 +6555,7 @@ it: {
   s_drunk: "Whisky bevuti",
   s_drunkvalue: "Valore dei whisky bevuti",
   s_nodrunk: "Nessun whisky ancora segnato come bevuto.",
-  ripe_empty: "Nessun whisky con<br>indicazione di consumo.<br>Compila „Bevi da/fino\" quando aggiungi.",
-  seg_young: "Giovane",
-  seg_optimal: "Ottimale",
-  seg_peak: "Apice",
-  seg_over: "Superato",
   ripe_nomatch: "Nessun whisky per questi filtri.",
-  st_wait1: "Aspetta ancora 1 anno",
-  st_wait: "Aspetta ancora {n} anni",
-  st_optimal: "Bevi ora — fino al {to}",
-  st_peak: "Al suo apice ora!",
-  st_over1: "Superato da 1 anno",
-  st_over: "Superato da {n} anni",
   wish_empty: "Ancora nessun desiderio.<br>Aggiungi i whisky che vuoi acquistare.",
   to_cellar: "→ Collezione",
   wish_add: "+ Aggiungi desiderio",
@@ -7017,8 +6610,6 @@ it: {
   ph_regal: "Scaffale",
   ph_ebene: "Ripiano",
   ph_platz: "Posto da sx",
-  l_from: "Bevi da",
-  l_to: "Bevi fino",
   l_price: "Prezzo",
   l_rating: "Valutazione",
   l_note: "Nota",
@@ -7047,7 +6638,6 @@ it: {
   toast_name: "Inserisci un nome",
   toast_scanfail: "Scansione non riuscita",
   toast_label: "Etichetta riconosciuta ✓",
-  toast_label_ripe: "Etichetta riconosciuta ✓ (maturità stimata)",
   toast_loc: "Posizione riconosciuta ✓",
   toast_noloc: "Nessuna posizione riconosciuta",
   toast_nomatch: "Nessun whisky corrispondente nella collezione",
@@ -7080,7 +6670,6 @@ it: {
   setup_version: "Versione",
   rack_delete_btn: "Elimina scaffale",
   setup_general: "Generali",
-  s_over_warn: "{n} bottiglie hanno superato la finestra – da bere presto",
   s_bycountry: "Per paese",
   s_byregion: "Per regione",
   s_bygrape: "Per distilleria",
@@ -7112,10 +6701,6 @@ it: {
   cur_huf: "Fiorino ungherese",
   cur_czk: "Corona ceca",
   cur_ron: "Leu rumeno",
-  drinkrule_btn: "Ricalcola finestra di consumo",
-  drinkrule_desc: "Bere da = anno + 1; bere fino a in base a tipo di whisky e distilleria",
-  drinkrule_confirm: "Per {n} whisky «bere da» sarà impostato su anno + 1 (anche i valori inseriti a mano vengono sovrascritti) e «bere fino a» sarà adattato, se necessario, in base a tipo di whisky e distilleria. I whisky senza anno restano invariati. Consiglio: esporta prima un backup JSON. Continuare?",
-  drinkrule_done: "{n} whisky aggiornati ✓",
   barcode_miss_text: "Questo codice a barre non è nel database. Il numero viene comunque salvato con il whisky, così la bottiglia viene riconosciuta la prossima volta. Fotografare ora l'etichetta?",
   confirm_enrich_temp: "Sostituire anche le temperature di servizio già presenti con i valori dell'IA (comprese quelle inserite da te)?\n\nOK = sostituisci (ogni whisky viene interrogato con l'IA, richiede più tempo)\nAnnulla = completa solo le temperature mancanti",
   cur_auto_set: "Valuta impostata automaticamente su {name} – modificabile in «Valuta».",
@@ -7156,9 +6741,6 @@ it: {
   rack_ph_cap: "Bottiglie/posto",
   rack_levels_title: "Ripiani: nome e bottiglie per posto",
   rack_level_name: "Nome",
-  rack_blink_hint: "Oltre la finestra di consumo o in scadenza entro il prossimo anno",
-  rack_blink_lbl: "Lampeggia:",
-  rack_blink_first: "Da bere prima",
   rack_delete: "Elimina whisky",
   dm_slot: "Da quale posto è stata presa?",
   dm_slot_none: "Bottiglia non riposta",
@@ -7305,7 +6887,6 @@ fr: {
   fav_none: "Aucun whisky pour cette sélection.",
   nav_keller: "Collection",
   nav_stats: "Stats",
-  nav_ripe: "Maturité",
   nav_history: "Historique",
   nav_racks: "Casiers",
   nav_wish: "Liste de souhaits",
@@ -7338,8 +6919,6 @@ fr: {
   he_title: "Modifier l'entrée",
   stats_title: "Statistiques",
   stats_sub: "Aperçu",
-  ripe_title: "Maturité",
-  ripe_sub: "Quand le boire ?",
   wish_title: "Liste de souhaits",
   wish_sub: "Encore à acheter",
   exp_title: "Export & Import",
@@ -7408,18 +6987,7 @@ fr: {
   s_drunk: "Whiskies bus",
   s_drunkvalue: "Valeur des whiskies bus",
   s_nodrunk: "Aucun whisky marqué comme bu pour l'instant.",
-  ripe_empty: "Aucun whisky avec<br>indication de dégustation.<br>Remplissez « Boire de/à » lors de l'ajout.",
-  seg_young: "Jeune",
-  seg_optimal: "Optimal",
-  seg_peak: "Apogée",
-  seg_over: "Dépassé",
   ripe_nomatch: "Aucun whisky pour ces filtres.",
-  st_wait1: "Attendre encore 1 an",
-  st_wait: "Attendre encore {n} ans",
-  st_optimal: "Boire maintenant — jusqu'à {to}",
-  st_peak: "À son apogée maintenant !",
-  st_over1: "Dépassé depuis 1 an",
-  st_over: "Dépassé depuis {n} ans",
   wish_empty: "Aucun souhait pour l'instant.<br>Ajoutez des whiskies que vous voulez acheter.",
   to_cellar: "→ Collection",
   wish_add: "+ Ajouter un souhait",
@@ -7474,8 +7042,6 @@ fr: {
   ph_regal: "Casier",
   ph_ebene: "Niveau",
   ph_platz: "Place g.",
-  l_from: "Boire dès",
-  l_to: "Boire jusqu'à",
   l_price: "Prix",
   l_rating: "Note",
   l_note: "Remarque",
@@ -7504,7 +7070,6 @@ fr: {
   toast_name: "Saisissez un nom",
   toast_scanfail: "Échec du scan",
   toast_label: "Étiquette reconnue ✓",
-  toast_label_ripe: "Étiquette reconnue ✓ (maturité estimée)",
   toast_loc: "Emplacement reconnu ✓",
   toast_noloc: "Aucun emplacement reconnu",
   toast_nomatch: "Aucun whisky correspondant dans la collection",
@@ -7537,7 +7102,6 @@ fr: {
   setup_version: "Version",
   rack_delete_btn: "Supprimer l’étagère",
   setup_general: "Général",
-  s_over_warn: "{n} bouteilles ont dépassé leur apogée – à boire bientôt",
   s_bycountry: "Par pays",
   s_byregion: "Par région",
   s_bygrape: "Par distillerie",
@@ -7569,10 +7133,6 @@ fr: {
   cur_huf: "Forint hongrois",
   cur_czk: "Couronne tchèque",
   cur_ron: "Leu roumain",
-  drinkrule_btn: "Recalculer la fenêtre de dégustation",
-  drinkrule_desc: "Boire à partir de = année + 1 ; boire jusqu'à selon le type de whisky et la distillerie",
-  drinkrule_confirm: "Pour {n} whiskies, « boire à partir de » sera fixé à année + 1 (les valeurs saisies à la main sont aussi écrasées) et « boire jusqu'à » sera ajusté si nécessaire selon le type de whisky et la distillerie. Les whiskies sans année restent inchangés. Conseil : exportez d'abord une sauvegarde JSON. Continuer ?",
-  drinkrule_done: "{n} whisky(s) mis à jour ✓",
   barcode_miss_text: "Ce code-barres n'est pas dans la base de données. Le numéro est tout de même enregistré avec le whisky pour reconnaître la bouteille la prochaine fois. Photographier l'étiquette maintenant ?",
   confirm_enrich_temp: "Remplacer aussi les températures de service déjà présentes par les valeurs de l'IA (y compris celles que vous avez saisies vous-même) ?\n\nOK = remplacer (chaque whisky est interrogé via l'IA, ce qui prend plus de temps)\nAnnuler = compléter uniquement les températures manquantes",
   cur_auto_set: "Devise définie automatiquement sur {name} – modifiable sous « Devise ».",
@@ -7613,9 +7173,6 @@ fr: {
   rack_ph_cap: "Bouteilles/empl.",
   rack_levels_title: "Niveaux : nom et bouteilles par emplacement",
   rack_level_name: "Nom",
-  rack_blink_hint: "Fenêtre de dégustation dépassée ou se terminant au plus tard l'an prochain",
-  rack_blink_lbl: "Clignoter :",
-  rack_blink_first: "À boire d'abord",
   rack_delete: "Supprimer le whisky",
   dm_slot: "Prise de quel emplacement ?",
   dm_slot_none: "Bouteille non rangée",
@@ -7762,7 +7319,6 @@ pl: {
   fav_none: "Brak whisky dla tego wyboru.",
   nav_keller: "Kolekcja",
   nav_stats: "Statystyki",
-  nav_ripe: "Dojrzałość",
   nav_history: "Historia",
   nav_racks: "Regały",
   nav_wish: "Lista życzeń",
@@ -7795,8 +7351,6 @@ pl: {
   he_title: "Edytuj wpis",
   stats_title: "Statystyki",
   stats_sub: "Przegląd",
-  ripe_title: "Dojrzałość",
-  ripe_sub: "Kiedy pić?",
   wish_title: "Lista życzeń",
   wish_sub: "Do kupienia",
   exp_title: "Eksport i import",
@@ -7865,18 +7419,7 @@ pl: {
   s_drunk: "Wypite whisky",
   s_drunkvalue: "Wartość wypitych whisky",
   s_nodrunk: "Żadna whisky nie została jeszcze oznaczona jako wypita.",
-  ripe_empty: "Brak whisky z<br>informacją o oknie picia.<br>Przy dodawaniu wypełnij „Pić od/do”.",
-  seg_young: "Młode",
-  seg_optimal: "Optymalne",
-  seg_peak: "Szczyt",
-  seg_over: "Przekroczone",
   ripe_nomatch: "Brak whisky dla tych filtrów.",
-  st_wait1: "Poczekaj jeszcze 1 rok",
-  st_wait: "Poczekaj jeszcze {n} lat",
-  st_optimal: "Pij teraz — do {to}",
-  st_peak: "Teraz u szczytu!",
-  st_over1: "Przekroczone od 1 roku",
-  st_over: "Przekroczone od {n} lat",
   wish_empty: "Brak życzeń.<br>Dodaj whisky, które chcesz kupić.",
   to_cellar: "→ Kolekcja",
   wish_add: "+ Dodaj życzenie",
@@ -7931,8 +7474,6 @@ pl: {
   ph_regal: "Regał",
   ph_ebene: "Poziom",
   ph_platz: "Miejsce od l.",
-  l_from: "Pić od",
-  l_to: "Pić do",
   l_price: "Cena",
   l_rating: "Ocena",
   l_note: "Notatka",
@@ -7961,7 +7502,6 @@ pl: {
   toast_name: "Wpisz nazwę",
   toast_scanfail: "Skanowanie nie powiodło się",
   toast_label: "Rozpoznano etykietę ✓",
-  toast_label_ripe: "Rozpoznano etykietę ✓ (dojrzałość oszacowana)",
   toast_loc: "Rozpoznano miejsce ✓",
   toast_noloc: "Nie rozpoznano miejsca",
   toast_nomatch: "Nie znaleziono pasującej whisky w kolekcji",
@@ -7994,7 +7534,6 @@ pl: {
   setup_version: "Wersja",
   rack_delete_btn: "Usuń regał",
   setup_general: "Ogólne",
-  s_over_warn: "{n} butelek przekroczyło okres – pij wkrótce",
   s_bycountry: "Wg kraju",
   s_byregion: "Wg regionu",
   s_bygrape: "Wg destylarni",
@@ -8026,10 +7565,6 @@ pl: {
   cur_huf: "Forint węgierski",
   cur_czk: "Korona czeska",
   cur_ron: "Lej rumuński",
-  drinkrule_btn: "Przelicz okno spożycia",
-  drinkrule_desc: "Pić od = rok + 1; pić do wg rodzaju whisky i destylarni",
-  drinkrule_confirm: "Dla {n} whisky „pić od” zostanie ustawione na rok + 1 (ręcznie wpisane wartości też zostaną nadpisane), a „pić do” w razie potrzeby dopasowane do rodzaju whisky i destylarni. Whisky bez roku pozostają bez zmian. Wskazówka: najpierw wyeksportuj kopię JSON. Kontynuować?",
-  drinkrule_done: "Zaktualizowano whisky: {n} ✓",
   barcode_miss_text: "Tego kodu kreskowego nie ma w bazie danych. Numer i tak zostanie zapisany przy whisky, aby butelka została rozpoznana następnym razem. Sfotografować teraz etykietę?",
   confirm_enrich_temp: "Czy zastąpić także istniejące temperatury podawania wartościami z AI (również te wpisane przez Ciebie)?\n\nOK = zastąp (każda whisky jest sprawdzana przez AI, trwa to dłużej)\nAnuluj = uzupełnij tylko brakujące temperatury",
   cur_auto_set: "Waluta została automatycznie ustawiona na {name} – można ją zmienić w „Waluta”.",
@@ -8070,9 +7605,6 @@ pl: {
   rack_ph_cap: "Butelek/miejsce",
   rack_levels_title: "Poziomy: nazwa i butelek na miejsce",
   rack_level_name: "Nazwa",
-  rack_blink_hint: "Po okresie picia lub kończy się najpóźniej w przyszłym roku",
-  rack_blink_lbl: "Miganie:",
-  rack_blink_first: "Najpierw wypić",
   rack_delete: "Usuń whisky",
   dm_slot: "Z którego miejsca zabrano?",
   dm_slot_none: "Butelka bez miejsca",
@@ -8219,7 +7751,6 @@ hu: {
   fav_none: "Nincs whisky ehhez a választáshoz.",
   nav_keller: "Gyűjtemény",
   nav_stats: "Statisztika",
-  nav_ripe: "Érettség",
   nav_history: "Napló",
   nav_racks: "Polcok",
   nav_wish: "Kívánság",
@@ -8252,8 +7783,6 @@ hu: {
   he_title: "Bejegyzés szerkesztése",
   stats_title: "Statisztika",
   stats_sub: "Áttekintés",
-  ripe_title: "Érettség",
-  ripe_sub: "Mikor igyuk?",
   wish_title: "Kívánságlista",
   wish_sub: "Még megveendő",
   exp_title: "Export & Import",
@@ -8322,18 +7851,7 @@ hu: {
   s_drunk: "Megivott whiskyk",
   s_drunkvalue: "A megivott whiskyk értéke",
   s_nodrunk: "Még egy whiskyt sem jelöltél megivottként.",
-  ripe_empty: "Nincs whisky<br>fogyasztási időszak adattal.<br>Hozzáadáskor töltsd ki az „Iható ettől/eddig” mezőt.",
-  seg_young: "Fiatal",
-  seg_optimal: "Optimális",
-  seg_peak: "Csúcs",
-  seg_over: "Túlhaladt",
   ripe_nomatch: "Nincs whisky ezekre a szűrőkre.",
-  st_wait1: "Várj még 1 évet",
-  st_wait: "Várj még {n} évet",
-  st_optimal: "Idd most — eddig: {to}",
-  st_peak: "Most van a csúcson!",
-  st_over1: "1 éve túlhaladt",
-  st_over: "{n} éve túlhaladt",
   wish_empty: "Még nincs kívánság.<br>Adj hozzá whiskyket, amelyeket meg szeretnél venni.",
   to_cellar: "→ Gyűjtemény",
   wish_add: "+ Kívánság hozzáadása",
@@ -8388,8 +7906,6 @@ hu: {
   ph_regal: "Polc",
   ph_ebene: "Szint",
   ph_platz: "Hely b.",
-  l_from: "Iható ettől",
-  l_to: "Iható eddig",
   l_price: "Ár",
   l_rating: "Értékelés",
   l_note: "Megjegyzés",
@@ -8418,7 +7934,6 @@ hu: {
   toast_name: "Adj meg egy nevet",
   toast_scanfail: "A beolvasás sikertelen",
   toast_label: "Címke felismerve ✓",
-  toast_label_ripe: "Címke felismerve ✓ (érettség becsülve)",
   toast_loc: "Tárolóhely felismerve ✓",
   toast_noloc: "Nem ismerhető fel tárolóhely",
   toast_nomatch: "Nincs megfelelő whisky a gyűjteményben",
@@ -8451,7 +7966,6 @@ hu: {
   setup_version: "Verzió",
   rack_delete_btn: "Állvány törlése",
   setup_general: "Általános",
-  s_over_warn: "{n} palack túllépte az ivási időszakot – igyál hamarosan",
   s_bycountry: "Ország szerint",
   s_byregion: "Régió szerint",
   s_bygrape: "Lepárló szerint",
@@ -8483,10 +7997,6 @@ hu: {
   cur_huf: "Magyar forint",
   cur_czk: "Cseh korona",
   cur_ron: "Román lej",
-  drinkrule_btn: "Ivási időablak újraszámítása",
-  drinkrule_desc: "Inni kezdve = év + 1; inni eddig a whisky típusa és a lepárló szerint",
-  drinkrule_confirm: "{n} whiskynél az „inni kezdve” érték év + 1 lesz (a kézzel beírt értékeket is felülírja), az „inni eddig” pedig szükség esetén a whisky típusa és a lepárló szerint módosul. Az év nélküli whiskyk változatlanok maradnak. Tipp: előbb exportálj JSON-mentést. Folytatod?",
-  drinkrule_done: "{n} whisky frissítve ✓",
   barcode_miss_text: "Ez a vonalkód nincs az adatbázisban. A számot ettől még elmentjük a whiskyvel, hogy az üveget legközelebb felismerje. Lefényképezed most a címkét?",
   confirm_enrich_temp: "A már meglévő tálalási hőmérsékleteket is lecseréljük MI-értékekre (a saját magad által megadottakat is)?\n\nOK = csere (minden whiskyt lekérdez az MI, ez tovább tart)\nMégse = csak a hiányzó hőmérsékletek kiegészítése",
   cur_auto_set: "A pénznem automatikusan {name} lett – módosítható a „Pénznem” alatt.",
@@ -8527,9 +8037,6 @@ hu: {
   rack_ph_cap: "Üveg/hely",
   rack_levels_title: "Szintek: név és üveg helyenként",
   rack_level_name: "Név",
-  rack_blink_hint: "Lejárt az ivási időszak, vagy legkésőbb jövőre véget ér",
-  rack_blink_lbl: "Villogás:",
-  rack_blink_first: "Először innivaló",
   rack_delete: "Whisky törlése",
   dm_slot: "Melyik helyről vették ki?",
   dm_slot_none: "Elhelyezetlen üveg",
@@ -8676,7 +8183,6 @@ cs: {
   fav_none: "Žádné whisky pro tento výběr.",
   nav_keller: "Sbírka",
   nav_stats: "Statistiky",
-  nav_ripe: "Zralost",
   nav_history: "Historie",
   nav_racks: "Regály",
   nav_wish: "Seznam přání",
@@ -8709,8 +8215,6 @@ cs: {
   he_title: "Upravit záznam",
   stats_title: "Statistiky",
   stats_sub: "Přehled",
-  ripe_title: "Zralost",
-  ripe_sub: "Kdy pít?",
   wish_title: "Seznam přání",
   wish_sub: "Ještě koupit",
   exp_title: "Export a import",
@@ -8779,18 +8283,7 @@ cs: {
   s_drunk: "Vypité whisky",
   s_drunkvalue: "Hodnota vypitých whisky",
   s_nodrunk: "Zatím žádná whisky neoznačena jako vypitá.",
-  ripe_empty: "Žádné whisky s<br>údajem o okně pití.<br>Při přidávání vyplňte „Pít od/do”.",
-  seg_young: "Mladé",
-  seg_optimal: "Optimální",
-  seg_peak: "Vrchol",
-  seg_over: "Překročeno",
   ripe_nomatch: "Žádné whisky pro tyto filtry.",
-  st_wait1: "Počkat ještě 1 rok",
-  st_wait: "Počkat ještě {n} let",
-  st_optimal: "Pít nyní — do {to}",
-  st_peak: "Nyní na vrcholu!",
-  st_over1: "Překročeno před 1 rokem",
-  st_over: "Překročeno před {n} lety",
   wish_empty: "Zatím žádná přání.<br>Přidejte whisky, které chcete koupit.",
   to_cellar: "→ Sbírka",
   wish_add: "+ Přidat přání",
@@ -8845,8 +8338,6 @@ cs: {
   ph_regal: "Regál",
   ph_ebene: "Úroveň",
   ph_platz: "Místo zl.",
-  l_from: "Pít od",
-  l_to: "Pít do",
   l_price: "Cena",
   l_rating: "Hodnocení",
   l_note: "Poznámka",
@@ -8875,7 +8366,6 @@ cs: {
   toast_name: "Zadejte název",
   toast_scanfail: "Skenování selhalo",
   toast_label: "Etiketa rozpoznána ✓",
-  toast_label_ripe: "Etiketa rozpoznána ✓ (zralost odhadnuta)",
   toast_loc: "Místo uložení rozpoznáno ✓",
   toast_noloc: "Místo uložení nerozpoznáno",
   toast_nomatch: "Ve sbírce nenalezena odpovídající whisky",
@@ -8908,7 +8398,6 @@ cs: {
   setup_version: "Verze",
   rack_delete_btn: "Smazat regál",
   setup_general: "Obecné",
-  s_over_warn: "{n} lahví překročilo své okno – pijte brzy",
   s_bycountry: "Podle země",
   s_byregion: "Podle regionu",
   s_bygrape: "Podle palírny",
@@ -8940,10 +8429,6 @@ cs: {
   cur_huf: "Maďarský forint",
   cur_czk: "Česká koruna",
   cur_ron: "Rumunský leu",
-  drinkrule_btn: "Přepočítat okno pití",
-  drinkrule_desc: "Pít od = rok + 1; pít do podle druhu whisky a palírny",
-  drinkrule_confirm: "U {n} whisky se „pít od” nastaví na rok + 1 (přepíšou se i ručně zadané hodnoty) a „pít do” se podle potřeby upraví podle druhu whisky a palírny. Whisky bez roku zůstanou beze změny. Tip: nejdřív exportujte zálohu JSON. Pokračovat?",
-  drinkrule_done: "Aktualizováno whisky: {n} ✓",
   barcode_miss_text: "Tento čárový kód není v databázi. Číslo se přesto uloží u whisky, aby se láhev příště poznala. Vyfotit etiketu nyní?",
   confirm_enrich_temp: "Nahradit i již existující teploty podávání hodnotami od AI (včetně těch, které jste zadali sami)?\n\nOK = nahradit (u každé whisky se dotazuje AI, trvá to déle)\nZrušit = doplnit jen chybějící teploty",
   cur_auto_set: "Měna byla automaticky nastavena na {name} – lze ji změnit v části „Měna“.",
@@ -8984,9 +8469,6 @@ cs: {
   rack_ph_cap: "Lahví/místo",
   rack_levels_title: "Úrovně: název a lahví na místo",
   rack_level_name: "Název",
-  rack_blink_hint: "Po době pití nebo končí nejpozději příští rok",
-  rack_blink_lbl: "Blikání:",
-  rack_blink_first: "Pít nejdřív",
   rack_delete: "Smazat whisky",
   dm_slot: "Z kterého místa byla vzata?",
   dm_slot_none: "Láhev bez místa",
@@ -9133,7 +8615,6 @@ sk: {
   fav_none: "Žiadne whisky pre tento výber.",
   nav_keller: "Zbierka",
   nav_stats: "Štatistiky",
-  nav_ripe: "Zrelosť",
   nav_history: "História",
   nav_racks: "Regály",
   nav_wish: "Zoznam želaní",
@@ -9166,8 +8647,6 @@ sk: {
   he_title: "Upraviť záznam",
   stats_title: "Štatistiky",
   stats_sub: "Prehľad",
-  ripe_title: "Zrelosť",
-  ripe_sub: "Kedy piť?",
   wish_title: "Zoznam želaní",
   wish_sub: "Ešte kúpiť",
   exp_title: "Export a import",
@@ -9236,18 +8715,7 @@ sk: {
   s_drunk: "Vypité whisky",
   s_drunkvalue: "Hodnota vypitých whisky",
   s_nodrunk: "Zatiaľ žiadna whisky neoznačená ako vypitá.",
-  ripe_empty: "Žiadne whisky s<br>údajom o okne pitia.<br>Pri pridávaní vyplňte „Piť od/do”.",
-  seg_young: "Mladé",
-  seg_optimal: "Optimálne",
-  seg_peak: "Vrchol",
-  seg_over: "Prekročené",
   ripe_nomatch: "Žiadne whisky pre tieto filtre.",
-  st_wait1: "Počkať ešte 1 rok",
-  st_wait: "Počkať ešte {n} rokov",
-  st_optimal: "Piť teraz — do {to}",
-  st_peak: "Teraz na vrchole!",
-  st_over1: "Prekročené pred 1 rokom",
-  st_over: "Prekročené pred {n} rokmi",
   wish_empty: "Zatiaľ žiadne želania.<br>Pridajte whisky, ktoré chcete kúpiť.",
   to_cellar: "→ Zbierka",
   wish_add: "+ Pridať želanie",
@@ -9302,8 +8770,6 @@ sk: {
   ph_regal: "Regál",
   ph_ebene: "Úroveň",
   ph_platz: "Miesto zľ.",
-  l_from: "Piť od",
-  l_to: "Piť do",
   l_price: "Cena",
   l_rating: "Hodnotenie",
   l_note: "Poznámka",
@@ -9332,7 +8798,6 @@ sk: {
   toast_name: "Zadajte názov",
   toast_scanfail: "Skenovanie zlyhalo",
   toast_label: "Etiketa rozpoznaná ✓",
-  toast_label_ripe: "Etiketa rozpoznaná ✓ (zrelosť odhadnutá)",
   toast_loc: "Miesto uloženia rozpoznané ✓",
   toast_noloc: "Miesto uloženia nerozpoznané",
   toast_nomatch: "V zbierke sa nenašla zodpovedajúca whisky",
@@ -9365,7 +8830,6 @@ sk: {
   setup_version: "Verzia",
   rack_delete_btn: "Zmazať regál",
   setup_general: "Všeobecné",
-  s_over_warn: "{n} fliaš prekročilo svoje okno – pite čoskoro",
   s_bycountry: "Podľa krajiny",
   s_byregion: "Podľa regiónu",
   s_bygrape: "Podľa liehovaru",
@@ -9397,10 +8861,6 @@ sk: {
   cur_huf: "Maďarský forint",
   cur_czk: "Česká koruna",
   cur_ron: "Rumunský lei",
-  drinkrule_btn: "Prepočítať okno pitia",
-  drinkrule_desc: "Piť od = rok + 1; piť do podľa druhu whisky a liehovaru",
-  drinkrule_confirm: "Pri {n} whisky sa „piť od” nastaví na rok + 1 (prepíšu sa aj ručne zadané hodnoty) a „piť do” sa podľa potreby upraví podľa druhu whisky a liehovaru. Whisky bez roka zostanú bez zmeny. Tip: najprv exportujte zálohu JSON. Pokračovať?",
-  drinkrule_done: "Aktualizovaných whisky: {n} ✓",
   barcode_miss_text: "Tento čiarový kód nie je v databáze. Číslo sa napriek tomu uloží pri whisky, aby sa fľaša nabudúce spoznala. Odfotiť etiketu teraz?",
   confirm_enrich_temp: "Nahradiť aj už existujúce teploty podávania hodnotami od AI (vrátane tých, ktoré ste zadali sami)?\n\nOK = nahradiť (pri každej whisky sa pýta AI, trvá to dlhšie)\nZrušiť = doplniť len chýbajúce teploty",
   cur_auto_set: "Mena bola automaticky nastavená na {name} – dá sa zmeniť v časti „Mena“.",
@@ -9441,9 +8901,6 @@ sk: {
   rack_ph_cap: "Fliaš/miesto",
   rack_levels_title: "Úrovne: názov a fliaš na miesto",
   rack_level_name: "Názov",
-  rack_blink_hint: "Po dobe pitia alebo končí najneskôr budúci rok",
-  rack_blink_lbl: "Blikanie:",
-  rack_blink_first: "Piť najskôr",
   rack_delete: "Zmazať whisky",
   dm_slot: "Z ktorého miesta bola vzatá?",
   dm_slot_none: "Fľaša bez miesta",
@@ -9590,7 +9047,6 @@ ro: {
   fav_none: "Niciun whisky pentru această selecție.",
   nav_keller: "Colecție",
   nav_stats: "Statistici",
-  nav_ripe: "Maturitate",
   nav_history: "Istoric",
   nav_racks: "Rafturi",
   nav_wish: "Listă de dorințe",
@@ -9623,8 +9079,6 @@ ro: {
   he_title: "Editează intrarea",
   stats_title: "Statistici",
   stats_sub: "Prezentare generală",
-  ripe_title: "Maturitate",
-  ripe_sub: "Când să bei?",
   wish_title: "Listă de dorințe",
   wish_sub: "De cumpărat",
   exp_title: "Export și import",
@@ -9693,18 +9147,7 @@ ro: {
   s_drunk: "Whisky-uri băute",
   s_drunkvalue: "Valoarea whisky-urilor băute",
   s_nodrunk: "Niciun whisky marcat ca băut încă.",
-  ripe_empty: "Niciun whisky cu<br>fereastră de consum.<br>Completează „Bea de la/până” la adăugare.",
-  seg_young: "Tânăr",
-  seg_optimal: "Optim",
-  seg_peak: "Apogeu",
-  seg_over: "Depășit",
   ripe_nomatch: "Niciun whisky pentru aceste filtre.",
-  st_wait1: "Mai așteaptă 1 an",
-  st_wait: "Mai așteaptă {n} ani",
-  st_optimal: "Bea acum — până în {to}",
-  st_peak: "La apogeu acum!",
-  st_over1: "Depășit de 1 an",
-  st_over: "Depășit de {n} ani",
   wish_empty: "Nicio dorință încă.<br>Adaugă whisky-uri pe care vrei să le cumperi.",
   to_cellar: "→ Colecție",
   wish_add: "+ Adaugă dorință",
@@ -9759,8 +9202,6 @@ ro: {
   ph_regal: "Raft",
   ph_ebene: "Nivel",
   ph_platz: "Loc st.",
-  l_from: "Bea de la",
-  l_to: "Bea până",
   l_price: "Preț",
   l_rating: "Evaluare",
   l_note: "Notă",
@@ -9789,7 +9230,6 @@ ro: {
   toast_name: "Introdu un nume",
   toast_scanfail: "Scanarea a eșuat",
   toast_label: "Etichetă recunoscută ✓",
-  toast_label_ripe: "Etichetă recunoscută ✓ (maturitate estimată)",
   toast_loc: "Loc de depozitare recunoscut ✓",
   toast_noloc: "Niciun loc de depozitare recunoscut",
   toast_nomatch: "Niciun whisky corespunzător în colecție",
@@ -9822,7 +9262,6 @@ ro: {
   setup_version: "Versiune",
   rack_delete_btn: "Șterge raftul",
   setup_general: "General",
-  s_over_warn: "{n} sticle au depășit intervalul – de băut curând",
   s_bycountry: "După țară",
   s_byregion: "După regiune",
   s_bygrape: "După distilerie",
@@ -9854,10 +9293,6 @@ ro: {
   cur_huf: "Forint maghiar",
   cur_czk: "Coroana cehă",
   cur_ron: "Leu românesc",
-  drinkrule_btn: "Recalculează intervalul de consum",
-  drinkrule_desc: "De băut din = an + 1; de băut până în funcție de tipul de whisky și distilerie",
-  drinkrule_confirm: "Pentru {n} whisky-uri, „de băut din” va fi setat la an + 1 (valorile introduse manual sunt și ele suprascrise), iar „de băut până” se ajustează, la nevoie, după tipul de whisky și distilerie. Whisky-urile fără an rămân neschimbate. Sfat: exportă mai întâi o copie JSON. Continui?",
-  drinkrule_done: "{n} whisky-uri actualizate ✓",
   barcode_miss_text: "Acest cod de bare nu se află în baza de date. Numărul se salvează oricum la whisky, ca sticla să fie recunoscută data viitoare. Fotografiezi acum eticheta?",
   confirm_enrich_temp: "Înlocuiți și temperaturile de servire deja existente cu valorile AI (inclusiv cele introduse de dvs.)?\n\nOK = înlocuiește (fiecare whisky este interogat prin AI, durează mai mult)\nAnulează = completează doar temperaturile lipsă",
   cur_auto_set: "Moneda a fost setată automat la {name} – poate fi modificată la „Monedă”.",
@@ -9898,9 +9333,6 @@ ro: {
   rack_ph_cap: "Sticle/loc",
   rack_levels_title: "Niveluri: nume și sticle pe loc",
   rack_level_name: "Nume",
-  rack_blink_hint: "Fereastra de consum depășită sau se încheie cel târziu anul viitor",
-  rack_blink_lbl: "Clipire:",
-  rack_blink_first: "De băut întâi",
   rack_delete: "Șterge whisky-ul",
   dm_slot: "Din ce loc a fost luată?",
   dm_slot_none: "Sticlă fără loc",
@@ -10047,7 +9479,6 @@ hr: {
   fav_none: "Nema viskija za ovaj odabir.",
   nav_keller: "Kolekcija",
   nav_stats: "Statistika",
-  nav_ripe: "Zrelost",
   nav_history: "Povijest",
   nav_racks: "Police",
   nav_wish: "Lista želja",
@@ -10080,8 +9511,6 @@ hr: {
   he_title: "Uredi unos",
   stats_title: "Statistika",
   stats_sub: "Pregled",
-  ripe_title: "Zrelost",
-  ripe_sub: "Kada piti?",
   wish_title: "Lista želja",
   wish_sub: "Za kupiti",
   exp_title: "Izvoz i uvoz",
@@ -10150,18 +9579,7 @@ hr: {
   s_drunk: "Popijeni viskiji",
   s_drunkvalue: "Vrijednost popijenih viskija",
   s_nodrunk: "Još nijedan viski nije označen kao popijen.",
-  ripe_empty: "Nema viskija s<br>podatkom o razdoblju konzumacije.<br>Pri dodavanju ispunite „Piti od/do”.",
-  seg_young: "Mlado",
-  seg_optimal: "Optimalno",
-  seg_peak: "Vrhunac",
-  seg_over: "Prekoračeno",
   ripe_nomatch: "Nema viskija za ove filtre.",
-  st_wait1: "Pričekaj još 1 godinu",
-  st_wait: "Pričekaj još {n} god.",
-  st_optimal: "Pij sada — do {to}",
-  st_peak: "Sada na vrhuncu!",
-  st_over1: "Prekoračeno prije 1 godine",
-  st_over: "Prekoračeno prije {n} god.",
   wish_empty: "Još nema želja.<br>Dodajte viskije koje želite kupiti.",
   to_cellar: "→ Kolekcija",
   wish_add: "+ Dodaj želju",
@@ -10216,8 +9634,6 @@ hr: {
   ph_regal: "Polica",
   ph_ebene: "Razina",
   ph_platz: "Mjesto sl.",
-  l_from: "Piti od",
-  l_to: "Piti do",
   l_price: "Cijena",
   l_rating: "Ocjena",
   l_note: "Bilješka",
@@ -10246,7 +9662,6 @@ hr: {
   toast_name: "Unesite naziv",
   toast_scanfail: "Skeniranje nije uspjelo",
   toast_label: "Etiketa prepoznata ✓",
-  toast_label_ripe: "Etiketa prepoznata ✓ (zrelost procijenjena)",
   toast_loc: "Mjesto pohrane prepoznato ✓",
   toast_noloc: "Mjesto pohrane nije prepoznato",
   toast_nomatch: "U kolekciji nije pronađen odgovarajući viski",
@@ -10279,7 +9694,6 @@ hr: {
   setup_version: "Verzija",
   rack_delete_btn: "Izbriši regal",
   setup_general: "Općenito",
-  s_over_warn: "{n} boca je prošlo svoje razdoblje – pijte uskoro",
   s_bycountry: "Po zemlji",
   s_byregion: "Po regiji",
   s_bygrape: "Po destileriji",
@@ -10311,10 +9725,6 @@ hr: {
   cur_huf: "Mađarska forinta",
   cur_czk: "Češka kruna",
   cur_ron: "Rumunjski lej",
-  drinkrule_btn: "Ponovno izračunaj razdoblje pijenja",
-  drinkrule_desc: "Piti od = godina + 1; piti do prema vrsti viskija i destileriji",
-  drinkrule_confirm: "Za {n} viskija „piti od” postavlja se na godinu + 1 (prepisuju se i ručno unesene vrijednosti), a „piti do” prema potrebi prilagođava prema vrsti viskija i destileriji. Viskiji bez godine ostaju nepromijenjeni. Savjet: prvo izvezite JSON sigurnosnu kopiju. Nastaviti?",
-  drinkrule_done: "Ažurirano viskija: {n} ✓",
   barcode_miss_text: "Ovaj barkod nije u bazi podataka. Broj se ipak sprema uz viski kako bi se boca sljedeći put prepoznala. Fotografirati etiketu sada?",
   confirm_enrich_temp: "Zamijeniti i već postojeće temperature posluživanja vrijednostima umjetne inteligencije (uključujući one koje ste sami unijeli)?\n\nU redu = zamijeni (za svaki viski upituje se AI, to traje dulje)\nOtkaži = dopuni samo temperature koje nedostaju",
   cur_auto_set: "Valuta je automatski postavljena na {name} – može se promijeniti pod „Valuta“.",
@@ -10355,9 +9765,6 @@ hr: {
   rack_ph_cap: "Boca/mjesto",
   rack_levels_title: "Razine: naziv i boca po mjestu",
   rack_level_name: "Naziv",
-  rack_blink_hint: "Prošlo razdoblje pijenja ili završava najkasnije iduće godine",
-  rack_blink_lbl: "Treperenje:",
-  rack_blink_first: "Piti prvo",
   rack_delete: "Izbriši viski",
   dm_slot: "Iz kojeg je mjesta uzeta?",
   dm_slot_none: "Boca bez mjesta",
@@ -10504,7 +9911,6 @@ pt: {
   fav_none: "Nenhum uísque para esta seleção.",
   nav_keller: "Coleção",
   nav_stats: "Dados",
-  nav_ripe: "Maturação",
   nav_history: "Histórico",
   nav_racks: "Prateleiras",
   nav_wish: "Lista de desejos",
@@ -10537,8 +9943,6 @@ pt: {
   he_title: "Editar entrada",
   stats_title: "Estatísticas",
   stats_sub: "Visão geral",
-  ripe_title: "Maturação",
-  ripe_sub: "Quando beber?",
   wish_title: "Lista de desejos",
   wish_sub: "Ainda por comprar",
   exp_title: "Exportar e Importar",
@@ -10607,18 +10011,7 @@ pt: {
   s_drunk: "Uísques bebidos",
   s_drunkvalue: "Valor dos uísques bebidos",
   s_nodrunk: "Ainda nenhum uísque marcado como bebido.",
-  ripe_empty: "Nenhum uísque com<br>indicação de maturação.<br>Preencha „Beber de/até\" ao adicionar.",
-  seg_young: "Jovem",
-  seg_optimal: "Ótimo",
-  seg_peak: "Auge",
-  seg_over: "Ultrapassado",
   ripe_nomatch: "Nenhum uísque corresponde a estes filtros.",
-  st_wait1: "Esperar mais 1 ano",
-  st_wait: "Esperar mais {n} anos",
-  st_optimal: "Beber agora — até {to}",
-  st_peak: "No seu auge agora!",
-  st_over1: "Ultrapassado há 1 ano",
-  st_over: "Ultrapassado há {n} anos",
   wish_empty: "Ainda sem desejos.<br>Adicione uísques que gostaria de comprar.",
   to_cellar: "→ Coleção",
   wish_add: "+ Adicionar desejo",
@@ -10673,8 +10066,6 @@ pt: {
   ph_regal: "Prateleira",
   ph_ebene: "Nível",
   ph_platz: "Lugar esq.",
-  l_from: "Beber a partir de",
-  l_to: "Beber até",
   l_price: "Preço",
   l_rating: "Avaliação",
   l_note: "Nota",
@@ -10703,7 +10094,6 @@ pt: {
   toast_name: "Introduza um nome",
   toast_scanfail: "A digitalização falhou",
   toast_label: "Rótulo reconhecido ✓",
-  toast_label_ripe: "Rótulo reconhecido ✓ (maturação estimada)",
   toast_loc: "Local de armazenamento reconhecido ✓",
   toast_noloc: "Nenhum local de armazenamento reconhecido",
   toast_nomatch: "Nenhum uísque correspondente encontrado na coleção",
@@ -10736,7 +10126,6 @@ pt: {
   setup_version: "Versão",
   rack_delete_btn: "Eliminar prateleira",
   setup_general: "Geral",
-  s_over_warn: "{n} garrafas passaram do prazo – beber em breve",
   s_bycountry: "Por país",
   s_byregion: "Por região",
   s_bygrape: "Por destilaria",
@@ -10768,10 +10157,6 @@ pt: {
   cur_huf: "Forint húngaro",
   cur_czk: "Coroa checa",
   cur_ron: "Leu romeno",
-  drinkrule_btn: "Recalcular janela de consumo",
-  drinkrule_desc: "Beber a partir de = ano + 1; beber até conforme o tipo de uísque e a destilaria",
-  drinkrule_confirm: "Para {n} uísques, «beber a partir de» será definido como ano + 1 (os valores introduzidos manualmente são substituídos) e «beber até» ajustado conforme o tipo de uísque e a destilaria, se necessário. Os uísques sem ano ficam inalterados. Dica: exporte antes uma cópia de segurança JSON. Continuar?",
-  drinkrule_done: "{n} uísque(s) atualizado(s) ✓",
   barcode_miss_text: "Este código de barras não consta da base de dados. O número fica guardado com o uísque, para que a garrafa seja reconhecida da próxima vez. Fotografar agora o rótulo?",
   confirm_enrich_temp: "Substituir também as temperaturas de serviço já existentes por valores de IA (incluindo as que introduziu)?\n\nOK = substituir (cada uísque é consultado pela IA, o que demora mais)\nCancelar = preencher apenas as temperaturas em falta",
   cur_auto_set: "Moeda definida automaticamente para {name} – pode ser alterada em «Moeda».",
@@ -10812,9 +10197,6 @@ pt: {
   rack_ph_cap: "Garrafas/lugar",
   rack_levels_title: "Níveis: nome e garrafas por lugar",
   rack_level_name: "Nome",
-  rack_blink_hint: "Fora da janela de consumo ou a terminar no máximo no próximo ano",
-  rack_blink_lbl: "Piscar:",
-  rack_blink_first: "Beber primeiro",
   rack_delete: "Eliminar uísque",
   dm_slot: "De que lugar foi retirada?",
   dm_slot_none: "Garrafa sem lugar",
@@ -10961,7 +10343,6 @@ no: {
   fav_none: "Ingen whiskyer for dette utvalget.",
   nav_keller: "Samling",
   nav_stats: "Statistikk",
-  nav_ripe: "Modning",
   nav_history: "Historikk",
   nav_racks: "Hyller",
   nav_wish: "Ønskeliste",
@@ -10994,8 +10375,6 @@ no: {
   he_title: "Rediger oppføring",
   stats_title: "Statistikk",
   stats_sub: "Oversikt",
-  ripe_title: "Drikkemodning",
-  ripe_sub: "Når skal man drikke?",
   wish_title: "Ønskeliste",
   wish_sub: "Gjenstår å kjøpe",
   exp_title: "Eksport & Import",
@@ -11064,18 +10443,7 @@ no: {
   s_drunk: "Drukne whiskyer",
   s_drunkvalue: "Verdi av drukne whiskyer",
   s_nodrunk: "Ingen whiskyer er markert som drukket ennå.",
-  ripe_empty: "Ingen whiskyer med<br>angitt drikkemodning.<br>Fyll ut „Drikk fra/til\" når du legger til.",
-  seg_young: "Ung",
-  seg_optimal: "Optimal",
-  seg_peak: "Topp",
-  seg_over: "Overskredet",
   ripe_nomatch: "Ingen whiskyer samsvarer med disse filtrene.",
-  st_wait1: "Vent 1 år til",
-  st_wait: "Vent {n} år til",
-  st_optimal: "Drikk nå — til {to}",
-  st_peak: "På sitt høydepunkt nå!",
-  st_over1: "Overskredet for 1 år siden",
-  st_over: "Overskredet for {n} år siden",
   wish_empty: "Ingen ønsker ennå.<br>Legg til whiskyer du vil kjøpe.",
   to_cellar: "→ Samling",
   wish_add: "+ Legg til ønske",
@@ -11130,8 +10498,6 @@ no: {
   ph_regal: "Hylle",
   ph_ebene: "Nivå",
   ph_platz: "Plass fra v.",
-  l_from: "Drikk fra",
-  l_to: "Drikk til",
   l_price: "Pris",
   l_rating: "Vurdering",
   l_note: "Notat",
@@ -11160,7 +10526,6 @@ no: {
   toast_name: "Skriv inn et navn",
   toast_scanfail: "Skanning mislyktes",
   toast_label: "Etikett gjenkjent ✓",
-  toast_label_ripe: "Etikett gjenkjent ✓ (drikkemodning estimert)",
   toast_loc: "Lagringsplass gjenkjent ✓",
   toast_noloc: "Ingen lagringsplass gjenkjent",
   toast_nomatch: "Fant ingen samsvarende whisky i samlingen",
@@ -11193,7 +10558,6 @@ no: {
   setup_version: "Versjon",
   rack_delete_btn: "Slett hylle",
   setup_general: "Generelt",
-  s_over_warn: "{n} flasker er over tiden – drikk snart",
   s_bycountry: "Etter land",
   s_byregion: "Etter region",
   s_bygrape: "Etter destilleri",
@@ -11225,10 +10589,6 @@ no: {
   cur_huf: "Ungarsk forint",
   cur_czk: "Tsjekkisk krone",
   cur_ron: "Rumensk leu",
-  drinkrule_btn: "Beregn drikkevindu på nytt",
-  drinkrule_desc: "Drikk fra = år + 1; drikk til etter whiskytype og destilleri",
-  drinkrule_confirm: "For {n} whiskyer settes «drikk fra» til år + 1 (verdier du har skrevet inn selv, overskrives), og «drikk til» justeres etter whiskytype og destilleri ved behov. Whiskyer uten år forblir uendret. Tips: eksporter en JSON-sikkerhetskopi først. Fortsette?",
-  drinkrule_done: "{n} whisky(er) oppdatert ✓",
   barcode_miss_text: "Denne strekkoden finnes ikke i databasen. Nummeret lagres likevel sammen med whiskyen, slik at flasken gjenkjennes neste gang. Fotografere etiketten nå?",
   confirm_enrich_temp: "Skal eksisterende serveringstemperaturer også erstattes med AI-verdier (inkludert de du har skrevet inn selv)?\n\nOK = erstatt (hver whisky spørres via AI, det tar lengre tid)\nAvbryt = fyll bare ut manglende temperaturer",
   cur_auto_set: "Valutaen ble automatisk satt til {name} – kan endres under «Valuta».",
@@ -11269,9 +10629,6 @@ no: {
   rack_ph_cap: "Flasker/plass",
   rack_levels_title: "Hyller: navn og flasker per plass",
   rack_level_name: "Navn",
-  rack_blink_hint: "Forbi drikkevinduet eller slutter senest neste år",
-  rack_blink_lbl: "Blink:",
-  rack_blink_first: "Drikk først",
   rack_delete: "Slett whisky",
   dm_slot: "Fra hvilken plass ble den tatt?",
   dm_slot_none: "Flaske uten plass",
@@ -11418,7 +10775,6 @@ nl: {
   fav_none: "Geen whisky's voor deze selectie.",
   nav_keller: "Collectie",
   nav_stats: "Cijfers",
-  nav_ripe: "Rijpheid",
   nav_history: "Historie",
   nav_racks: "Rekken",
   nav_wish: "Verlanglijst",
@@ -11451,8 +10807,6 @@ nl: {
   he_title: "Vermelding bewerken",
   stats_title: "Statistieken",
   stats_sub: "Overzicht",
-  ripe_title: "Drinkrijpheid",
-  ripe_sub: "Wanneer drinken?",
   wish_title: "Verlanglijst",
   wish_sub: "Nog te kopen",
   exp_title: "Export & Import",
@@ -11521,18 +10875,7 @@ nl: {
   s_drunk: "Gedronken whisky's",
   s_drunkvalue: "Waarde van gedronken whisky's",
   s_nodrunk: "Er zijn nog geen whisky's als gedronken gemarkeerd.",
-  ripe_empty: "Geen whisky's met<br>drinkrijpheidsgegevens.<br>Vul „Drinken vanaf/tot\" in bij het toevoegen.",
-  seg_young: "Jong",
-  seg_optimal: "Optimaal",
-  seg_peak: "Piek",
-  seg_over: "Overschreden",
   ripe_nomatch: "Geen whisky's komen overeen met deze filters.",
-  st_wait1: "Nog 1 jaar wachten",
-  st_wait: "Nog {n} jaar wachten",
-  st_optimal: "Nu drinken — tot {to}",
-  st_peak: "Nu op zijn hoogtepunt!",
-  st_over1: "1 jaar overschreden",
-  st_over: "{n} jaar overschreden",
   wish_empty: "Nog geen wensen.<br>Voeg whisky's toe die je wilt kopen.",
   to_cellar: "→ Collectie",
   wish_add: "+ Wens toevoegen",
@@ -11587,8 +10930,6 @@ nl: {
   ph_regal: "Rek",
   ph_ebene: "Niveau",
   ph_platz: "Plaats v.l.",
-  l_from: "Drinken vanaf",
-  l_to: "Drinken tot",
   l_price: "Prijs",
   l_rating: "Beoordeling",
   l_note: "Notitie",
@@ -11617,7 +10958,6 @@ nl: {
   toast_name: "Voer een naam in",
   toast_scanfail: "Scannen mislukt",
   toast_label: "Etiket herkend ✓",
-  toast_label_ripe: "Etiket herkend ✓ (drinkrijpheid geschat)",
   toast_loc: "Opslagplaats herkend ✓",
   toast_noloc: "Geen opslagplaats herkend",
   toast_nomatch: "Geen overeenkomende whisky gevonden in de collectie",
@@ -11650,7 +10990,6 @@ nl: {
   setup_version: "Versie",
   rack_delete_btn: "Rek verwijderen",
   setup_general: "Algemeen",
-  s_over_warn: "{n} flessen zijn over hun hoogtepunt – binnenkort drinken",
   s_bycountry: "Per land",
   s_byregion: "Per regio",
   s_bygrape: "Per distilleerderij",
@@ -11682,10 +11021,6 @@ nl: {
   cur_huf: "Hongaarse forint",
   cur_czk: "Tsjechische kroon",
   cur_ron: "Roemeense leu",
-  drinkrule_btn: "Drinkvenster opnieuw berekenen",
-  drinkrule_desc: "Drinken vanaf = jaar + 1; drinken tot naar whiskysoort en distilleerderij",
-  drinkrule_confirm: "Voor {n} whisky's wordt „drinken vanaf\" ingesteld op jaar + 1 (handmatig ingevoerde waarden worden overschreven) en wordt „drinken tot\" waar nodig aangepast naar whiskysoort en distilleerderij. Whisky's zonder jaar blijven ongewijzigd. Tip: exporteer eerst een JSON-back-up. Doorgaan?",
-  drinkrule_done: "{n} whisky('s) bijgewerkt ✓",
   barcode_miss_text: "Deze barcode staat niet in de database. Het nummer wordt toch bij de whisky opgeslagen, zodat de fles de volgende keer wordt herkend. Nu het etiket fotograferen?",
   confirm_enrich_temp: "Ook bestaande serveertemperaturen vervangen door AI-waarden (inclusief die je zelf hebt ingevoerd)?\n\nOK = vervangen (elke whisky wordt via AI opgevraagd, dat duurt langer)\nAnnuleren = alleen ontbrekende temperaturen aanvullen",
   cur_auto_set: "Valuta automatisch ingesteld op {name} – te wijzigen onder „Valuta”.",
@@ -11726,9 +11061,6 @@ nl: {
   rack_ph_cap: "Flessen/plek",
   rack_levels_title: "Niveaus: naam en flessen per plek",
   rack_level_name: "Naam",
-  rack_blink_hint: "Drinkvenster voorbij of eindigt uiterlijk volgend jaar",
-  rack_blink_lbl: "Knipperen:",
-  rack_blink_first: "Eerst drinken",
   rack_delete: "Whisky verwijderen",
   dm_slot: "Uit welke plek genomen?",
   dm_slot_none: "Fles zonder plek",
@@ -11875,7 +11207,6 @@ el: {
   fav_none: "Κανένα ουίσκι γι' αυτή την επιλογή.",
   nav_keller: "Συλλογή",
   nav_stats: "Στατιστικά",
-  nav_ripe: "Ωριμότητα",
   nav_history: "Ιστορικό",
   nav_racks: "Ράφια",
   nav_wish: "Επιθυμίες",
@@ -11908,8 +11239,6 @@ el: {
   he_title: "Επεξεργασία εγγραφής",
   stats_title: "Στατιστικά του Ocho",
   stats_sub: "Επισκόπηση",
-  ripe_title: "Παράθυρο κατανάλωσης",
-  ripe_sub: "Πότε να το πιείτε;",
   wish_title: "Λίστα επιθυμιών του Ocho",
   wish_sub: "Για αγορά",
   exp_title: "Εξαγωγή & Εισαγωγή",
@@ -11978,18 +11307,7 @@ el: {
   s_drunk: "Ουίσκι που ήπιατε",
   s_drunkvalue: "Αξία των ουίσκι που ήπιατε",
   s_nodrunk: "Δεν έχει σημειωθεί ακόμη κανένα ουίσκι ως πιωμένο.",
-  ripe_empty: "Κανένα ουίσκι με<br>παράθυρο κατανάλωσης.<br>Συμπληρώστε το \"Πιείτε από/έως\" κατά την προσθήκη.",
-  seg_young: "Νέο",
-  seg_optimal: "Βέλτιστο",
-  seg_peak: "Αιχμή",
-  seg_over: "Ξεπεράστηκε",
   ripe_nomatch: "Κανένα ουίσκι δεν ταιριάζει με αυτά τα φίλτρα.",
-  st_wait1: "Περιμένετε ακόμη 1 χρόνο",
-  st_wait: "Περιμένετε ακόμη {n} χρόνια",
-  st_optimal: "Πιείτε τώρα — έως {to}",
-  st_peak: "Τώρα στην αιχμή του!",
-  st_over1: "Πέρασε το παράθυρο κατά 1 χρόνο",
-  st_over: "Πέρασε το παράθυρο κατά {n} χρόνια",
   wish_empty: "Καμία επιθυμία ακόμη.<br>Προσθέστε ουίσκι που θα θέλατε να αγοράσετε.",
   to_cellar: "→ Συλλογή",
   wish_add: "+ Νέα επιθυμία",
@@ -12044,8 +11362,6 @@ el: {
   ph_regal: "Ράφι",
   ph_ebene: "Επίπεδο",
   ph_platz: "Θέση από αρ.",
-  l_from: "Πιείτε από",
-  l_to: "Πιείτε έως",
   l_price: "Τιμή",
   l_rating: "Βαθμολογία",
   l_note: "Σημείωση",
@@ -12074,7 +11390,6 @@ el: {
   toast_name: "Εισαγάγετε ένα όνομα",
   toast_scanfail: "Η σάρωση απέτυχε",
   toast_label: "Η ετικέτα αναγνωρίστηκε ✓",
-  toast_label_ripe: "Η ετικέτα αναγνωρίστηκε ✓ (εκτιμώμενο παράθυρο)",
   toast_loc: "Η θέση αποθήκευσης αναγνωρίστηκε ✓",
   toast_noloc: "Δεν αναγνωρίστηκε θέση αποθήκευσης",
   toast_nomatch: "Δεν βρέθηκε αντίστοιχο ουίσκι στη συλλογή",
@@ -12107,7 +11422,6 @@ el: {
   setup_version: "Έκδοση",
   rack_delete_btn: "Διαγραφή ραφιού",
   setup_general: "Γενικά",
-  s_over_warn: "{n} φιάλες έχουν περάσει το όριο – πιείτε σύντομα",
   s_bycountry: "Ανά χώρα",
   s_byregion: "Ανά περιοχή",
   s_bygrape: "Ανά αποστακτήριο",
@@ -12139,10 +11453,6 @@ el: {
   cur_huf: "Ουγγρικό φιορίνι",
   cur_czk: "Τσεχική κορώνα",
   cur_ron: "Ρουμανικό λέου",
-  drinkrule_btn: "Επανυπολογισμός παραθύρου κατανάλωσης",
-  drinkrule_desc: "Πίνετε από = έτος + 1· πίνετε έως ανάλογα με τον τύπο ουίσκι και το αποστακτήριο",
-  drinkrule_confirm: "Για {n} ουίσκι, το «πίνετε από» θα οριστεί σε έτος + 1 (οι τιμές που εισαγάγατε χειροκίνητα αντικαθίστανται) και το «πίνετε έως» θα προσαρμοστεί ανάλογα με τον τύπο ουίσκι και το αποστακτήριο όπου χρειάζεται. Τα ουίσκι χωρίς έτος παραμένουν ως έχουν. Συμβουλή: εξαγάγετε πρώτα αντίγραφο ασφαλείας JSON. Συνέχεια;",
-  drinkrule_done: "{n} ουίσκι ενημερώθηκαν ✓",
   barcode_miss_text: "Αυτό το barcode δεν υπάρχει στη βάση δεδομένων. Ο αριθμός αποθηκεύεται πάντως μαζί με το ουίσκι, ώστε το μπουκάλι να αναγνωριστεί την επόμενη φορά. Να φωτογραφίσετε τώρα την ετικέτα;",
   confirm_enrich_temp: "Να αντικατασταθούν και οι υπάρχουσες θερμοκρασίες σερβιρίσματος με τιμές AI (συμπεριλαμβανομένων όσων εισαγάγατε οι ίδιοι);\n\nΟΚ = αντικατάσταση (κάθε ουίσκι ερωτάται μέσω AI, κάτι που διαρκεί περισσότερο)\nΑκύρωση = συμπλήρωση μόνο των θερμοκρασιών που λείπουν",
   cur_auto_set: "Το νόμισμα ορίστηκε αυτόματα σε {name} – μπορεί να αλλάξει στο «Νόμισμα».",
@@ -12183,9 +11493,6 @@ el: {
   rack_ph_cap: "Φιάλες/θέση",
   rack_levels_title: "Επίπεδα: όνομα και φιάλες ανά θέση",
   rack_level_name: "Όνομα",
-  rack_blink_hint: "Πέρασαν το παράθυρο κατανάλωσης ή λήγουν μέχρι του χρόνου",
-  rack_blink_lbl: "Αναβόσβημα:",
-  rack_blink_first: "Πιείτε πρώτα",
   rack_delete: "Διαγραφή ουίσκι",
   dm_slot: "Από ποια θέση πάρθηκε;",
   dm_slot_none: "Η φιάλη δεν είναι σε θέση",
@@ -12332,7 +11639,6 @@ uk: {
   fav_none: "Немає віскі для цього вибору.",
   nav_keller: "Колекція",
   nav_stats: "Статистика",
-  nav_ripe: "Зрілість",
   nav_history: "Історія",
   nav_racks: "Стелажі",
   nav_wish: "Бажання",
@@ -12365,8 +11671,6 @@ uk: {
   he_title: "Редагувати запис",
   stats_title: "Статистика Ocho",
   stats_sub: "Огляд",
-  ripe_title: "Вікно споживання",
-  ripe_sub: "Коли пити?",
   wish_title: "Список бажань Ocho",
   wish_sub: "Ще купити",
   exp_title: "Експорт та імпорт",
@@ -12435,18 +11739,7 @@ uk: {
   s_drunk: "Випите віскі",
   s_drunkvalue: "Вартість випитого віскі",
   s_nodrunk: "Ще немає віскі, позначеного як випите.",
-  ripe_empty: "Ще немає віскі з<br>вікном споживання.<br>Заповніть \"Пити від/до\" під час додавання.",
-  seg_young: "Молоде",
-  seg_optimal: "Оптимальне",
-  seg_peak: "Пік",
-  seg_over: "Прострочене",
   ripe_nomatch: "Жодне віскі не відповідає цим фільтрам.",
-  st_wait1: "Зачекайте ще 1 рік",
-  st_wait: "Зачекайте ще {n} р.",
-  st_optimal: "Пийте зараз — до {to}",
-  st_peak: "Зараз на піку!",
-  st_over1: "Вікно минуло 1 рік тому",
-  st_over: "Вікно минуло {n} р. тому",
   wish_empty: "Ще немає бажань.<br>Додайте віскі, які хотіли б купити.",
   to_cellar: "→ Колекція",
   wish_add: "+ Додати бажання",
@@ -12501,8 +11794,6 @@ uk: {
   ph_regal: "Стелаж",
   ph_ebene: "Рівень",
   ph_platz: "Місце зл.",
-  l_from: "Пити від",
-  l_to: "Пити до",
   l_price: "Ціна",
   l_rating: "Оцінка",
   l_note: "Нотатка",
@@ -12531,7 +11822,6 @@ uk: {
   toast_name: "Введіть назву",
   toast_scanfail: "Не вдалося сканувати",
   toast_label: "Етикетку розпізнано ✓",
-  toast_label_ripe: "Етикетку розпізнано ✓ (вікно оцінено приблизно)",
   toast_loc: "Місце зберігання розпізнано ✓",
   toast_noloc: "Місце зберігання не розпізнано",
   toast_nomatch: "У колекції не знайдено відповідного віскі",
@@ -12564,7 +11854,6 @@ uk: {
   setup_version: "Версія",
   rack_delete_btn: "Видалити стелаж",
   setup_general: "Загальні",
-  s_over_warn: "{n} пляшок минули свій термін – пийте скоро",
   s_bycountry: "За країнами",
   s_byregion: "За регіонами",
   s_bygrape: "За винокурнями",
@@ -12596,10 +11885,6 @@ uk: {
   cur_huf: "Угорський форинт",
   cur_czk: "Чеська крона",
   cur_ron: "Румунський лей",
-  drinkrule_btn: "Перерахувати вікно вживання",
-  drinkrule_desc: "Пити з = рік + 1; пити до — за типом віскі та винокурнею",
-  drinkrule_confirm: "Для {n} віскі значення «пити з» буде встановлено як рік + 1 (введені вручну значення буде перезаписано), а «пити до» за потреби буде скориговано за типом віскі та винокурнею. Віскі без року залишаться без змін. Порада: спершу експортуйте резервну копію JSON. Продовжити?",
-  drinkrule_done: "{n} віскі оновлено ✓",
   barcode_miss_text: "Цього штрихкоду немає в базі даних. Номер усе одно збережеться разом із віскі, щоб пляшку розпізнали наступного разу. Сфотографувати етикетку зараз?",
   confirm_enrich_temp: "Замінити також наявні температури подачі значеннями від AI (зокрема введені вами вручну)?\n\nOK = замінити (кожне віскі запитується через AI, це триває довше)\nСкасувати = заповнити лише відсутні температури",
   cur_auto_set: "Валюту автоматично змінено на {name} – її можна змінити в розділі «Валюта».",
@@ -12640,9 +11925,6 @@ uk: {
   rack_ph_cap: "Пляшок/місце",
   rack_levels_title: "Рівні: назва та кількість пляшок у місці",
   rack_level_name: "Назва",
-  rack_blink_hint: "Вікно споживання минуло або закінчується до наступного року",
-  rack_blink_lbl: "Мигання:",
-  rack_blink_first: "Пити першими",
   rack_delete: "Видалити віскі",
   dm_slot: "З якого місця взято?",
   dm_slot_none: "Пляшка не на місці",
@@ -12789,7 +12071,6 @@ ja: {
   fav_none: "この条件に該当するウイスキーはありません。",
   nav_keller: "コレクション",
   nav_stats: "統計",
-  nav_ripe: "飲み頃",
   nav_history: "履歴",
   nav_racks: "ラック",
   nav_wish: "ほしい物",
@@ -12822,8 +12103,6 @@ ja: {
   he_title: "記録を編集",
   stats_title: "Ochoの統計",
   stats_sub: "概要",
-  ripe_title: "飲み頃",
-  ripe_sub: "いつ飲む？",
   wish_title: "Ochoのウィッシュリスト",
   wish_sub: "これから買うもの",
   exp_title: "エクスポートとインポート",
@@ -12892,18 +12171,7 @@ ja: {
   s_drunk: "飲んだウイスキー",
   s_drunkvalue: "飲んだウイスキーの価値",
   s_nodrunk: "飲んだウイスキーはまだありません。",
-  ripe_empty: "飲み頃が登録された<br>ウイスキーはまだありません。<br>追加時に「飲み頃(開始/終了)」を入力してください。",
-  seg_young: "若い",
-  seg_optimal: "適熟",
-  seg_peak: "ピーク",
-  seg_over: "飲み頃過ぎ",
   ripe_nomatch: "これらの条件に一致するウイスキーはありません。",
-  st_wait1: "あと1年待ちましょう",
-  st_wait: "あと{n}年待ちましょう",
-  st_optimal: "今が飲み頃 — {to}年まで",
-  st_peak: "今がピークです！",
-  st_over1: "飲み頃を1年過ぎています",
-  st_over: "飲み頃を{n}年過ぎています",
   wish_empty: "ほしいものはまだありません。<br>購入したいウイスキーを追加しましょう。",
   to_cellar: "→ コレクションへ",
   wish_add: "+ ウィッシュを追加",
@@ -12958,8 +12226,6 @@ ja: {
   ph_regal: "ラック",
   ph_ebene: "段",
   ph_platz: "左から",
-  l_from: "飲み頃の開始",
-  l_to: "飲み頃の終了",
   l_price: "価格",
   l_rating: "評価",
   l_note: "メモ",
@@ -12988,7 +12254,6 @@ ja: {
   toast_name: "名前を入力してください",
   toast_scanfail: "スキャンに失敗しました",
   toast_label: "ラベルを認識しました ✓",
-  toast_label_ripe: "ラベルを認識しました ✓（飲み頃は推定）",
   toast_loc: "保管場所を認識しました ✓",
   toast_noloc: "保管場所を認識できませんでした",
   toast_nomatch: "コレクション内に該当するウイスキーが見つかりません",
@@ -13021,7 +12286,6 @@ ja: {
   setup_version: "バージョン",
   rack_delete_btn: "ラックを削除",
   setup_general: "一般",
-  s_over_warn: "{n} 本が飲み頃を過ぎています – 早めにお飲みください",
   s_bycountry: "国別",
   s_byregion: "地域別",
   s_bygrape: "蒸溜所別",
@@ -13053,10 +12317,6 @@ ja: {
   cur_huf: "ハンガリー・フォリント",
   cur_czk: "チェコ・コルナ",
   cur_ron: "ルーマニア・レウ",
-  drinkrule_btn: "飲み頃を再計算",
-  drinkrule_desc: "飲み頃の開始 = 年 + 1、終了はウイスキーの種類と蒸溜所で決定",
-  drinkrule_confirm: "{n}件のウイスキーについて、「飲み頃の開始」を年 + 1に設定し（手動で入力した値は上書きされます）、「飲み頃の終了」は必要に応じてウイスキーの種類と蒸溜所に合わせて調整します。年のないウイスキーは変更されません。ヒント: 先にJSONバックアップをエクスポートしてください。続行しますか？",
-  drinkrule_done: "{n}件のウイスキーを更新しました ✓",
   barcode_miss_text: "このバーコードはデータベースにありません。番号はウイスキーと一緒に保存されるため、次回はボトルが認識されます。今すぐラベルを撮影しますか？",
   confirm_enrich_temp: "既存の提供温度もAIの値で置き換えますか（自分で入力した値を含む）？\n\nOK = 置き換える（すべてのウイスキーをAIに問い合わせるため時間がかかります）\nキャンセル = 未入力の温度のみ補完する",
   cur_auto_set: "通貨を自動的に{name}に設定しました。「通貨」で変更できます。",
@@ -13097,9 +12357,6 @@ ja: {
   rack_ph_cap: "ボトル数/場所",
   rack_levels_title: "段: 名前と1か所あたりのボトル数",
   rack_level_name: "名前",
-  rack_blink_hint: "飲み頃を過ぎている、または来年までに終わるもの",
-  rack_blink_lbl: "点滅:",
-  rack_blink_first: "先に飲む",
   rack_delete: "ウイスキーを削除",
   dm_slot: "どの場所から取り出しましたか？",
   dm_slot_none: "場所に置かれていないボトル",
@@ -13246,7 +12503,6 @@ ko: {
   fav_none: "이 조건에 해당하는 위스키가 없어요.",
   nav_keller: "컬렉션",
   nav_stats: "통계",
-  nav_ripe: "적기",
   nav_history: "기록",
   nav_racks: "랙",
   nav_wish: "위시리스트",
@@ -13279,8 +12535,6 @@ ko: {
   he_title: "기록 수정",
   stats_title: "Ocho의 통계",
   stats_sub: "개요",
-  ripe_title: "음용 적기",
-  ripe_sub: "언제 마실까요?",
   wish_title: "Ocho의 위시리스트",
   wish_sub: "구매 예정",
   exp_title: "내보내기 및 가져오기",
@@ -13349,18 +12603,7 @@ ko: {
   s_drunk: "마신 위스키",
   s_drunkvalue: "마신 위스키의 가치",
   s_nodrunk: "아직 마신 것으로 표시된 위스키가 없어요.",
-  ripe_empty: "아직 음용 적기가 있는<br>위스키가 없어요.<br>추가할 때 \"마시기 시작/종료\"를 입력하세요.",
-  seg_young: "숙성 전",
-  seg_optimal: "적기",
-  seg_peak: "절정",
-  seg_over: "기한 초과",
   ripe_nomatch: "이 필터에 맞는 위스키가 없어요.",
-  st_wait1: "1년 더 기다리세요",
-  st_wait: "{n}년 더 기다리세요",
-  st_optimal: "지금 마시기 좋아요 — {to}까지",
-  st_peak: "지금이 절정이에요!",
-  st_over1: "적기를 1년 넘겼어요",
-  st_over: "적기를 {n}년 넘겼어요",
   wish_empty: "아직 위시가 없어요.<br>사고 싶은 위스키를 추가해 보세요.",
   to_cellar: "→ 컬렉션",
   wish_add: "+ 위시 추가",
@@ -13415,8 +12658,6 @@ ko: {
   ph_regal: "랙",
   ph_ebene: "단",
   ph_platz: "칸(왼쪽부터)",
-  l_from: "마시기 시작",
-  l_to: "마시기 종료",
   l_price: "가격",
   l_rating: "평점",
   l_note: "메모",
@@ -13445,7 +12686,6 @@ ko: {
   toast_name: "이름을 입력해 주세요",
   toast_scanfail: "스캔에 실패했어요",
   toast_label: "라벨을 인식했어요 ✓",
-  toast_label_ripe: "라벨을 인식했어요 ✓ (적기 추정)",
   toast_loc: "보관 위치를 인식했어요 ✓",
   toast_noloc: "보관 위치를 인식하지 못했어요",
   toast_nomatch: "컬렉션에서 일치하는 위스키를 찾을 수 없어요",
@@ -13478,7 +12718,6 @@ ko: {
   setup_version: "버전",
   rack_delete_btn: "랙 삭제",
   setup_general: "일반",
-  s_over_warn: "{n}병이 음용 시기를 지났습니다 – 곧 드세요",
   s_bycountry: "국가별",
   s_byregion: "지역별",
   s_bygrape: "증류소별",
@@ -13510,10 +12749,6 @@ ko: {
   cur_huf: "헝가리 포린트",
   cur_czk: "체코 코루나",
   cur_ron: "루마니아 레우",
-  drinkrule_btn: "음용 시기 다시 계산",
-  drinkrule_desc: "마시기 시작 = 연도 + 1, 마시는 기한은 위스키 종류와 증류소에 따라",
-  drinkrule_confirm: "위스키 {n}개의 \"마시기 시작\"이 연도 + 1로 설정되고(직접 입력한 값은 덮어써져요), \"마시는 기한\"은 필요에 따라 위스키 종류와 증류소에 맞게 조정돼요. 연도가 없는 위스키는 그대로 유지돼요. 팁: 먼저 JSON 백업을 내보내세요. 계속할까요?",
-  drinkrule_done: "위스키 {n}개를 업데이트했어요 ✓",
   barcode_miss_text: "이 바코드는 데이터베이스에 없어요. 번호는 위스키와 함께 저장되므로 다음에는 병을 인식할 수 있어요. 지금 라벨을 촬영할까요?",
   confirm_enrich_temp: "이미 있는 서빙 온도도 AI 값으로 교체할까요(직접 입력한 값 포함)?\n\n확인 = 교체(모든 위스키를 AI로 조회하므로 시간이 더 걸려요)\n취소 = 누락된 온도만 채우기",
   cur_auto_set: "통화가 자동으로 {name}(으)로 설정되었습니다. “통화”에서 변경할 수 있습니다.",
@@ -13554,9 +12789,6 @@ ko: {
   rack_ph_cap: "칸당 병 수",
   rack_levels_title: "단: 이름과 칸당 병 수",
   rack_level_name: "이름",
-  rack_blink_hint: "음용 적기를 지났거나 내년까지인 와인",
-  rack_blink_lbl: "깜박임:",
-  rack_blink_first: "먼저 마시기",
   rack_delete: "위스키 삭제",
   dm_slot: "어느 칸에서 꺼냈나요?",
   dm_slot_none: "칸에 없는 병",
@@ -13703,7 +12935,6 @@ zh: {
   fav_none: "此筛选下没有威士忌。",
   nav_keller: "收藏",
   nav_stats: "统计",
-  nav_ripe: "适饮",
   nav_history: "历史",
   nav_racks: "酒架",
   nav_wish: "心愿单",
@@ -13736,8 +12967,6 @@ zh: {
   he_title: "编辑记录",
   stats_title: "Ocho的统计",
   stats_sub: "概览",
-  ripe_title: "适饮期",
-  ripe_sub: "何时饮用？",
   wish_title: "Ocho的心愿单",
   wish_sub: "待购买",
   exp_title: "导出与导入",
@@ -13806,18 +13035,7 @@ zh: {
   s_drunk: "已喝的威士忌",
   s_drunkvalue: "已喝威士忌的价值",
   s_nodrunk: "还没有标记为已喝的威士忌。",
-  ripe_empty: "还没有设置<br>适饮期的威士忌。<br>添加时请填写「适饮起/止」。",
-  seg_young: "尚年轻",
-  seg_optimal: "最佳",
-  seg_peak: "巅峰",
-  seg_over: "已过期",
   ripe_nomatch: "没有符合这些筛选条件的威士忌。",
-  st_wait1: "再等 1 年",
-  st_wait: "再等 {n} 年",
-  st_optimal: "现在适饮 — 至 {to}",
-  st_peak: "正值巅峰！",
-  st_over1: "已超出适饮期 1 年",
-  st_over: "已超出适饮期 {n} 年",
   wish_empty: "还没有心愿。<br>添加您想购买的威士忌。",
   to_cellar: "→ 收藏",
   wish_add: "+ 添加心愿",
@@ -13872,8 +13090,6 @@ zh: {
   ph_regal: "酒架",
   ph_ebene: "层",
   ph_platz: "左起位",
-  l_from: "适饮起",
-  l_to: "适饮至",
   l_price: "价格",
   l_rating: "评分",
   l_note: "备注",
@@ -13902,7 +13118,6 @@ zh: {
   toast_name: "请输入名称",
   toast_scanfail: "扫描失败",
   toast_label: "已识别酒标 ✓",
-  toast_label_ripe: "已识别酒标 ✓（适饮期为估算）",
   toast_loc: "已识别存放位置 ✓",
   toast_noloc: "未识别到存放位置",
   toast_nomatch: "在收藏中未找到匹配的威士忌",
@@ -13935,7 +13150,6 @@ zh: {
   setup_version: "版本",
   rack_delete_btn: "删除酒架",
   setup_general: "通用",
-  s_over_warn: "{n} 瓶已过适饮期 – 请尽快饮用",
   s_bycountry: "按国家",
   s_byregion: "按产区",
   s_bygrape: "按酒厂",
@@ -13967,10 +13181,6 @@ zh: {
   cur_huf: "匈牙利福林",
   cur_czk: "捷克克朗",
   cur_ron: "罗马尼亚列伊",
-  drinkrule_btn: "重新计算适饮期",
-  drinkrule_desc: "适饮起点 = 年份 + 1；终点按威士忌类型和酒厂确定",
-  drinkrule_confirm: "将为 {n} 款威士忌把「适饮起」设为年份 + 1（手动输入的值会被覆盖），并在需要时按威士忌类型和酒厂调整「适饮止」。没有年份的威士忌保持不变。提示：请先导出 JSON 备份。是否继续？",
-  drinkrule_done: "已更新 {n} 款威士忌 ✓",
   barcode_miss_text: "此条形码不在数据库中。该编号仍会与威士忌一起保存，下次即可识别这瓶酒。现在要拍摄酒标吗？",
   confirm_enrich_temp: "是否也用 AI 数值替换已有的饮用温度（包括您自己输入的）？\n\n确定 = 替换（每款威士忌都会通过 AI 查询，耗时更长）\n取消 = 仅补全缺失的温度",
   cur_auto_set: "货币已自动设置为{name}，可在“货币”中更改。",
@@ -14011,9 +13221,6 @@ zh: {
   rack_ph_cap: "瓶/位",
   rack_levels_title: "层：名称及每位瓶数",
   rack_level_name: "名称",
-  rack_blink_hint: "已过适饮期，或明年到期",
-  rack_blink_lbl: "闪烁：",
-  rack_blink_first: "优先饮用",
   rack_delete: "删除威士忌",
   dm_slot: "从哪个位置取出？",
   dm_slot_none: "酒瓶不在任何位置",
@@ -14160,7 +13367,6 @@ hi: {
   fav_none: "इस चयन के लिए कोई व्हिस्की नहीं है।",
   nav_keller: "संग्रह",
   nav_stats: "आँकड़े",
-  nav_ripe: "तैयारी",
   nav_history: "इतिहास",
   nav_racks: "रैक",
   nav_wish: "इच्छा सूची",
@@ -14193,8 +13399,6 @@ hi: {
   he_title: "प्रविष्टि संपादित करें",
   stats_title: "Ocho के आँकड़े",
   stats_sub: "अवलोकन",
-  ripe_title: "पीने का समय",
-  ripe_sub: "कब पिएँ?",
   wish_title: "Ocho की विशलिस्ट",
   wish_sub: "अभी खरीदनी हैं",
   exp_title: "एक्सपोर्ट और इंपोर्ट",
@@ -14263,18 +13467,7 @@ hi: {
   s_drunk: "पी हुई व्हिस्की",
   s_drunkvalue: "पी हुई व्हिस्की का मूल्य",
   s_nodrunk: "अभी तक कोई व्हिस्की पी हुई के रूप में चिह्नित नहीं है।",
-  ripe_empty: "अभी तक किसी व्हिस्की में<br>पीने का समय नहीं भरा गया है।<br>जोड़ते समय “कब से/कब तक पिएँ” भरें।",
-  seg_young: "नई",
-  seg_optimal: "उत्तम",
-  seg_peak: "शिखर",
-  seg_over: "समय पार",
   ripe_nomatch: "इन फ़िल्टर से कोई व्हिस्की मेल नहीं खाती।",
-  st_wait1: "1 साल और इंतज़ार करें",
-  st_wait: "{n} साल और इंतज़ार करें",
-  st_optimal: "अभी पिएँ — {to} तक",
-  st_peak: "अभी अपने शिखर पर है!",
-  st_over1: "पीने का समय 1 साल पहले बीत चुका",
-  st_over: "पीने का समय {n} साल पहले बीत चुका",
   wish_empty: "अभी तक कोई इच्छा नहीं।<br>वे व्हिस्की जोड़ें जिन्हें आप खरीदना चाहते हैं।",
   to_cellar: "→ संग्रह",
   wish_add: "+ विश जोड़ें",
@@ -14329,8 +13522,6 @@ hi: {
   ph_regal: "रैक",
   ph_ebene: "स्तर",
   ph_platz: "स्थान बा.से",
-  l_from: "कब से पिएँ",
-  l_to: "कब तक पिएँ",
   l_price: "कीमत",
   l_rating: "रेटिंग",
   l_note: "नोट",
@@ -14359,7 +13550,6 @@ hi: {
   toast_name: "कृपया नाम दर्ज करें",
   toast_scanfail: "स्कैन विफल रहा",
   toast_label: "लेबल पहचाना गया ✓",
-  toast_label_ripe: "लेबल पहचाना गया ✓ (पीने का समय अनुमानित)",
   toast_loc: "भंडारण स्थान पहचाना गया ✓",
   toast_noloc: "कोई भंडारण स्थान नहीं पहचाना गया",
   toast_nomatch: "संग्रह में कोई मेल खाती व्हिस्की नहीं मिली",
@@ -14392,7 +13582,6 @@ hi: {
   setup_version: "संस्करण",
   rack_delete_btn: "रैक हटाएँ",
   setup_general: "सामान्य",
-  s_over_warn: "{n} बोतलें अपनी अवधि पार कर चुकी हैं – जल्दी पिएँ",
   s_bycountry: "देश के अनुसार",
   s_byregion: "क्षेत्र के अनुसार",
   s_bygrape: "डिस्टिलरी के अनुसार",
@@ -14424,10 +13613,6 @@ hi: {
   cur_huf: "हंगेरियन फ़ोरिंट",
   cur_czk: "चेक कोरुना",
   cur_ron: "रोमानियाई ल्यू",
-  drinkrule_btn: "पीने की अवधि दोबारा गणना करें",
-  drinkrule_desc: "पीना शुरू = वर्ष + 1; पीने की अंतिम सीमा व्हिस्की के प्रकार और डिस्टिलरी के अनुसार",
-  drinkrule_confirm: "{n} व्हिस्की के लिए “कब से पिएँ” को वर्ष + 1 पर सेट किया जाएगा (हाथ से भरे मान बदल दिए जाएँगे) और “कब तक पिएँ” को ज़रूरत पड़ने पर व्हिस्की के प्रकार और डिस्टिलरी के अनुसार समायोजित किया जाएगा। बिना वर्ष वाली व्हिस्की जैसी हैं वैसी ही रहेंगी। सुझाव: पहले JSON बैकअप एक्सपोर्ट करें। जारी रखें?",
-  drinkrule_done: "{n} व्हिस्की अपडेट हुईं ✓",
   barcode_miss_text: "यह बारकोड डेटाबेस में नहीं है। नंबर फिर भी व्हिस्की के साथ सहेजा जाएगा, ताकि अगली बार बोतल पहचानी जा सके। क्या अभी लेबल की फ़ोटो लें?",
   confirm_enrich_temp: "क्या पहले से मौजूद परोसने के तापमान भी AI मानों से बदलें (आपके खुद भरे हुए मानों सहित)?\n\nठीक है = बदलें (हर व्हिस्की AI से पूछी जाती है, इसमें ज़्यादा समय लगता है)\nरद्द करें = केवल छूटे हुए तापमान भरें",
   cur_auto_set: "मुद्रा अपने-आप {name} पर सेट की गई – इसे “मुद्रा” में बदला जा सकता है।",
@@ -14468,9 +13653,6 @@ hi: {
   rack_ph_cap: "बोतलें/स्थान",
   rack_levels_title: "स्तर: नाम और प्रति स्थान बोतलें",
   rack_level_name: "नाम",
-  rack_blink_hint: "पीने का समय बीत चुका है, या अगले साल तक समाप्त हो रहा है",
-  rack_blink_lbl: "झिलमिल:",
-  rack_blink_first: "पहले पिएँ",
   rack_delete: "व्हिस्की हटाएँ",
   dm_slot: "किस स्थान से निकाली गई?",
   dm_slot_none: "बोतल किसी स्थान पर नहीं है",
@@ -14627,6 +13809,8 @@ function applyGuideLink() {
 function applyVersion() {
   const el = document.getElementById('app-version');
   if (el) el.textContent = t('setup_version') + ' ' + APP_VERSION;
+  const lb = document.getElementById('last-build');
+  if (lb) { let d = BUILD_DATE; try { d = new Date(BUILD_DATE + 'T12:00:00').toLocaleDateString(dateLocale(), { day: '2-digit', month: '2-digit', year: 'numeric' }); } catch (e) {} lb.textContent = 'Last Build: ' + d; }
 }
 function applyAria() {
   const fab = document.getElementById('fab');
@@ -14654,7 +13838,6 @@ function applyI18n() {
   if (active) {
     if (active.id === 'tab-keller') renderKeller();
     if (active.id === 'tab-stats') renderStats();
-    if (active.id === 'tab-trinkreife') renderTrinkreife();
     if (active.id === 'tab-history') renderHistory();
     if (active.id === 'tab-racks') renderRacks();
     if (active.id === 'tab-wishlist') renderWishlist();
@@ -14920,10 +14103,9 @@ function showTab(name, btn) {
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
   document.getElementById('fab').style.display = name === 'keller' ? 'flex' : 'none';
-  document.getElementById('fab-drink').style.display = (name === 'keller' || name === 'trinkreife') ? 'flex' : 'none';
+  document.getElementById('fab-drink').style.display = name === 'keller' ? 'flex' : 'none';
   if (name === 'keller') renderKeller();
   if (name === 'stats') renderStats();
-  if (name === 'trinkreife') renderTrinkreife();
   if (name === 'rezepte') renderRecipes();
   if (name === 'history') renderHistory();
   if (name === 'racks') renderRacks();
@@ -15069,17 +14251,6 @@ function renderKeller() {
   else if (sortMode === 'grape') list.sort(cmpText('grape'));
   else if (sortMode === 'region') list.sort(cmpText('region'));
   else if (sortMode === 'country') list.sort(cmpText('country'));
-  else if (sortMode === 'ripeness') {
-    const rmap = new Map(list.map(w => [w, getRipenessInfo(w)]));
-    list.sort((a,b) => {
-      const ra = rmap.get(a), rb = rmap.get(b);
-      if (!ra && !rb) return 0;
-      if (!ra) return 1;
-      if (!rb) return -1;
-      if (rb.pct !== ra.pct) return rb.pct - ra.pct;
-      return (a.drinkTo||9999) - (b.drinkTo||9999);
-    });
-  }
 
   const el = document.getElementById('wine-list');
   if (!list.length) {
@@ -15107,7 +14278,6 @@ function renderKeller() {
 
   el.innerHTML = list.map(w => {
     const stars = w.rating ? '★'.repeat(w.rating) + '☆'.repeat(5-w.rating) : '☆☆☆☆☆';
-    const ripe = getRipenessInfo(w);
     const loc = formatLocation(w);
     const regionCountry = [w.region, w.country].filter(Boolean).join(', ');
     return `
@@ -15128,10 +14298,6 @@ function renderKeller() {
       ${serveTempHtml(w, 'wine-temp')}
       ${loc || settings.racks.length ? `<div class="card-slots">${wineSlotChips(w)}</div>` : ''}
       ${mmBadgeHtml(w)}
-      ${ripe ? `
-      <div class="wine-ripeness">
-        <div class="wine-ripeness-bar ${ripe.cls}" style="width:${ripe.pct}%"></div>
-      </div>` : ''}
       <div class="wine-actions">
         <button class="wine-btn" onclick="editWine('${w.id}')">${t('btn_edit')}</button>
         <button class="wine-btn primary" onclick="drinkOne('${w.id}')">${t('btn_drink')}</button>
@@ -15146,23 +14312,6 @@ function setFilter(f) { activeFilter = f; const s = document.getElementById('sea
 function toggleViewMode() { viewMode = viewMode === 'list' ? 'card' : 'list'; renderKeller(); }
 function setSort(s) { sortMode = s; renderKeller(); }
 
-function getRipenessInfo(w) {
-  if (!w.drinkFrom && !w.drinkTo) return null;
-  const now = new Date().getFullYear();
-  const from = w.drinkFrom || now;
-  const to = w.drinkTo || from + 5;
-  const peak = Math.round(from + (to - from) * 0.6);
-  if (now < from) {
-    const pct = Math.min(100, ((now - (w.year||from)) / (from - (w.year||from) + 1)) * 40);
-    return { cls: 'ripeness-jung', pct };
-  } else if (now <= peak) {
-    return { cls: 'ripeness-optimal', pct: 40 + ((now-from)/(peak-from+1))*40 };
-  } else if (now <= to) {
-    return { cls: 'ripeness-peak', pct: 80 + ((now-peak)/(to-peak+1))*15 };
-  } else {
-    return { cls: 'ripeness-over', pct: 100 };
-  }
-}
 
 let drinkId = null;
 let drinkSlotRef = null;   // Platz, aus dem die Flasche genommen wird (null = nicht eingelagerte Flasche bzw. Wein ohne Platz)
@@ -15233,8 +14382,7 @@ function confirmDrink() {
   closeModal('drink-modal');
   if (lvlSheetOpen()) renderLevelSheet();
   const active = document.querySelector('.tab.active');
-  if (active && active.id === 'tab-trinkreife') renderTrinkreife();
-  else if (active && active.id === 'tab-racks') { rackFilledSlot = null; renderRacks(); }
+  if (active && active.id === 'tab-racks') { rackFilledSlot = null; renderRacks(); }
   else renderKeller();
   showToast(t('toast_prost'));
   celebrate();
@@ -15340,8 +14488,6 @@ function editWine(id) {
   document.getElementById('f-loc-regal').value = w.locRegal||'';
   document.getElementById('f-loc-ebene').value = w.locEbene||'';
   document.getElementById('f-loc-platz').value = w.locPlatz||'';
-  document.getElementById('f-drink-from').value = w.drinkFrom||'';
-  document.getElementById('f-drink-to').value = w.drinkTo||'';
   document.getElementById('f-temp-from').value = tempToDisplay(w.tempFrom);
   document.getElementById('f-temp-to').value = tempToDisplay(w.tempTo);
   document.getElementById('f-price').value = w.price||'';
@@ -15374,9 +14520,8 @@ function openAddModal() {
   showBarcodeMiss(false);
   formToken++;
   editId = null;
-  autoDrink = { from: null, to: null };
   lastAutoLookupKey = '';
-  ['f-name','f-year','f-region','f-country','f-grape','f-age','f-abv','f-cask','f-loc-regal','f-loc-ebene','f-loc-platz','f-note','f-drink-from','f-drink-to','f-temp-from','f-temp-to','f-price','f-image','f-ean','f-photo'].forEach(id => document.getElementById(id).value = '');
+  ['f-name','f-year','f-region','f-country','f-grape','f-age','f-abv','f-cask','f-loc-regal','f-loc-ebene','f-loc-platz','f-note','f-temp-from','f-temp-to','f-price','f-image','f-ean','f-photo'].forEach(id => document.getElementById(id).value = '');
   serveWriteForm(null);
   updateImagePreview();
   if (formPhotoPending) photoDel(formPhotoPending);
@@ -15467,8 +14612,6 @@ function saveWine() {
     locEbene: document.getElementById('f-loc-ebene').value.trim()||null,
     locPlatz: document.getElementById('f-loc-platz').value.trim()||null,
     location: editId ? ((wines.find(w=>w.id===editId)||{}).location||null) : null,
-    drinkFrom: parseInt(document.getElementById('f-drink-from').value)||null,
-    drinkTo: parseInt(document.getElementById('f-drink-to').value)||null,
     tempFrom: tempKeep(document.getElementById('f-temp-from').value, editId ? (wines.find(w => w.id === editId) || {}).tempFrom : null), tempTo: tempKeep(document.getElementById('f-temp-to').value, editId ? (wines.find(w => w.id === editId) || {}).tempTo : null),
     price: parseFloat(document.getElementById('f-price').value)||null,
     image: imgVal,
@@ -15513,7 +14656,7 @@ function saveWine() {
     savedId = existing ? existing.id : wine.id;
     if (existing) {
       existing.count = (existing.count||1) + (wine.count||1);
-      ['region','country','grape','age','abv','cask','serve','locRegal','locEbene','locPlatz','drinkFrom','drinkTo','tempFrom','tempTo','price','image','rating','note','ean','photo'].forEach(k => {
+      ['region','country','grape','age','abv','cask','serve','locRegal','locEbene','locPlatz','tempFrom','tempTo','price','image','rating','note','ean','photo'].forEach(k => {
         if (!existing[k] && wine[k]) existing[k] = wine[k];
       });
       if (!Object.keys(existing.minMax || {}).length && Object.keys(wine.minMax || {}).length) existing.minMax = wine.minMax;
@@ -15553,7 +14696,7 @@ async function handleScan(e) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: 'Du bist ein Whiskey-Etikett-Experte. Antworte NUR mit einem JSON-Objekt ohne Markdown-Backticks. Felder: name (Destillerie + Whiskeyname inkl. Zusatz wie Single Malt/Cask Strength), year (Abfüll- oder Destillationsjahr als Zahl oder null), type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf Deutsch, z.B. Schottland, oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), drinkFrom (Jahr als Zahl, ab dem der Wein grob geschätzt trinkreif ist, basierend auf Rebsorte/Region/Jahrgang, oder null), drinkTo (Jahr als Zahl, bis zu dem er grob geschätzt getrunken werden sollte, oder null), tempFrom und tempTo (empfohlene Trinktemperatur als untere und obere Grenze in °C, ganze Zahlen, z. B. 16 und 18, passend zu Weinart und Rebsorte, oder null). drinkFrom/drinkTo sind nur grobe Schätzungen, keine Angabe vom Etikett selbst. drinkFrom liegt nie vor dem Jahrgang (year), und drinkTo liegt immer nach drinkFrom. Wenn etwas nicht erkennbar ist oder keine sinnvolle Schätzung möglich ist, nutze null.',
+        system: 'Du bist ein Whiskey-Etikett-Experte. Antworte NUR mit einem JSON-Objekt ohne Markdown-Backticks. Felder: name (Destillerie + Whiskeyname inkl. Zusatz wie Single Malt/Cask Strength), year (Abfüll- oder Destillationsjahr als Zahl oder null), type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf Deutsch, z.B. Schottland, oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), tempFrom und tempTo (empfohlene Trinktemperatur als untere und obere Grenze in °C, ganze Zahlen, z. B. 16 und 18, passend zu Weinart und Rebsorte, oder null). Wenn etwas nicht erkennbar ist oder keine sinnvolle Schätzung möglich ist, nutze null.',
         messages: [{ role: 'user', content: [
           { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64 } },
           { type: 'text', text: 'Analysiere dieses Whiskey-Etikett.' }
@@ -15573,12 +14716,9 @@ async function handleScan(e) {
     if (info.age) document.getElementById('f-age').value = info.age;
     if (info.abv) document.getElementById('f-abv').value = info.abv;
     if (info.cask) document.getElementById('f-cask').value = info.cask;
-    { const yy = parseInt(document.getElementById('f-year').value); const df = ruleFrom(yy, info.drinkFrom); if (df) document.getElementById('f-drink-from').value = df; }
-    if (info.drinkTo) document.getElementById('f-drink-to').value = info.drinkTo;
-    fixFormDrinkWindow();
     if (info.tempFrom != null) document.getElementById('f-temp-from').value = tempToDisplay(info.tempFrom);
     if (info.tempTo != null) document.getElementById('f-temp-to').value = tempToDisplay(info.tempTo);
-    showToast(info.drinkFrom || info.drinkTo ? t('toast_label_ripe') : t('toast_label'));
+    showToast(t('toast_label'));
   } catch {
     showToast(t('toast_scanfail'));
   } finally {
@@ -15804,7 +14944,6 @@ function goToStatSearch(i) {
   const sInp = document.getElementById('search-input'); if (sInp) sInp.value = term;
   showTab('keller', document.querySelector('.bottom-nav .nav-btn'));
 }
-function goToRipeStatus(k) { ripeFilterStatus = k; ripeFilterType = 'alle'; ripeFilterCountry = '*'; goToTab('trinkreife'); renderTrinkreife(); }
 function goToRack(i) { rackActive = i; rackFilledSlot = null; goToTab('racks'); renderRacks(); }
 // Balkenzeilen im Stil von "Nach Typ"; max = Wert für die volle Balkenlänge (Standard: größter Wert)
 function statBarRows(rows, color, wide, max) {
@@ -15818,17 +14957,6 @@ function statNice(v) {   // auf eine runde Zahl (1, 1.5, 2, 2.5, 3, 4, 5, 7.5 ×
   return steps.reduce((a, b) => Math.abs(b - m) < Math.abs(a - m) ? b : a) * k;
 }
 const STAT_CUR_SCALE = { '€': 1, '$': 1.1, '£': 0.85, 'CHF': 0.95, 'A$': 1.6, 'C$': 1.5, 'SEK': 11, 'NOK': 11, 'DKK': 7.5, 'RUB': 100, 'PLN': 4.3, 'UAH': 45, 'JPY': 170, 'CNY': 7.5, 'KRW': 1500, 'INR': 100, 'HUF': 380, 'CZK': 24, 'RON': 5 };   // grober Faktor zum Euro, nur für runde Preisklassen
-function statsRipeHtml() {
-  const list = wines.filter(w => w.drinkFrom || w.drinkTo);
-  if (!list.length) return '';
-  const cnt = { young: 0, optimal: 0, peak: 0, over: 0 };
-  list.forEach(w => { cnt[ripeStatusKey(w)] += (w.count || 1); });
-  const rows = [['young', 'seg_young', 'var(--sparkling)'], ['optimal', 'seg_optimal', 'var(--green)'], ['peak', 'seg_peak', 'var(--gold)'], ['over', 'seg_over', 'var(--red-alert)']]
-    .map(([k, key, col]) => ({ label: t(key), n: cnt[k], color: col, click: "goToRipeStatus('" + k + "')" }));
-  let h = `<div class="stats-title">${t('ripe_title')}</div>` + statBarRows(rows);
-  if (cnt.over > 0) h += `<div class="stats-card stat-warn" onclick="goToRipeStatus('over')">⚠ ${t('s_over_warn', { n: cnt.over })}</div>`;
-  return h;
-}
 function statsMoreHtml() {
   let h = '';
   const bottles = (w) => w.count || 1;
@@ -15938,7 +15066,6 @@ function renderStats() {
       <div class="stats-card"><div class="big">${val>0?fmtMoney(Math.round(val)):'–'}</div><div class="label">${t('s_value')}</div></div>
       <div class="stats-card"><div class="big">${avg}</div><div class="label">${t('s_avg')}</div></div>
     </div>
-    ${statsRipeHtml()}
     <div class="stats-title">${t('s_bytype')}</div>
   `;
   ['rot','weiß','rosé','sekt','other'].forEach(ty => {
@@ -16295,34 +15422,13 @@ function renderRacks() {
   for (let e = 1; e <= r.rows; e++) total += rackCols(r, e) * rackCap(r, e);
   map.forEach((v, k) => { const [e, p] = k.split('|'); if (+e <= r.rows && +p <= rackCols(r, +e)) filled += v.length; });
 
-  // Trinkreife-Punkt an jeder Flasche; auf Wunsch blinken Weine nach Trinkreife (jede Gruppe einzeln wählbar)
-  const BLINKS = [['Urgent', t('rack_blink_first'), null], ['Over', t('seg_over'), 'over'], ['Peak', t('seg_peak'), 'peak'], ['Optimal', t('seg_optimal'), 'optimal']];
-  const blinkOn = {};
-  BLINKS.forEach(b => { blinkOn[b[0]] = !!settings['blink' + b[0]]; });
-  const blink = BLINKS.some(b => blinkOn[b[0]]);
-  const matchBlink = ri => !!ri && ((blinkOn.Urgent && ri.urgent) || (blinkOn.Over && ri.key === 'over') || (blinkOn.Peak && ri.key === 'peak') || (blinkOn.Optimal && ri.key === 'optimal'));
-  const blinkN = { Urgent: 0, Over: 0, Peak: 0, Optimal: 0 };
-  map.forEach((v, k) => {
-    const [e, p] = k.split('|');
-    if (+e <= r.rows && +p <= rackCols(r, +e)) v.forEach(x => {
-      const ri = ripeInfo(x.w);
-      if (!ri) return;
-      if (ri.urgent) blinkN.Urgent++;
-      if (ri.key === 'over') blinkN.Over++;
-      if (ri.key === 'peak') blinkN.Peak++;
-      if (ri.key === 'optimal') blinkN.Optimal++;
-    });
-  });
   const sw = rackStoreFilter ? wines.find(x => x.id === rackStoreFilter) : null;
   if (rackStoreFilter && !sw) rackStoreFilter = null;
   const swOpen = sw ? unplacedCount(sw) : 0, swName = sw ? sw.name + (sw.year ? ' ' + sw.year : '') : '';
   if (sw && swOpen < 1 && rackSelectedWineId === sw.id) rackSelectedWineId = null;
   else if (sw && swOpen > 0 && !rackSelectedWineId) rackSelectedWineId = sw.id;
-  let html = (sw ? `<div class="rack-store-banner"><span>${swOpen ? '📥 ' + esc(t('store_filter', { name: swName, n: swOpen })) : esc(t('store_done', { name: swName }))}</span><span class="rsb-btns">${swOpen ? `<button class="wine-btn" onclick="clearStoreFilter()">${t('store_filter_off')}</button>` : (rackStoreScan ? `<button class="wine-btn" onclick="startStoreFromScan()">${t('store_scan_btn')}</button>` : '')}<button class="wine-btn primary" onclick="backFromStore()">${t('store_back')}</button></span></div>` : '') + `<div class="rack-scanbar">${rackTile('store-scan-btn', 'startStoreFromScan()', t('store_scan_btn'))}${rackTile('', 'scanShelf()', t('shelf_scan'))}${rackTile('rack-clear-btn', 'clearRack(rackActive)', '🧹 ' + t('rack_clear_btn'))}</div><div class="rack-toolbar"><span class="rack-toolbar-lbl">${t('rack_blink_lbl')}</span>`
-    + BLINKS.map(([key, label, st]) => `<button class="rack-toggle${blinkOn[key] ? ' active' : ''}" onclick="toggleRackBlink('${key}')" aria-pressed="${blinkOn[key]}"><span class="rt-dot"></span>${st ? `<i class="rack-ripe-dot ripeness-${RIPE_CLASS[st]}"></i>` : ''}${esc(label)}${blinkN[key] ? ' · ' + blinkN[key] : ''}</button>`).join('')
-    + `</div>`
-    + (blinkOn.Urgent ? `<div class="rack-blink-hint">${t('rack_blink_hint')}</div>` : '')
-    + `<div class="rack-box${blink ? ' blink-on' : ''}"><div class="rack-box-title">${esc(r.name)}</div><div class="rack-box-sub">${filled} / ${total} ${t('racks_filled')}</div>`;
+  let html = (sw ? `<div class="rack-store-banner"><span>${swOpen ? '📥 ' + esc(t('store_filter', { name: swName, n: swOpen })) : esc(t('store_done', { name: swName }))}</span><span class="rsb-btns">${swOpen ? `<button class="wine-btn" onclick="clearStoreFilter()">${t('store_filter_off')}</button>` : (rackStoreScan ? `<button class="wine-btn" onclick="startStoreFromScan()">${t('store_scan_btn')}</button>` : '')}<button class="wine-btn primary" onclick="backFromStore()">${t('store_back')}</button></span></div>` : '') + `<div class="rack-scanbar">${rackTile('store-scan-btn', 'startStoreFromScan()', t('store_scan_btn'))}${rackTile('', 'scanShelf()', t('shelf_scan'))}${rackTile('rack-clear-btn', 'clearRack(rackActive)', '🧹 ' + t('rack_clear_btn'))}</div>`
+    + `<div class="rack-box"><div class="rack-box-title">${esc(r.name)}</div><div class="rack-box-sub">${filled} / ${total} ${t('racks_filled')}</div>`;
   // Flaschengröße an die Spaltenzahl anpassen (60–96 px); ab 76 px steht der Jahrgang auf dem Etikett
   // Verfügbare Breite = Innenbreite des Containers - Box-Rahmen/-Padding (2 + 28) - Ebenen-Spalte (28)
   const elCs = getComputedStyle(el);
@@ -16354,15 +15460,11 @@ function renderRacks() {
         const picked = rackFilledSlot && rackFilledSlot.rack === r.id && rackFilledSlot.e === e && rackFilledSlot.p === p;
         const moving = !!rackMove && rackMove.rack === r.id && rackMove.e === e && rackMove.p === p;
         const badge = cap > 1 ? `<span class="rack-slot-count">${entries.length}/${cap}</span>` : '';
-        let topKey = null, urgent = false;   // im Fach (Kiste) zählt der dringendste Wein
-        entries.forEach(x => { const ri = ripeInfo(x.w); if (!ri) return; if (matchBlink(ri)) urgent = true; if (!topKey || RIPE_PRIO[ri.key] > RIPE_PRIO[topKey]) topKey = ri.key; });
-        const dot = topKey ? `<span class="rack-ripe ripeness-${RIPE_CLASS[topKey]}"></span>` : '';
-        html += `<div class="rack-slot filled${picked?' picked':''}${moving?' moving':''}${dropping && entries.length < cap ? ' droppable' : ''}${urgent ? ' blinking' : ''}${slotW < 30 ? ' tiny' : ''}" data-slot="${e}|${p}" style="width:${slotW}px;height:${slotH}px" onclick="slotClick(${e},${p})" title="${esc(w.name)}${w.year?' · '+w.year:''}">${bottleVisual(w, slotW, slotMode)}${badge}${dot}</div>`;
+        html += `<div class="rack-slot filled${picked?' picked':''}${moving?' moving':''}${dropping && entries.length < cap ? ' droppable' : ''}${slotW < 30 ? ' tiny' : ''}" data-slot="${e}|${p}" style="width:${slotW}px;height:${slotH}px" onclick="slotClick(${e},${p})" title="${esc(w.name)}${w.year?' · '+w.year:''}">${bottleVisual(w, slotW, slotMode)}${badge}</div>`;
       } else html += `<div class="rack-slot${dropping?' droppable':''}" style="width:${slotW}px;height:${slotH}px" onclick="slotClick(${e},${p})"><div class="rack-empty" style="height:${Math.max(15, slotH-7)}px"></div></div>`;
     }
   }
   html += `</div></div>`;
-  html += `<div class="rack-legend">` + ['young', 'optimal', 'peak', 'over'].map(k => `<span><i class="rack-ripe-dot ripeness-${RIPE_CLASS[k]}"></i>${t('seg_' + k)}</span>`).join('') + `</div>`;
 
   // Umlagern: Hinweis mit Abbrechen
   if (rackMove) {
@@ -16501,16 +15603,6 @@ function deleteWineFromRack(id) {
   if (!confirm(w.name + (w.year ? ' ' + w.year : '') + ((w.count || 1) > 1 ? ' (×' + w.count + ')' : '') + ' – ' + t('confirm_del'))) return;
   wines = wines.filter(x => x.id !== id);
   save(); rackFilledSlot = null; renderRacks(); showToast(t('toast_removed'));
-}
-function toggleRackBlink(key) { key = 'blink' + (key || 'Urgent'); settings[key] = !settings[key]; saveSettings(); touchData(); renderRacks(); }
-// Trinkreife eines Weins fürs Regal: Zustand (wie in der Trinkreife-Ansicht) und "dringend" = überschritten
-// oder spätestens nächstes Jahr am Ende des Trinkfensters; null ohne Angabe
-const RIPE_PRIO = { young: 0, optimal: 1, peak: 2, over: 3 };
-const RIPE_CLASS = { young: 'jung', optimal: 'optimal', peak: 'peak', over: 'over' };
-function ripeInfo(w) {
-  if (!(w.drinkFrom || w.drinkTo)) return null;
-  const now = new Date().getFullYear(), to = w.drinkTo || (w.drinkFrom || now) + 5;
-  return { key: ripeStatusKey(w), urgent: to - now <= 1 };
 }
 function setRackActive(i) { rackActive = i; rackFilledSlot = null; renderRacks(); }
 
@@ -17198,113 +16290,9 @@ function goToWine(id) {
   }, 50);
 }
 
-function ripeStatusKey(w) {
-  const now = new Date().getFullYear();
-  const from = w.drinkFrom || now;
-  const to = w.drinkTo || from + 5;
-  const peak = Math.round(from + (to - from) * 0.6);
-  if (now < from) return 'young';
-  if (now <= peak) return 'optimal';
-  if (now <= to) return 'peak';
-  return 'over';
-}
 
-// Wie weit ist der Wein über sein "Trinken bis" hinaus? Höher = länger überschritten.
-function ripeOverdue(w) {
-  const now = new Date().getFullYear();
-  const from = w.drinkFrom || now;
-  const to = w.drinkTo || from + 5;
-  return now - to;
-}
 
-function setRipeFilterType(v) { ripeFilterType = v; renderTrinkreife(); }
-function setRipeFilterStatus(v) { ripeFilterStatus = v; renderTrinkreife(); }
-function setRipeFilterCountry(v) { ripeFilterCountry = v; renderTrinkreife(); }
 
-function renderTrinkreife() {
-  const now = new Date().getFullYear();
-
-  // filter chips: Weinsorte + Zustand
-  document.getElementById('ripe-filter-type').innerHTML = TYPES.map(ty => `
-    <button class="filter-chip ${ripeFilterType===ty?'active':''}" onclick="setRipeFilterType('${ty}')">${TYPE_LABELS[ty]}</button>
-  `).join('');
-  const statuses = [['alle',t('t_all')],['young',t('seg_young')],['optimal',t('seg_optimal')],['peak',t('seg_peak')],['over',t('seg_over')]];
-  document.getElementById('ripe-filter-status').innerHTML = statuses.map(([k,label]) => `
-    <button class="filter-chip ${ripeFilterStatus===k?'active':''}" onclick="setRipeFilterStatus('${k}')">${label}</button>
-  `).join('');
-
-  const allRipe = wines.filter(w => w.drinkFrom || w.drinkTo);
-  // Land-Auswahl: die Zahlen zeigen, was mit Sorte und Zustand noch übrig ist; Länder ohne Treffer sind ausgegraut
-  const normC = (w) => String(w.country || '').trim().toLowerCase();
-  const passTS = (w) => (ripeFilterType === 'alle' || w.type === ripeFilterType) && (ripeFilterStatus === 'alle' || ripeStatusKey(w) === ripeFilterStatus);
-  const cmap = new Map();
-  allRipe.forEach(w => { const k = normC(w), c = cmap.get(k) || { label: String(w.country || '').trim(), n: 0 }; if (passTS(w)) c.n++; cmap.set(k, c); });
-  if (ripeFilterCountry !== '*' && !cmap.has(ripeFilterCountry)) ripeFilterCountry = '*';
-  const cbox = document.getElementById('ripe-filter-country');
-  if (cbox) {
-    const copts = [...cmap].sort((a, b) => (a[0] === '') - (b[0] === '') || a[1].label.localeCompare(b[1].label))
-      .map(([k, c]) => `<option value="${esc(k)}"${ripeFilterCountry === k ? ' selected' : ''}${c.n === 0 && ripeFilterCountry !== k ? ' disabled' : ''}>${esc(c.label || t('rack_country_none'))} (${c.n})</option>`).join('');
-    cbox.innerHTML = allRipe.length ? `<select class="rack-un-country" aria-label="${esc(t('rack_country_all'))}" onchange="setRipeFilterCountry(this.value)"><option value="*">${esc(t('rack_country_all'))}</option>${copts}</select>` : '';
-  }
-  const withRipe = allRipe
-    .filter(passTS)
-    .filter(w => ripeFilterCountry === '*' || normC(w) === ripeFilterCountry)
-    .sort((a,b) => ripeOverdue(b) - ripeOverdue(a));
-  const el = document.getElementById('trinkreife-list');
-  if (!allRipe.length) {
-    el.innerHTML = `<div class="empty-state"><div class="icon">⏱</div><p>${t('ripe_empty')}</p></div>`;
-    return;
-  }
-  if (!withRipe.length) {
-    el.innerHTML = `<div class="empty-state"><div class="icon">🔍</div><p>${t('ripe_nomatch')}</p></div>`;
-    return;
-  }
-  el.innerHTML = withRipe.map(w => {
-    const from = w.drinkFrom || now;
-    const to = w.drinkTo || from + 5;
-    const peak = Math.round(from + (to - from) * 0.6);
-    let status, statusColor, pct;
-    if (now < from) {
-      status = (from - now === 1) ? t('st_wait1') : t('st_wait', {n: from - now});
-      statusColor = 'var(--sparkling)';
-      pct = Math.max(5, ((now - (w.year||from-5)) / (from - (w.year||from-5)+1)) * 30);
-    } else if (now <= peak) {
-      status = t('st_optimal', {to});
-      statusColor = 'var(--green)';
-      pct = 30 + ((now-from)/(peak-from+1))*40;
-    } else if (now <= to) {
-      status = t('st_peak');
-      statusColor = 'var(--gold)';
-      pct = 70 + ((now-peak)/(to-peak+1))*25;
-    } else {
-      status = (now - to === 1) ? t('st_over1') : t('st_over', {n: now - to});
-      statusColor = 'var(--red-alert)';
-      pct = 100;
-    }
-    return `
-    <div class="ripeness-card" onclick="goToWine('${w.id}')" style="cursor:pointer">
-      <div class="ripeness-wine-name">${esc(w.name)}</div>
-      <div class="ripeness-meta">${w.year||''} ${w.type?' · '+esc(TYPE_LABELS[w.type]||w.type):''}</div>
-      ${w.drinkFrom || w.drinkTo ? `<div class="ripeness-window">📅 ${[w.drinkFrom ? esc(t('l_from')) + ' ' + w.drinkFrom : '', w.drinkTo ? esc(t('l_to')) + ' ' + w.drinkTo : ''].filter(Boolean).join(' · ')}</div>` : ''}
-      ${serveTempHtml(w, 'ripeness-temp')}
-      ${wineSlotChips(w)}
-      <div style="display:flex;gap:0;border-radius:6px;overflow:hidden;height:18px;margin-bottom:6px">
-        ${from-(w.year||from-3) > 0 ? `<div class="rt-seg rt-jung" style="flex:${from-(w.year||from-3)}">${t('seg_young')}</div>` : ''}
-        <div class="rt-seg rt-optimal" style="flex:${peak-from+1}">${t('seg_optimal')}</div>
-        <div class="rt-seg rt-peak" style="flex:${to-peak+1}">${t('seg_peak')}</div>
-        <div class="rt-seg rt-over" style="flex:2">–</div>
-      </div>
-      <div style="position:relative;height:10px;margin-bottom:6px">
-        <div style="position:absolute;left:${Math.min(97,pct)}%;top:0;width:3px;height:100%;background:#fff;border-radius:2px;transform:translateX(-50%)"></div>
-        <div style="font-size:9px;position:absolute;left:${Math.min(94,pct)}%;top:0;color:#fff;transform:translateX(-50%)">▲</div>
-      </div>
-      <div class="ripeness-actions">
-        <div class="ripeness-status" style="color:${statusColor}">${status}</div>
-        <button class="wine-btn primary ripeness-drink-btn" onclick="event.stopPropagation();drinkOne('${w.id}')">${t('btn_drink')} · ${w.count||1} ${t('fl')}</button>
-      </div>
-    </div>`;
-  }).join('');
-}
 
 // ═══════════════════════════════════════
 // WISHLIST
@@ -17630,7 +16618,7 @@ function importRowsIntoWines(rows) {
     region: col('region'), country: col('land'), grape: col('destillerie') > -1 ? col('destillerie') : col('rebsorte'), age: col('alter'), abv: col('abv'), cask: col('fass'), location: col('lagerplatz'),
     locRegal: col('regal'), locEbene: col('ebene'), locPlatz: col('platz'), count: col('flaschen'),
     rating: col('bewertung'), price: col('preis'),
-    drinkFrom: col('trinken ab'), drinkTo: col('trinken bis'), note: col('notiz')
+    note: col('notiz')
   };
   if (idx.name === -1) throw new Error('keine Name-Spalte');
   const get = (cols, k) => idx[k] > -1 ? String(cols[idx[k]] ?? '').trim() : '';
@@ -17643,7 +16631,7 @@ function importRowsIntoWines(rows) {
       region: get(cols, 'region'), country: get(cols, 'country'), grape: get(cols, 'grape'), age: get(cols, 'age'), abv: get(cols, 'abv'), cask: get(cols, 'cask'), location: get(cols, 'location'),
       locRegal: get(cols, 'locRegal'), locEbene: get(cols, 'locEbene'), locPlatz: get(cols, 'locPlatz'),
       count: get(cols, 'count'), rating: get(cols, 'rating'), price: get(cols, 'price'),
-      drinkFrom: get(cols, 'drinkFrom'), drinkTo: get(cols, 'drinkTo'), note: get(cols, 'note')
+      note: get(cols, 'note')
     }, used);
     if (!w) return;
     wines.push(w);
@@ -17712,8 +16700,6 @@ function esc(str) {
 applyI18n();
 document.getElementById('f-year').addEventListener('change', onVintageInput);
 document.getElementById('f-name').addEventListener('change', maybeAutoLookup);
-document.getElementById('f-grape').addEventListener('change', autoFillDrinkWindow);
-document.getElementById('f-type').addEventListener('change', autoFillDrinkWindow);
 syncOnLoad();
 // Beim Zurückkehren in die App (Handy aus dem Hintergrund) mit der Cloud abgleichen, damit kein veralteter Stand hochgeladen wird
 let lastVisSync = Date.now();
