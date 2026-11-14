@@ -72,6 +72,9 @@
 .glass-card p { font-size: 14px; line-height: 1.5; color: var(--text-muted); margin: 0 0 12px; }
 .glass-card .glass-link { display: inline-block; margin: 0 0 14px; }
 .glass-card .wine-btn { width: 100%; }
+/* Glas-Karte: nie hoeher als der Bildschirm (Handy quer), kleine Zeichnung bei wenig Hoehe */
+.glass-card { max-height: 100%; overflow-y: auto; box-sizing: border-box; }
+@media (max-height: 520px) { .glass-card { padding: 12px 16px; } .glass-card svg { width: 84px; height: 84px; } .glass-card p { font-size: 13px; margin-bottom: 8px; } .glass-card .glass-title { margin: 0 0 4px; } .glass-card .glass-link { margin-bottom: 8px; } }
 </style>
 <style>
 :root {
@@ -1212,7 +1215,7 @@ input[type="file"] { display: none; }
   </div>
   <div class="keller-stats" id="keller-stats"></div>
   <div class="search-filter">
-    <input class="search-input" id="search-input" placeholder="🔍  Wein suchen…" data-i18n-ph="search_ph" oninput="renderKeller()">
+    <input class="search-input" id="search-input" placeholder="🔍  Wein suchen…" data-i18n-ph="search_ph" oninput="renderKellerDebounced()">
   </div>
   <div class="filter-scroll" id="filter-scroll"></div>
   <div class="sort-row">
@@ -14594,6 +14597,8 @@ function buildTypeLabels() {
 }
 
 // Untere Leiste: Beschriftungen nie mitten im Wort umbrechen; zu lange Wörter (z. B. "Статистика", "Export/Import") werden verkleinert, bis sie passen
+let _searchTimer = 0;
+function renderKellerDebounced() { clearTimeout(_searchTimer); _searchTimer = setTimeout(renderKeller, 120); }   // nicht bei jedem Tastendruck die ganze Liste neu bauen
 function fitNavLabels() {
   document.querySelectorAll('.nav-btn').forEach((btn) => {
     const el = btn.querySelector('span:last-child');
@@ -14602,7 +14607,8 @@ function fitNavLabels() {
     el.textContent = el.textContent.replace(/\u200B/g, '').replace(/\//g, '/\u200B');   // nach "/" darf umbrochen werden ("Export/" + "Import")
     let size = parseFloat(getComputedStyle(el).fontSize) || 9, guard = 0;
     const room = () => btn.clientWidth - 4;
-    while (el.scrollWidth > room() && size > 8 && guard++ < 6) { size -= 0.5; el.style.fontSize = size + 'px'; }
+    const minSize = innerWidth < 370 ? 6.5 : 8;   // sehr schmale Handys (320 px): lange Woerter wie 'Statistiche' duerfen kleiner werden
+    while (el.scrollWidth > room() && size > minSize && guard++ < 9) { size -= 0.5; el.style.fontSize = size + 'px'; }
   });
 }
 window.addEventListener('resize', fitNavLabels);
