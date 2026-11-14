@@ -31,6 +31,8 @@
 <li><a href="#racks">Police i pohrana</a></li>
 <li><a href="#history">Povijest</a></li>
 <li><a href="#wish">Lista želja</a></li>
+<li><a href="#serve">Savršeno posluživanje i čaše</a></li>
+<li><a href="#recipes">Recepti i polica sastojaka</a></li>
 <li><a href="#stats">Statistika</a></li>
 <li><a href="#export">Izvoz, uvoz i sigurnosna kopija</a></li>
 <li><a href="#setup">Postavke</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Pregled i prvi koraci</h2>
 
 <p>My Whiskey Collection vaša je osobna kolekcija viskija u džepu: upravljate zalihama, mjestima pohrane, listom želja i statistikom. Sve radi na vašem uređaju; kodom za sinkronizaciju možete povezati više uređaja.</p>
-<p>Na dnu (na računalu i iPadu u položenom prikazu: lijevo) nalazi se traka sa sedam područja:</p>
+<p>Na dnu (na računalu i iPadu u položenom prikazu: lijevo) nalazi se traka s osam područja:</p>
 <table>
 <tbody><tr><th>Područje</th><th>Namjena</th></tr>
 <tr><td><strong>Kolekcija</strong></td><td>Svi viskiji, pretraživanje, filtri, razvrstavanje, dodavanje viskija, pijenje</td></tr>
 <tr><td><strong>Statistika</strong></td><td>Analize zaliha, cijena, pohrane i povijesti pijenja</td></tr>
+<tr><td><strong>Recepti</strong></td><td>Klasici i koktel, polica sastojaka, recept od UI-ja</td></tr>
 <tr><td><strong>Povijest</strong></td><td>Viskiji koje ste popili</td></tr>
 <tr><td><strong>Police</strong></td><td>Plan pohrane: pohrana i premještanje viskija, QR naljepnice</td></tr>
 <tr><td><strong>Lista želja</strong></td><td>Viskiji koje još želite kupiti</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Definirajte police</strong> (neobavezno): Postavke → Police (vidi <a href="#racks">poglavlje 5</a>).</li>
 <li><strong>Dodajte svoj prvi viski</strong>: dodirnite <kbd>+</kbd> u kolekciji (<a href="#add">poglavlje 2</a>).</li>
 <li><strong>Pohranite ga</strong>: dajte viskiju mjesto na polici.</li>
-<li><strong>Napravite sigurnosnu kopiju</strong>: Izvoz/Uvoz → JSON sigurnosna kopija, ili postavite sinkronizaciju u oblaku (<a href="#sync">poglavlje 11</a>).</li>
+<li><strong>Napravite sigurnosnu kopiju</strong>: Izvoz/Uvoz → JSON sigurnosna kopija, ili postavite sinkronizaciju u oblaku (<a href="#sync">poglavlje 13</a>).</li>
 </ol>
 <div class="tip">Odjeljci u <em>Postavkama</em> mogu se sklapati. „Općenito” je pri prvom pokretanju otvoreno, ostali su zatvoreni. Aplikacija pamti što ste zadnje otvorili ili zatvorili.</div>
 
@@ -76,7 +79,7 @@
 <li><strong>Vlastita fotografija:</strong> „Snimi / odaberi fotografiju” prilaže fotografiju viskiju. Ostaje na ovom uređaju i uključena je u JSON sigurnosnu kopiju, ali se ne sinkronizira s oblakom.</li>
 </ul>
 <h3>b) Skeniraj etiketu (UI)</h3>
-<p>Dodirnite <em>Skeniraj etiketu (UI)</em> i fotografirajte etiketu boce. UI očitava naziv, godinu, vrstu, regiju, zemlju, destileriju, starost, ABV i bačvu te procjenjuje temperaturu posluživanja. Provjerite vrijednosti i spremite. Prije prve upotrebe aplikacija traži vaš pristanak (<a href="#privacy">poglavlje 12</a>).</p>
+<p>Dodirnite <em>Skeniraj etiketu (UI)</em> i fotografirajte etiketu boce. UI očitava naziv, godinu, vrstu, regiju, zemlju, destileriju, starost, ABV i bačvu te procjenjuje temperaturu posluživanja. Provjerite vrijednosti i spremite. Prije prve upotrebe aplikacija traži vaš pristanak (<a href="#privacy">poglavlje 14</a>).</p>
 <h3>c) Skeniraj barkod</h3>
 <p>Dodirnite <em>Skeniraj barkod</em> i držite barkod boce unutar okvira. Aplikacija traži broj u besplatnoj bazi proizvoda (bez troška, bez UI kredita) i, ako ga pronađe, popunjava <strong>naziv, proizvođača i vrstu viskija</strong>. Godinu nadopunjuje iz naziva ili je traži.</p>
 <ul>
@@ -156,7 +159,40 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Statistika</h2>
+<h2 id="serve">8. Savršeno posluživanje i čaše</h2>
+
+<p>U obrascu <em>Dodaj viski</em> (i <em>Uredi viski</em>) nalazi se blok <strong>Savršeno posluživanje (način uživanja, miksevi, hrana)</strong>. Pomaže vam da saznate kako se viski najbolje uživa. Tu su dva gumba:</p>
+<ul>
+<li><strong>🥃 Savjet po pravilima</strong> – radi izvan mreže, besplatan je i temelji se na vrsti viskija, tresetu, šeri bačvi, bourbonu i slično. Ne troši UI kredit.</li>
+<li><strong>🤖 AI preporuka</strong> – UI procjenjuje konkretan viski; troši jedno UI skeniranje (<a href="#privacy">poglavlje 14</a>).</li>
+</ul>
+<p>Rezultat je do <strong>tri načina uživanja</strong> (čist, čist s nekoliko kapi vode, s ledom, highball sa sodom ili ginger aleom, koktel), svaki s kratkim obrazloženjem. Dodirom na jedan od njih postavljate ga kao <strong>favorita</strong>. Vrijednosti se upisuju u polja:</p>
+<ul>
+<li><strong>Miksevi i dekoracija, odvojeno zarezom</strong> – npr. ginger ale, korica naranče,</li>
+<li><strong>Voda / omjer</strong> – npr. „2–3 kapi vode” ili „1:3 sa sodom”,</li>
+<li><strong>Čaša</strong> – npr. Glencairn čaša,</li>
+<li><strong>Led</strong> – bez leda, velika kugla ili kocka, kockice leda,</li>
+<li><strong>Uz hranu</strong> – što paše uz viski (npr. tamna čokolada, orašasti plodovi).</li>
+</ul>
+<h3>Čaše ukratko</h3>
+<p>Uz polje Čaša nalazi se poveznica <strong>Pogledaj čašu</strong>. Otvara karticu s crtežom i kratkim objašnjenjem: <strong>Glencairn čaša</strong> (čaša za kušanje čistog viskija), <strong>Tumbler</strong> (za led i koktele poput Old Fashioneda), <strong>Highball čaša</strong> (visoka, za sodu i ginger ale), <strong>Coupe</strong> (plitka zdjelica za koktele bez leda), <strong>Julep šalica</strong> (metalna čaša za mint julep) i <strong>čaša za Irish Coffee</strong> (otporno staklo s ručkom). Poveznica <em>Pogledaj više slika ↗</em> otvara pretraživanje slika, a <em>Zatvori</em> zatvara karticu.</p>
+<p>Na kartici viskija u kolekciji zatim vidite omiljeni način uživanja, dekoraciju i čašu.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Recepti i polica sastojaka</h2>
+
+<p>Područje <strong>Recepti</strong> (podnaslov „Klasici i koktel”) sadrži <strong>12 klasika</strong> sa sastojcima i načinom pripreme: Old Fashioned, Manhattan, Whiskey Sour, Viski highball, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane i Gold Rush. Uz svaki je naznačena preporučena čaša.</p>
+<ul>
+<li><strong>Filtri:</strong> <em>Svi</em>, <em>⭐ Favoriti</em>, <em>Moji</em> (vaši vlastiti recepti) i <em>🥃 Odgovara mom baru</em> – prikazuje samo recepte koje možete pripremiti s onim što imate.</li>
+<li><strong>Vlastiti recept:</strong> u dijelu <em>Dodaj vlastiti recept</em> unesite naziv, sastojke (svaki u novom retku) i način pripreme pa dodirnite <em>Spremi recept</em>. Vlastiti recept možete i izbrisati.</li>
+<li><strong>Recept za viski (AI):</strong> odaberite viski (<em>Odaberite viski…</em>) i dodirnite <em>🤖 Izradi recept</em>. UI predlaže recept koji možete zadržati pomoću <em>Spremi kao moj recept</em>. Troši jedno UI skeniranje.</li>
+</ul>
+<h3>Polica sastojaka</h3>
+<p>U dijelu <strong>Moja polica sastojaka (miksevi, dekoracija, sastojci)</strong> dodirnite što imate kod kuće – npr. koricu naranče, ginger ale ili angosturu. Preporuke i recepti zatim uz svaki sastojak prikazuju ✓ (imam) ili 🛒 (nedostaje). Gumb <strong>🛒 Dodaj nedostajuće na listu želja</strong> stavlja nedostajuće sastojke na <a href="#wish">Listu želja</a>.</p>
+<div class="tip">Recepti, favoriti i polica sastojaka sigurnosno se kopiraju sinkronizacijom u oblaku (<a href="#sync">poglavlje 13</a>) i dio su JSON sigurnosne kopije.</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Statistika</h2>
 
 <p>Od vrha prema dnu:</p>
 <ul>
@@ -171,8 +207,8 @@
 </ul>
 <p>Odjeljci bez podataka (npr. bez cijena) skriveni su.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Izvoz, uvoz i sigurnosna kopija</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Izvoz, uvoz i sigurnosna kopija</h2>
 
 <table>
 <tbody><tr><th>Funkcija</th><th>Namjena</th></tr>
@@ -184,10 +220,10 @@
 <tr><td>Uvezi JSON / CSV / Excel</td><td>Vrati sigurnosnu kopiju ili učitaj tablicu</td></tr>
 </tbody></table>
 <p>Stupci u CSV-u i Excelu su: <strong>Naziv, Godina, Vrsta, Regija, Zemlja, Destilerija, Starost, ABV, Bačva, Polica, Razina, Mjesto, Boce, Ocjena, Cijena, Bilješka</strong>. Uvoz prihvaća i stara imena stupaca.</p>
-<div class="tip"><strong>Redovito pravite JSON sigurnosnu kopiju.</strong> JSON uvoz zamjenjuje kolekciju sigurnosnom kopijom (aplikacija prvo pita). Na novom uređaju time se sve vraća. Alternativno koristite sinkronizaciju u oblaku (<a href="#sync">poglavlje 11</a>).</div>
+<div class="tip"><strong>Redovito pravite JSON sigurnosnu kopiju.</strong> JSON uvoz zamjenjuje kolekciju sigurnosnom kopijom (aplikacija prvo pita). Na novom uređaju time se sve vraća. Alternativno koristite sinkronizaciju u oblaku (<a href="#sync">poglavlje 13</a>).</div>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Postavke</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Postavke</h2>
 
 <h3>Općenito</h3>
 <ul>
@@ -199,9 +235,9 @@
 <li><strong>Jedinica temperature:</strong> °C ili °F (engleski (US) automatski postavlja °F).</li>
 </ul>
 <h3>Pohrana</h3>
-<p><em>Samo ovaj uređaj</em> ili <em>Oblak</em> (kôd za sinkronizaciju, <a href="#sync">poglavlje 11</a>).</p>
+<p><em>Samo ovaj uređaj</em> ili <em>Oblak</em> (kôd za sinkronizaciju, <a href="#sync">poglavlje 13</a>).</p>
 <h3>UI krediti (samo aplikacija za iPhone)</h3>
-<p>Prikazuje preostala UI skeniranja, ID uređaja i – po potrebi – <em>Dodaj kredite</em> ili kôd za otključavanje. Vidi <a href="#privacy">poglavlje 12</a>.</p>
+<p>Prikazuje preostala UI skeniranja, ID uređaja i – po potrebi – <em>Dodaj kredite</em> ili kôd za otključavanje. Vidi <a href="#privacy">poglavlje 14</a>.</p>
 <h3>Baza viskija</h3>
 <ul>
 <li><strong>Ažuriraj sve viskije (UI):</strong> popunjava regiju, zemlju, destileriju, starost, ABV, bačvu, temperaturu posluživanja i cijenu koje nedostaju za sve viskije (u web verziji i slike boca). Postojeće vrijednosti ostaju. Ako temperature posluživanja već postoje, aplikacija prvo pita treba li ih zamijeniti i UI vrijednostima. <em>Savjet: prvo izvezite JSON sigurnosnu kopiju.</em></li>
@@ -209,10 +245,10 @@
 <h3>Police</h3>
 <p>Vidi <a href="#racks">poglavlje 5</a>. Naslov prikazuje broj polica.</p>
 <h3>Privatnost, podrška, verzija</h3>
-<p>Poveznice vode na pravila privatnosti i na ovu stranicu podrške. Posve na dnu nalazi se <strong>verzija</strong> aplikacije – navedite je kad nas kontaktirate.</p>
+<p>Poveznice vode na pravila privatnosti i na ovu stranicu podrške. Gumb <em>Korisnički priručnik</em> otvara ovaj priručnik. Posve na dnu nalazi se <strong>verzija</strong> aplikacije – navedite je kad nas kontaktirate. U sklopivom dijelu <em>Kontakt</em> nalaze se ime razvijatelja i redak „Last Build: datum”.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Sinkronizacija dvaju uređaja</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Sinkronizacija dvaju uređaja</h2>
 
 <ol>
 <li><strong>Prvi uređaj:</strong> Postavke → Pohrana → <em>Oblak</em> → <em>Stvori novi kôd za sinkronizaciju</em>. Kôd se pojavljuje na zaslonu; s <em>Spremi kôd e-poštom</em> šaljete ga sebi.</li>
@@ -221,8 +257,8 @@
 </ol>
 <p>Sinkroniziraju se viskiji, lista želja, povijest, police i postavke poput jezika i valute. <strong>Ne sinkroniziraju se</strong> vlastite fotografije i podaci specifični za uređaj. Svatko tko zna vaš kôd može vidjeti vaše viskije – dijelite ga samo s osobama kojima vjerujete. Čuvajte i JSON sigurnosnu kopiju.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. UI, privatnost i troškovi</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. UI, privatnost i troškovi</h2>
 
 <ul>
 <li><strong>Za što se koristi UI?</strong> Skeniranje etikete, traženje viskija, traženje cijena i „Ažuriraj sve viskije”. Fotografija ili naziv viskija šalje se preko našeg poslužitelja UI usluzi (Anthropic, SAD) na obradu – bez imena i računa. Aplikacija traži vaš pristanak prije prve upotrebe.</li>
@@ -231,8 +267,8 @@
 <li><strong>Podaci:</strong> Sve ostaje na vašem uređaju dok ne uključite oblak. Bez oglasa, bez praćenja, bez korisničkog računa. Pojedinosti u <a href="datenschutz.html">pravilima privatnosti</a> (na njemačkom).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Savjeti i česta pitanja</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Savjeti i česta pitanja</h2>
 
 <ul>
 <li><strong>Na iPadu ili računalu</strong> se izgled prilagođava: šira kolona, više kartica jedna pokraj druge, a na računalu (i iPadu u položenom prikazu) navigacija s lijeve strane. Telefon radi i u položenom prikazu. Na računalu <kbd>Esc</kbd> zatvara gornji prozor; na telefonu prozor zatvarate povlačenjem prema dolje.</li>

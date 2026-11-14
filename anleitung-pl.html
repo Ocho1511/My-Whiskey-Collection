@@ -19,7 +19,7 @@
 <div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('mw_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html" selected>Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
 
 <h1>Instrukcja obsługi – My Whiskey Collection</h1>
-<p><small>Zaktualizowano: 13 listopada 2026 · Wersja aplikacji 2.0</small></p>
+<p><small>Zaktualizowano: 15 listopada 2026 · Wersja aplikacji 2.0</small></p>
 
 <div class="toc">
 
@@ -31,6 +31,8 @@
 <li><a href="#racks">Regały i przechowywanie</a></li>
 <li><a href="#history">Historia</a></li>
 <li><a href="#wish">Lista życzeń</a></li>
+<li><a href="#serve">Perfect serve i szklanki</a></li>
+<li><a href="#recipes">Przepisy i półka ze składnikami</a></li>
 <li><a href="#stats">Statystyki</a></li>
 <li><a href="#export">Eksport, import i kopia zapasowa</a></li>
 <li><a href="#setup">Ustawienia</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Przegląd i pierwsze kroki</h2>
 
 <p>My Whiskey Collection to Twoja osobista kolekcja whisky w kieszeni: zarządzasz zapasem, miejscami przechowywania, listą życzeń i statystykami. Wszystko działa na Twoim urządzeniu; kodem synchronizacji możesz połączyć kilka urządzeń.</p>
-<p>Na dole (na komputerze i iPadzie w poziomie: po lewej stronie) znajdziesz pasek z siedmioma obszarami:</p>
+<p>Na dole (na komputerze i iPadzie w poziomie: po lewej stronie) znajdziesz pasek z ośmioma obszarami:</p>
 <table>
 <tbody><tr><th>Obszar</th><th>Przeznaczenie</th></tr>
 <tr><td><strong>Kolekcja</strong></td><td>Wszystkie whisky, wyszukiwanie, filtry, sortowanie, dodawanie whisky, picie</td></tr>
 <tr><td><strong>Statystyki</strong></td><td>Zestawienia zapasu, cen, przechowywania i historii picia</td></tr>
+<tr><td><strong>Przepisy</strong></td><td>Klasyki i koktajle, własne przepisy, przepis od AI, półka ze składnikami</td></tr>
 <tr><td><strong>Historia</strong></td><td>Whisky, które wypiłeś</td></tr>
 <tr><td><strong>Regały</strong></td><td>Plan przechowywania: układanie i przenoszenie whisky, etykiety QR</td></tr>
 <tr><td><strong>Lista życzeń</strong></td><td>Whisky, które jeszcze chcesz kupić</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Zdefiniuj regały</strong> (opcjonalnie): Ustawienia → Regały (patrz <a href="#racks">rozdział 5</a>).</li>
 <li><strong>Dodaj pierwszą whisky</strong>: dotknij <kbd>+</kbd> w kolekcji (<a href="#add">rozdział 2</a>).</li>
 <li><strong>Ułóż ją</strong>: przypisz whisky miejsce na regale.</li>
-<li><strong>Zrób kopię zapasową</strong>: Eksport/Import → kopia JSON lub skonfiguruj synchronizację z chmurą (<a href="#sync">rozdział 11</a>).</li>
+<li><strong>Zrób kopię zapasową</strong>: Eksport/Import → kopia JSON lub skonfiguruj synchronizację z chmurą (<a href="#sync">rozdział 13</a>).</li>
 </ol>
 <div class="tip">Sekcje w <em>Ustawieniach</em> można zwijać. „Ogólne” jest otwarte przy pierwszym uruchomieniu, pozostałe są zamknięte. Aplikacja pamięta, co ostatnio otworzyłeś lub zamknąłeś.</div>
 
@@ -69,14 +72,14 @@
 
 <p>Dotknij <kbd>+</kbd> w kolekcji. Whisky można dodać na kilka sposobów – można je łączyć.</p>
 <h3>a) Ręcznie</h3>
-<p>Wypełnij pola: <strong>Nazwa, Rok, Butelki, Rodzaj whisky, Region (np. Speyside, Islay, Kentucky), Kraj, Destylarnia, Wiek (lata), ABV %, Beczka, Miejsce przechowywania, Temperatura podawania, Cena, Ocena, Notatka</strong>. Wymagana jest tylko nazwa. <em>Zapisz</em> tworzy whisky.</p>
+<p>Wypełnij pola: <strong>Nazwa, Rok, Butelki, Rodzaj whisky, Region (np. Speyside, Islay, Kentucky), Kraj, Destylarnia, Wiek (lata), ABV %, Beczka, Miejsce przechowywania, Temperatura podawania, Perfect serve, Cena, Ocena, Notatka</strong>. Wymagana jest tylko nazwa. <em>Zapisz</em> tworzy whisky. Wskazówki, jak najlepiej podać daną whisky, znajdziesz w bloku Perfect serve (<a href="#serve">rozdział 8</a>).</p>
 <ul>
 <li><strong>Rok:</strong> Rok to rok butelkowania lub destylacji butelki. <strong>Wiek (lata)</strong> to czas dojrzewania w latach (np. 12), <strong>ABV %</strong> zawartość alkoholu w procentach, a <strong>Beczka</strong> rodzaj beczki (np. sherry, beczka po bourbonie).</li>
 <li><strong>Zapas, Min i Maks:</strong> Jeśli podasz minimum, aplikacja ostrzeże, gdy zapas spadnie poniżej niego, i zaproponuje dodanie whisky do listy życzeń (<a href="#cellar">rozdział 3</a>).</li>
 <li><strong>Własne zdjęcie:</strong> „Zrób / wybierz zdjęcie” dołącza zdjęcie do whisky. Pozostaje ono na tym urządzeniu i jest zawarte w kopii JSON, ale nie jest synchronizowane z chmurą.</li>
 </ul>
 <h3>b) Skanuj etykietę (AI)</h3>
-<p>Dotknij <em>Skanuj etykietę (AI)</em> i sfotografuj etykietę butelki. AI odczytuje nazwę, rok, rodzaj, region, kraj, destylarnię, wiek, ABV i beczkę oraz szacuje temperaturę podawania. Sprawdź wartości i zapisz. Przed pierwszym użyciem aplikacja prosi o Twoją zgodę (<a href="#privacy">rozdział 12</a>).</p>
+<p>Dotknij <em>Skanuj etykietę (AI)</em> i sfotografuj etykietę butelki. AI odczytuje nazwę, rok, rodzaj, region, kraj, destylarnię, wiek, ABV i beczkę oraz szacuje temperaturę podawania. Sprawdź wartości i zapisz. Przed pierwszym użyciem aplikacja prosi o Twoją zgodę (<a href="#privacy">rozdział 14</a>).</p>
 <h3>c) Skanuj kod kreskowy</h3>
 <p>Dotknij <em>Skanuj kod kreskowy</em> i ustaw kod kreskowy butelki w ramce. Aplikacja wyszukuje numer w darmowej bazie produktów (bez kosztów, bez kredytu AI) i – jeśli go znajdzie – wypełnia <strong>nazwę, producenta i rodzaj whisky</strong>. Rok uzupełnia na podstawie nazwy albo o niego pyta.</p>
 <ul>
@@ -98,7 +101,7 @@
 <li><strong>Lista / karty:</strong> Przycisk <em>Lista</em> przełącza między zwartą listą a szczegółowymi kartami.</li>
 </ul>
 <h3>Karta whisky</h3>
-<p>Karta pokazuje nazwę, rok, destylarnię, ocenę (gwiazdki), region i kraj (dotknij, aby otworzyć mapę lub regiony whisky danego kraju), liczbę butelek, <strong>temperaturę podawania</strong> (🌡) i <strong>miejsca przechowywania</strong> (dotknij, aby przejść do regału). Mała szklanka tumbler otwiera Wikipedię dla destylarni.</p>
+<p>Karta pokazuje nazwę, rok, destylarnię, ocenę (gwiazdki), region i kraj (dotknij, aby otworzyć mapę lub regiony whisky danego kraju), liczbę butelek, <strong>temperaturę podawania</strong> (🌡) i <strong>miejsca przechowywania</strong> (dotknij, aby przejść do regału). Mała szklanka tumbler otwiera Wikipedię dla destylarni. Jeśli ustawiono Perfect serve, karta pokazuje też ulubiony sposób picia, dodatek (garnish) i szklankę.</p>
 <p>Na dole karty: <em>Edytuj</em>, <em>Wypij</em> i 🗑 (usuń whisky).</p>
 <h3>Zapas, Min/Maks i lista zakupów</h3>
 <p>Jeśli podasz minimum (i opcjonalnie maksimum) dla whisky, karta pokazuje „Zapas · Min · Maks” i ostrzega znakiem ⚠, gdy jesteś poniżej. Przycisk <em>Do dokupienia</em> otwiera <strong>listę zakupów</strong>: zawiera wszystkie whisky poniżej minimum (celem jest maksimum, w przeciwnym razie minimum). Możesz udostępnić lub skopiować listę albo dodać whisky do listy życzeń.</p>
@@ -156,7 +159,58 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Statystyki</h2>
+<h2 id="serve">8. Perfect serve i szklanki</h2>
+
+<p>W formularzu <em>Dodaj whisky</em> / <em>Edytuj whisky</em> znajdziesz blok <strong>Perfect serve (sposób picia, miksery, dania)</strong>. Podpowiada, jak najlepiej podać daną whisky.</p>
+<h3>Dwa przyciski</h3>
+<ul>
+<li><strong>🥃 Wskazówka wg reguł</strong> – działa offline i jest bezpłatna. Aplikacja ocenia whisky według rodzaju, torfu, sherry, bourbonu itp.</li>
+<li><strong>🤖 Rekomendacja AI</strong> – kosztuje jeden skan AI (<a href="#privacy">rozdział 14</a>).</li>
+</ul>
+<p>Przed użyciem wpisz nazwę (inaczej pojawi się komunikat „Najpierw wpisz nazwę”). Wynik to <strong>do trzech sposobów picia</strong> – czysta, z kilkoma kroplami wody, z lodem, highball lub koktajl – każdy z uzasadnieniem. <strong>Dotknięcie</strong> jednego z nich ustawia go jako ulubiony („Ustawiono jako ulubiony ✓”).</p>
+<h3>Pola</h3>
+<ul>
+<li><strong>Miksery i dodatki</strong> (oddzielone przecinkami)</li>
+<li><strong>Woda / proporcje</strong></li>
+<li><strong>Szklanka</strong></li>
+<li><strong>Lód</strong></li>
+<li><strong>Do jedzenia</strong> – pasujące dania</li>
+</ul>
+<p>Na <strong>karcie whisky</strong> w kolekcji widać ulubiony sposób picia, dodatek i szklankę.</p>
+<h3>Szklanka: „Zobacz szklankę”</h3>
+<p>Szklanka (np. kieliszek Glencairn) jest linkiem <em>Zobacz szklankę</em>. Otwiera kartę z rysunkiem i krótkim objaśnieniem; link <em>Zobacz więcej zdjęć ↗</em> prowadzi do kolejnych obrazów, a <em>Zamknij</em> zamyka kartę. Dostępne szklanki:</p>
+<table>
+<tbody><tr><th>Szklanka</th><th>Do czego</th></tr>
+<tr><td><strong>Kieliszek Glencairn</strong></td><td>Standardowy kieliszek do degustacji: czysta whisky lub z kilkoma kroplami wody</td></tr>
+<tr><td><strong>Szklanka tumbler (rocks)</strong></td><td>Whisky z lodem, Old Fashioned, Boulevardier, Rusty Nail</td></tr>
+<tr><td><strong>Szklanka highball</strong></td><td>Whisky z wodą gazowaną lub ginger ale</td></tr>
+<tr><td><strong>Coupe</strong></td><td>Koktajle bez lodu: Manhattan, Rob Roy, whiskey sour</td></tr>
+<tr><td><strong>Kubek julep</strong></td><td>Mint Julep z kruszonym lodem</td></tr>
+<tr><td><strong>Szklanka do Irish coffee</strong></td><td>Gorąca kawa z whiskey i śmietanką</td></tr>
+</tbody></table>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Przepisy i półka ze składnikami</h2>
+
+<p>Obszar <strong>Przepisy</strong> (podtytuł „Klasyki i koktajle”) to osobny obszar na klasyki i własne przepisy. Znajdziesz tu <strong>12 klasyków</strong> ze składnikami i sposobem przygotowania: Old Fashioned, Manhattan, Whiskey Sour, Highball z whisky, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane i Gold Rush.</p>
+<h3>Filtry</h3>
+<ul>
+<li><strong>Wszystkie</strong> – wszystkie przepisy,</li>
+<li><strong>⭐ Ulubione</strong> – przepisy oznaczone gwiazdką,</li>
+<li><strong>Moje</strong> – Twoje własne przepisy,</li>
+<li><strong>🥃 Pasuje do mojego baru</strong> – przepisy, do których masz potrzebne whisky i składniki.</li>
+</ul>
+<h3>Własne przepisy</h3>
+<ul>
+<li><strong>Dodaj własny przepis</strong>: wpisz nazwę, składniki (każdy w osobnej linii) i przygotowanie, a potem dotknij <em>Zapisz przepis</em>. Usunięcie przepisu wymaga potwierdzenia.</li>
+<li><strong>Przepis na whisky (AI)</strong>: wybierz whisky z listy („Wybierz whisky…”) i dotknij <em>🤖 Utwórz przepis</em>. AI tworzy przepis dla tej whisky; zachowasz go przez <em>Zapisz jako mój przepis</em>. To kosztuje skan AI.</li>
+</ul>
+<h3>Półka ze składnikami</h3>
+<p>W <strong>Mojej półce ze składnikami (miksery, dodatki, składniki)</strong> dotykasz tego, co masz w domu. Rekomendacje (także w Perfect serve) pokazują wtedy <strong>✓</strong> (mam) albo <strong>🛒</strong> (brakuje). <em>🛒 Dodaj brakujące do listy życzeń</em> zakłada brakujące składniki na <a href="#wish">liście życzeń</a>.</p>
+<div class="tip">Przepisy, ulubione i półka ze składnikami są zabezpieczane synchronizacją z chmurą (<a href="#sync">rozdział 13</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Statystyki</h2>
 
 <p>Od góry do dołu:</p>
 <ul>
@@ -171,8 +225,8 @@
 </ul>
 <p>Sekcje bez danych (np. bez cen) są ukryte.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Eksport, import i kopia zapasowa</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Eksport, import i kopia zapasowa</h2>
 
 <table>
 <tbody><tr><th>Funkcja</th><th>Przeznaczenie</th></tr>
@@ -184,10 +238,10 @@
 <tr><td>Importuj JSON / CSV / Excel</td><td>Przywróć kopię zapasową lub wczytaj tabelę</td></tr>
 </tbody></table>
 <p>Kolumny w CSV i Excelu to: <strong>Nazwa, Rok, Rodzaj, Region, Kraj, Destylarnia, Wiek, ABV, Beczka, Regał, Poziom, Miejsce, Butelki, Ocena, Cena, Notatka</strong>. Import akceptuje także stare nazwy kolumn.</p>
-<div class="tip"><strong>Regularnie rób kopię JSON.</strong> Import JSON zastępuje kolekcję kopią zapasową (aplikacja najpierw pyta). Na nowym urządzeniu przywraca to wszystko. Alternatywnie użyj synchronizacji z chmurą (<a href="#sync">rozdział 11</a>).</div>
+<div class="tip"><strong>Regularnie rób kopię JSON.</strong> Import JSON zastępuje kolekcję kopią zapasową (aplikacja najpierw pyta). Na nowym urządzeniu przywraca to wszystko. Alternatywnie użyj synchronizacji z chmurą (<a href="#sync">rozdział 13</a>).</div>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Ustawienia</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Ustawienia</h2>
 
 <h3>Ogólne</h3>
 <ul>
@@ -199,9 +253,9 @@
 <li><strong>Jednostka temperatury:</strong> °C lub °F (angielski (USA) ustawia °F automatycznie).</li>
 </ul>
 <h3>Miejsce zapisu</h3>
-<p><em>Tylko to urządzenie</em> lub <em>Chmura</em> (kod synchronizacji, <a href="#sync">rozdział 11</a>).</p>
+<p><em>Tylko to urządzenie</em> lub <em>Chmura</em> (kod synchronizacji, <a href="#sync">rozdział 13</a>).</p>
 <h3>Kredyty AI (tylko aplikacja na iPhone'a)</h3>
-<p>Pokazuje pozostałe skany AI, identyfikator urządzenia i – w razie potrzeby – <em>Dodaj kredyty</em> lub kod odblokowujący. Zobacz <a href="#privacy">rozdział 12</a>.</p>
+<p>Pokazuje pozostałe skany AI, identyfikator urządzenia i – w razie potrzeby – <em>Dodaj kredyty</em> lub kod odblokowujący. Zobacz <a href="#privacy">rozdział 14</a>.</p>
 <h3>Baza whisky</h3>
 <ul>
 <li><strong>Zaktualizuj wszystkie whisky (AI):</strong> uzupełnia brakujący region, kraj, destylarnię, wiek, ABV, beczkę, temperaturę podawania i cenę dla wszystkich whisky (w wersji webowej także zdjęcia butelek). Istniejące wartości pozostają. Jeśli temperatury podawania już istnieją, aplikacja najpierw pyta, czy zastąpić je również wartościami AI. <em>Wskazówka: najpierw wyeksportuj kopię JSON.</em></li>
@@ -209,20 +263,21 @@
 <h3>Regały</h3>
 <p>Zobacz <a href="#racks">rozdział 5</a>. Nagłówek pokazuje liczbę regałów.</p>
 <h3>Prywatność, wsparcie, wersja</h3>
-<p>Linki prowadzą do polityki prywatności i do tej strony wsparcia. Na samym dole znajdziesz <strong>wersję</strong> aplikacji – podaj ją, kontaktując się z nami.</p>
+<p>Linki prowadzą do polityki prywatności i do tej strony wsparcia; <em>Instrukcja obsługi</em> otwiera tę instrukcję. Na samym dole znajdziesz <strong>wersję</strong> aplikacji – podaj ją, kontaktując się z nami.</p>
+<p>W obszarze <em>Kontakt</em> (po dotknięciu rozwija się) znajdziesz imię i nazwisko twórcy oraz wpis „Last Build: data”, czyli datę ostatniej kompilacji aplikacji.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Synchronizacja dwóch urządzeń</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Synchronizacja dwóch urządzeń</h2>
 
 <ol>
 <li><strong>Pierwsze urządzenie:</strong> Ustawienia → Miejsce zapisu → <em>Chmura</em> → <em>Utwórz nowy kod synchronizacji</em>. Kod pojawia się na ekranie; przez <em>Zapisz kod przez e-mail</em> wysyłasz go do siebie.</li>
 <li><strong>Drugie urządzenie:</strong> Ustawienia → Miejsce zapisu → <em>Chmura</em> → wpisz kod (małe litery, bez spacji) → Połącz. Jeśli urządzenie zawiera już whisky, aplikacja pyta, czy połączyć je z danymi z chmury.</li>
 <li>Potem oba urządzenia synchronizują się automatycznie (np. przy otwarciu aplikacji); <em>Synchronizuj teraz</em> uruchamia to ręcznie. Zasada brzmi: <strong>wygrywa ostatnia zmiana</strong>.</li>
 </ol>
-<p>Synchronizowane są whisky, lista życzeń, historia, regały i ustawienia takie jak język i waluta. <strong>Nie są synchronizowane</strong> własne zdjęcia i dane specyficzne dla urządzenia. Każdy, kto zna Twój kod, może zobaczyć Twoje whisky – udostępniaj go tylko zaufanym osobom. Miej też kopię JSON.</p>
+<p>Synchronizowane są whisky, lista życzeń, historia, regały, własne przepisy, ulubione przepisy, półka ze składnikami i ustawienia takie jak język i waluta. <strong>Nie są synchronizowane</strong> własne zdjęcia i dane specyficzne dla urządzenia. Każdy, kto zna Twój kod, może zobaczyć Twoje whisky – udostępniaj go tylko zaufanym osobom. Miej też kopię JSON.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. AI, prywatność i koszty</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. AI, prywatność i koszty</h2>
 
 <ul>
 <li><strong>Do czego służy AI?</strong> Skanowanie etykiety, wyszukiwanie whisky, szukanie cen i „Zaktualizuj wszystkie whisky”. Zdjęcie lub nazwa whisky jest wysyłana przez nasz serwer do usługi AI (Anthropic, USA) w celu oceny – bez imion i nazwisk ani kont. Aplikacja prosi o Twoją zgodę przed pierwszym użyciem.</li>
@@ -231,8 +286,8 @@
 <li><strong>Dane:</strong> Wszystko pozostaje na Twoim urządzeniu, dopóki nie włączysz chmury. Bez reklam, bez śledzenia, bez konta użytkownika. Szczegóły w <a href="datenschutz.html">polityce prywatności</a> (po niemiecku).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Wskazówki i FAQ</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Wskazówki i FAQ</h2>
 
 <ul>
 <li><strong>Na iPadzie lub komputerze</strong> układ dostosowuje się: szersza kolumna, kilka kart obok siebie, a na komputerze (i iPadzie w poziomie) nawigacja po lewej stronie. Telefon działa też w poziomie. Na komputerze <kbd>Esc</kbd> zamyka górne okno; na telefonie przesuń okno w dół, aby je zamknąć.</li>

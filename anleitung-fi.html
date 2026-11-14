@@ -19,7 +19,7 @@
 <div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('mw_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html" selected>Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
 
 <h1>Käyttöohje – My Whiskey Collection</h1>
-<p><small>Päivitetty: 13. marraskuuta 2026 · Sovelluksen versio 2.0</small></p>
+<p><small>Päivitetty: 15. marraskuuta 2026 · Sovelluksen versio 2.0</small></p>
 
 <div class="toc">
 
@@ -31,6 +31,8 @@
 <li><a href="#racks">Hyllyt ja varastointi</a></li>
 <li><a href="#history">Historia</a></li>
 <li><a href="#wish">Toivelista</a></li>
+<li><a href="#perfect">Perfect serve ja lasit</a></li>
+<li><a href="#recipes">Reseptit ja ainesosahylly</a></li>
 <li><a href="#stats">Tilastot</a></li>
 <li><a href="#export">Vienti, tuonti ja varmuuskopio</a></li>
 <li><a href="#setup">Asetukset</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Yleiskatsaus ja ensimmäiset askeleet</h2>
 
 <p>My Whiskey Collection on henkilökohtainen viskikokoelmasi taskussa: hallitset varastoa, säilytyspaikkoja, toivelistaa ja tilastoja. Kaikki toimii laitteellasi; synkronointikoodilla voit yhdistää useita laitteita.</p>
-<p>Alareunasta (tietokoneella ja iPadilla vaakatilassa: vasemmalta) löydät palkin, jossa on seitsemän aluetta:</p>
+<p>Alareunasta (tietokoneella ja iPadilla vaakatilassa: vasemmalta) löydät palkin, jossa on kahdeksan aluetta:</p>
 <table>
 <tbody><tr><th>Alue</th><th>Käyttötarkoitus</th></tr>
 <tr><td><strong>Kokoelma</strong></td><td>Kaikki viskit, haku, suodattimet, lajittelu, viskin lisääminen, juominen</td></tr>
 <tr><td><strong>Tilastot</strong></td><td>Yhteenvedot varastosta, hinnoista, varastoinnista ja juomahistoriasta</td></tr>
+<tr><td><strong>Reseptit</strong></td><td>Klassiset cocktailit, omat reseptit, tekoälyreseptit ja oma ainesosahyllysi</td></tr>
 <tr><td><strong>Historia</strong></td><td>Juomasi viskit</td></tr>
 <tr><td><strong>Hyllyt</strong></td><td>Varastointisuunnitelma: viskien sijoittaminen ja siirtäminen, QR-tarrat</td></tr>
 <tr><td><strong>Toivelista</strong></td><td>Viskit, jotka haluat vielä ostaa</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Määrittele hyllyt</strong> (valinnainen): Asetukset → Hyllyt (ks. <a href="#racks">luku 5</a>).</li>
 <li><strong>Lisää ensimmäinen viskisi</strong>: napauta <kbd>+</kbd> kokoelmassa (<a href="#add">luku 2</a>).</li>
 <li><strong>Varastoi se</strong>: anna viskille paikka hyllyssä.</li>
-<li><strong>Varmuuskopioi</strong>: Vienti/Tuonti → JSON-varmuuskopio, tai ota käyttöön pilvisynkronointi (<a href="#sync">luku 11</a>).</li>
+<li><strong>Varmuuskopioi</strong>: Vienti/Tuonti → JSON-varmuuskopio, tai ota käyttöön pilvisynkronointi (<a href="#sync">luku 13</a>).</li>
 </ol>
 <div class="tip"><em>Asetukset</em>-osiot voi laajentaa ja supistaa. ”Yleiset” on auki ensimmäisellä käynnistyskerralla, muut ovat kiinni. Sovellus muistaa, mitä viimeksi avasit tai suljit.</div>
 
@@ -69,14 +72,14 @@
 
 <p>Napauta <kbd>+</kbd> kokoelmassa. Viskin voi lisätä usealla tavalla – ne voi yhdistää.</p>
 <h3>a) Käsin</h3>
-<p>Täytä kentät: <strong>Nimi, Vuosi, Pulloja, Viskityyppi, Alue (esim. Speyside, Islay, Kentucky), Maa, Tislaamo, Ikä (vuotta), ABV %, Tynnyri, Säilytyspaikka, Tarjoilulämpötila, Hinta, Arvosana, Muistiinpano</strong>. Vain nimi on pakollinen. <em>Tallenna</em> luo viskin.</p>
+<p>Täytä kentät: <strong>Nimi, Vuosi, Pulloja, Viskityyppi, Alue (esim. Speyside, Islay, Kentucky), Maa, Tislaamo, Ikä (vuotta), ABV %, Tynnyri, Säilytyspaikka, Tarjoilulämpötila, Hinta, Arvosana, Muistiinpano</strong>. Vain nimi on pakollinen. <em>Tallenna</em> luo viskin. Samassa lomakkeessa on myös <strong>Perfect serve</strong> -lohko (<a href="#perfect">luku 8</a>).</p>
 <ul>
 <li><strong>Vuosi:</strong> Vuosi on pullon pullotus- tai tislausvuosi. <strong>Ikä (vuotta)</strong> on kypsytysaika vuosina (esim. 12), <strong>ABV %</strong> alkoholipitoisuus prosentteina ja <strong>Tynnyri</strong> tynnyrin tyyppi (esim. sherry, bourbon-tynnyri).</li>
 <li><strong>Varasto, Min ja Maks:</strong> Jos annat vähimmäismäärän, sovellus varoittaa, kun varasto putoaa sen alle, ja tarjoaa viskin lisäämistä toivelistalle (<a href="#cellar">luku 3</a>).</li>
 <li><strong>Oma kuva:</strong> ”Ota / valitse kuva” liittää viskiin valokuvan. Se pysyy tällä laitteella ja sisältyy JSON-varmuuskopioon, mutta sitä ei synkronoida pilveen.</li>
 </ul>
 <h3>b) Skannaa etiketti (tekoäly)</h3>
-<p>Napauta <em>Skannaa etiketti (tekoäly)</em> ja ota kuva pullon etiketistä. Tekoäly lukee nimen, vuoden, tyypin, alueen, maan, tislaamon, iän, ABV:n ja tynnyrin ja arvioi tarjoilulämpötilan. Tarkista arvot ja tallenna. Ennen ensimmäistä käyttökertaa sovellus pyytää suostumuksesi (<a href="#privacy">luku 12</a>).</p>
+<p>Napauta <em>Skannaa etiketti (tekoäly)</em> ja ota kuva pullon etiketistä. Tekoäly lukee nimen, vuoden, tyypin, alueen, maan, tislaamon, iän, ABV:n ja tynnyrin ja arvioi tarjoilulämpötilan. Tarkista arvot ja tallenna. Ennen ensimmäistä käyttökertaa sovellus pyytää suostumuksesi (<a href="#privacy">luku 14</a>).</p>
 <h3>c) Skannaa viivakoodi</h3>
 <p>Napauta <em>Skannaa viivakoodi</em> ja pidä pullon viivakoodi kehyksen sisällä. Sovellus hakee numeron ilmaisesta tuotetietokannasta (ei kustannuksia, ei tekoälykrediittiä) ja täyttää, jos tieto löytyy, <strong>nimen, valmistajan ja viskityypin</strong>. Vuoden se täydentää nimestä tai kysyy sitä.</p>
 <ul>
@@ -156,7 +159,51 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Tilastot</h2>
+<h2 id="perfect">8. Perfect serve ja lasit</h2>
+
+<p>”Lisää viski” / ”Muokkaa viskiä” -lomakkeessa on lohko <strong>Perfect serve (nautintatapa, sekoittimet, ruoka)</strong>. Siihen tallennat, miten juuri tämä viski maistuu parhaalta.</p>
+<h3>Kaksi painiketta ehdotuksille</h3>
+<ul>
+<li><strong>🥃 Sääntöpohjainen vinkki</strong> – toimii offline-tilassa, on ilmainen ja perustuu viskityyppiin, turpeeseen, sherryyn, bourboniin jne.</li>
+<li><strong>🤖 Tekoälysuositus</strong> – kysyy tekoälyltä ja maksaa <strong>yhden tekoälyskannauksen</strong> (<a href="#privacy">luku 14</a>).</li>
+</ul>
+<p>Tuloksena on <strong>enintään kolme nautintatapaa</strong> lyhyine perusteluineen: <em>Sellaisenaan</em>, <em>Sellaisenaan muutaman vesitipan kanssa</em>, <em>Jäillä (on the rocks)</em>, <em>Highball soodaveden tai ginger alen kanssa</em> tai cocktail kuten <em>Old Fashioned</em>. <strong>Napauta ehdotusta</strong>, niin se merkitään suosikiksi (”Merkitty suosikiksi ✓”) ja kentät täytetään.</p>
+<h3>Kentät</h3>
+<ul>
+<li><strong>Sekoittimet ja koristeet, pilkulla erotettuina</strong> – esim. soodavesi, sitruunankuori.</li>
+<li><strong>Vesi / suhde</strong> – esim. ”2–3 tippaa vettä” tai ”1:3 soodaveden tai ginger alen kanssa”.</li>
+<li><strong>Lasi</strong> – esim. Glencairn-lasi, Tumbler, Highball-lasi.</li>
+<li><strong>Jää</strong> – ei jäätä, jääpalat tai iso pallo tai kuutio.</li>
+<li><strong>Ruokayhdistelmä</strong> – sopivat tarjottavat, esim. tumma suklaa, pähkinät tai juusto.</li>
+</ul>
+<h3>Lasi</h3>
+<p>Lasi-kentän alla on linkki <strong>Katso lasi</strong>. Se avaa kortin, jossa on piirros ja lyhyt selitys lasista: <em>Glencairn-lasi</em>, <em>Tumbler (rocks-lasi)</em>, <em>Highball-lasi</em>, <em>Coupe-lasi</em>, <em>Julep-kuppi</em> tai <em>Irish coffee -lasi</em>. Linkki <strong>Katso lisää kuvia ↗</strong> vie lisäkuviin verkossa, ja <em>Sulje</em> sulkee kortin.</p>
+<div class="tip">Kokoelman viskikortilla näkyvät sen jälkeen <strong>suosikkisi</strong>, <strong>koriste</strong> ja <strong>lasi</strong>.</div>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Reseptit ja ainesosahylly</h2>
+
+<p><strong>Reseptit</strong>-alue (”Klassikot ja cocktailit”) kokoaa klassiset viskicocktailit ja omat reseptisi.</p>
+<h3>12 klassikkoa</h3>
+<p>Old Fashioned, Manhattan, Whiskey Sour, Whisky Highball, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane ja Gold Rush. Jokaisessa reseptissä näkyvät <strong>Ainekset</strong>, <strong>Valmistus</strong> ja <strong>Lasi</strong>.</p>
+<h3>Suodattimet</h3>
+<ul>
+<li><strong>Kaikki</strong> – kaikki reseptit.</li>
+<li><strong>⭐ Suosikit</strong> – tähdellä merkitsemäsi reseptit.</li>
+<li><strong>Omat</strong> – omat reseptisi.</li>
+<li><strong>🥃 Sopii baariini</strong> – reseptit, joihin viskisi ja ainesosahyllysi riittävät; reseptin alla lukee <em>Sopii</em> ja viskit, joille se sopii.</li>
+</ul>
+<h3>Omat reseptit ja tekoälyreseptit</h3>
+<ul>
+<li><strong>Lisää oma resepti:</strong> täytä <em>Nimi</em>, <em>Ainekset, yksi per rivi</em> ja <em>Valmistus</em> ja napauta <em>Tallenna resepti</em>. <em>Poistetaanko tämä resepti?</em> sovellus kysyy ennen oman reseptin poistamista.</li>
+<li><strong>Resepti viskille (tekoäly):</strong> valitse viski (<em>Valitse viski…</em>) ja napauta <em>🤖 Luo resepti</em>. Se maksaa yhden tekoälyskannauksen. <em>Tallenna omaksi reseptiksi</em> siirtää reseptin kohtaan <em>Omat</em>.</li>
+</ul>
+<h3>Ainesosahyllyni</h3>
+<p>Kohdassa <strong>Ainesosahyllyni (sekoittimet, koristeet, ainekset)</strong> napautat sen, mitä sinulla on kotona. Suosituksissa näkyy sitten <strong>✓</strong> (on) tai <strong>🛒</strong> (puuttuu). Painike <strong>🛒 Lisää puuttuvat toivelistalle</strong> lisää puuttuvat <a href="#wish">toivelistalle</a> (muistiinpanolla ”Aines/koriste”). Jos mitään ei puutu, saat siitä ilmoituksen.</p>
+<div class="note">Reseptit, suosikit ja ainesosahylly varmuuskopioidaan pilvisynkronoinnilla (<a href="#sync">luku 13</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Tilastot</h2>
 
 <p>Ylhäältä alas:</p>
 <ul>
@@ -171,8 +218,8 @@
 </ul>
 <p>Osiot ilman tietoja (esim. ilman hintoja) piilotetaan.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Vienti, tuonti ja varmuuskopio</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Vienti, tuonti ja varmuuskopio</h2>
 
 <table>
 <tbody><tr><th>Toiminto</th><th>Käyttötarkoitus</th></tr>
@@ -184,10 +231,11 @@
 <tr><td>Tuo JSON / CSV / Excel</td><td>Palauta varmuuskopio tai tuo taulukko</td></tr>
 </tbody></table>
 <p>CSV:n ja Excelin sarakkeet ovat: <strong>Nimi, Vuosi, Tyyppi, Alue, Maa, Tislaamo, Ikä, ABV, Tynnyri, Hylly, Taso, Paikka, Pulloja, Arvosana, Hinta, Muistiinpano</strong>. Tuonti hyväksyy myös vanhat sarakenimet.</p>
-<div class="tip"><strong>Tee JSON-varmuuskopio säännöllisesti.</strong> JSON-tuonti korvaa kokoelman varmuuskopiolla (sovellus kysyy ensin). Uudella laitteella se palauttaa kaiken. Vaihtoehtoisesti käytä pilvisynkronointia (<a href="#sync">luku 11</a>).</div>
+<div class="tip"><strong>Tee JSON-varmuuskopio säännöllisesti.</strong> JSON-tuonti korvaa kokoelman varmuuskopiolla (sovellus kysyy ensin). Uudella laitteella se palauttaa kaiken. Vaihtoehtoisesti käytä pilvisynkronointia (<a href="#sync">luku 13</a>).</div>
+<p>Sivun alareunassa on avattava <strong>Yhteystiedot</strong>-alue: siinä näkyvät kehittäjän nimi ja ”Last Build: päivämäärä” (milloin sovellus on viimeksi koottu).</p>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Asetukset</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Asetukset</h2>
 
 <h3>Yleiset</h3>
 <ul>
@@ -199,9 +247,9 @@
 <li><strong>Lämpötilayksikkö:</strong> °C tai °F (englanti (USA) asettaa °F automaattisesti).</li>
 </ul>
 <h3>Tallennuspaikka</h3>
-<p><em>Vain tämä laite</em> tai <em>Pilvi</em> (synkronointikoodi, <a href="#sync">luku 11</a>).</p>
+<p><em>Vain tämä laite</em> tai <em>Pilvi</em> (synkronointikoodi, <a href="#sync">luku 13</a>).</p>
 <h3>Tekoälykrediitit (vain iPhone-sovellus)</h3>
-<p>Näyttää jäljellä olevat tekoälyskannaukset, laitetunnuksen ja – tarvittaessa – <em>Lisää krediittejä</em> tai avauskoodin. Katso <a href="#privacy">luku 12</a>.</p>
+<p>Näyttää jäljellä olevat tekoälyskannaukset, laitetunnuksen ja – tarvittaessa – <em>Lisää krediittejä</em> tai avauskoodin. Katso <a href="#privacy">luku 14</a>.</p>
 <h3>Viskitietokanta</h3>
 <ul>
 <li><strong>Päivitä kaikki viskit (tekoäly):</strong> täyttää puuttuvan alueen, maan, tislaamon, iän, ABV:n, tynnyrin, tarjoilulämpötilan ja hinnan kaikille viskeille (verkkoversiossa myös pullokuvat). Olemassa olevat arvot säilyvät. Jos tarjoilulämpötiloja on jo, sovellus kysyy ensin, korvataanko ne myös tekoälyn arvoilla. <em>Vinkki: vie ensin JSON-varmuuskopio.</em></li>
@@ -209,30 +257,30 @@
 <h3>Hyllyt</h3>
 <p>Katso <a href="#racks">luku 5</a>. Otsikko näyttää hyllyjen määrän.</p>
 <h3>Tietosuoja, tuki, versio</h3>
-<p>Linkit johtavat tietosuojaselosteeseen ja tähän tukisivuun. Aivan alareunasta löydät sovelluksen <strong>version</strong> – ilmoita se, kun otat meihin yhteyttä.</p>
+<p>Linkit johtavat tietosuojaselosteeseen ja tähän tukisivuun. <strong>Käyttöohje</strong>-painike avaa tämän ohjeen. Aivan alareunasta löydät sovelluksen <strong>version</strong> – ilmoita se, kun otat meihin yhteyttä.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Kahden laitteen synkronointi</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Kahden laitteen synkronointi</h2>
 
 <ol>
 <li><strong>Ensimmäinen laite:</strong> Asetukset → Tallennuspaikka → <em>Pilvi</em> → <em>Luo uusi synkronointikoodi</em>. Koodi näkyy näytöllä; <em>Tallenna koodi sähköpostiin</em> -toiminnolla lähetät sen itsellesi.</li>
 <li><strong>Toinen laite:</strong> Asetukset → Tallennuspaikka → <em>Pilvi</em> → syötä koodi (pienet kirjaimet, ei välilyöntejä) → Yhdistä. Jos laitteella on jo viskejä, sovellus kysyy, yhdistetäänkö ne pilvitietoihin.</li>
 <li>Sen jälkeen molemmat laitteet synkronoituvat automaattisesti (esim. kun sovellus avataan); <em>Synkronoi nyt</em> käynnistää sen käsin. Sääntö on: <strong>viimeisin muutos voittaa</strong>.</li>
 </ol>
-<p>Viskit, toivelista, historia, hyllyt ja asetukset kuten kieli ja valuutta synkronoidaan. <strong>Ei synkronoida</strong> omia kuvia eikä laitekohtaisia tietoja. Jokainen, joka tietää koodisi, voi nähdä viskisi – jaa se vain luotettavien ihmisten kanssa. Pidä myös JSON-varmuuskopio.</p>
+<p>Viskit, toivelista, historia, hyllyt, omat reseptit, suosikit, ainesosahylly ja asetukset kuten kieli ja valuutta synkronoidaan. <strong>Ei synkronoida</strong> omia kuvia eikä laitekohtaisia tietoja. Jokainen, joka tietää koodisi, voi nähdä viskisi – jaa se vain luotettavien ihmisten kanssa. Pidä myös JSON-varmuuskopio.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. Tekoäly, tietosuoja ja kustannukset</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. Tekoäly, tietosuoja ja kustannukset</h2>
 
 <ul>
-<li><strong>Mihin tekoälyä käytetään?</strong> Etiketin skannaus, viskin tietojen haku, hintojen haku ja ”Päivitä kaikki viskit”. Kuva tai viskin nimi lähetetään palvelimemme kautta tekoälypalveluun (Anthropic, USA) arvioitavaksi – ilman nimiä tai tilejä. Sovellus pyytää suostumuksesi ennen ensimmäistä käyttökertaa.</li>
+<li><strong>Mihin tekoälyä käytetään?</strong> Etiketin skannaus, viskin tietojen haku, hintojen haku, ”Päivitä kaikki viskit”, Perfect serven tekoälysuositus ja tekoälyreseptit. Kuva tai viskin nimi lähetetään palvelimemme kautta tekoälypalveluun (Anthropic, USA) arvioitavaksi – ilman nimiä tai tilejä. Sovellus pyytää suostumuksesi ennen ensimmäistä käyttökertaa.</li>
 <li><strong>Viivakoodin skannaus</strong> lähettää vain numeron ilmaiseen tuotetietokantaan eikä kuluta tekoälykrediittiä.</li>
 <li><strong>Kustannukset (iPhone-sovellus):</strong> 50 tekoälykutsua asennusta kohden sisältyy ostohintaan; lisää voi ostaa valinnaisena kertaostona (ei tilausta, krediitit eivät vanhene). Kaikki muu sovelluksessa on ilman lisämaksua. Kun krediitit on käytetty, kaikki muu paitsi tekoälytoiminnot toimii edelleen.</li>
 <li><strong>Tiedot:</strong> Kaikki pysyy laitteellasi, kunhan et ota pilveä käyttöön. Ei mainoksia, ei seurantaa, ei käyttäjätiliä. Lisätietoja <a href="datenschutz.html">tietosuojaselosteessa</a> (saksaksi).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Vinkkejä ja usein kysyttyä</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Vinkkejä ja usein kysyttyä</h2>
 
 <ul>
 <li><strong>iPadilla tai tietokoneella</strong> asettelu mukautuu: leveämpi palsta, useita kortteja vierekkäin, ja tietokoneella (sekä iPadilla vaakatilassa) navigointi vasemmalla. Puhelin toimii myös vaakatilassa. Tietokoneella <kbd>Esc</kbd> sulkee ylimmän ikkunan; puhelimella pyyhkäise ikkunaa alaspäin sulkeaksesi sen.</li>

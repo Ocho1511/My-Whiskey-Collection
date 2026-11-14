@@ -19,7 +19,7 @@
 <div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('mw_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html" selected>Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html">Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
 
 <h1>Guía de usuario – My Whiskey Collection</h1>
-<p><small>Actualizado: 13 de noviembre de 2026 · Versión de la app 2.0</small></p>
+<p><small>Actualizado: 15 de noviembre de 2026 · Versión de la app 2.0</small></p>
 
 <div class="toc">
 
@@ -31,6 +31,8 @@
 <li><a href="#racks">Estantes y colocación</a></li>
 <li><a href="#history">Historial</a></li>
 <li><a href="#wish">Lista de deseos</a></li>
+<li><a href="#serve">Servicio perfecto y vasos</a></li>
+<li><a href="#recipes">Recetas y estante de ingredientes</a></li>
 <li><a href="#stats">Estadísticas</a></li>
 <li><a href="#export">Exportar, importar y copia de seguridad</a></li>
 <li><a href="#setup">Ajustes (configuración)</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Resumen y primeros pasos</h2>
 
 <p>My Whiskey Collection es tu colección personal de whisky en el bolsillo: gestionas las existencias, los huecos de almacenamiento, una lista de deseos y estadísticas. Todo funciona en tu dispositivo; con un código de sync puedes conectar varios dispositivos.</p>
-<p>Abajo (en PC y en iPad horizontal: a la izquierda) encuentras la barra con siete áreas:</p>
+<p>Abajo (en PC y en iPad horizontal: a la izquierda) encuentras la barra con ocho áreas:</p>
 <table>
 <tbody><tr><th>Área</th><th>Para qué sirve</th></tr>
 <tr><td><strong>Colección</strong></td><td>Todos los whiskies, búsqueda, filtros, orden, añadir un whisky, beber</td></tr>
 <tr><td><strong>Datos</strong></td><td>Análisis de existencias, precios, almacenamiento e historial de consumo</td></tr>
+<tr><td><strong>Recetas</strong></td><td>Clásicos de la coctelería, recetas propias, estante de ingredientes</td></tr>
 <tr><td><strong>Historial</strong></td><td>Los whiskies que ya has bebido</td></tr>
 <tr><td><strong>Estantes</strong></td><td>Plano de almacenamiento: colocar y mover whiskies, etiquetas QR</td></tr>
 <tr><td><strong>Deseos</strong></td><td>Whiskies que todavía quieres comprar</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Define estantes</strong> (opcional): Ajustes → Estantes (ver <a href="#racks">sección 5</a>).</li>
 <li><strong>Añade tu primer whisky</strong>: pulsa <kbd>+</kbd> en la colección (<a href="#add">sección 2</a>).</li>
 <li><strong>Colócalo</strong>: asigna al whisky un hueco en un estante.</li>
-<li><strong>Haz una copia de seguridad</strong>: Export/Import → copia JSON, o configura la sincronización en la nube (<a href="#sync">sección 11</a>).</li>
+<li><strong>Haz una copia de seguridad</strong>: Export/Import → copia JSON, o configura la sincronización en la nube (<a href="#sync">sección 13</a>).</li>
 </ol>
 <div class="tip">Las secciones de <em>Ajustes</em> se pueden plegar. “General” está abierta en el primer inicio, las demás cerradas. La app recuerda lo que abriste o cerraste la última vez.</div>
 
@@ -76,7 +79,7 @@
 <li><strong>Foto propia:</strong> “Hacer / elegir foto” adjunta una foto al whisky. Se queda en este dispositivo y se incluye en la copia JSON, pero no se sincroniza con la nube.</li>
 </ul>
 <h3>b) Escanear etiqueta (IA)</h3>
-<p>Pulsa <em>Escanear etiqueta (IA)</em> y fotografía la etiqueta de la botella. La IA lee nombre, año, tipo, región, país, destilería, edad, ABV y barrica, y estima la temperatura de servicio. Revisa los valores y guarda. Antes del primer uso la app pide tu consentimiento (<a href="#privacy">sección 12</a>).</p>
+<p>Pulsa <em>Escanear etiqueta (IA)</em> y fotografía la etiqueta de la botella. La IA lee nombre, año, tipo, región, país, destilería, edad, ABV y barrica, y estima la temperatura de servicio. Revisa los valores y guarda. Antes del primer uso la app pide tu consentimiento (<a href="#privacy">sección 14</a>).</p>
 <h3>c) Escanear código de barras</h3>
 <p>Pulsa <em>Escanear código de barras</em> y coloca el código de barras de la botella dentro del marco. La app busca el número en una base de datos de productos gratuita (sin coste, sin crédito de IA) y, si lo encuentra, rellena <strong>nombre, productor y tipo de whisky</strong>. Completa el año a partir del nombre o te lo pregunta.</p>
 <ul>
@@ -156,7 +159,46 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Estadísticas</h2>
+<h2 id="serve">8. Servicio perfecto y vasos</h2>
+
+<p>En el formulario “Añadir whisky” / “Editar whisky” encuentras el bloque <strong>Servicio perfecto (forma de disfrutarlo, mezcladores, comida)</strong>. Te dice cómo disfrutar mejor un whisky y en qué vaso.</p>
+<h3>Dos formas de obtener una recomendación</h3>
+<ul>
+<li><strong>🥃 Consejo por reglas:</strong> funciona sin conexión y es gratis. Se guía por el tipo de whisky, la turba, la barrica de jerez, el bourbon, etc. y no gasta crédito de IA.</li>
+<li><strong>🤖 Recomendación de IA:</strong> consulta a la IA y <strong>cuesta un escaneo de IA</strong> (<a href="#privacy">sección 14</a>). Introduce antes el nombre; si no, aparece “Primero introduce el nombre”.</li>
+</ul>
+<h3>El resultado</h3>
+<p>Obtienes hasta <strong>tres formas de disfrutarlo</strong>, cada una con una breve razón. Las opciones son: <em>Solo</em>, <em>Solo con unas gotas de agua</em>, <em>Con hielo (on the rocks)</em>, <em>Highball con soda o ginger ale</em> y <em>Old Fashioned</em>. Toca una para marcarla como <strong>favorita</strong> (“Marcado como favorito ✓”).</p>
+<h3>Los campos</h3>
+<ul>
+<li><strong>Mezcladores y guarnición</strong> (separados por comas)</li>
+<li><strong>Agua / proporción</strong> (p. ej. “2–3 gotas de agua” o “1:3 con soda o ginger ale”)</li>
+<li><strong>Vaso</strong></li>
+<li><strong>Hielo</strong> (sin hielo, esfera o cubo grande, cubitos de hielo)</li>
+<li><strong>Maridaje</strong> (p. ej. queso azul o chocolate negro con whiskies ahumados)</li>
+</ul>
+<p>Puedes cambiar cada campo a mano; la recomendación solo los rellena de antemano (“Recomendación aplicada ✓”).</p>
+<h3>Ver el vaso</h3>
+<p>El vaso (p. ej. <em>Copa Glencairn</em>) es un enlace <strong>“Ver el vaso”</strong>. Abre una tarjeta con un dibujo y una breve explicación. Hay tarjetas para la <strong>Copa Glencairn, el Vaso corto (old fashioned), el Vaso alto (highball), la Copa coupe, la Copa julep</strong> y la <strong>Copa de Irish Coffee</strong>. <em>“Ver más imágenes ↗”</em> lleva a más fotos en la web, <em>“Cerrar”</em> te devuelve.</p>
+<p>En la <strong>tarjeta del whisky</strong> de la colección aparecen después el favorito, la guarnición y el vaso.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Recetas y estante de ingredientes</h2>
+
+<p>La pestaña <strong>Recetas</strong> (subtítulo “Clásicos y cócteles”) muestra <strong>12 clásicos</strong> con ingredientes, preparación y vaso:</p>
+<p>Old Fashioned, Manhattan, Whiskey Sour, Whisky Highball, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane y Gold Rush.</p>
+<h3>Filtros y recetas propias</h3>
+<ul>
+<li><strong>Filtros:</strong> <em>Todas</em>, <em>⭐ Favoritas</em>, <em>Mías</em> y <em>🥃 Encaja con mi bar</em> (solo recetas que van con tus whiskies).</li>
+<li><strong>Añadir tu propia receta:</strong> introduce nombre, ingredientes (uno por línea) y preparación, y pulsa <em>Guardar receta</em>. Puedes volver a eliminar tus recetas (“¿Eliminar esta receta?”).</li>
+<li><strong>Receta para un whisky (IA):</strong> elige un whisky de tu colección en “Elige un whisky…” y pulsa <em>🤖 Crear receta</em>. Cuesta un escaneo de IA. <em>Guardar como mi receta</em> conserva el resultado.</li>
+</ul>
+<h3>Mi estante de ingredientes</h3>
+<p>En el <strong>estante de ingredientes</strong> (“Mi estante de ingredientes (mezcladores, guarnición, ingredientes)”) tocas lo que tienes en casa. Las recomendaciones muestran entonces <strong>✓</strong> (tengo) o <strong>🛒</strong> (falta). <em>🛒 Añadir lo que falta a la lista de deseos</em> pone todos los ingredientes que faltan en la <a href="#wish">lista de deseos</a>.</p>
+<div class="note">Las recetas, los favoritos y el estante de ingredientes se guardan con la sincronización en la nube (<a href="#sync">sección 13</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Estadísticas</h2>
 
 <p>De arriba abajo:</p>
 <ul>
@@ -171,8 +213,8 @@
 </ul>
 <p>Las secciones sin datos (p. ej. sin precios) se ocultan.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Exportar, importar y copia de seguridad</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Exportar, importar y copia de seguridad</h2>
 
 <table>
 <tbody><tr><th>Función</th><th>Para qué sirve</th></tr>
@@ -184,10 +226,11 @@
 <tr><td>Importar JSON / CSV / Excel</td><td>Restaurar una copia o leer una tabla</td></tr>
 </tbody></table>
 <p>Las columnas de CSV y Excel son: <strong>Nombre, Año, Tipo, Región, País, Destilería, Edad, ABV, Barrica, Estante, Nivel, Hueco, Botellas, Valoración, Precio, Nota</strong>. La importación también acepta los nombres de columna antiguos.</p>
-<div class="tip"><strong>Haz una copia JSON con regularidad.</strong> La importación JSON sustituye la colección por la copia (la app pregunta antes). En un dispositivo nuevo, esto lo restaura todo. Como alternativa, usa la sincronización en la nube (<a href="#sync">sección 11</a>).</div>
+<p>Al final del todo del área Export/Import encuentras la sección plegable <strong>Contacto</strong>: nombre del desarrollador, correo electrónico y “<strong>Last Build: fecha</strong>”, la fecha de la versión instalada de la app.</p>
+<div class="tip"><strong>Haz una copia JSON con regularidad.</strong> La importación JSON sustituye la colección por la copia (la app pregunta antes). En un dispositivo nuevo, esto lo restaura todo. Como alternativa, usa la sincronización en la nube (<a href="#sync">sección 13</a>).</div>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Ajustes (configuración)</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Ajustes (configuración)</h2>
 
 <h3>General</h3>
 <ul>
@@ -199,47 +242,48 @@
 <li><strong>Unidad de temperatura:</strong> °C o °F (inglés (EE. UU.) establece °F automáticamente).</li>
 </ul>
 <h3>Almacenamiento</h3>
-<p><em>Solo este dispositivo</em> o <em>Nube</em> (código de sync, <a href="#sync">sección 11</a>).</p>
+<p><em>Solo este dispositivo</em> o <em>Nube</em> (código de sync, <a href="#sync">sección 13</a>).</p>
 <h3>Créditos de IA (solo app para iPhone)</h3>
-<p>Muestra los escaneos de IA restantes, el ID del dispositivo y, cuando hace falta, <em>Recargar crédito</em> o un código de desbloqueo. Ver <a href="#privacy">sección 12</a>.</p>
+<p>Muestra los escaneos de IA restantes, el ID del dispositivo y, cuando hace falta, <em>Recargar crédito</em> o un código de desbloqueo. Ver <a href="#privacy">sección 14</a>.</p>
 <h3>Base de datos de whiskies</h3>
 <ul>
 <li><strong>Actualizar todos los whiskies (IA):</strong> completa región, país, destilería, edad, ABV, barrica, temperatura de servicio y precio que falten de todos los whiskies (en la versión web también imágenes de botellas). Los valores existentes se conservan. Si ya hay temperaturas de servicio, la app pregunta primero si también deben sustituirse por valores de la IA. <em>Consejo: exporta antes una copia JSON.</em></li>
 </ul>
 <h3>Estantes</h3>
 <p>Ver <a href="#racks">sección 5</a>. El título muestra el número de estantes.</p>
-<h3>Privacidad, soporte, versión</h3>
-<p>Los enlaces llevan a la política de privacidad y a esta página de soporte. Al final del todo encuentras la <strong>versión</strong> de la app: indícala cuando nos contactes.</p>
+<h3>Guía de usuario, privacidad, soporte, versión</h3>
+<p>El botón <em>Guía de usuario</em> abre esta guía en tu idioma; los demás enlaces llevan a la política de privacidad y a la página de soporte. Al final del todo encuentras la <strong>versión</strong> de la app: indícala cuando nos contactes.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Sincronizar dos dispositivos</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Sincronizar dos dispositivos</h2>
 
 <ol>
 <li><strong>Primer dispositivo:</strong> Ajustes → Almacenamiento → <em>Nube</em> → <em>Crear nuevo código de sync</em>. El código aparece en pantalla; con <em>Guardar código por email</em> te lo envías a ti mismo.</li>
 <li><strong>Segundo dispositivo:</strong> Ajustes → Almacenamiento → <em>Nube</em> → introduce el código (en minúsculas, sin espacios) → Conectar. Si el dispositivo ya contiene whiskies, la app pregunta si quieres fusionarlos con los datos de la nube.</li>
 <li>Después ambos dispositivos se sincronizan automáticamente (p. ej. al abrir la app); <em>Sincronizar ahora</em> lo activa a mano. La regla es: <strong>gana el último cambio</strong>.</li>
 </ol>
-<p>Se sincronizan whiskies, lista de deseos, historial, estantes y ajustes como idioma y moneda. <strong>No se sincronizan</strong> las fotos propias ni los datos específicos del dispositivo. Quien conozca tu código puede ver tus whiskies: compártelo solo con personas de confianza. Guarda además una copia JSON.</p>
+<p>Se sincronizan whiskies, lista de deseos, historial, estantes, recetas, favoritos, estante de ingredientes y ajustes como idioma y moneda. <strong>No se sincronizan</strong> las fotos propias ni los datos específicos del dispositivo. Quien conozca tu código puede ver tus whiskies: compártelo solo con personas de confianza. Guarda además una copia JSON.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. IA, privacidad y costes</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. IA, privacidad y costes</h2>
 
 <ul>
-<li><strong>¿Para qué se usa la IA?</strong> Escanear etiqueta, buscar whisky, buscar precios y “Actualizar todos los whiskies”. La foto o el nombre del whisky se envía a través de nuestro servidor a un servicio de IA (Anthropic, EE. UU.) para su evaluación, sin nombres ni cuentas. La app pide tu consentimiento antes del primer uso.</li>
+<li><strong>¿Para qué se usa la IA?</strong> Escanear etiqueta, buscar whisky, buscar precios, “Actualizar todos los whiskies”, la recomendación de IA del servicio perfecto y “Crear receta”. La foto o el nombre del whisky se envía a través de nuestro servidor a un servicio de IA (Anthropic, EE. UU.) para su evaluación, sin nombres ni cuentas. La app pide tu consentimiento antes del primer uso.</li>
 <li>El <strong>escaneo de códigos de barras</strong> solo envía el número a una base de datos de productos gratuita y no cuesta ningún crédito de IA.</li>
 <li><strong>Costes (app para iPhone):</strong> 50 llamadas de IA por instalación están incluidas en el precio de compra; se pueden comprar más como compra única opcional (sin suscripción, los créditos no caducan). Todo lo demás de la app no cuesta nada extra. Cuando se agotan los créditos, todo excepto las funciones de IA sigue funcionando.</li>
 <li><strong>Datos:</strong> Todo permanece en tu dispositivo mientras no actives la nube. Sin anuncios, sin seguimiento, sin cuenta de usuario. Detalles en la <a href="datenschutz.html">política de privacidad</a> (en alemán).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Consejos y preguntas frecuentes</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Consejos y preguntas frecuentes</h2>
 
 <ul>
 <li><strong>En un iPad o PC</strong> el diseño se adapta: columna más ancha, varias tarjetas una junto a otra y, en PC (y iPad horizontal), la navegación a la izquierda. El teléfono también funciona en horizontal. En un PC <kbd>Esc</kbd> cierra la ventana superior; en un teléfono desliza una ventana hacia abajo para cerrarla.</li>
 <li><strong>Mis whiskies han desaparecido:</strong> Consulta <a href="support.html">Soporte</a>: restaura con el código de sync o una copia JSON.</li>
 <li><strong>Sin resultado de código de barras para un whisky:</strong> Es normal en destilerías pequeñas. Usa el escaneo de etiqueta.</li>
+<li><strong>¿Cómo disfruto mejor un whisky?</strong> Prueba el bloque Servicio perfecto al editar (<a href="#serve">sección 8</a>) o échale un vistazo a las recetas (<a href="#recipes">sección 9</a>).</li>
 <li><strong>La IA ha leído algo mal:</strong> Corrige el campo a mano y guarda; los valores de la IA son sugerencias.</li>
-<li><strong>¿Debo dejar que un whisky “envejezca” en la botella?</strong> No. El whisky solo madura en la barrica, no en la botella: una botella no mejora con los años, abierta o cerrada. Por eso no hay función de ventana de consumo; la temperatura de servicio (solo, unos 16–20 °C) es solo una orientación.</li>
+<li><strong>¿Debo dejar que un whisky “envejezca” en la botella?</strong> No. El whisky solo madura en la barrica, no en la botella: una botella no mejora con los años, abierta o cerrada. La temperatura de servicio (solo, unos 16–20 °C) es solo una orientación.</li>
 <li><strong>La página sigue mostrando la versión antigua (web):</strong> Recarga la página (en PC <kbd>Ctrl</kbd>+<kbd>F5</kbd>).</li>
 </ul>
 <p>¿Más preguntas? Escribe a <a href="mailto:t.knecht@web.de?subject=My%20Whiskey%20Collection%20Gu%C3%ADa%20de%20usuario">t.knecht@web.de</a> e indica la versión de la app (Ajustes, al final del todo).</p>

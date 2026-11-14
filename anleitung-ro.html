@@ -31,6 +31,8 @@
 <li><a href="#racks">Rafturi și depozitare</a></li>
 <li><a href="#history">Istoric</a></li>
 <li><a href="#wish">Listă de dorințe</a></li>
+<li><a href="#serve">Perfect serve și pahare</a></li>
+<li><a href="#recipes">Rețete și raftul cu ingrediente</a></li>
 <li><a href="#stats">Statistici</a></li>
 <li><a href="#export">Export, import și backup</a></li>
 <li><a href="#setup">Setări</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Prezentare generală și primii pași</h2>
 
 <p>My Whiskey Collection este colecția ta personală de whisky în buzunar: gestionezi stocul, locurile de depozitare, o listă de dorințe și statistici. Totul rulează pe dispozitivul tău; cu un cod de sincronizare poți conecta mai multe dispozitive.</p>
-<p>În partea de jos (pe PC și iPad în mod peisaj: în stânga) găsești bara cu șapte zone:</p>
+<p>În partea de jos (pe PC și iPad în mod peisaj: în stânga) găsești bara cu opt zone:</p>
 <table>
 <tbody><tr><th>Zonă</th><th>Scop</th></tr>
 <tr><td><strong>Colecție</strong></td><td>Toate whisky-urile, căutare, filtre, sortare, adăugarea unui whisky, băutul</td></tr>
 <tr><td><strong>Statistici</strong></td><td>Evaluări ale stocului, prețurilor, depozitării și istoricului de băut</td></tr>
+<tr><td><strong>Rețete</strong></td><td>Clasice și cocktailuri, raftul cu ingrediente, rețetă de la IA</td></tr>
 <tr><td><strong>Istoric</strong></td><td>Whisky-urile pe care le-ai băut</td></tr>
 <tr><td><strong>Rafturi</strong></td><td>Plan de depozitare: depozitarea și mutarea whisky-urilor, etichete QR</td></tr>
 <tr><td><strong>Listă de dorințe</strong></td><td>Whisky-uri pe care vrei să le mai cumperi</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Definește rafturile</strong> (opțional): Setări → Rafturi (vezi <a href="#racks">secțiunea 5</a>).</li>
 <li><strong>Adaugă primul tău whisky</strong>: apasă <kbd>+</kbd> în colecție (<a href="#add">secțiunea 2</a>).</li>
 <li><strong>Depozitează-l</strong>: dă whisky-ului un loc pe un raft.</li>
-<li><strong>Fă un backup</strong>: Export/Import → Backup JSON, sau configurează sincronizarea în cloud (<a href="#sync">secțiunea 11</a>).</li>
+<li><strong>Fă un backup</strong>: Export/Import → Backup JSON, sau configurează sincronizarea în cloud (<a href="#sync">secțiunea 13</a>).</li>
 </ol>
 <div class="tip">Secțiunile din <em>Setări</em> pot fi restrânse. „General” este deschisă la prima pornire, celelalte sunt închise. Aplicația ține minte ce ai deschis sau închis ultima dată.</div>
 
@@ -76,7 +79,7 @@
 <li><strong>Fotografie proprie:</strong> „Fă / alege o fotografie” atașează o fotografie la whisky. Rămâne pe acest dispozitiv și este inclusă în backup-ul JSON, dar nu este sincronizată în cloud.</li>
 </ul>
 <h3>b) Scanează eticheta (IA)</h3>
-<p>Apasă <em>Scanează eticheta (IA)</em> și fotografiază eticheta sticlei. IA citește numele, anul, tipul, regiunea, țara, distileria, vârsta, ABV-ul și butoiul și estimează temperatura de servire. Verifică valorile și salvează. Înainte de prima utilizare, aplicația îți cere consimțământul (<a href="#privacy">secțiunea 12</a>).</p>
+<p>Apasă <em>Scanează eticheta (IA)</em> și fotografiază eticheta sticlei. IA citește numele, anul, tipul, regiunea, țara, distileria, vârsta, ABV-ul și butoiul și estimează temperatura de servire. Verifică valorile și salvează. Înainte de prima utilizare, aplicația îți cere consimțământul (<a href="#privacy">secțiunea 14</a>).</p>
 <h3>c) Scanează codul de bare</h3>
 <p>Apasă <em>Scanează codul de bare</em> și ține codul de bare al sticlei în cadru. Aplicația caută numărul într-o bază de date gratuită de produse (fără costuri, fără credit IA) și, dacă îl găsește, completează <strong>numele, producătorul și tipul de whisky</strong>. Completează anul din nume sau îl cere.</p>
 <ul>
@@ -156,7 +159,40 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Statistici</h2>
+<h2 id="serve">8. Perfect serve și pahare</h2>
+
+<p>În formularul <em>Adaugă whisky</em> (și <em>Editează whisky</em>) găsești blocul <strong>Perfect serve (mod de savurare, mixere, mâncare)</strong>. Te ajută să afli cum se savurează cel mai bine un whisky. Există două butoane:</p>
+<ul>
+<li><strong>🥃 Sfat pe bază de reguli</strong> – funcționează offline, este gratuit și se bazează pe tipul de whisky, turbă, butoi de sherry, bourbon și așa mai departe. Nu consumă niciun credit IA.</li>
+<li><strong>🤖 Recomandare AI</strong> – IA evaluează whisky-ul respectiv; consumă o scanare IA (<a href="#privacy">secțiunea 14</a>).</li>
+</ul>
+<p>Rezultatul sunt până la <strong>trei moduri de savurare</strong> (sec, sec cu câteva picături de apă, cu gheață, highball cu sifon sau ginger ale, cocktail), fiecare cu o scurtă justificare. Dacă apeși pe unul, îl setezi ca <strong>favorit</strong>. Valorile se completează în câmpuri:</p>
+<ul>
+<li><strong>Mixere și garnitură, separate prin virgulă</strong> – de ex. ginger ale, coajă de portocală,</li>
+<li><strong>Apă / proporție</strong> – de ex. „2–3 picături de apă” sau „1:3 cu sifon”,</li>
+<li><strong>Pahar</strong> – de ex. paharul Glencairn,</li>
+<li><strong>Gheață</strong> – fără gheață, sferă sau cub mare, cuburi de gheață,</li>
+<li><strong>Asociere cu mâncare</strong> – ce se potrivește cu whisky-ul (de ex. ciocolată neagră, nuci).</li>
+</ul>
+<h3>Paharele pe scurt</h3>
+<p>Lângă câmpul Pahar se află linkul <strong>Vezi paharul</strong>. Deschide un card cu un desen și o scurtă explicație: <strong>pahar Glencairn</strong> (pahar de degustare pentru whisky simplu), <strong>Tumbler</strong> (pentru gheață și cocktailuri precum Old Fashioned), <strong>pahar highball</strong> (înalt, pentru sifon și ginger ale), <strong>Coupe</strong> (castron puțin adânc pentru cocktailuri fără gheață), <strong>cupă julep</strong> (pahar metalic pentru mint julep) și <strong>pahar de Irish coffee</strong> (sticlă termorezistentă cu toartă). Linkul <em>Vezi mai multe imagini ↗</em> deschide o căutare de imagini, iar <em>Închide</em> închide cardul.</p>
+<p>Pe cardul whisky-ului din colecție vezi apoi modul de savurare favorit, garnitura și paharul.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Rețete și raftul cu ingrediente</h2>
+
+<p>Zona <strong>Rețete</strong> (subtitlu „Clasice și cocktailuri”) conține <strong>12 clasice</strong> cu ingrediente și mod de preparare: Old Fashioned, Manhattan, Whiskey Sour, Highball cu whisky, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane și Gold Rush. La fiecare este indicat paharul recomandat.</p>
+<ul>
+<li><strong>Filtre:</strong> <em>Toate</em>, <em>⭐ Favorite</em>, <em>Ale mele</em> (propriile rețete) și <em>🥃 Se potrivește barului meu</em> – arată doar rețetele pe care le poți prepara cu ce ai.</li>
+<li><strong>Propria rețetă:</strong> la <em>Adaugă propria rețetă</em> introdu un nume, ingredientele (câte unul pe rând) și modul de preparare și apasă <em>Salvează rețeta</em>. O rețetă proprie poate fi și ștearsă.</li>
+<li><strong>Rețetă pentru un whisky (AI):</strong> alege un whisky (<em>Alege un whisky…</em>) și apasă <em>🤖 Creează rețetă</em>. IA propune o rețetă pe care o poți păstra cu <em>Salvează ca rețeta mea</em>. Consumă o scanare IA.</li>
+</ul>
+<h3>Raftul cu ingrediente</h3>
+<p>În <strong>Raftul meu cu ingrediente (mixere, garnitură, ingrediente)</strong> apasă ce ai acasă – de ex. coajă de portocală, ginger ale sau angostura. Recomandările și rețetele arată apoi la fiecare ingredient ✓ (există) sau 🛒 (lipsește). Butonul <strong>🛒 Adaugă ce lipsește în lista de dorințe</strong> pune ingredientele lipsă în <a href="#wish">Lista de dorințe</a>.</p>
+<div class="tip">Rețetele, favoritele și raftul cu ingrediente sunt salvate prin sincronizarea în cloud (<a href="#sync">secțiunea 13</a>) și fac parte din backup-ul JSON.</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Statistici</h2>
 
 <p>De sus în jos:</p>
 <ul>
@@ -171,8 +207,8 @@
 </ul>
 <p>Secțiunile fără date (de ex. fără prețuri) sunt ascunse.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Export, import și backup</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Export, import și backup</h2>
 
 <table>
 <tbody><tr><th>Funcție</th><th>Scop</th></tr>
@@ -184,10 +220,10 @@
 <tr><td>Importă JSON / CSV / Excel</td><td>Restaurează un backup sau citește un tabel</td></tr>
 </tbody></table>
 <p>Coloanele din CSV și Excel sunt: <strong>Nume, An, Tip, Regiune, Țară, Distilerie, Vârstă, ABV, Butoi, Raft, Nivel, Loc, Sticle, Evaluare, Preț, Notă</strong>. Importul acceptă și numele vechi ale coloanelor.</p>
-<div class="tip"><strong>Fă regulat un backup JSON.</strong> Importul JSON înlocuiește colecția cu backup-ul (aplicația întreabă mai întâi). Pe un dispozitiv nou, acesta restaurează totul. Alternativ, folosește sincronizarea în cloud (<a href="#sync">secțiunea 11</a>).</div>
+<div class="tip"><strong>Fă regulat un backup JSON.</strong> Importul JSON înlocuiește colecția cu backup-ul (aplicația întreabă mai întâi). Pe un dispozitiv nou, acesta restaurează totul. Alternativ, folosește sincronizarea în cloud (<a href="#sync">secțiunea 13</a>).</div>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Setări</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Setări</h2>
 
 <h3>General</h3>
 <ul>
@@ -199,9 +235,9 @@
 <li><strong>Unitate de temperatură:</strong> °C sau °F (engleza (US) setează automat °F).</li>
 </ul>
 <h3>Stocare</h3>
-<p><em>Doar acest dispozitiv</em> sau <em>Cloud</em> (cod de sincronizare, <a href="#sync">secțiunea 11</a>).</p>
+<p><em>Doar acest dispozitiv</em> sau <em>Cloud</em> (cod de sincronizare, <a href="#sync">secțiunea 13</a>).</p>
 <h3>Credite IA (doar aplicația pentru iPhone)</h3>
-<p>Arată scanările IA rămase, ID-ul dispozitivului și – la nevoie – <em>Reîncarcă credite</em> sau un cod de deblocare. Vezi <a href="#privacy">secțiunea 12</a>.</p>
+<p>Arată scanările IA rămase, ID-ul dispozitivului și – la nevoie – <em>Reîncarcă credite</em> sau un cod de deblocare. Vezi <a href="#privacy">secțiunea 14</a>.</p>
 <h3>Bază de date whisky</h3>
 <ul>
 <li><strong>Actualizează toate whisky-urile (IA):</strong> completează regiunea, țara, distileria, vârsta, ABV-ul, butoiul, temperatura de servire și prețul lipsă pentru toate whisky-urile (în versiunea web și imaginile sticlelor). Valorile existente rămân. Dacă există deja temperaturi de servire, aplicația întreabă mai întâi dacă să fie înlocuite și ele cu valori IA. <em>Sfat: exportă mai întâi un backup JSON.</em></li>
@@ -209,10 +245,10 @@
 <h3>Rafturi</h3>
 <p>Vezi <a href="#racks">secțiunea 5</a>. Titlul arată numărul de rafturi.</p>
 <h3>Confidențialitate, asistență, versiune</h3>
-<p>Linkurile duc la politica de confidențialitate și la această pagină de asistență. În partea de jos găsești <strong>versiunea</strong> aplicației – te rugăm să o menționezi când ne contactezi.</p>
+<p>Linkurile duc la politica de confidențialitate și la această pagină de asistență. Butonul <em>Ghid de utilizare</em> deschide acest ghid. În partea de jos găsești <strong>versiunea</strong> aplicației – te rugăm să o menționezi când ne contactezi. În zona derulantă <em>Contact</em> sunt numele dezvoltatorului și rândul „Last Build: data”.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Sincronizarea a două dispozitive</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Sincronizarea a două dispozitive</h2>
 
 <ol>
 <li><strong>Primul dispozitiv:</strong> Setări → Stocare → <em>Cloud</em> → <em>Creează un cod de sincronizare nou</em>. Codul apare pe ecran; cu <em>Salvează codul prin e-mail</em> ți-l trimiți ție.</li>
@@ -221,8 +257,8 @@
 </ol>
 <p>Whisky-urile, lista de dorințe, istoricul, rafturile și setări precum limba și moneda sunt sincronizate. <strong>Nu sunt sincronizate</strong> fotografiile proprii și datele specifice dispozitivului. Oricine îți cunoaște codul îți poate vedea whisky-urile – partajează-l doar cu persoane în care ai încredere. Păstrează și un backup JSON.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. IA, confidențialitate și costuri</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. IA, confidențialitate și costuri</h2>
 
 <ul>
 <li><strong>Pentru ce se folosește IA?</strong> Scanarea etichetei, căutarea whisky-ului, găsirea prețurilor și „Actualizează toate whisky-urile”. Fotografia sau numele whisky-ului este trimis prin serverul nostru către un serviciu IA (Anthropic, SUA) pentru evaluare – fără nume sau conturi. Aplicația îți cere consimțământul înainte de prima utilizare.</li>
@@ -231,8 +267,8 @@
 <li><strong>Date:</strong> Totul rămâne pe dispozitivul tău atâta timp cât nu activezi cloud-ul. Fără reclame, fără urmărire, fără cont de utilizator. Detalii în <a href="datenschutz.html">politica de confidențialitate</a> (în germană).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Sfaturi și întrebări frecvente</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Sfaturi și întrebări frecvente</h2>
 
 <ul>
 <li><strong>Pe un iPad sau PC</strong> aspectul se adaptează: coloană mai lată, mai multe carduri alăturate, iar pe PC (și iPad în mod peisaj) navigarea în stânga. Telefonul funcționează și în mod peisaj. Pe PC, <kbd>Esc</kbd> închide fereastra de sus; pe telefon, trage fereastra în jos pentru a o închide.</li>

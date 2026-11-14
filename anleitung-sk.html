@@ -31,6 +31,8 @@
 <li><a href="#racks">Regály a uskladnenie</a></li>
 <li><a href="#history">História</a></li>
 <li><a href="#wish">Zoznam želaní</a></li>
+<li><a href="#serve">Perfect serve a poháre</a></li>
+<li><a href="#recipes">Recepty a polica s ingredienciami</a></li>
 <li><a href="#stats">Štatistiky</a></li>
 <li><a href="#export">Export, import a záloha</a></li>
 <li><a href="#setup">Nastavenia</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Prehľad a prvé kroky</h2>
 
 <p>My Whiskey Collection je vaša osobná zbierka whisky vo vrecku: spravujete v nej zásoby, miesta uloženia, zoznam želaní a štatistiky. Všetko beží vo vašom zariadení; pomocou synchronizačného kódu môžete prepojiť viacero zariadení.</p>
-<p>Dole (na PC a iPade na šírku: vľavo) nájdete lištu so siedmimi oblasťami:</p>
+<p>Dole (na PC a iPade na šírku: vľavo) nájdete lištu s ôsmimi oblasťami:</p>
 <table>
 <tbody><tr><th>Oblasť</th><th>Účel</th></tr>
 <tr><td><strong>Zbierka</strong></td><td>Všetky whisky, vyhľadávanie, filtre, zoradenie, pridanie whisky, vypitie</td></tr>
 <tr><td><strong>Štatistiky</strong></td><td>Vyhodnotenia zásob, cien, uskladnenia a histórie pitia</td></tr>
+<tr><td><strong>Recepty</strong></td><td>Klasiky a kokteily, polica s ingredienciami, recept od AI</td></tr>
 <tr><td><strong>História</strong></td><td>Whisky, ktoré ste vypili</td></tr>
 <tr><td><strong>Regály</strong></td><td>Plán uskladnenia: ukladanie a presúvanie whisky, QR štítky</td></tr>
 <tr><td><strong>Zoznam želaní</strong></td><td>Whisky, ktoré si ešte chcete kúpiť</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Definujte regály</strong> (voliteľné): Nastavenia → Regály (pozri <a href="#racks">kapitolu 5</a>).</li>
 <li><strong>Pridajte svoju prvú whisky</strong>: v zbierke ťuknite na <kbd>+</kbd> (<a href="#add">kapitola 2</a>).</li>
 <li><strong>Uskladnite ju</strong>: priraďte whisky miesto v regáli.</li>
-<li><strong>Zálohujte</strong>: Export/Import → záloha JSON, alebo nastavte cloudovú synchronizáciu (<a href="#sync">kapitola 11</a>).</li>
+<li><strong>Zálohujte</strong>: Export/Import → záloha JSON, alebo nastavte cloudovú synchronizáciu (<a href="#sync">kapitola 13</a>).</li>
 </ol>
 <div class="tip">Sekcie v <em>Nastaveniach</em> sa dajú zbaliť. „Všeobecné“ je pri prvom spustení otvorené, ostatné sú zatvorené. Aplikácia si pamätá, čo ste naposledy otvorili alebo zatvorili.</div>
 
@@ -76,7 +79,7 @@
 <li><strong>Vlastné foto:</strong> „Odfotiť / vybrať foto“ pripojí k whisky fotografiu. Zostane v tomto zariadení a je súčasťou zálohy JSON, ale do cloudu sa nesynchronizuje.</li>
 </ul>
 <h3>b) Naskenovať etiketu (AI)</h3>
-<p>Ťuknite na <em>Naskenovať etiketu (AI)</em> a odfoťte etiketu fľaše. AI prečíta názov, rok, druh, región, krajinu, liehovar, vek, ABV a sud a odhadne teplotu podávania. Skontrolujte hodnoty a uložte. Pred prvým použitím vás aplikácia požiada o súhlas (<a href="#privacy">kapitola 12</a>).</p>
+<p>Ťuknite na <em>Naskenovať etiketu (AI)</em> a odfoťte etiketu fľaše. AI prečíta názov, rok, druh, región, krajinu, liehovar, vek, ABV a sud a odhadne teplotu podávania. Skontrolujte hodnoty a uložte. Pred prvým použitím vás aplikácia požiada o súhlas (<a href="#privacy">kapitola 14</a>).</p>
 <h3>c) Naskenovať čiarový kód</h3>
 <p>Ťuknite na <em>Naskenovať čiarový kód</em> a podržte čiarový kód fľaše v rámčeku. Aplikácia vyhľadá číslo v bezplatnej databáze produktov (bez nákladov, bez kreditu AI) a ak ho nájde, vyplní <strong>názov, výrobcu a druh whisky</strong>. Rok doplní z názvu alebo sa naň opýta.</p>
 <ul>
@@ -156,7 +159,40 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Štatistiky</h2>
+<h2 id="serve">8. Perfect serve a poháre</h2>
+
+<p>Vo formulári <em>Pridať whisky</em> (a <em>Upraviť whisky</em>) nájdete blok <strong>Perfect serve (spôsob podávania, mixéry, jedlo)</strong>. Poradí vám, ako whisky najlepšie vychutnať. Sú tu dve tlačidlá:</p>
+<ul>
+<li><strong>🥃 Tip podľa pravidiel</strong> – funguje offline, je bezplatný a vychádza z druhu whisky, rašeliny, sherry sudu, bourbonu a podobne. Nespotrebuje kredit AI.</li>
+<li><strong>🤖 Odporúčanie AI</strong> – AI posúdi konkrétnu whisky; spotrebuje jeden sken AI (<a href="#privacy">kapitola 14</a>).</li>
+</ul>
+<p>Výsledkom sú až <strong>tri spôsoby podávania</strong> (čistá, čistá s niekoľkými kvapkami vody, s ľadom, highball so sódou alebo ginger ale, kokteil), každý s krátkym zdôvodnením. Ťuknutím na jeden z nich ho nastavíte ako <strong>obľúbený</strong>. Hodnoty sa doplnia do polí:</p>
+<ul>
+<li><strong>Mixéry a ozdoby, oddelené čiarkou</strong> – napr. ginger ale, pomarančová kôra,</li>
+<li><strong>Voda / pomer</strong> – napr. „2–3 kvapky vody“ alebo „1:3 so sódou“,</li>
+<li><strong>Pohár</strong> – napr. pohár Glencairn,</li>
+<li><strong>Ľad</strong> – bez ľadu, veľká guľa alebo kocka, kocky ľadu,</li>
+<li><strong>Párovanie s jedlom</strong> – čo sa k whisky hodí (napr. horká čokoláda, orechy).</li>
+</ul>
+<h3>Poháre v skratke</h3>
+<p>Pri poli Pohár je odkaz <strong>Zobraziť pohár</strong>. Otvorí kartu s kresbou a krátkym vysvetlením: <strong>pohár Glencairn</strong> (degustačný pohár na čistú whisky), <strong>Tumbler</strong> (pohár na ľad a kokteily ako Old Fashioned), <strong>Highball</strong> (vysoký pohár na sódu a ginger ale), <strong>Coupe</strong> (plytká miska na kokteily bez ľadu), <strong>Julep pohár</strong> (kovový pohár na mint julep) a <strong>pohár na Irish coffee</strong> (žiaruvzdorný pohár s uchom). Odkaz <em>Zobraziť ďalšie obrázky ↗</em> otvorí vyhľadávanie obrázkov, <em>Zavrieť</em> kartu zatvorí.</p>
+<p>Na karte whisky v Zbierke potom vidíte obľúbený spôsob podávania, ozdobu a pohár.</p>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Recepty a polica s ingredienciami</h2>
+
+<p>Oblasť <strong>Recepty</strong> (podtitul „Klasiky a kokteily“) obsahuje <strong>12 klasík</strong> s ingredienciami a postupom: Old Fashioned, Manhattan, Whiskey Sour, Whisky highball, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane a Gold Rush. Pri každom je uvedený odporúčaný pohár.</p>
+<ul>
+<li><strong>Filtre:</strong> <em>Všetko</em>, <em>⭐ Obľúbené</em>, <em>Moje</em> (vaše vlastné recepty) a <em>🥃 Hodí sa do môjho baru</em> – ukáže len recepty, ktoré dokážete pripraviť s tým, čo máte.</li>
+<li><strong>Vlastný recept:</strong> v časti <em>Pridať vlastný recept</em> zadajte názov, ingrediencie (každá na samostatnom riadku) a postup a ťuknite na <em>Uložiť recept</em>. Vlastný recept môžete aj zmazať.</li>
+<li><strong>Recept na whisky (AI):</strong> vyberte whisky (<em>Vyberte whisky…</em>) a ťuknite na <em>🤖 Vytvoriť recept</em>. AI navrhne recept, ktorý uložíte pomocou <em>Uložiť ako môj recept</em>. Spotrebuje jeden sken AI.</li>
+</ul>
+<h3>Polica s ingredienciami</h3>
+<p>V <strong>Moja polica s ingredienciami (mixéry, ozdoby, suroviny)</strong> ťuknite na to, čo máte doma – napr. pomarančovú kôru, ginger ale alebo angosturu. Odporúčania a recepty potom pri každej ingrediencii ukazujú ✓ (mám) alebo 🛒 (chýba). Tlačidlo <strong>🛒 Pridať chýbajúce do zoznamu želaní</strong> vloží chýbajúce ingrediencie do <a href="#wish">Zoznamu želaní</a>.</p>
+<div class="tip">Recepty, obľúbené a polica s ingredienciami sa zálohujú pomocou cloudovej synchronizácie (<a href="#sync">kapitola 13</a>) a sú súčasťou zálohy JSON.</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Štatistiky</h2>
 
 <p>Zhora nadol:</p>
 <ul>
@@ -171,8 +207,8 @@
 </ul>
 <p>Sekcie bez údajov (napr. bez cien) sa skryjú.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Export, import a záloha</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Export, import a záloha</h2>
 
 <table>
 <tbody><tr><th>Funkcia</th><th>Účel</th></tr>
@@ -184,10 +220,10 @@
 <tr><td>Importovať JSON / CSV / Excel</td><td>Obnoviť zálohu alebo načítať tabuľku</td></tr>
 </tbody></table>
 <p>Stĺpce v CSV a Exceli sú: <strong>Názov, Rok, Druh, Región, Krajina, Liehovar, Vek, ABV, Sud, Regál, Úroveň, Miesto, Fľaše, Hodnotenie, Cena, Poznámka</strong>. Import prijíma aj staré názvy stĺpcov.</p>
-<div class="tip"><strong>Pravidelne zálohujte do JSON.</strong> Import JSON nahradí zbierku zálohou (aplikácia sa predtým opýta). Na novom zariadení tým obnovíte všetko. Prípadne použite cloudovú synchronizáciu (<a href="#sync">kapitola 11</a>).</div>
+<div class="tip"><strong>Pravidelne zálohujte do JSON.</strong> Import JSON nahradí zbierku zálohou (aplikácia sa predtým opýta). Na novom zariadení tým obnovíte všetko. Prípadne použite cloudovú synchronizáciu (<a href="#sync">kapitola 13</a>).</div>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Nastavenia</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Nastavenia</h2>
 
 <h3>Všeobecné</h3>
 <ul>
@@ -199,9 +235,9 @@
 <li><strong>Jednotka teploty:</strong> °C alebo °F (angličtina (US) nastaví °F automaticky).</li>
 </ul>
 <h3>Úložisko</h3>
-<p><em>Len toto zariadenie</em> alebo <em>Cloud</em> (synchronizačný kód, <a href="#sync">kapitola 11</a>).</p>
+<p><em>Len toto zariadenie</em> alebo <em>Cloud</em> (synchronizačný kód, <a href="#sync">kapitola 13</a>).</p>
 <h3>Kredity AI (iba aplikácia pre iPhone)</h3>
-<p>Ukazuje zostávajúce skeny AI, ID zariadenia a – v prípade potreby – <em>Dobiť kredity</em> alebo odomykací kód. Pozri <a href="#privacy">kapitolu 12</a>.</p>
+<p>Ukazuje zostávajúce skeny AI, ID zariadenia a – v prípade potreby – <em>Dobiť kredity</em> alebo odomykací kód. Pozri <a href="#privacy">kapitolu 14</a>.</p>
 <h3>Databáza whisky</h3>
 <ul>
 <li><strong>Aktualizovať všetky whisky (AI):</strong> doplní chýbajúci región, krajinu, liehovar, vek, ABV, sud, teplotu podávania a cenu pri všetkých whisky (vo webovej verzii aj obrázky fliaš). Existujúce hodnoty zostanú. Ak už teploty podávania existujú, aplikácia sa najprv opýta, či ich majú nahradiť aj hodnoty od AI. <em>Tip: najprv exportujte zálohu JSON.</em></li>
@@ -209,10 +245,10 @@
 <h3>Regály</h3>
 <p>Pozri <a href="#racks">kapitolu 5</a>. Nadpis ukazuje počet regálov.</p>
 <h3>Súkromie, podpora, verzia</h3>
-<p>Odkazy vedú na zásady ochrany osobných údajov a na túto stránku podpory. Úplne dole nájdete <strong>verziu</strong> aplikácie – uveďte ju, prosím, keď nás kontaktujete.</p>
+<p>Odkazy vedú na zásady ochrany osobných údajov a na túto stránku podpory. Tlačidlo <em>Používateľská príručka</em> otvorí túto príručku. Úplne dole nájdete <strong>verziu</strong> aplikácie – uveďte ju, prosím, keď nás kontaktujete. V rozbaľovacej časti <em>Kontakt</em> je meno vývojára a riadok „Last Build: dátum“.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Synchronizácia dvoch zariadení</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Synchronizácia dvoch zariadení</h2>
 
 <ol>
 <li><strong>Prvé zariadenie:</strong> Nastavenia → Úložisko → <em>Cloud</em> → <em>Vytvoriť nový synchronizačný kód</em>. Kód sa zobrazí na obrazovke; pomocou <em>Uložiť kód e-mailom</em> si ho pošlete.</li>
@@ -221,8 +257,8 @@
 </ol>
 <p>Synchronizujú sa whisky, zoznam želaní, história, regály a nastavenia ako jazyk a mena. <strong>Nesynchronizujú sa</strong> vlastné fotografie a dáta špecifické pre zariadenie. Ktokoľvek, kto pozná váš kód, môže vidieť vaše whisky – zdieľajte ho len s ľuďmi, ktorým dôverujete. Uchovávajte aj zálohu JSON.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. AI, súkromie a náklady</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. AI, súkromie a náklady</h2>
 
 <ul>
 <li><strong>Na čo sa AI používa?</strong> Naskenovanie etikety, vyhľadanie whisky, hľadanie cien a „Aktualizovať všetky whisky“. Fotografia alebo názov whisky sa cez náš server odošle službe AI (Anthropic, USA) na vyhodnotenie – bez mien a účtov. Pred prvým použitím vás aplikácia požiada o súhlas.</li>
@@ -231,8 +267,8 @@
 <li><strong>Dáta:</strong> Všetko zostáva vo vašom zariadení, kým nezapnete cloud. Žiadne reklamy, žiadne sledovanie, žiadny používateľský účet. Podrobnosti v <a href="datenschutz.html">zásadách ochrany osobných údajov</a> (po nemecky).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Tipy a časté otázky</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Tipy a časté otázky</h2>
 
 <ul>
 <li><strong>Na iPade alebo PC</strong> sa rozloženie prispôsobí: širší stĺpec, viac kariet vedľa seba a na PC (a iPade na šírku) navigácia vľavo. Telefón funguje aj na šírku. Na PC <kbd>Esc</kbd> zavrie horné okno; na telefóne okno zavriete potiahnutím nadol.</li>

@@ -19,7 +19,7 @@
 <div class="lang"><select aria-label="Language / Sprache" onchange="try{localStorage.setItem('mw_guide_lang',this.value.slice(9,-5))}catch(e){}location.href=this.value"><option value="anleitung-cs.html">Čeština</option><option value="anleitung-da.html">Dansk</option><option value="anleitung-de.html">Deutsch</option><option value="anleitung-en.html">English</option><option value="anleitung-el.html">Ελληνικά</option><option value="anleitung-es.html">Español</option><option value="anleitung-fr.html">Français</option><option value="anleitung-hr.html">Hrvatski</option><option value="anleitung-it.html">Italiano</option><option value="anleitung-hu.html">Magyar</option><option value="anleitung-nl.html">Nederlands</option><option value="anleitung-no.html">Norsk</option><option value="anleitung-pl.html">Polski</option><option value="anleitung-pt.html">Português</option><option value="anleitung-ro.html">Română</option><option value="anleitung-ru.html">Русский</option><option value="anleitung-sk.html">Slovenčina</option><option value="anleitung-fi.html">Suomi</option><option value="anleitung-sv.html" selected>Svenska</option><option value="anleitung-uk.html">Українська</option><option value="anleitung-ja.html">日本語</option><option value="anleitung-ko.html">한국어</option><option value="anleitung-zh.html">简体中文</option><option value="anleitung-hi.html">हिन्दी</option></select></div>
 
 <h1>Användarguide – My Whiskey Collection</h1>
-<p><small>Uppdaterad: 13 november 2026 · Appversion 2.0</small></p>
+<p><small>Uppdaterad: 15 november 2026 · Appversion 2.0</small></p>
 
 <div class="toc">
 
@@ -31,6 +31,8 @@
 <li><a href="#racks">Hyllor och lagring</a></li>
 <li><a href="#history">Historik</a></li>
 <li><a href="#wish">Önskelista</a></li>
+<li><a href="#perfect">Perfect serve och glas</a></li>
+<li><a href="#recipes">Recept och ingredienshylla</a></li>
 <li><a href="#stats">Statistik</a></li>
 <li><a href="#export">Export, import och säkerhetskopia</a></li>
 <li><a href="#setup">Setup (inställningar)</a></li>
@@ -43,11 +45,12 @@
 <h2 id="start">1. Översikt och första stegen</h2>
 
 <p>My Whiskey Collection är din personliga whiskysamling i fickan: du hanterar lager, lagringsplatser, en önskelista och statistik. Allt körs på din enhet; med en synk-kod kan du koppla ihop flera enheter.</p>
-<p>Nedtill (på dator och iPad i liggande läge: till vänster) hittar du fältet med sju områden:</p>
+<p>Nedtill (på dator och iPad i liggande läge: till vänster) hittar du fältet med åtta områden:</p>
 <table>
 <tbody><tr><th>Område</th><th>Syfte</th></tr>
 <tr><td><strong>Samling</strong></td><td>Alla whiskyer, sökning, filter, sortering, lägga till en whisky, dricka</td></tr>
 <tr><td><strong>Statistik</strong></td><td>Utvärderingar av lager, priser, lagring och dryckeshistorik</td></tr>
+<tr><td><strong>Recept</strong></td><td>Klassiska cocktails, egna recept, AI-recept och din ingredienshylla</td></tr>
 <tr><td><strong>Historik</strong></td><td>De whiskyer du har druckit</td></tr>
 <tr><td><strong>Hyllor</strong></td><td>Lagringsplan: placera och flytta whiskyer, QR-etiketter</td></tr>
 <tr><td><strong>Önskelista</strong></td><td>Whiskyer du ännu vill köpa</td></tr>
@@ -60,7 +63,7 @@
 <li><strong>Definiera hyllor</strong> (valfritt): Setup → Hyllor (se <a href="#racks">avsnitt 5</a>).</li>
 <li><strong>Lägg till din första whisky</strong>: tryck på <kbd>+</kbd> i samlingen (<a href="#add">avsnitt 2</a>).</li>
 <li><strong>Placera den</strong>: ge whiskyn en plats i en hylla.</li>
-<li><strong>Säkerhetskopiera</strong>: Export/Import → JSON-säkerhetskopia, eller ställ in molnsynk (<a href="#sync">avsnitt 11</a>).</li>
+<li><strong>Säkerhetskopiera</strong>: Export/Import → JSON-säkerhetskopia, eller ställ in molnsynk (<a href="#sync">avsnitt 13</a>).</li>
 </ol>
 <div class="tip">Avsnitten i <em>Setup</em> kan fällas ihop. ”Allmänt” är öppet vid första starten, de andra är stängda. Appen kommer ihåg vad du öppnade eller stängde senast.</div>
 
@@ -69,14 +72,14 @@
 
 <p>Tryck på <kbd>+</kbd> i samlingen. Det finns flera sätt att lägga till en whisky – de kan kombineras.</p>
 <h3>a) För hand</h3>
-<p>Fyll i fälten: <strong>Namn, År, Flaskor, Whiskytyp, Region (t.ex. Speyside, Islay, Kentucky), Land, Destilleri, Ålder (år), ABV %, Fat, Lagringsplats, Serveringstemperatur, Pris, Betyg, Anteckning</strong>. Bara namnet är obligatoriskt. <em>Spara</em> skapar whiskyn.</p>
+<p>Fyll i fälten: <strong>Namn, År, Flaskor, Whiskytyp, Region (t.ex. Speyside, Islay, Kentucky), Land, Destilleri, Ålder (år), ABV %, Fat, Lagringsplats, Serveringstemperatur, Pris, Betyg, Anteckning</strong>. Bara namnet är obligatoriskt. <em>Spara</em> skapar whiskyn. I samma formulär finns också blocket <strong>Perfect serve</strong> (<a href="#perfect">avsnitt 8</a>).</p>
 <ul>
 <li><strong>År:</strong> Året är flaskans tappnings- eller destillationsår. <strong>Ålder (år)</strong> är lagringstiden i år (t.ex. 12), <strong>ABV %</strong> alkoholhalten i procent och <strong>Fat</strong> typen av fat (t.ex. sherry, bourbonfat).</li>
 <li><strong>Lager, Min och Max:</strong> Om du anger ett minimum varnar appen när lagret understiger det och erbjuder att lägga whiskyn på önskelistan (<a href="#cellar">avsnitt 3</a>).</li>
 <li><strong>Eget foto:</strong> ”Ta / välj foto” bifogar ett foto till whiskyn. Det stannar på den här enheten och ingår i JSON-säkerhetskopian, men synkas inte till molnet.</li>
 </ul>
 <h3>b) Skanna etikett (AI)</h3>
-<p>Tryck på <em>Skanna etikett (AI)</em> och fotografera flaskans etikett. AI:n läser namn, år, typ, region, land, destilleri, ålder, ABV och fat och uppskattar serveringstemperaturen. Kontrollera värdena och spara. Före första användningen ber appen om ditt samtycke (<a href="#privacy">avsnitt 12</a>).</p>
+<p>Tryck på <em>Skanna etikett (AI)</em> och fotografera flaskans etikett. AI:n läser namn, år, typ, region, land, destilleri, ålder, ABV och fat och uppskattar serveringstemperaturen. Kontrollera värdena och spara. Före första användningen ber appen om ditt samtycke (<a href="#privacy">avsnitt 14</a>).</p>
 <h3>c) Skanna streckkod</h3>
 <p>Tryck på <em>Skanna streckkod</em> och håll flaskans streckkod i ramen. Appen slår upp numret i en gratis produktdatabas (kostar inget, ingen AI-kredit) och fyller, om den hittas, i <strong>namn, producent och whiskytyp</strong>. Året kompletteras från namnet, annars frågar appen efter det.</p>
 <ul>
@@ -156,7 +159,51 @@
 </ul>
 
 <!-- ───────────────── 8 ───────────────── -->
-<h2 id="stats">8. Statistik</h2>
+<h2 id="perfect">8. Perfect serve och glas</h2>
+
+<p>I formuläret ”Lägg till whisky” / ”Redigera whisky” finns blocket <strong>Perfect serve (njutningssätt, mixers, mat)</strong>. Där sparar du hur just den här whiskyn smakar bäst.</p>
+<h3>Två knappar för förslag</h3>
+<ul>
+<li><strong>🥃 Regelbaserat tips</strong> – fungerar offline, är gratis och utgår från whiskytypen, torv, sherry, bourbon med mera.</li>
+<li><strong>🤖 AI-rekommendation</strong> – frågar AI:n och kostar <strong>en AI-skanning</strong> (<a href="#privacy">avsnitt 14</a>).</li>
+</ul>
+<p>Resultatet är <strong>upp till tre njutningssätt</strong> med en kort motivering: <em>Ren</em>, <em>Ren med några droppar vatten</em>, <em>On the rocks (med is)</em>, <em>Highball med sodavatten eller ginger ale</em> eller en cocktail som <em>Old Fashioned</em>. <strong>Tryck på ett förslag</strong> så markeras det som favorit (”Markerad som favorit ✓”) och fälten fylls i.</p>
+<h3>Fälten</h3>
+<ul>
+<li><strong>Mixers och garnering, kommaseparerade</strong> – t.ex. sodavatten, citronskal.</li>
+<li><strong>Vatten / förhållande</strong> – t.ex. ”2–3 droppar vatten” eller ”1:3 med sodavatten eller ginger ale”.</li>
+<li><strong>Glas</strong> – t.ex. Glencairn-glas, Tumbler, Highballglas.</li>
+<li><strong>Is</strong> – ingen is, iskuber eller en stor kula eller kub.</li>
+<li><strong>Matkombination</strong> – passande tilltugg, t.ex. mörk choklad, nötter eller ost.</li>
+</ul>
+<h3>Glaset</h3>
+<p>Under fältet Glas finns länken <strong>Visa glaset</strong>. Den öppnar ett kort med en ritning och en kort förklaring av glaset: <em>Glencairn-glas</em>, <em>Tumbler (rocksglas)</em>, <em>Highballglas</em>, <em>Coupe</em>, <em>Julepmugg</em> eller <em>Irish coffee-glas</em>. Länken <strong>Se fler bilder ↗</strong> leder till fler bilder på webben, och <em>Stäng</em> stänger kortet.</p>
+<div class="tip">På whiskykortet i samlingen syns sedan din <strong>favorit</strong>, <strong>garneringen</strong> och <strong>glaset</strong>.</div>
+
+<!-- ───────────────── 9 ───────────────── -->
+<h2 id="recipes">9. Recept och ingredienshylla</h2>
+
+<p>Området <strong>Recept</strong> (”Klassiker och cocktails”) samlar klassiska whiskycocktails och dina egna recept.</p>
+<h3>De 12 klassikerna</h3>
+<p>Old Fashioned, Manhattan, Whiskey Sour, Whisky Highball, Mint Julep, Penicillin, Rob Roy, Boulevardier, Irish Coffee, Rusty Nail, Paper Plane och Gold Rush. Varje recept visar <strong>Ingredienser</strong>, <strong>Gör så här</strong> och <strong>Glas</strong>.</p>
+<h3>Filter</h3>
+<ul>
+<li><strong>Alla</strong> – alla recept.</li>
+<li><strong>⭐ Favoriter</strong> – recept du har markerat med stjärnan.</li>
+<li><strong>Mina</strong> – dina egna recept.</li>
+<li><strong>🥃 Passar min bar</strong> – recept där dina whiskyer och din ingredienshylla räcker; under receptet står <em>Passar</em> med de whiskyer det passar till.</li>
+</ul>
+<h3>Egna recept och AI-recept</h3>
+<ul>
+<li><strong>Lägg till eget recept:</strong> fyll i <em>Namn</em>, <em>Ingredienser, en per rad</em> och <em>Gör så här</em> och tryck på <em>Spara recept</em>. <em>Ta bort detta recept?</em> frågar appen innan ett eget recept raderas.</li>
+<li><strong>Recept för en whisky (AI):</strong> välj en whisky (<em>Välj en whisky…</em>) och tryck på <em>🤖 Skapa recept</em>. Det kostar en AI-skanning. Med <em>Spara som mitt recept</em> hamnar receptet bland <em>Mina</em>.</li>
+</ul>
+<h3>Min ingredienshylla</h3>
+<p>Under <strong>Min ingredienshylla (mixers, garnering, ingredienser)</strong> trycker du på det du har hemma. Rekommendationerna visar sedan <strong>✓</strong> (har) eller <strong>🛒</strong> (saknas). Knappen <strong>🛒 Lägg till saknade varor i önskelistan</strong> lägger det som saknas på <a href="#wish">önskelistan</a> (med anteckningen ”Ingrediens/garnering”). Om inget saknas får du ett meddelande om det.</p>
+<div class="note">Recept, favoriter och ingredienshylla säkerhetskopieras med molnsynken (<a href="#sync">avsnitt 13</a>).</div>
+
+<!-- ───────────────── 10 ───────────────── -->
+<h2 id="stats">10. Statistik</h2>
 
 <p>Uppifrån och ned:</p>
 <ul>
@@ -171,8 +218,8 @@
 </ul>
 <p>Avsnitt utan data (t.ex. utan priser) döljs.</p>
 
-<!-- ───────────────── 9 ───────────────── -->
-<h2 id="export">9. Export, import och säkerhetskopia</h2>
+<!-- ───────────────── 11 ───────────────── -->
+<h2 id="export">11. Export, import och säkerhetskopia</h2>
 
 <table>
 <tbody><tr><th>Funktion</th><th>Syfte</th></tr>
@@ -184,10 +231,11 @@
 <tr><td>Importera JSON / CSV / Excel</td><td>Återställ en säkerhetskopia eller läs in en tabell</td></tr>
 </tbody></table>
 <p>Kolumnerna i CSV och Excel är: <strong>Namn, År, Typ, Region, Land, Destilleri, Ålder, ABV, Fat, Hylla, Nivå, Plats, Flaskor, Betyg, Pris, Anteckning</strong>. Importen accepterar också de gamla kolumnnamnen.</p>
-<div class="tip"><strong>Gör regelbundet en JSON-säkerhetskopia.</strong> JSON-importen ersätter samlingen med säkerhetskopian (appen frågar först). På en ny enhet återställer det allt. Alternativt kan du använda molnsynk (<a href="#sync">avsnitt 11</a>).</div>
+<div class="tip"><strong>Gör regelbundet en JSON-säkerhetskopia.</strong> JSON-importen ersätter samlingen med säkerhetskopian (appen frågar först). På en ny enhet återställer det allt. Alternativt kan du använda molnsynk (<a href="#sync">avsnitt 13</a>).</div>
+<p>Längst ned på sidan finns det uppfällbara området <strong>Kontakt</strong>: där står utvecklarens namn och ”Last Build: datum” (när appen senast byggdes).</p>
 
-<!-- ───────────────── 10 ───────────────── -->
-<h2 id="setup">10. Setup (inställningar)</h2>
+<!-- ───────────────── 12 ───────────────── -->
+<h2 id="setup">12. Setup (inställningar)</h2>
 
 <h3>Allmänt</h3>
 <ul>
@@ -199,9 +247,9 @@
 <li><strong>Temperaturenhet:</strong> °C eller °F (engelska (USA) ställer automatiskt in °F).</li>
 </ul>
 <h3>Lagringsplats</h3>
-<p><em>Endast denna enhet</em> eller <em>Moln</em> (synk-kod, <a href="#sync">avsnitt 11</a>).</p>
+<p><em>Endast denna enhet</em> eller <em>Moln</em> (synk-kod, <a href="#sync">avsnitt 13</a>).</p>
 <h3>AI-kreditter (endast iPhone-appen)</h3>
-<p>Visar de återstående AI-skanningarna, enhets-ID:t och – vid behov – <em>Lägg till kreditter</em> eller en upplåsningskod. Se <a href="#privacy">avsnitt 12</a>.</p>
+<p>Visar de återstående AI-skanningarna, enhets-ID:t och – vid behov – <em>Lägg till kreditter</em> eller en upplåsningskod. Se <a href="#privacy">avsnitt 14</a>.</p>
 <h3>Whiskydatabas</h3>
 <ul>
 <li><strong>Uppdatera alla whiskyer (AI):</strong> fyller i saknad region, land, destilleri, ålder, ABV, fat, serveringstemperatur och pris för alla whiskyer (i webbversionen även flaskbilder). Befintliga värden finns kvar. Om det redan finns serveringstemperaturer frågar appen först om de också ska ersättas med AI-värden. <em>Tips: exportera först en JSON-säkerhetskopia.</em></li>
@@ -209,30 +257,30 @@
 <h3>Hyllor</h3>
 <p>Se <a href="#racks">avsnitt 5</a>. Rubriken visar antalet hyllor.</p>
 <h3>Integritet, support, version</h3>
-<p>Länkarna leder till integritetspolicyn och till den här supportsidan. Längst ned hittar du appens <strong>version</strong> – ange den när du kontaktar oss.</p>
+<p>Länkarna leder till integritetspolicyn och till den här supportsidan. Knappen <strong>Användarguide</strong> öppnar den här guiden. Längst ned hittar du appens <strong>version</strong> – ange den när du kontaktar oss.</p>
 
-<!-- ───────────────── 11 ───────────────── -->
-<h2 id="sync">11. Synka två enheter</h2>
+<!-- ───────────────── 13 ───────────────── -->
+<h2 id="sync">13. Synka två enheter</h2>
 
 <ol>
 <li><strong>Första enheten:</strong> Setup → Lagringsplats → <em>Moln</em> → <em>Skapa ny synk-kod</em>. Koden visas på skärmen; med <em>Spara koden via e-post</em> skickar du den till dig själv.</li>
 <li><strong>Andra enheten:</strong> Setup → Lagringsplats → <em>Moln</em> → ange koden (gemener, inga mellanslag) → Anslut. Om enheten redan innehåller whiskyer frågar appen om de ska slås ihop med molndata.</li>
 <li>Därefter synkas båda enheterna automatiskt (t.ex. när appen öppnas); <em>Synkronisera nu</em> startar det för hand. Regeln är: <strong>den senaste ändringen vinner</strong>.</li>
 </ol>
-<p>Whiskyer, önskelista, historik, hyllor och inställningar som språk och valuta synkas. <strong>Synkas inte</strong> gör egna foton och enhetsspecifika data. Den som känner till din kod kan se dina whiskyer – dela den bara med personer du litar på. Behåll också en JSON-säkerhetskopia.</p>
+<p>Whiskyer, önskelista, historik, hyllor, egna recept, favoriter, ingredienshylla och inställningar som språk och valuta synkas. <strong>Synkas inte</strong> gör egna foton och enhetsspecifika data. Den som känner till din kod kan se dina whiskyer – dela den bara med personer du litar på. Behåll också en JSON-säkerhetskopia.</p>
 
-<!-- ───────────────── 12 ───────────────── -->
-<h2 id="privacy">12. AI, integritet och kostnader</h2>
+<!-- ───────────────── 14 ───────────────── -->
+<h2 id="privacy">14. AI, integritet och kostnader</h2>
 
 <ul>
-<li><strong>Vad används AI till?</strong> Skanna etikett, slå upp whisky, söka priser och ”Uppdatera alla whiskyer”. Fotot eller whiskyns namn skickas via vår server till en AI-tjänst (Anthropic, USA) för utvärdering – utan namn eller konton. Appen ber om ditt samtycke före första användningen.</li>
+<li><strong>Vad används AI till?</strong> Skanna etikett, slå upp whisky, söka priser, ”Uppdatera alla whiskyer”, AI-rekommendationen i Perfect serve och AI-recept. Fotot eller whiskyns namn skickas via vår server till en AI-tjänst (Anthropic, USA) för utvärdering – utan namn eller konton. Appen ber om ditt samtycke före första användningen.</li>
 <li><strong>Streckkodsskanning</strong> skickar bara numret till en gratis produktdatabas och kostar ingen AI-kredit.</li>
 <li><strong>Kostnader (iPhone-appen):</strong> 50 AI-anrop per installation ingår i köpesumman; fler kan köpas som ett valfritt engångsköp (ingen prenumeration, krediterna löper inte ut). Allt annat i appen kostar inget extra. När krediterna är slut fungerar allt utom AI-funktionerna fortfarande.</li>
 <li><strong>Data:</strong> Allt stannar på din enhet så länge du inte aktiverar molnet. Inga annonser, ingen spårning, inget användarkonto. Detaljer finns i <a href="datenschutz.html">integritetspolicyn</a> (på tyska).</li>
 </ul>
 
-<!-- ───────────────── 13 ───────────────── -->
-<h2 id="faq">13. Tips och vanliga frågor</h2>
+<!-- ───────────────── 15 ───────────────── -->
+<h2 id="faq">15. Tips och vanliga frågor</h2>
 
 <ul>
 <li><strong>På en iPad eller dator</strong> anpassas layouten: bredare kolumn, flera kort bredvid varandra, och på dator (och iPad i liggande läge) navigeringen till vänster. Telefonen fungerar också i liggande läge. På en dator stänger <kbd>Esc</kbd> det översta fönstret; på en telefon sveper du ett fönster nedåt för att stänga det.</li>
