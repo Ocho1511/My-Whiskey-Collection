@@ -1851,6 +1851,13 @@ input[type="file"] { display: none; }
         <span data-i18n="dm_finish">Flasche ist damit leer</span>
       </label>
     </div>
+    <div class="form-group" id="drink-empty-wrap" style="display:none">
+      <div id="drink-empty-info" style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:10px"></div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer">
+        <input type="checkbox" id="drink-log-rest" style="width:auto;margin:0">
+        <span id="drink-log-rest-label"></span>
+      </label>
+    </div>
     <div class="form-group" id="drink-slot-wrap" style="display:none">
       <label data-i18n="dm_slot">Aus welchem Platz genommen?</label>
       <div class="occ-wrap" id="drink-slots"></div>
@@ -1873,7 +1880,7 @@ input[type="file"] { display: none; }
     </div>
     <div class="btn-row">
       <button class="btn-secondary" onclick="closeModal('drink-modal')" data-i18n="btn_cancel">Abbrechen</button>
-      <button class="btn-primary" onclick="confirmDrink()" data-i18n="btn_drink_confirm">🥃 Trinken</button>
+      <button class="btn-primary" id="drink-confirm-btn" onclick="confirmDrink()" data-i18n="btn_drink_confirm">🥃 Trinken</button>
     </div>
   </div>
 </div>
@@ -3754,6 +3761,13 @@ de: {
   l_grape: "Destillerie",
   l_age: "Alter (Jahre)",
   l_cask: "Fass",
+  btn_empty: "Leer",
+  dm_empty_title: "Flasche leer – entfernen",
+  btn_empty_confirm: "🏁 Flasche entfernen",
+  dm_rest_info: "Rest in der Flasche: {n} cl",
+  dm_rest_sealed: "Diese Flasche ist ungeöffnet ({n} cl).",
+  dm_log_rest: "Rest ({n} cl) in der Historie als getrunken eintragen",
+  toast_bottle_removed: "Flasche entfernt ✓",
   l_size: "Flaschengröße (cl)",
   l_bottled: "Abgefüllt (Jahr)",
   l_peat: "Torf",
@@ -4379,6 +4393,13 @@ en: {
   l_grape: "Distillery",
   l_age: "Age (years)",
   l_cask: "Cask",
+  btn_empty: "Empty",
+  dm_empty_title: "Bottle empty – remove",
+  btn_empty_confirm: "🏁 Remove bottle",
+  dm_rest_info: "Left in the bottle: {n} cl",
+  dm_rest_sealed: "This bottle is sealed ({n} cl).",
+  dm_log_rest: "Log the rest ({n} cl) in the history as drunk",
+  toast_bottle_removed: "Bottle removed ✓",
   l_size: "Bottle size (cl)",
   l_bottled: "Bottled (year)",
   l_peat: "Peat",
@@ -5004,6 +5025,13 @@ es: {
   l_grape: "Destilería",
   l_age: "Edad (años)",
   l_cask: "Barrica",
+  btn_empty: "Vacía",
+  dm_empty_title: "Botella vacía – retirar",
+  btn_empty_confirm: "🏁 Retirar botella",
+  dm_rest_info: "Resto en la botella: {n} cl",
+  dm_rest_sealed: "Esta botella está sin abrir ({n} cl).",
+  dm_log_rest: "Registrar el resto ({n} cl) en el historial como bebido",
+  toast_bottle_removed: "Botella retirada ✓",
   l_size: "Tamaño de botella (cl)",
   l_bottled: "Embotellado (año)",
   l_peat: "Turba",
@@ -5629,6 +5657,13 @@ sv: {
   l_grape: "Destilleri",
   l_age: "Ålder (år)",
   l_cask: "Fat",
+  btn_empty: "Tom",
+  dm_empty_title: "Flaskan tom – ta bort",
+  btn_empty_confirm: "🏁 Ta bort flaska",
+  dm_rest_info: "Kvar i flaskan: {n} cl",
+  dm_rest_sealed: "Den här flaskan är oöppnad ({n} cl).",
+  dm_log_rest: "Logga resten ({n} cl) som drucken i historiken",
+  toast_bottle_removed: "Flaska borttagen ✓",
   l_size: "Flaskstorlek (cl)",
   l_bottled: "Buteljerad (år)",
   l_peat: "Torv",
@@ -6254,6 +6289,13 @@ da: {
   l_grape: "Destilleri",
   l_age: "Alder (år)",
   l_cask: "Fad",
+  btn_empty: "Tom",
+  dm_empty_title: "Flasken tom – fjern",
+  btn_empty_confirm: "🏁 Fjern flaske",
+  dm_rest_info: "Rest i flasken: {n} cl",
+  dm_rest_sealed: "Denne flaske er uåbnet ({n} cl).",
+  dm_log_rest: "Log resten ({n} cl) som drukket i historikken",
+  toast_bottle_removed: "Flaske fjernet ✓",
   l_size: "Flaskestørrelse (cl)",
   l_bottled: "Aftappet (år)",
   l_peat: "Tørv",
@@ -6880,6 +6922,13 @@ fi: {
   l_grape: "Tislaamo",
   l_age: "Ikä (vuotta)",
   l_cask: "Tynnyri",
+  btn_empty: "Tyhjä",
+  dm_empty_title: "Pullo tyhjä – poista",
+  btn_empty_confirm: "🏁 Poista pullo",
+  dm_rest_info: "Pullossa jäljellä: {n} cl",
+  dm_rest_sealed: "Tämä pullo on avaamaton ({n} cl).",
+  dm_log_rest: "Kirjaa loput ({n} cl) juoduksi historiaan",
+  toast_bottle_removed: "Pullo poistettu ✓",
   l_size: "Pullon koko (cl)",
   l_bottled: "Pullotettu (vuosi)",
   l_peat: "Turve",
@@ -7504,6 +7553,13 @@ ru: {
   l_grape: "Винокурня",
   l_age: "Возраст (лет)",
   l_cask: "Бочка",
+  btn_empty: "Пусто",
+  dm_empty_title: "Бутылка пуста – убрать",
+  btn_empty_confirm: "🏁 Убрать бутылку",
+  dm_rest_info: "Осталось в бутылке: {n} cl",
+  dm_rest_sealed: "Эта бутылка не вскрыта ({n} cl).",
+  dm_log_rest: "Записать остаток ({n} cl) в историю как выпитый",
+  toast_bottle_removed: "Бутылка убрана ✓",
   l_size: "Объём бутылки (cl)",
   l_bottled: "Год розлива",
   l_peat: "Торф",
@@ -8129,6 +8185,13 @@ it: {
   l_grape: "Distilleria",
   l_age: "Età (anni)",
   l_cask: "Botte",
+  btn_empty: "Vuota",
+  dm_empty_title: "Bottiglia vuota – rimuovi",
+  btn_empty_confirm: "🏁 Rimuovi bottiglia",
+  dm_rest_info: "Rimasto nella bottiglia: {n} cl",
+  dm_rest_sealed: "Questa bottiglia è sigillata ({n} cl).",
+  dm_log_rest: "Registra il resto ({n} cl) come bevuto nella cronologia",
+  toast_bottle_removed: "Bottiglia rimossa ✓",
   l_size: "Formato bottiglia (cl)",
   l_bottled: "Imbottigliato (anno)",
   l_peat: "Torba",
@@ -8754,6 +8817,13 @@ fr: {
   l_grape: "Distillerie",
   l_age: "Âge (ans)",
   l_cask: "Fût",
+  btn_empty: "Vide",
+  dm_empty_title: "Bouteille vide – retirer",
+  btn_empty_confirm: "🏁 Retirer la bouteille",
+  dm_rest_info: "Reste dans la bouteille : {n} cl",
+  dm_rest_sealed: "Cette bouteille est fermée ({n} cl).",
+  dm_log_rest: "Enregistrer le reste ({n} cl) comme bu dans l'historique",
+  toast_bottle_removed: "Bouteille retirée ✓",
   l_size: "Contenance (cl)",
   l_bottled: "Mis en bouteille (année)",
   l_peat: "Tourbe",
@@ -9379,6 +9449,13 @@ pl: {
   l_grape: "Destylarnia",
   l_age: "Wiek (lata)",
   l_cask: "Beczka",
+  btn_empty: "Pusta",
+  dm_empty_title: "Butelka pusta – usuń",
+  btn_empty_confirm: "🏁 Usuń butelkę",
+  dm_rest_info: "Zostało w butelce: {n} cl",
+  dm_rest_sealed: "Ta butelka jest zamknięta ({n} cl).",
+  dm_log_rest: "Zapisz resztę ({n} cl) w historii jako wypitą",
+  toast_bottle_removed: "Butelka usunięta ✓",
   l_size: "Rozmiar butelki (cl)",
   l_bottled: "Rok rozlewu",
   l_peat: "Torf",
@@ -10004,6 +10081,13 @@ hu: {
   l_grape: "Lepárló",
   l_age: "Kor (év)",
   l_cask: "Hordó",
+  btn_empty: "Üres",
+  dm_empty_title: "Üres palack – eltávolítás",
+  btn_empty_confirm: "🏁 Palack eltávolítása",
+  dm_rest_info: "Maradék a palackban: {n} cl",
+  dm_rest_sealed: "Ez a palack bontatlan ({n} cl).",
+  dm_log_rest: "A maradék ({n} cl) rögzítése a naplóban megivottként",
+  toast_bottle_removed: "Palack eltávolítva ✓",
   l_size: "Palack mérete (cl)",
   l_bottled: "Palackozva (év)",
   l_peat: "Tőzeg",
@@ -10629,6 +10713,13 @@ cs: {
   l_grape: "Palírna",
   l_age: "Stáří (roky)",
   l_cask: "Sud",
+  btn_empty: "Prázdná",
+  dm_empty_title: "Prázdná láhev – odebrat",
+  btn_empty_confirm: "🏁 Odebrat láhev",
+  dm_rest_info: "Zbývá v láhvi: {n} cl",
+  dm_rest_sealed: "Tato láhev je neotevřená ({n} cl).",
+  dm_log_rest: "Zapsat zbytek ({n} cl) do historie jako vypitý",
+  toast_bottle_removed: "Láhev odebrána ✓",
   l_size: "Velikost lahve (cl)",
   l_bottled: "Stočeno (rok)",
   l_peat: "Rašelina",
@@ -11254,6 +11345,13 @@ sk: {
   l_grape: "Liehovar",
   l_age: "Vek (roky)",
   l_cask: "Sud",
+  btn_empty: "Prázdna",
+  dm_empty_title: "Prázdna fľaša – odstrániť",
+  btn_empty_confirm: "🏁 Odstrániť fľašu",
+  dm_rest_info: "Zostáva vo fľaši: {n} cl",
+  dm_rest_sealed: "Táto fľaša je neotvorená ({n} cl).",
+  dm_log_rest: "Zapísať zvyšok ({n} cl) do histórie ako vypitý",
+  toast_bottle_removed: "Fľaša odstránená ✓",
   l_size: "Veľkosť fľaše (cl)",
   l_bottled: "Stočené (rok)",
   l_peat: "Rašelina",
@@ -11879,6 +11977,13 @@ ro: {
   l_grape: "Distilerie",
   l_age: "Vârstă (ani)",
   l_cask: "Butoi",
+  btn_empty: "Goală",
+  dm_empty_title: "Sticlă goală – elimină",
+  btn_empty_confirm: "🏁 Elimină sticla",
+  dm_rest_info: "Rămas în sticlă: {n} cl",
+  dm_rest_sealed: "Această sticlă este sigilată ({n} cl).",
+  dm_log_rest: "Înregistrează restul ({n} cl) în istoric ca băut",
+  toast_bottle_removed: "Sticlă eliminată ✓",
   l_size: "Dimensiunea sticlei (cl)",
   l_bottled: "Îmbuteliat (an)",
   l_peat: "Turbă",
@@ -12504,6 +12609,13 @@ hr: {
   l_grape: "Destilerija",
   l_age: "Starost (godine)",
   l_cask: "Bačva",
+  btn_empty: "Prazna",
+  dm_empty_title: "Boca prazna – ukloni",
+  btn_empty_confirm: "🏁 Ukloni bocu",
+  dm_rest_info: "Ostalo u boci: {n} cl",
+  dm_rest_sealed: "Ova boca je zapečaćena ({n} cl).",
+  dm_log_rest: "Upiši ostatak ({n} cl) u povijest kao popijen",
+  toast_bottle_removed: "Boca uklonjena ✓",
   l_size: "Veličina boce (cl)",
   l_bottled: "Flaširano (godina)",
   l_peat: "Treset",
@@ -13129,6 +13241,13 @@ pt: {
   l_grape: "Destilaria",
   l_age: "Idade (anos)",
   l_cask: "Barril",
+  btn_empty: "Vazia",
+  dm_empty_title: "Garrafa vazia – remover",
+  btn_empty_confirm: "🏁 Remover garrafa",
+  dm_rest_info: "Resto na garrafa: {n} cl",
+  dm_rest_sealed: "Esta garrafa está fechada ({n} cl).",
+  dm_log_rest: "Registar o resto ({n} cl) no histórico como bebido",
+  toast_bottle_removed: "Garrafa removida ✓",
   l_size: "Tamanho da garrafa (cl)",
   l_bottled: "Engarrafado (ano)",
   l_peat: "Turfa",
@@ -13754,6 +13873,13 @@ no: {
   l_grape: "Destilleri",
   l_age: "Alder (år)",
   l_cask: "Fat",
+  btn_empty: "Tom",
+  dm_empty_title: "Flasken tom – fjern",
+  btn_empty_confirm: "🏁 Fjern flaske",
+  dm_rest_info: "Rest i flasken: {n} cl",
+  dm_rest_sealed: "Denne flasken er uåpnet ({n} cl).",
+  dm_log_rest: "Logg resten ({n} cl) som drukket i historikken",
+  toast_bottle_removed: "Flaske fjernet ✓",
   l_size: "Flaskestørrelse (cl)",
   l_bottled: "Tappet (år)",
   l_peat: "Torv",
@@ -14379,6 +14505,13 @@ nl: {
   l_grape: "Distilleerderij",
   l_age: "Leeftijd (jaren)",
   l_cask: "Vat",
+  btn_empty: "Leeg",
+  dm_empty_title: "Fles leeg – verwijderen",
+  btn_empty_confirm: "🏁 Fles verwijderen",
+  dm_rest_info: "Rest in de fles: {n} cl",
+  dm_rest_sealed: "Deze fles is ongeopend ({n} cl).",
+  dm_log_rest: "Rest ({n} cl) in de historie als gedronken noteren",
+  toast_bottle_removed: "Fles verwijderd ✓",
   l_size: "Flesgrootte (cl)",
   l_bottled: "Gebotteld (jaar)",
   l_peat: "Turf",
@@ -15004,6 +15137,13 @@ el: {
   l_grape: "Αποστακτήριο",
   l_age: "Ηλικία (έτη)",
   l_cask: "Βαρέλι",
+  btn_empty: "Άδειο",
+  dm_empty_title: "Άδειο μπουκάλι – αφαίρεση",
+  btn_empty_confirm: "🏁 Αφαίρεση μπουκαλιού",
+  dm_rest_info: "Απομένουν στο μπουκάλι: {n} cl",
+  dm_rest_sealed: "Αυτό το μπουκάλι είναι σφραγισμένο ({n} cl).",
+  dm_log_rest: "Καταγραφή του υπολοίπου ({n} cl) στο ιστορικό ως πιωμένο",
+  toast_bottle_removed: "Το μπουκάλι αφαιρέθηκε ✓",
   l_size: "Μέγεθος φιάλης (cl)",
   l_bottled: "Εμφιαλώθηκε (έτος)",
   l_peat: "Τύρφη",
@@ -15629,6 +15769,13 @@ uk: {
   l_grape: "Винокурня",
   l_age: "Вік (років)",
   l_cask: "Бочка",
+  btn_empty: "Порожня",
+  dm_empty_title: "Пляшка порожня – прибрати",
+  btn_empty_confirm: "🏁 Прибрати пляшку",
+  dm_rest_info: "Залишилось у пляшці: {n} cl",
+  dm_rest_sealed: "Ця пляшка запечатана ({n} cl).",
+  dm_log_rest: "Записати залишок ({n} cl) в історію як випитий",
+  toast_bottle_removed: "Пляшку прибрано ✓",
   l_size: "Об'єм пляшки (cl)",
   l_bottled: "Розлито (рік)",
   l_peat: "Торф",
@@ -16254,6 +16401,13 @@ ja: {
   l_grape: "蒸溜所",
   l_age: "熟成年数",
   l_cask: "樽",
+  btn_empty: "空",
+  dm_empty_title: "ボトルが空 – 削除",
+  btn_empty_confirm: "🏁 ボトルを削除",
+  dm_rest_info: "ボトルの残り: {n} cl",
+  dm_rest_sealed: "このボトルは未開封です({n} cl)。",
+  dm_log_rest: "残り({n} cl)を飲んだ分として履歴に記録",
+  toast_bottle_removed: "ボトルを削除しました ✓",
   l_size: "ボトルサイズ (cl)",
   l_bottled: "ボトリング年",
   l_peat: "ピート",
@@ -16879,6 +17033,13 @@ ko: {
   l_grape: "증류소",
   l_age: "숙성 연수",
   l_cask: "캐스크",
+  btn_empty: "비움",
+  dm_empty_title: "병이 비었음 – 제거",
+  btn_empty_confirm: "🏁 병 제거",
+  dm_rest_info: "병에 남은 양: {n} cl",
+  dm_rest_sealed: "이 병은 미개봉입니다({n} cl).",
+  dm_log_rest: "남은 양({n} cl)을 마신 것으로 기록에 추가",
+  toast_bottle_removed: "병이 제거되었습니다 ✓",
   l_size: "병 용량 (cl)",
   l_bottled: "병입 연도",
   l_peat: "피트",
@@ -17504,6 +17665,13 @@ zh: {
   l_grape: "酒厂",
   l_age: "年份（年）",
   l_cask: "酒桶",
+  btn_empty: "已空",
+  dm_empty_title: "酒瓶已空 – 移除",
+  btn_empty_confirm: "🏁 移除酒瓶",
+  dm_rest_info: "瓶中剩余:{n} cl",
+  dm_rest_sealed: "这瓶酒未开封({n} cl)。",
+  dm_log_rest: "将剩余({n} cl)记为已饮用并写入历史",
+  toast_bottle_removed: "酒瓶已移除 ✓",
   l_size: "瓶容量 (cl)",
   l_bottled: "装瓶年份",
   l_peat: "泥煤",
@@ -18129,6 +18297,13 @@ hi: {
   l_grape: "डिस्टिलरी",
   l_age: "आयु (वर्ष)",
   l_cask: "कास्क",
+  btn_empty: "खाली",
+  dm_empty_title: "बोतल खाली – हटाएँ",
+  btn_empty_confirm: "🏁 बोतल हटाएँ",
+  dm_rest_info: "बोतल में बचा: {n} cl",
+  dm_rest_sealed: "यह बोतल सीलबंद है ({n} cl)।",
+  dm_log_rest: "बचे हुए ({n} cl) को इतिहास में पिया हुआ दर्ज करें",
+  toast_bottle_removed: "बोतल हटा दी गई ✓",
   l_size: "बोतल का आकार (cl)",
   l_bottled: "बॉटलिंग (वर्ष)",
   l_peat: "पीट",
@@ -18957,6 +19132,7 @@ function renderKeller() {
           <div class="wine-row-name">${esc(w.name)}</div>
           <div class="wine-row-sub">${w.year||'–'} · ${TYPE_LABELS[w.type]||TYPE_LABELS.other||''}${w.grape?' · '+esc(w.grape):''}${w.age?' · '+w.age+' y':''}${w.abv?' · '+w.abv+'%':''}${w.score?' · '+w.score+' P':''}${(w.opened||[]).length?' · 🔓 '+(w.opened||[]).length:''}${regionCountry?' · '+esc(regionCountry):''}${loc?' · 📍 '+esc(loc):''}</div>
         </div>
+        <button class="wine-row-delete" onclick="emptyOne('${w.id}')" aria-label="${esc(t('dm_empty_title'))}" title="${esc(t('dm_empty_title'))}">🏁</button>
         <button class="wine-row-delete" onclick="deleteWine('${w.id}')" aria-label="${esc(t('rack_delete'))}" title="${esc(t('rack_delete'))}">🗑</button>
       </div>`;
     }).join('');
@@ -18989,6 +19165,7 @@ function renderKeller() {
       <div class="wine-actions">
         <button class="wine-btn" onclick="editWine('${w.id}')">${t('btn_edit')}</button>
         <button class="wine-btn primary" onclick="drinkOne('${w.id}')">${t('btn_drink')}</button>
+        <button class="wine-btn" onclick="emptyOne('${w.id}')" title="${esc(t('dm_empty_title'))}" aria-label="${esc(t('dm_empty_title'))}">🏁 ${t('btn_empty')}</button>
         <button class="wine-btn danger" onclick="deleteWine('${w.id}')" aria-label="${esc(t('rack_delete'))}" title="${esc(t('rack_delete'))}">🗑</button>
       </div>
     </div>`;
@@ -19002,6 +19179,7 @@ function setSort(s) { sortMode = s; renderKeller(); }
 
 
 let drinkId = null;
+let drinkMode = 'dram';   // 'dram' = einschenken, 'empty' = Flasche leer / entfernen
 let drinkSlotRef = null;   // Platz, aus dem die Flasche genommen wird (null = nicht eingelagerte Flasche bzw. Whiskey ohne Platz)
 let drinkSlotOpts = [];
 function renderDrinkSlots() {
@@ -19043,6 +19221,7 @@ function renderDrinkAmounts() {
 }
 function setDrinkCl(n) { document.getElementById('drink-cl').value = n; drinkAmountChanged(); }
 function drinkAmountChanged() {
+  if (drinkMode !== 'dram') return;
   const w = wines.find(x => x.id === drinkId);
   if (!w) return;
   const cur = currentBottle(w), size = w.size || 70;
@@ -19066,11 +19245,73 @@ function drinkOne(id, presetRef) {
   document.getElementById('drink-cl').value = Number(settings.dramCl) > 0 ? settings.dramCl : 4;
   document.getElementById('drink-empty').checked = false;
   setupDrinkSlots(w, presetRef);
+  setDrinkMode('dram');
   drinkAmountChanged();
   document.getElementById('drink-modal').classList.add('show');
 }
 
+// Umschalten zwischen "Dram einschenken" und "Flasche leer / entfernen" im selben Fenster
+function setDrinkMode(mode) {
+  drinkMode = mode;
+  const empty = mode === 'empty';
+  document.getElementById('drink-amount-wrap').style.display = empty ? 'none' : 'block';
+  document.getElementById('drink-empty-wrap').style.display = empty ? 'block' : 'none';
+  document.querySelector('#drink-modal h2').textContent = t(empty ? 'dm_empty_title' : 'dm_title');
+  document.getElementById('drink-confirm-btn').textContent = t(empty ? 'btn_empty_confirm' : 'btn_drink_confirm');
+}
+// Knopf "Leer": eine Flasche als leer markieren und aus dem Bestand nehmen (ohne einzuschenken)
+function emptyOne(id, presetRef) {
+  const w = wines.find(x => x.id === id);
+  if (!w) return;
+  drinkId = id;
+  document.getElementById('drink-with').value = '';
+  document.querySelectorAll('#drink-occasions .occ-chip').forEach(c => c.classList.remove('active'));
+  document.getElementById('drink-modal-wine').textContent = w.name + (w.year ? ' · ' + w.year : '');
+  setupDrinkSlots(w, presetRef);
+  setDrinkMode('empty');
+  const cur = currentBottle(w);
+  document.getElementById('drink-empty-info').textContent = t(cur.isNew ? 'dm_rest_sealed' : 'dm_rest_info', { n: cur.left });
+  document.getElementById('drink-log-rest-label').textContent = t('dm_log_rest', { n: cur.left });
+  document.getElementById('drink-log-rest').checked = !cur.isNew;   // eine ungeöffnete Flasche wurde nicht getrunken: Haken standardmäßig aus
+  const note = document.getElementById('drink-modal-note');
+  if ((w.count || 1) <= 1) { note.textContent = t('dm_last2'); note.style.display = 'block'; } else note.style.display = 'none';
+  document.getElementById('drink-slot-wrap').style.display = drinkSlotOpts.length ? 'block' : 'none';
+  document.getElementById('drink-modal').classList.add('show');
+}
+// Nimmt eine Flasche aus dem Bestand (leer oder entfernt): war es die letzte, verschwindet der Eintrag, sonst Anzahl und Regalplatz anpassen
+function removeBottleFromStock(w, cur, ref) {
+  if (!cur.isNew && cur.idx >= 0 && w.opened) w.opened.splice(cur.idx, 1);
+  if ((w.count || 1) <= 1) { wines = wines.filter(x => x.id !== w.id); return true; }
+  w.count = (w.count || 1) - 1;
+  if (ref) {   // der Platz der Flasche wird frei
+    const list = validPlacements(w);
+    const i = list.findIndex(x => x.rack === ref.rack && x.e === ref.e && x.p === ref.p);
+    if (i >= 0) { list.splice(i, 1); setPlacements(w, list); }
+  }
+  if ((w.placements || []).length > w.count) setPlacements(w, validPlacements(w));
+  return false;
+}
+function drinkSlotText(ref) {
+  const rr = ref && rackById(ref.rack);
+  return rr ? t('ph_regal') + ' ' + rr.name + ' · ' + t('ph_ebene') + ' ' + ref.e + ' · ' + t('loc_slot') + ' ' + ref.p : null;   // genau dieser Platz kommt in die Historie
+}
+function drinkAfter(w, removed, finishing, toastText) {
+  save(); saveDrunk();
+  closeModal('drink-modal');
+  if (lvlSheetOpen()) renderLevelSheet();
+  const active = document.querySelector('.tab.active');
+  if (active && active.id === 'tab-racks') { rackFilledSlot = null; renderRacks(); }
+  else renderKeller();
+  showToast(toastText);
+  celebrate();
+  if (finishing) {
+    const lowRows = mmLowRows(w, removed);
+    if (lowRows.length) setTimeout(() => offerRestock(w, lowRows[0]), 700);
+  }
+}
+
 function confirmDrink() {
+  if (drinkMode === 'empty') { confirmEmpty(); return; }
   const w = wines.find(x => x.id === drinkId);
   if (!w) { closeModal('drink-modal'); return; }
   const companions = document.getElementById('drink-with').value.trim();
@@ -19084,40 +19325,32 @@ function confirmDrink() {
   const newLeft = wantEmpty ? 0 : Math.round((cur.left - poured) * 10) / 10;
   const finishing = newLeft <= 0;
   w.opened = (w.opened || []).slice();
-  if (cur.isNew) { w.opened.push({ at: new Date().toISOString(), left: finishing ? 0.1 : newLeft }); cur.idx = w.opened.length - 1; }
+  if (cur.isNew) { w.opened.push({ at: new Date().toISOString(), left: finishing ? 0.1 : newLeft }); cur.idx = w.opened.length - 1; cur.isNew = false; }
   else w.opened[cur.idx] = { at: cur.o.at, left: finishing ? 0.1 : newLeft };
   settings.dramCl = cl; try { saveSettings(); } catch (e) {}
   const ref = finishing ? drinkSlotRef : null; drinkSlotRef = null;
-  const rr = ref && rackById(ref.rack);
-  const where = rr ? t('ph_regal') + ' ' + rr.name + ' · ' + t('ph_ebene') + ' ' + ref.e + ' · ' + t('loc_slot') + ' ' + ref.p : null;   // aus dem Regal geleert: genau dieser Platz kommt in die Historie
+  const where = drinkSlotText(ref);
   let removed = false;
-  if (finishing) {
-    w.opened.splice(cur.idx, 1);
-    if ((w.count || 1) <= 1) { wines = wines.filter(x => x.id !== drinkId); removed = true; }
-    else {
-      w.count = (w.count || 1) - 1;
-      if (ref) {   // der Platz der leeren Flasche wird frei
-        const list = validPlacements(w);
-        const i = list.findIndex(x => x.rack === ref.rack && x.e === ref.e && x.p === ref.p);
-        if (i >= 0) { list.splice(i, 1); setPlacements(w, list); }
-      }
-      if ((w.placements || []).length > w.count) setPlacements(w, validPlacements(w));
-    }
-  }
+  if (finishing) removed = removeBottleFromStock(w, cur, ref);
   if (!removed) w.opened = cleanOpened(w.opened, w.count || 1, size);
   recordDrunk(w, companions, occasions, where, { cl: poured, size, empty: finishing });
-  save(); saveDrunk();
-  closeModal('drink-modal');
-  if (lvlSheetOpen()) renderLevelSheet();
-  const active = document.querySelector('.tab.active');
-  if (active && active.id === 'tab-racks') { rackFilledSlot = null; renderRacks(); }
-  else renderKeller();
-  showToast(finishing ? t('toast_prost') : t('toast_dram_left', { n: newLeft }));
-  celebrate();
-  if (finishing) {
-    const lowRows = mmLowRows(w, removed);
-    if (lowRows.length) setTimeout(() => offerRestock(w, lowRows[0]), 700);
-  }
+  drinkAfter(w, removed, finishing, finishing ? t('toast_prost') : t('toast_dram_left', { n: newLeft }));
+}
+
+// "Flasche leer – entfernen": ohne Einschenken. Der Rest kann als getrunken in die Historie eingetragen werden.
+function confirmEmpty() {
+  const w = wines.find(x => x.id === drinkId);
+  if (!w) { closeModal('drink-modal'); return; }
+  const companions = document.getElementById('drink-with').value.trim();
+  const occasions = [...document.querySelectorAll('#drink-occasions .occ-chip.active')].map(c => c.getAttribute('data-occ'));
+  const size = w.size || 70, cur = currentBottle(w), rest = cur.left;
+  const logRest = document.getElementById('drink-log-rest').checked;
+  const ref = drinkSlotRef; drinkSlotRef = null;
+  const where = drinkSlotText(ref);
+  const removed = removeBottleFromStock(w, cur, ref);
+  if (!removed) w.opened = cleanOpened(w.opened || [], w.count || 1, size);
+  if (logRest) recordDrunk(w, companions, occasions, where, { cl: rest, size, empty: true });
+  drinkAfter(w, removed, true, t('toast_bottle_removed'));
 }
 
 function recordDrunk(w, companions, occasions, locText, extra) {
