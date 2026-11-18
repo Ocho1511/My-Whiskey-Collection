@@ -27,7 +27,7 @@
 <li><a href="#start">Přehled a první kroky</a></li>
 <li><a href="#add">Přidání whisky</a></li>
 <li><a href="#cellar">Sbírka</a></li>
-<li><a href="#drink">Vypití whisky</a></li>
+<li><a href="#drink">Vypití whisky</a><br><small>↳ <a href="#dram">4a. Lahve, dramy a degustace</a></small></li>
 <li><a href="#racks">Regály a uskladnění</a></li>
 <li><a href="#history">Historie</a></li>
 <li><a href="#wish">Seznam přání</a></li>
@@ -118,6 +118,27 @@
 <p><em>Vypít</em> odebere jednu láhev a vytvoří záznam v <a href="#history">Historii</a>. Slaví to konfety a zvuk (lze vypnout v Nastavení). Je-li to <strong>poslední láhev</strong>, aplikace vás upozorní: whisky pak zmizí ze sbírky (ale zůstane v Historii).</p>
 <p>Whisky se nejlépe podává čistá při asi 16–20 °C; aplikace tento odhad ukazuje jako teplotu podávání.</p>
 <div class="tip"><strong>Rychle skenem:</strong> Kulaté tlačítko 🥃 ve sbírce vyfotí etiketu, pozná whisky ve vaší sbírce a rovnou otevře dialog Vypít.</div>
+
+<h2 id="dram">4a. Lahve, dramy a degustace</h2>
+
+<p>Jedna lahev vydrží na mnoho večerů, proto <em>Vypít</em> nově nalije dram a sleduje stav naplnění, místo aby odepsalo celou lahev.</p>
+<ul>
+<li><strong>Vypít:</strong> Klepněte na <em>Vypít</em> a zvolte množství v cl (2, 4, 6, 10 nebo vlastní). Aplikace nalévá z otevřené lahve s nejmenším zbytkem, nebo otevře novou, neotevřenou lahev. Před potvrzením vidíte, kolik zbude.</li>
+<li><strong>Lahev je prázdná:</strong> Zaškrtněte “Lahev bude poté prázdná” (nebo dolijte zbytek). Teprve pak se jedna lahev odebere ze zásob a aplikace se zeptá, z jakého místa v regálu pocházela.</li>
+<li><strong>Na kartě:</strong> 🔓 otevřené lahve se zbývajícími cl a ukazatelem naplnění, 🔒 neotevřené lahve a velikost lahve. Filtry <em>🔓 Otevřené</em>, <em>🔒 Neotevřené</em> a <em>🌫 Rašelinové</em> zužují seznam.</li>
+<li><strong>Historie:</strong> každý dram je záznam s množstvím v cl; vyprázdněná lahev je označena 🏁. Cena dramu se počítá poměrně.</li>
+</ul>
+<h3>Nová pole</h3>
+<ul>
+<li><strong>Lahev:</strong> Velikost lahve (cl), Stočeno (rok), Stáčírna, Číslo sudu / šarže, Rašelina (slabá, střední, silná) a Tržní hodnota.</li>
+<li><strong>Degustace:</strong> Vůně, Chuť, Dochuť a Body (0–100).</li>
+</ul>
+<h3>Řazení, vyhledávání a statistiky</h3>
+<ul>
+<li>Řaďte podle ABV, stáří nebo bodů. Vyhledávání najde i sud, stáčírnu, číslo šarže a degustační poznámky.</li>
+<li>Statistiky: objem v cl, otevřené lahve, vypité množství a počet dramů, tržní hodnota ve srovnání s nákupní cenou, průměrná cena za cl a sloupce podle sudu, stáří a rašeliny.</li>
+<li>Export do CSV a Excelu obsahuje nové sloupce a import jim rozumí.</li>
+</ul>
 
 <!-- ───────────────── 5 ───────────────── -->
 <h2 id="racks">5. Regály a uskladnění</h2>

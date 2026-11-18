@@ -382,6 +382,10 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
   font-weight: 700;
   cursor: pointer;
 }
+.bottle-state { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 0 0; font-size: 12px; font-weight: 600; color: var(--text-muted); }
+.bottle-state .bs-item { display: inline-flex; align-items: center; gap: 6px; }
+.fill-bar { display: inline-block; width: 56px; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.fill-bar > span { display: block; height: 100%; background: var(--gold); }
 .wine-count-badge {
   margin-left: auto;
   background: var(--surface);
@@ -1148,6 +1152,9 @@ input[type="file"] { display: none; }
       <option value="grape" data-i18n="sort_grape">↕ Destillerie</option>
       <option value="region" data-i18n="sort_region">↕ Region</option>
       <option value="country" data-i18n="sort_country">↕ Land</option>
+      <option value="abv" data-i18n="sort_abv">↕ ABV</option>
+      <option value="age" data-i18n="sort_age">↕ Alter</option>
+      <option value="score" data-i18n="sort_score">↕ Punkte</option>
           </select>
   </div>
   <div class="wine-list" id="wine-list"></div>
@@ -1624,6 +1631,35 @@ input[type="file"] { display: none; }
         <input id="f-cask" placeholder="" type="text">
       </div>
     </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label data-i18n="l_size">Flaschengröße (cl)</label>
+        <input id="f-size" placeholder="70" type="number" min="1" max="500" step="0.1">
+      </div>
+      <div class="form-group">
+        <label data-i18n="l_bottled">Abgefüllt (Jahr)</label>
+        <input id="f-bottled" placeholder="" type="number" min="1800" max="2100">
+      </div>
+      <div class="form-group">
+        <label data-i18n="l_peat">Torf</label>
+        <select id="f-peat">
+          <option value="" data-i18n="peat_none">–</option>
+          <option value="light" data-i18n="peat_light">leicht</option>
+          <option value="medium" data-i18n="peat_medium">mittel</option>
+          <option value="heavy" data-i18n="peat_heavy">stark</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label data-i18n="l_bottler">Abfüller</label>
+        <input id="f-bottler" placeholder="" type="text">
+      </div>
+      <div class="form-group">
+        <label data-i18n="l_batch">Fass-/Batch-Nr.</label>
+        <input id="f-batch" placeholder="" type="text">
+      </div>
+    </div>
     <div class="form-group" id="serve-group">
       <label data-i18n="serve_title">Perfect Serve (Genuss, Mixer, Speisen)</label>
       <div class="serve-btns">
@@ -1666,6 +1702,10 @@ input[type="file"] { display: none; }
         <label id="price-label">Preis (€)</label>
         <input id="f-price" placeholder="" type="number" step="0.01">
       </div>
+      <div class="form-group">
+        <label data-i18n="l_value">Marktwert</label>
+        <input id="f-value" placeholder="" type="number" step="0.01">
+      </div>
     </div>
     <div class="form-group">
       <label data-i18n="l_image">Flaschenbild (URL aus dem Internet)</label>
@@ -1690,6 +1730,13 @@ input[type="file"] { display: none; }
         <button class="star-btn" onclick="setStar(4)">★</button>
         <button class="star-btn" onclick="setStar(5)">★</button>
       </div>
+    </div>
+    <div class="form-group" id="tasting-group">
+      <label data-i18n="l_tasting">Verkostung</label>
+      <input id="f-nose" type="text" maxlength="800" placeholder="Nase" data-i18n-ph="ph_nose">
+      <input id="f-palate" type="text" maxlength="800" placeholder="Gaumen" data-i18n-ph="ph_palate" style="margin-top:6px">
+      <input id="f-finish" type="text" maxlength="800" placeholder="Abgang" data-i18n-ph="ph_finishnote" style="margin-top:6px">
+      <input id="f-score" type="number" min="0" max="100" placeholder="Punkte (0–100)" data-i18n-ph="ph_score" style="margin-top:6px">
     </div>
     <div class="form-group">
       <label data-i18n="l_note">Notiz</label>
@@ -1826,6 +1873,16 @@ input[type="file"] { display: none; }
     <h2 data-i18n="dm_title">Whiskey trinken</h2>
     <div id="drink-modal-wine" style="font-family:'Playfair Display',serif;font-size:16px;color:var(--gold-light);margin-bottom:6px"></div>
     <div id="drink-modal-note" style="display:none;font-size:12px;font-weight:600;color:var(--red-text);margin-bottom:10px"></div>
+    <div class="form-group" id="drink-amount-wrap">
+      <label data-i18n="dm_amount">Menge (cl)</label>
+      <div class="occ-wrap" id="drink-amount-chips"></div>
+      <input id="drink-cl" type="number" min="0.5" max="500" step="0.5" value="4" oninput="drinkAmountChanged()">
+      <div id="drink-bottle-info" style="font-size:12px;font-weight:600;color:var(--text-muted);margin:6px 0 8px"></div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer">
+        <input type="checkbox" id="drink-empty" onchange="drinkAmountChanged()" style="width:auto;margin:0">
+        <span data-i18n="dm_finish">Flasche ist damit leer</span>
+      </label>
+    </div>
     <div class="form-group" id="drink-slot-wrap" style="display:none">
       <label data-i18n="dm_slot">Aus welchem Platz genommen?</label>
       <div class="occ-wrap" id="drink-slots"></div>
@@ -2008,6 +2065,24 @@ function cleanCellars(arr) {
 }
    // mit gültigem Jahrgang gilt immer die Regel, KI-Schätzungen für "ab" werden ignoriert
 function cleanAbv(v) { const n = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isFinite(n) && n > 0 && n <= 100 ? Math.round(n * 10) / 10 : null; }
+// ── Flaschen-Zustand (geöffnet / Füllstand), Größe, Torf ─────────────────────────────
+const PEAT_LEVELS = ['light', 'medium', 'heavy'];
+function cleanSize(v) { const n = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isFinite(n) && n >= 1 && n <= 500 ? Math.round(n * 10) / 10 : 70; }
+function cleanCl(v) { const n = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isFinite(n) && n > 0 && n <= 500 ? Math.round(n * 10) / 10 : null; }
+// Geöffnete Flaschen eines Eintrags: höchstens so viele wie Flaschen da sind; jede mit Öffnungsdatum und Rest in cl
+function cleanOpened(arr, count, size) {
+  if (!Array.isArray(arr)) return [];
+  return arr.filter(o => o && typeof o === 'object').map(o => {
+    const left = cleanCl(o.left);
+    if (left == null) return null;
+    const at = Number.isFinite(Date.parse(o.at)) ? new Date(Date.parse(o.at)).toISOString() : new Date().toISOString();
+    return { at, left: Math.min(size, left) };
+  }).filter(Boolean).slice(0, Math.max(0, count)).sort((a, b) => a.left - b.left);
+}
+// Anteil einer Flasche, der in einem Historien-Eintrag getrunken wurde (alte Einträge ohne Menge = ganze Flasche)
+function drunkFraction(x) { return x && x.cl && x.size ? Math.min(1, x.cl / x.size) : 1; }
+function drunkCost(x) { return (x.price || 0) * drunkFraction(x); }
+function drunkBottles(list) { return list.reduce((a, x) => a + drunkFraction(x), 0) || 1; }
 function cleanWine(w, used) {
   if (!w || typeof w !== 'object' || Array.isArray(w)) return null;
   const name = cleanStr(w.name, 200).trim();
@@ -2021,6 +2096,11 @@ function cleanWine(w, used) {
     type: VALID_TYPES.includes(w.type) ? w.type : 'other',
     region: cleanText(w.region, 120), country: cleanText(w.country, 120), grape: cleanText(w.grape, 120),
     age: cleanInt(w.age, 0, 100), cask: cleanText(w.cask, 120), abv: cleanAbv(w.abv),
+    size: cleanSize(w.size), opened: cleanOpened(w.opened, count, cleanSize(w.size)),
+    bottled: cleanInt(w.bottled, 1800, 2100), batch: cleanText(w.batch, 80), bottler: cleanText(w.bottler, 80),
+    peat: PEAT_LEVELS.includes(w.peat) ? w.peat : null,
+    nose: cleanText(w.nose, 800), palate: cleanText(w.palate, 800), finishNote: cleanText(w.finishNote, 800),
+    score: cleanInt(w.score, 0, 100), value: parsePrice(w.value),
     locRegal: cleanText(w.locRegal, 60), locEbene: cleanSlot(w.locEbene), locPlatz: cleanSlot(w.locPlatz),
     placements: cleanPlacements(w, count),
     ean: /^\d{8,14}$/.test(String(w.ean || '')) ? String(w.ean) : null,
@@ -2058,6 +2138,7 @@ function cleanDrunk(arr) {
     year: cleanInt(d.year, 1000, 2200), type: VALID_TYPES.includes(d.type) ? d.type : 'other',
     region: cleanStr(d.region, 120), country: cleanStr(d.country, 120), grape: cleanStr(d.grape, 120),
     location: cleanStr(d.location, 200), price: parsePrice(d.price) || 0,
+    cl: cleanCl(d.cl), size: d.size ? cleanSize(d.size) : null, empty: !!d.empty,
     rating: Math.min(5, Math.max(0, parseInt(d.rating) || 0)),
     companions: cleanStr(d.companions, 300),
     occasions: Array.isArray(d.occasions) ? d.occasions.filter(o => typeof o === 'string' && /^[a-z]{2,20}$/.test(o)).slice(0, 10) : [],
@@ -2154,7 +2235,7 @@ function touchData() {
 // CLOUD-SYNC (newest wins)
 // ═══════════════════════════════════════
 function collectData() {
-  return { dv: 3, wines, wishes, drunkWines, racks: settings.racks || [], cellars: settings.cellars || [], owner: settings.owner || '', prefs: collectPrefs(), recipes: settings.recipes || [], favRecipes: settings.favRecipes || [], herbs: settings.herbs || [] };
+  return { dv: 4, wines, wishes, drunkWines, racks: settings.racks || [], cellars: settings.cellars || [], owner: settings.owner || '', prefs: collectPrefs(), recipes: settings.recipes || [], favRecipes: settings.favRecipes || [], herbs: settings.herbs || [] };
 }
 // Einstellungen, die mit in die Cloud gehen (gerätegebundenes bleibt draußen: Sync-Code und Speicherort, E-Mail, KI-Einwilligung, Gerätekennung)
 const PREF_KEYS = ['lang', 'currency', 'font', 'celeb', 'tempUnit'];
@@ -3708,6 +3789,51 @@ de: {
   l_grape: "Destillerie",
   l_age: "Alter (Jahre)",
   l_cask: "Fass",
+  l_size: "Flaschengröße (cl)",
+  l_bottled: "Abgefüllt (Jahr)",
+  l_peat: "Torf",
+  peat_none: "–",
+  peat_light: "leicht",
+  peat_medium: "mittel",
+  peat_heavy: "stark",
+  l_bottler: "Abfüller",
+  l_batch: "Fass-/Batch-Nr.",
+  l_value: "Marktwert",
+  l_tasting: "Verkostung",
+  ph_nose: "Nase",
+  ph_palate: "Gaumen",
+  ph_finishnote: "Abgang",
+  ph_score: "Punkte (0–100)",
+  dm_amount: "Menge (cl)",
+  dm_bottle_open: "Geöffnete Flasche: {n} cl übrig",
+  dm_bottle_new: "Eine neue Flasche ({n} cl) wird geöffnet",
+  dm_after: "danach {n} cl",
+  dm_finish: "Flasche ist damit leer",
+  dm_last2: "Damit ist die letzte Flasche leer — der Eintrag wird aus der Sammlung entfernt.",
+  toast_amount: "Bitte eine Menge in cl angeben",
+  toast_dram_left: "Prost! Noch {n} cl in der Flasche",
+  state_left: "{n} cl übrig",
+  filt_open: "🔓 Geöffnet",
+  filt_sealed: "🔒 Ungeöffnet",
+  filt_peated: "🌫 Torfig",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Alter",
+  sort_score: "↕ Punkte",
+  s_volume: "Menge in der Sammlung",
+  s_open_bottles: "Geöffnete Flaschen",
+  s_poured: "Getrunkene Menge",
+  s_drams: "Drams",
+  s_marketval: "Marktwert",
+  s_purchase: "Kaufpreis gesamt",
+  s_percl: "Ø Preis pro cl",
+  s_bycask: "Nach Fass",
+  s_byage: "Nach Alter",
+  s_age_nas: "ohne Altersangabe",
+  s_bypeat: "Nach Torf",
+  hist_cl: "{n} cl",
+  hist_empty: "Flasche leer",
+  unit_cl: "cl",
+  unit_years: "Jahre",
   l_abv: "ABV %",
   l_location: "Lagerplatz (Regal · Ebene · Platz von links)",
   ph_regal: "Regal",
@@ -4293,6 +4419,51 @@ en: {
   l_grape: "Distillery",
   l_age: "Age (years)",
   l_cask: "Cask",
+  l_size: "Bottle size (cl)",
+  l_bottled: "Bottled (year)",
+  l_peat: "Peat",
+  peat_none: "–",
+  peat_light: "light",
+  peat_medium: "medium",
+  peat_heavy: "heavy",
+  l_bottler: "Bottler",
+  l_batch: "Cask / batch no.",
+  l_value: "Market value",
+  l_tasting: "Tasting",
+  ph_nose: "Nose",
+  ph_palate: "Palate",
+  ph_finishnote: "Finish",
+  ph_score: "Score (0–100)",
+  dm_amount: "Amount (cl)",
+  dm_bottle_open: "Open bottle: {n} cl left",
+  dm_bottle_new: "A new bottle ({n} cl) will be opened",
+  dm_after: "then {n} cl",
+  dm_finish: "The bottle is empty after this",
+  dm_last2: "That empties the last bottle — the entry is removed from the collection.",
+  toast_amount: "Please enter an amount in cl",
+  toast_dram_left: "Cheers! {n} cl left in the bottle",
+  state_left: "{n} cl left",
+  filt_open: "🔓 Open",
+  filt_sealed: "🔒 Sealed",
+  filt_peated: "🌫 Peated",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Age",
+  sort_score: "↕ Score",
+  s_volume: "Volume in the collection",
+  s_open_bottles: "Open bottles",
+  s_poured: "Amount drunk",
+  s_drams: "Drams",
+  s_marketval: "Market value",
+  s_purchase: "Total purchase price",
+  s_percl: "Avg price per cl",
+  s_bycask: "By cask",
+  s_byage: "By age",
+  s_age_nas: "no age statement",
+  s_bypeat: "By peat",
+  hist_cl: "{n} cl",
+  hist_empty: "bottle empty",
+  unit_cl: "cl",
+  unit_years: "years",
   l_abv: "ABV %",
   l_location: "Storage (rack · level · slot from left)",
   ph_regal: "Rack",
@@ -4878,6 +5049,51 @@ es: {
   l_grape: "Destilería",
   l_age: "Edad (años)",
   l_cask: "Barrica",
+  l_size: "Tamaño de botella (cl)",
+  l_bottled: "Embotellado (año)",
+  l_peat: "Turba",
+  peat_none: "–",
+  peat_light: "ligera",
+  peat_medium: "media",
+  peat_heavy: "intensa",
+  l_bottler: "Embotellador",
+  l_batch: "N.º de barrica / lote",
+  l_value: "Valor de mercado",
+  l_tasting: "Cata",
+  ph_nose: "Nariz",
+  ph_palate: "Boca",
+  ph_finishnote: "Final",
+  ph_score: "Puntuación (0–100)",
+  dm_amount: "Cantidad (cl)",
+  dm_bottle_open: "Botella abierta: quedan {n} cl",
+  dm_bottle_new: "Se abrirá una botella nueva ({n} cl)",
+  dm_after: "después {n} cl",
+  dm_finish: "La botella quedará vacía",
+  dm_last2: "Con esto se vacía la última botella: la entrada se eliminará de la colección.",
+  toast_amount: "Introduce una cantidad en cl",
+  toast_dram_left: "¡Salud! Quedan {n} cl en la botella",
+  state_left: "quedan {n} cl",
+  filt_open: "🔓 Abierta",
+  filt_sealed: "🔒 Sellada",
+  filt_peated: "🌫 Turbada",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Edad",
+  sort_score: "↕ Puntos",
+  s_volume: "Volumen en la colección",
+  s_open_bottles: "Botellas abiertas",
+  s_poured: "Cantidad bebida",
+  s_drams: "Drams",
+  s_marketval: "Valor de mercado",
+  s_purchase: "Precio de compra total",
+  s_percl: "Precio medio por cl",
+  s_bycask: "Por barrica",
+  s_byage: "Por edad",
+  s_age_nas: "sin indicación de edad",
+  s_bypeat: "Por turba",
+  hist_cl: "{n} cl",
+  hist_empty: "botella vacía",
+  unit_cl: "cl",
+  unit_years: "años",
   l_abv: "ABV %",
   l_location: "Ubicación (estante · nivel · sitio desde la izq.)",
   ph_regal: "Estante",
@@ -5463,6 +5679,51 @@ sv: {
   l_grape: "Destilleri",
   l_age: "Ålder (år)",
   l_cask: "Fat",
+  l_size: "Flaskstorlek (cl)",
+  l_bottled: "Buteljerad (år)",
+  l_peat: "Torv",
+  peat_none: "–",
+  peat_light: "lätt",
+  peat_medium: "medel",
+  peat_heavy: "kraftig",
+  l_bottler: "Buteljerare",
+  l_batch: "Fat-/batchnr",
+  l_value: "Marknadsvärde",
+  l_tasting: "Provning",
+  ph_nose: "Doft",
+  ph_palate: "Smak",
+  ph_finishnote: "Eftersmak",
+  ph_score: "Poäng (0–100)",
+  dm_amount: "Mängd (cl)",
+  dm_bottle_open: "Öppnad flaska: {n} cl kvar",
+  dm_bottle_new: "En ny flaska ({n} cl) öppnas",
+  dm_after: "sedan {n} cl",
+  dm_finish: "Flaskan är då tom",
+  dm_last2: "Då är den sista flaskan tom — posten tas bort från samlingen.",
+  toast_amount: "Ange en mängd i cl",
+  toast_dram_left: "Skål! {n} cl kvar i flaskan",
+  state_left: "{n} cl kvar",
+  filt_open: "🔓 Öppnad",
+  filt_sealed: "🔒 Oöppnad",
+  filt_peated: "🌫 Torvig",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Ålder",
+  sort_score: "↕ Poäng",
+  s_volume: "Volym i samlingen",
+  s_open_bottles: "Öppnade flaskor",
+  s_poured: "Drucken mängd",
+  s_drams: "Drams",
+  s_marketval: "Marknadsvärde",
+  s_purchase: "Totalt inköpspris",
+  s_percl: "Snittpris per cl",
+  s_bycask: "Per fat",
+  s_byage: "Per ålder",
+  s_age_nas: "utan åldersangivelse",
+  s_bypeat: "Per torv",
+  hist_cl: "{n} cl",
+  hist_empty: "flaskan tom",
+  unit_cl: "cl",
+  unit_years: "år",
   l_abv: "ABV %",
   l_location: "Lagringsplats (hylla · hyllplan · plats från vänster)",
   ph_regal: "Hylla",
@@ -6048,6 +6309,51 @@ da: {
   l_grape: "Destilleri",
   l_age: "Alder (år)",
   l_cask: "Fad",
+  l_size: "Flaskestørrelse (cl)",
+  l_bottled: "Aftappet (år)",
+  l_peat: "Tørv",
+  peat_none: "–",
+  peat_light: "let",
+  peat_medium: "middel",
+  peat_heavy: "kraftig",
+  l_bottler: "Aftapper",
+  l_batch: "Fad-/batchnr.",
+  l_value: "Markedsværdi",
+  l_tasting: "Smagning",
+  ph_nose: "Duft",
+  ph_palate: "Smag",
+  ph_finishnote: "Eftersmag",
+  ph_score: "Point (0–100)",
+  dm_amount: "Mængde (cl)",
+  dm_bottle_open: "Åbnet flaske: {n} cl tilbage",
+  dm_bottle_new: "En ny flaske ({n} cl) åbnes",
+  dm_after: "derefter {n} cl",
+  dm_finish: "Flasken er tom efter dette",
+  dm_last2: "Dermed er den sidste flaske tom — posten fjernes fra samlingen.",
+  toast_amount: "Angiv en mængde i cl",
+  toast_dram_left: "Skål! {n} cl tilbage i flasken",
+  state_left: "{n} cl tilbage",
+  filt_open: "🔓 Åbnet",
+  filt_sealed: "🔒 Uåbnet",
+  filt_peated: "🌫 Tørvet",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Alder",
+  sort_score: "↕ Point",
+  s_volume: "Mængde i samlingen",
+  s_open_bottles: "Åbnede flasker",
+  s_poured: "Drukket mængde",
+  s_drams: "Drams",
+  s_marketval: "Markedsværdi",
+  s_purchase: "Samlet købspris",
+  s_percl: "Gns. pris pr. cl",
+  s_bycask: "Efter fad",
+  s_byage: "Efter alder",
+  s_age_nas: "uden aldersangivelse",
+  s_bypeat: "Efter tørv",
+  hist_cl: "{n} cl",
+  hist_empty: "flasken er tom",
+  unit_cl: "cl",
+  unit_years: "år",
   l_abv: "ABV %",
   l_location: "Lagerplads (reol · hylde · plads fra venstre)",
   ph_regal: "Reol",
@@ -6634,6 +6940,51 @@ fi: {
   l_grape: "Tislaamo",
   l_age: "Ikä (vuotta)",
   l_cask: "Tynnyri",
+  l_size: "Pullon koko (cl)",
+  l_bottled: "Pullotettu (vuosi)",
+  l_peat: "Turve",
+  peat_none: "–",
+  peat_light: "kevyt",
+  peat_medium: "keskitaso",
+  peat_heavy: "voimakas",
+  l_bottler: "Pullottaja",
+  l_batch: "Tynnyri-/eränro",
+  l_value: "Markkina-arvo",
+  l_tasting: "Maistelu",
+  ph_nose: "Tuoksu",
+  ph_palate: "Maku",
+  ph_finishnote: "Jälkimaku",
+  ph_score: "Pisteet (0–100)",
+  dm_amount: "Määrä (cl)",
+  dm_bottle_open: "Avattu pullo: {n} cl jäljellä",
+  dm_bottle_new: "Uusi pullo ({n} cl) avataan",
+  dm_after: "sen jälkeen {n} cl",
+  dm_finish: "Pullo on tämän jälkeen tyhjä",
+  dm_last2: "Tämä tyhjentää viimeisen pullon — merkintä poistetaan kokoelmasta.",
+  toast_amount: "Anna määrä cl-yksikössä",
+  toast_dram_left: "Kippis! Pullossa on vielä {n} cl",
+  state_left: "{n} cl jäljellä",
+  filt_open: "🔓 Avattu",
+  filt_sealed: "🔒 Avaamaton",
+  filt_peated: "🌫 Turpeinen",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Ikä",
+  sort_score: "↕ Pisteet",
+  s_volume: "Määrä kokoelmassa",
+  s_open_bottles: "Avatut pullot",
+  s_poured: "Juotu määrä",
+  s_drams: "Drammit",
+  s_marketval: "Markkina-arvo",
+  s_purchase: "Ostohinta yhteensä",
+  s_percl: "Keskihinta / cl",
+  s_bycask: "Tynnyrin mukaan",
+  s_byage: "Iän mukaan",
+  s_age_nas: "ei ikämerkintää",
+  s_bypeat: "Turpeen mukaan",
+  hist_cl: "{n} cl",
+  hist_empty: "pullo tyhjä",
+  unit_cl: "cl",
+  unit_years: "vuotta",
   l_abv: "ABV %",
   l_location: "Säilytyspaikka (hylly · taso · paikka vasemmalta)",
   ph_regal: "Hylly",
@@ -7218,6 +7569,51 @@ ru: {
   l_grape: "Винокурня",
   l_age: "Возраст (лет)",
   l_cask: "Бочка",
+  l_size: "Объём бутылки (cl)",
+  l_bottled: "Год розлива",
+  l_peat: "Торф",
+  peat_none: "–",
+  peat_light: "лёгкий",
+  peat_medium: "средний",
+  peat_heavy: "сильный",
+  l_bottler: "Бутлер",
+  l_batch: "Номер бочки / партии",
+  l_value: "Рыночная стоимость",
+  l_tasting: "Дегустация",
+  ph_nose: "Аромат",
+  ph_palate: "Вкус",
+  ph_finishnote: "Послевкусие",
+  ph_score: "Баллы (0–100)",
+  dm_amount: "Количество (cl)",
+  dm_bottle_open: "Открытая бутылка: осталось {n} cl",
+  dm_bottle_new: "Будет открыта новая бутылка ({n} cl)",
+  dm_after: "после этого {n} cl",
+  dm_finish: "После этого бутылка опустеет",
+  dm_last2: "Это опустошит последнюю бутылку — запись будет удалена из коллекции.",
+  toast_amount: "Укажите количество в cl",
+  toast_dram_left: "Будем здоровы! В бутылке осталось {n} cl",
+  state_left: "осталось {n} cl",
+  filt_open: "🔓 Открытые",
+  filt_sealed: "🔒 Запечатанные",
+  filt_peated: "🌫 Торфяные",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Возраст",
+  sort_score: "↕ Баллы",
+  s_volume: "Объём в коллекции",
+  s_open_bottles: "Открытые бутылки",
+  s_poured: "Выпито",
+  s_drams: "Драмы",
+  s_marketval: "Рыночная стоимость",
+  s_purchase: "Общая цена покупки",
+  s_percl: "Средняя цена за cl",
+  s_bycask: "По бочке",
+  s_byage: "По возрасту",
+  s_age_nas: "без указания возраста",
+  s_bypeat: "По торфу",
+  hist_cl: "{n} cl",
+  hist_empty: "бутылка пуста",
+  unit_cl: "cl",
+  unit_years: "лет",
   l_abv: "ABV %",
   l_location: "Место хранения (полка · ярус · место слева)",
   ph_regal: "Полка",
@@ -7803,6 +8199,51 @@ it: {
   l_grape: "Distilleria",
   l_age: "Età (anni)",
   l_cask: "Botte",
+  l_size: "Formato bottiglia (cl)",
+  l_bottled: "Imbottigliato (anno)",
+  l_peat: "Torba",
+  peat_none: "–",
+  peat_light: "leggera",
+  peat_medium: "media",
+  peat_heavy: "intensa",
+  l_bottler: "Imbottigliatore",
+  l_batch: "N. botte / lotto",
+  l_value: "Valore di mercato",
+  l_tasting: "Degustazione",
+  ph_nose: "Naso",
+  ph_palate: "Palato",
+  ph_finishnote: "Finale",
+  ph_score: "Punteggio (0–100)",
+  dm_amount: "Quantità (cl)",
+  dm_bottle_open: "Bottiglia aperta: {n} cl rimasti",
+  dm_bottle_new: "Verrà aperta una nuova bottiglia ({n} cl)",
+  dm_after: "poi {n} cl",
+  dm_finish: "La bottiglia sarà vuota",
+  dm_last2: "Così l'ultima bottiglia si svuota — la voce verrà rimossa dalla collezione.",
+  toast_amount: "Inserisci una quantità in cl",
+  toast_dram_left: "Salute! Restano {n} cl nella bottiglia",
+  state_left: "{n} cl rimasti",
+  filt_open: "🔓 Aperta",
+  filt_sealed: "🔒 Sigillata",
+  filt_peated: "🌫 Torbata",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Età",
+  sort_score: "↕ Punteggio",
+  s_volume: "Volume nella collezione",
+  s_open_bottles: "Bottiglie aperte",
+  s_poured: "Quantità bevuta",
+  s_drams: "Dram",
+  s_marketval: "Valore di mercato",
+  s_purchase: "Prezzo d'acquisto totale",
+  s_percl: "Prezzo medio per cl",
+  s_bycask: "Per botte",
+  s_byage: "Per età",
+  s_age_nas: "senza indicazione di età",
+  s_bypeat: "Per torba",
+  hist_cl: "{n} cl",
+  hist_empty: "bottiglia vuota",
+  unit_cl: "cl",
+  unit_years: "anni",
   l_abv: "ABV %",
   l_location: "Posizione (scaffale · ripiano · posto da sinistra)",
   ph_regal: "Scaffale",
@@ -8388,6 +8829,51 @@ fr: {
   l_grape: "Distillerie",
   l_age: "Âge (ans)",
   l_cask: "Fût",
+  l_size: "Contenance (cl)",
+  l_bottled: "Mis en bouteille (année)",
+  l_peat: "Tourbe",
+  peat_none: "–",
+  peat_light: "légère",
+  peat_medium: "moyenne",
+  peat_heavy: "forte",
+  l_bottler: "Embouteilleur",
+  l_batch: "N° de fût / lot",
+  l_value: "Valeur marchande",
+  l_tasting: "Dégustation",
+  ph_nose: "Nez",
+  ph_palate: "Bouche",
+  ph_finishnote: "Finale",
+  ph_score: "Note (0–100)",
+  dm_amount: "Quantité (cl)",
+  dm_bottle_open: "Bouteille ouverte : {n} cl restants",
+  dm_bottle_new: "Une nouvelle bouteille ({n} cl) sera ouverte",
+  dm_after: "ensuite {n} cl",
+  dm_finish: "La bouteille sera vide",
+  dm_last2: "La dernière bouteille sera vide — l'entrée sera retirée de la collection.",
+  toast_amount: "Veuillez saisir une quantité en cl",
+  toast_dram_left: "Santé ! Il reste {n} cl dans la bouteille",
+  state_left: "{n} cl restants",
+  filt_open: "🔓 Ouverte",
+  filt_sealed: "🔒 Scellée",
+  filt_peated: "🌫 Tourbée",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Âge",
+  sort_score: "↕ Note",
+  s_volume: "Volume dans la collection",
+  s_open_bottles: "Bouteilles ouvertes",
+  s_poured: "Quantité bue",
+  s_drams: "Drams",
+  s_marketval: "Valeur marchande",
+  s_purchase: "Prix d'achat total",
+  s_percl: "Prix moyen par cl",
+  s_bycask: "Par fût",
+  s_byage: "Par âge",
+  s_age_nas: "sans mention d'âge",
+  s_bypeat: "Par tourbe",
+  hist_cl: "{n} cl",
+  hist_empty: "bouteille vide",
+  unit_cl: "cl",
+  unit_years: "ans",
   l_abv: "ABV %",
   l_location: "Emplacement (casier · niveau · place depuis la gauche)",
   ph_regal: "Casier",
@@ -8973,6 +9459,51 @@ pl: {
   l_grape: "Destylarnia",
   l_age: "Wiek (lata)",
   l_cask: "Beczka",
+  l_size: "Rozmiar butelki (cl)",
+  l_bottled: "Rok rozlewu",
+  l_peat: "Torf",
+  peat_none: "–",
+  peat_light: "lekki",
+  peat_medium: "średni",
+  peat_heavy: "mocny",
+  l_bottler: "Rozlewnia",
+  l_batch: "Nr beczki / partii",
+  l_value: "Wartość rynkowa",
+  l_tasting: "Degustacja",
+  ph_nose: "Nos",
+  ph_palate: "Podniebienie",
+  ph_finishnote: "Finisz",
+  ph_score: "Punkty (0–100)",
+  dm_amount: "Ilość (cl)",
+  dm_bottle_open: "Otwarta butelka: zostało {n} cl",
+  dm_bottle_new: "Zostanie otwarta nowa butelka ({n} cl)",
+  dm_after: "potem {n} cl",
+  dm_finish: "Butelka będzie wtedy pusta",
+  dm_last2: "To opróżnia ostatnią butelkę — pozycja zostanie usunięta z kolekcji.",
+  toast_amount: "Podaj ilość w cl",
+  toast_dram_left: "Na zdrowie! W butelce zostało {n} cl",
+  state_left: "zostało {n} cl",
+  filt_open: "🔓 Otwarte",
+  filt_sealed: "🔒 Zamknięte",
+  filt_peated: "🌫 Torfowe",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Wiek",
+  sort_score: "↕ Punkty",
+  s_volume: "Ilość w kolekcji",
+  s_open_bottles: "Otwarte butelki",
+  s_poured: "Wypita ilość",
+  s_drams: "Dramy",
+  s_marketval: "Wartość rynkowa",
+  s_purchase: "Łączna cena zakupu",
+  s_percl: "Śr. cena za cl",
+  s_bycask: "Według beczki",
+  s_byage: "Według wieku",
+  s_age_nas: "bez deklaracji wieku",
+  s_bypeat: "Według torfu",
+  hist_cl: "{n} cl",
+  hist_empty: "butelka pusta",
+  unit_cl: "cl",
+  unit_years: "lat",
   l_abv: "ABV %",
   l_location: "Miejsce przechowywania (regał · poziom · miejsce od lewej)",
   ph_regal: "Regał",
@@ -9558,6 +10089,51 @@ hu: {
   l_grape: "Lepárló",
   l_age: "Kor (év)",
   l_cask: "Hordó",
+  l_size: "Palack mérete (cl)",
+  l_bottled: "Palackozva (év)",
+  l_peat: "Tőzeg",
+  peat_none: "–",
+  peat_light: "enyhe",
+  peat_medium: "közepes",
+  peat_heavy: "erős",
+  l_bottler: "Palackozó",
+  l_batch: "Hordó-/tételszám",
+  l_value: "Piaci érték",
+  l_tasting: "Kóstolás",
+  ph_nose: "Illat",
+  ph_palate: "Íz",
+  ph_finishnote: "Lecsengés",
+  ph_score: "Pontszám (0–100)",
+  dm_amount: "Mennyiség (cl)",
+  dm_bottle_open: "Bontott palack: {n} cl maradt",
+  dm_bottle_new: "Új palack ({n} cl) kerül bontásra",
+  dm_after: "utána {n} cl",
+  dm_finish: "Ezzel a palack kiürül",
+  dm_last2: "Ezzel az utolsó palack is kiürül — a tétel törlődik a gyűjteményből.",
+  toast_amount: "Kérjük, adj meg mennyiséget cl-ben",
+  toast_dram_left: "Egészségedre! {n} cl maradt a palackban",
+  state_left: "{n} cl maradt",
+  filt_open: "🔓 Bontott",
+  filt_sealed: "🔒 Bontatlan",
+  filt_peated: "🌫 Tőzegfüstös",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Kor",
+  sort_score: "↕ Pontszám",
+  s_volume: "Mennyiség a gyűjteményben",
+  s_open_bottles: "Bontott palackok",
+  s_poured: "Elfogyasztott mennyiség",
+  s_drams: "Dramok",
+  s_marketval: "Piaci érték",
+  s_purchase: "Teljes vételár",
+  s_percl: "Átl. ár / cl",
+  s_bycask: "Hordó szerint",
+  s_byage: "Kor szerint",
+  s_age_nas: "korjelzés nélkül",
+  s_bypeat: "Tőzeg szerint",
+  hist_cl: "{n} cl",
+  hist_empty: "üres palack",
+  unit_cl: "cl",
+  unit_years: "év",
   l_abv: "ABV %",
   l_location: "Tárolóhely (polc · szint · hely balról)",
   ph_regal: "Polc",
@@ -10143,6 +10719,51 @@ cs: {
   l_grape: "Palírna",
   l_age: "Stáří (roky)",
   l_cask: "Sud",
+  l_size: "Velikost lahve (cl)",
+  l_bottled: "Stočeno (rok)",
+  l_peat: "Rašelina",
+  peat_none: "–",
+  peat_light: "lehká",
+  peat_medium: "střední",
+  peat_heavy: "silná",
+  l_bottler: "Stáčírna",
+  l_batch: "Číslo sudu / šarže",
+  l_value: "Tržní hodnota",
+  l_tasting: "Degustace",
+  ph_nose: "Vůně",
+  ph_palate: "Chuť",
+  ph_finishnote: "Dochuť",
+  ph_score: "Body (0–100)",
+  dm_amount: "Množství (cl)",
+  dm_bottle_open: "Otevřená lahev: zbývá {n} cl",
+  dm_bottle_new: "Otevře se nová lahev ({n} cl)",
+  dm_after: "poté {n} cl",
+  dm_finish: "Lahev bude poté prázdná",
+  dm_last2: "Tím se vyprázdní poslední lahev — položka bude odebrána ze sbírky.",
+  toast_amount: "Zadejte prosím množství v cl",
+  toast_dram_left: "Na zdraví! V lahvi zbývá {n} cl",
+  state_left: "zbývá {n} cl",
+  filt_open: "🔓 Otevřené",
+  filt_sealed: "🔒 Neotevřené",
+  filt_peated: "🌫 Rašelinové",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Stáří",
+  sort_score: "↕ Body",
+  s_volume: "Objem ve sbírce",
+  s_open_bottles: "Otevřené lahve",
+  s_poured: "Vypité množství",
+  s_drams: "Dramy",
+  s_marketval: "Tržní hodnota",
+  s_purchase: "Celková nákupní cena",
+  s_percl: "Prům. cena za cl",
+  s_bycask: "Podle sudu",
+  s_byage: "Podle stáří",
+  s_age_nas: "bez udání stáří",
+  s_bypeat: "Podle rašeliny",
+  hist_cl: "{n} cl",
+  hist_empty: "prázdná lahev",
+  unit_cl: "cl",
+  unit_years: "let",
   l_abv: "ABV %",
   l_location: "Místo uložení (regál · úroveň · místo zleva)",
   ph_regal: "Regál",
@@ -10728,6 +11349,51 @@ sk: {
   l_grape: "Liehovar",
   l_age: "Vek (roky)",
   l_cask: "Sud",
+  l_size: "Veľkosť fľaše (cl)",
+  l_bottled: "Stočené (rok)",
+  l_peat: "Rašelina",
+  peat_none: "–",
+  peat_light: "ľahká",
+  peat_medium: "stredná",
+  peat_heavy: "silná",
+  l_bottler: "Stáčač",
+  l_batch: "Číslo suda / šarže",
+  l_value: "Trhová hodnota",
+  l_tasting: "Degustácia",
+  ph_nose: "Vôňa",
+  ph_palate: "Chuť",
+  ph_finishnote: "Dochuť",
+  ph_score: "Body (0–100)",
+  dm_amount: "Množstvo (cl)",
+  dm_bottle_open: "Otvorená fľaša: zostáva {n} cl",
+  dm_bottle_new: "Otvorí sa nová fľaša ({n} cl)",
+  dm_after: "potom {n} cl",
+  dm_finish: "Fľaša bude potom prázdna",
+  dm_last2: "Tým sa vyprázdni posledná fľaša — položka sa odstráni zo zbierky.",
+  toast_amount: "Zadajte prosím množstvo v cl",
+  toast_dram_left: "Na zdravie! Vo fľaši zostáva {n} cl",
+  state_left: "zostáva {n} cl",
+  filt_open: "🔓 Otvorené",
+  filt_sealed: "🔒 Neotvorené",
+  filt_peated: "🌫 Rašelinové",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Vek",
+  sort_score: "↕ Body",
+  s_volume: "Objem v zbierke",
+  s_open_bottles: "Otvorené fľaše",
+  s_poured: "Vypité množstvo",
+  s_drams: "Dramy",
+  s_marketval: "Trhová hodnota",
+  s_purchase: "Celková nákupná cena",
+  s_percl: "Priem. cena za cl",
+  s_bycask: "Podľa suda",
+  s_byage: "Podľa veku",
+  s_age_nas: "bez udania veku",
+  s_bypeat: "Podľa rašeliny",
+  hist_cl: "{n} cl",
+  hist_empty: "prázdna fľaša",
+  unit_cl: "cl",
+  unit_years: "rokov",
   l_abv: "ABV %",
   l_location: "Miesto uloženia (regál · úroveň · miesto zľava)",
   ph_regal: "Regál",
@@ -11313,6 +11979,51 @@ ro: {
   l_grape: "Distilerie",
   l_age: "Vârstă (ani)",
   l_cask: "Butoi",
+  l_size: "Dimensiunea sticlei (cl)",
+  l_bottled: "Îmbuteliat (an)",
+  l_peat: "Turbă",
+  peat_none: "–",
+  peat_light: "ușoară",
+  peat_medium: "medie",
+  peat_heavy: "puternică",
+  l_bottler: "Îmbuteliator",
+  l_batch: "Nr. butoi / lot",
+  l_value: "Valoare de piață",
+  l_tasting: "Degustare",
+  ph_nose: "Nas",
+  ph_palate: "Gust",
+  ph_finishnote: "Finish",
+  ph_score: "Puncte (0–100)",
+  dm_amount: "Cantitate (cl)",
+  dm_bottle_open: "Sticlă deschisă: au rămas {n} cl",
+  dm_bottle_new: "Se va deschide o sticlă nouă ({n} cl)",
+  dm_after: "apoi {n} cl",
+  dm_finish: "Sticla va fi goală după aceasta",
+  dm_last2: "Aceasta golește ultima sticlă — intrarea va fi eliminată din colecție.",
+  toast_amount: "Introdu o cantitate în cl",
+  toast_dram_left: "Noroc! Au rămas {n} cl în sticlă",
+  state_left: "au rămas {n} cl",
+  filt_open: "🔓 Deschise",
+  filt_sealed: "🔒 Sigilate",
+  filt_peated: "🌫 Cu turbă",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Vârstă",
+  sort_score: "↕ Puncte",
+  s_volume: "Volum în colecție",
+  s_open_bottles: "Sticle deschise",
+  s_poured: "Cantitate băută",
+  s_drams: "Dram-uri",
+  s_marketval: "Valoare de piață",
+  s_purchase: "Preț total de achiziție",
+  s_percl: "Preț mediu pe cl",
+  s_bycask: "După butoi",
+  s_byage: "După vârstă",
+  s_age_nas: "fără mențiune de vârstă",
+  s_bypeat: "După turbă",
+  hist_cl: "{n} cl",
+  hist_empty: "sticlă goală",
+  unit_cl: "cl",
+  unit_years: "ani",
   l_abv: "ABV %",
   l_location: "Loc de depozitare (raft · nivel · loc de la stânga)",
   ph_regal: "Raft",
@@ -11898,6 +12609,51 @@ hr: {
   l_grape: "Destilerija",
   l_age: "Starost (godine)",
   l_cask: "Bačva",
+  l_size: "Veličina boce (cl)",
+  l_bottled: "Flaširano (godina)",
+  l_peat: "Treset",
+  peat_none: "–",
+  peat_light: "blag",
+  peat_medium: "srednji",
+  peat_heavy: "jak",
+  l_bottler: "Punionica",
+  l_batch: "Broj bačve / šarže",
+  l_value: "Tržišna vrijednost",
+  l_tasting: "Kušanje",
+  ph_nose: "Miris",
+  ph_palate: "Okus",
+  ph_finishnote: "Završnica",
+  ph_score: "Bodovi (0–100)",
+  dm_amount: "Količina (cl)",
+  dm_bottle_open: "Otvorena boca: preostalo {n} cl",
+  dm_bottle_new: "Otvorit će se nova boca ({n} cl)",
+  dm_after: "nakon toga {n} cl",
+  dm_finish: "Boca će nakon toga biti prazna",
+  dm_last2: "Time se prazni posljednja boca — stavka se uklanja iz zbirke.",
+  toast_amount: "Unesite količinu u cl",
+  toast_dram_left: "Živjeli! U boci je preostalo {n} cl",
+  state_left: "preostalo {n} cl",
+  filt_open: "🔓 Otvorene",
+  filt_sealed: "🔒 Zatvorene",
+  filt_peated: "🌫 Tresetne",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Starost",
+  sort_score: "↕ Bodovi",
+  s_volume: "Količina u zbirci",
+  s_open_bottles: "Otvorene boce",
+  s_poured: "Popijena količina",
+  s_drams: "Dramovi",
+  s_marketval: "Tržišna vrijednost",
+  s_purchase: "Ukupna kupovna cijena",
+  s_percl: "Prosj. cijena po cl",
+  s_bycask: "Po bačvi",
+  s_byage: "Po starosti",
+  s_age_nas: "bez oznake starosti",
+  s_bypeat: "Po tresetu",
+  hist_cl: "{n} cl",
+  hist_empty: "prazna boca",
+  unit_cl: "cl",
+  unit_years: "godina",
   l_abv: "ABV %",
   l_location: "Mjesto pohrane (polica · razina · mjesto slijeva)",
   ph_regal: "Polica",
@@ -12483,6 +13239,51 @@ pt: {
   l_grape: "Destilaria",
   l_age: "Idade (anos)",
   l_cask: "Barril",
+  l_size: "Tamanho da garrafa (cl)",
+  l_bottled: "Engarrafado (ano)",
+  l_peat: "Turfa",
+  peat_none: "–",
+  peat_light: "leve",
+  peat_medium: "média",
+  peat_heavy: "forte",
+  l_bottler: "Engarrafador",
+  l_batch: "N.º do barril / lote",
+  l_value: "Valor de mercado",
+  l_tasting: "Prova",
+  ph_nose: "Nariz",
+  ph_palate: "Boca",
+  ph_finishnote: "Final",
+  ph_score: "Pontuação (0–100)",
+  dm_amount: "Quantidade (cl)",
+  dm_bottle_open: "Garrafa aberta: restam {n} cl",
+  dm_bottle_new: "Uma garrafa nova ({n} cl) será aberta",
+  dm_after: "depois {n} cl",
+  dm_finish: "A garrafa ficará vazia",
+  dm_last2: "Isto esvazia a última garrafa — a entrada será removida da coleção.",
+  toast_amount: "Indique uma quantidade em cl",
+  toast_dram_left: "Saúde! Restam {n} cl na garrafa",
+  state_left: "restam {n} cl",
+  filt_open: "🔓 Aberta",
+  filt_sealed: "🔒 Selada",
+  filt_peated: "🌫 Turfado",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Idade",
+  sort_score: "↕ Pontos",
+  s_volume: "Volume na coleção",
+  s_open_bottles: "Garrafas abertas",
+  s_poured: "Quantidade bebida",
+  s_drams: "Drams",
+  s_marketval: "Valor de mercado",
+  s_purchase: "Preço de compra total",
+  s_percl: "Preço médio por cl",
+  s_bycask: "Por barril",
+  s_byage: "Por idade",
+  s_age_nas: "sem indicação de idade",
+  s_bypeat: "Por turfa",
+  hist_cl: "{n} cl",
+  hist_empty: "garrafa vazia",
+  unit_cl: "cl",
+  unit_years: "anos",
   l_abv: "ABV %",
   l_location: "Local de armazenamento (prateleira · nível · lugar a partir da esquerda)",
   ph_regal: "Prateleira",
@@ -13068,6 +13869,51 @@ no: {
   l_grape: "Destilleri",
   l_age: "Alder (år)",
   l_cask: "Fat",
+  l_size: "Flaskestørrelse (cl)",
+  l_bottled: "Tappet (år)",
+  l_peat: "Torv",
+  peat_none: "–",
+  peat_light: "lett",
+  peat_medium: "middels",
+  peat_heavy: "kraftig",
+  l_bottler: "Tapper",
+  l_batch: "Fat-/batchnr.",
+  l_value: "Markedsverdi",
+  l_tasting: "Smaking",
+  ph_nose: "Nese",
+  ph_palate: "Smak",
+  ph_finishnote: "Ettersmak",
+  ph_score: "Poeng (0–100)",
+  dm_amount: "Mengde (cl)",
+  dm_bottle_open: "Åpnet flaske: {n} cl igjen",
+  dm_bottle_new: "En ny flaske ({n} cl) åpnes",
+  dm_after: "deretter {n} cl",
+  dm_finish: "Flasken er tom etter dette",
+  dm_last2: "Da er den siste flasken tom — oppføringen fjernes fra samlingen.",
+  toast_amount: "Oppgi en mengde i cl",
+  toast_dram_left: "Skål! {n} cl igjen i flasken",
+  state_left: "{n} cl igjen",
+  filt_open: "🔓 Åpnet",
+  filt_sealed: "🔒 Uåpnet",
+  filt_peated: "🌫 Torvrik",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Alder",
+  sort_score: "↕ Poeng",
+  s_volume: "Mengde i samlingen",
+  s_open_bottles: "Åpnede flasker",
+  s_poured: "Drukket mengde",
+  s_drams: "Drams",
+  s_marketval: "Markedsverdi",
+  s_purchase: "Total kjøpspris",
+  s_percl: "Snittpris per cl",
+  s_bycask: "Etter fat",
+  s_byage: "Etter alder",
+  s_age_nas: "uten aldersangivelse",
+  s_bypeat: "Etter torv",
+  hist_cl: "{n} cl",
+  hist_empty: "flasken er tom",
+  unit_cl: "cl",
+  unit_years: "år",
   l_abv: "ABV %",
   l_location: "Lagringsplass (hylle · nivå · plass fra venstre)",
   ph_regal: "Hylle",
@@ -13653,6 +14499,51 @@ nl: {
   l_grape: "Distilleerderij",
   l_age: "Leeftijd (jaren)",
   l_cask: "Vat",
+  l_size: "Flesgrootte (cl)",
+  l_bottled: "Gebotteld (jaar)",
+  l_peat: "Turf",
+  peat_none: "–",
+  peat_light: "licht",
+  peat_medium: "gemiddeld",
+  peat_heavy: "zwaar",
+  l_bottler: "Botteler",
+  l_batch: "Vat-/batchnr.",
+  l_value: "Marktwaarde",
+  l_tasting: "Proeverij",
+  ph_nose: "Neus",
+  ph_palate: "Smaak",
+  ph_finishnote: "Afdronk",
+  ph_score: "Score (0–100)",
+  dm_amount: "Hoeveelheid (cl)",
+  dm_bottle_open: "Geopende fles: nog {n} cl",
+  dm_bottle_new: "Er wordt een nieuwe fles ({n} cl) geopend",
+  dm_after: "daarna {n} cl",
+  dm_finish: "De fles is hierna leeg",
+  dm_last2: "Hiermee is de laatste fles leeg — het item wordt uit de collectie verwijderd.",
+  toast_amount: "Geef een hoeveelheid in cl op",
+  toast_dram_left: "Proost! Nog {n} cl in de fles",
+  state_left: "nog {n} cl",
+  filt_open: "🔓 Geopend",
+  filt_sealed: "🔒 Ongeopend",
+  filt_peated: "🌫 Getorfd",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Leeftijd",
+  sort_score: "↕ Score",
+  s_volume: "Volume in de collectie",
+  s_open_bottles: "Geopende flessen",
+  s_poured: "Gedronken hoeveelheid",
+  s_drams: "Drams",
+  s_marketval: "Marktwaarde",
+  s_purchase: "Totale aankoopprijs",
+  s_percl: "Gem. prijs per cl",
+  s_bycask: "Per vat",
+  s_byage: "Per leeftijd",
+  s_age_nas: "zonder leeftijdsaanduiding",
+  s_bypeat: "Per turf",
+  hist_cl: "{n} cl",
+  hist_empty: "fles leeg",
+  unit_cl: "cl",
+  unit_years: "jaar",
   l_abv: "ABV %",
   l_location: "Opslagplaats (rek · niveau · plaats van links)",
   ph_regal: "Rek",
@@ -14238,6 +15129,51 @@ el: {
   l_grape: "Αποστακτήριο",
   l_age: "Ηλικία (έτη)",
   l_cask: "Βαρέλι",
+  l_size: "Μέγεθος φιάλης (cl)",
+  l_bottled: "Εμφιαλώθηκε (έτος)",
+  l_peat: "Τύρφη",
+  peat_none: "–",
+  peat_light: "ελαφριά",
+  peat_medium: "μέτρια",
+  peat_heavy: "έντονη",
+  l_bottler: "Εμφιαλωτής",
+  l_batch: "Αρ. βαρελιού / παρτίδας",
+  l_value: "Αξία αγοράς",
+  l_tasting: "Γευσιγνωσία",
+  ph_nose: "Μύτη",
+  ph_palate: "Ουρανίσκος",
+  ph_finishnote: "Επίγευση",
+  ph_score: "Βαθμολογία (0–100)",
+  dm_amount: "Ποσότητα (cl)",
+  dm_bottle_open: "Ανοιγμένη φιάλη: απομένουν {n} cl",
+  dm_bottle_new: "Θα ανοιχτεί μια νέα φιάλη ({n} cl)",
+  dm_after: "μετά {n} cl",
+  dm_finish: "Η φιάλη αδειάζει με αυτό",
+  dm_last2: "Αυτό αδειάζει την τελευταία φιάλη — η εγγραφή αφαιρείται από τη συλλογή.",
+  toast_amount: "Παρακαλώ εισάγετε ποσότητα σε cl",
+  toast_dram_left: "Στην υγειά μας! Απομένουν {n} cl στη φιάλη",
+  state_left: "απομένουν {n} cl",
+  filt_open: "🔓 Ανοιγμένα",
+  filt_sealed: "🔒 Κλειστά",
+  filt_peated: "🌫 Τυρφώδη",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Ηλικία",
+  sort_score: "↕ Βαθμολογία",
+  s_volume: "Όγκος στη συλλογή",
+  s_open_bottles: "Ανοιγμένες φιάλες",
+  s_poured: "Ποσότητα που ήπιατε",
+  s_drams: "Drams",
+  s_marketval: "Αξία αγοράς",
+  s_purchase: "Συνολική τιμή αγοράς",
+  s_percl: "Μέση τιμή ανά cl",
+  s_bycask: "Ανά βαρέλι",
+  s_byage: "Ανά ηλικία",
+  s_age_nas: "χωρίς ένδειξη ηλικίας",
+  s_bypeat: "Ανά τύρφη",
+  hist_cl: "{n} cl",
+  hist_empty: "φιάλη άδεια",
+  unit_cl: "cl",
+  unit_years: "έτη",
   l_abv: "ABV %",
   l_location: "Αποθήκευση (ράφι · επίπεδο · θέση από αριστερά)",
   ph_regal: "Ράφι",
@@ -14823,6 +15759,51 @@ uk: {
   l_grape: "Винокурня",
   l_age: "Вік (років)",
   l_cask: "Бочка",
+  l_size: "Об'єм пляшки (cl)",
+  l_bottled: "Розлито (рік)",
+  l_peat: "Торф",
+  peat_none: "–",
+  peat_light: "легкий",
+  peat_medium: "середній",
+  peat_heavy: "сильний",
+  l_bottler: "Незалежний розливник",
+  l_batch: "№ бочки / партії",
+  l_value: "Ринкова вартість",
+  l_tasting: "Дегустація",
+  ph_nose: "Аромат",
+  ph_palate: "Смак",
+  ph_finishnote: "Післясмак",
+  ph_score: "Оцінка (0–100)",
+  dm_amount: "Кількість (cl)",
+  dm_bottle_open: "Відкрита пляшка: залишилось {n} cl",
+  dm_bottle_new: "Буде відкрито нову пляшку ({n} cl)",
+  dm_after: "потім {n} cl",
+  dm_finish: "Після цього пляшка порожня",
+  dm_last2: "Це спорожнить останню пляшку — запис буде видалено з колекції.",
+  toast_amount: "Введіть кількість у cl",
+  toast_dram_left: "Будьмо! У пляшці залишилось {n} cl",
+  state_left: "залишилось {n} cl",
+  filt_open: "🔓 Відкриті",
+  filt_sealed: "🔒 Запечатані",
+  filt_peated: "🌫 Торф'яні",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ Вік",
+  sort_score: "↕ Оцінка",
+  s_volume: "Обсяг у колекції",
+  s_open_bottles: "Відкриті пляшки",
+  s_poured: "Випита кількість",
+  s_drams: "Драми",
+  s_marketval: "Ринкова вартість",
+  s_purchase: "Загальна ціна покупки",
+  s_percl: "Сер. ціна за cl",
+  s_bycask: "За бочкою",
+  s_byage: "За віком",
+  s_age_nas: "без позначення віку",
+  s_bypeat: "За торфом",
+  hist_cl: "{n} cl",
+  hist_empty: "пляшка порожня",
+  unit_cl: "cl",
+  unit_years: "років",
   l_abv: "ABV %",
   l_location: "Зберігання (стелаж · рівень · місце зліва)",
   ph_regal: "Стелаж",
@@ -15408,6 +16389,51 @@ ja: {
   l_grape: "蒸溜所",
   l_age: "熟成年数",
   l_cask: "樽",
+  l_size: "ボトルサイズ (cl)",
+  l_bottled: "ボトリング年",
+  l_peat: "ピート",
+  peat_none: "–",
+  peat_light: "弱め",
+  peat_medium: "中程度",
+  peat_heavy: "強め",
+  l_bottler: "ボトラー",
+  l_batch: "カスク／バッチ番号",
+  l_value: "市場価値",
+  l_tasting: "テイスティング",
+  ph_nose: "香り",
+  ph_palate: "味わい",
+  ph_finishnote: "余韻",
+  ph_score: "スコア (0–100)",
+  dm_amount: "量 (cl)",
+  dm_bottle_open: "開栓済みボトル：残り {n} cl",
+  dm_bottle_new: "新しいボトル ({n} cl) を開栓します",
+  dm_after: "この後 {n} cl",
+  dm_finish: "これでボトルは空になります",
+  dm_last2: "これで最後のボトルが空になります — このエントリーはコレクションから削除されます。",
+  toast_amount: "量をclで入力してください",
+  toast_dram_left: "乾杯！ボトルに残り {n} cl",
+  state_left: "残り {n} cl",
+  filt_open: "🔓 開栓済み",
+  filt_sealed: "🔒 未開栓",
+  filt_peated: "🌫 ピーテッド",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ 熟成年数",
+  sort_score: "↕ スコア",
+  s_volume: "コレクションの総量",
+  s_open_bottles: "開栓済みボトル",
+  s_poured: "飲んだ量",
+  s_drams: "ドラム",
+  s_marketval: "市場価値",
+  s_purchase: "購入価格の合計",
+  s_percl: "1clあたり平均価格",
+  s_bycask: "カスク別",
+  s_byage: "熟成年数別",
+  s_age_nas: "年数表記なし",
+  s_bypeat: "ピート別",
+  hist_cl: "{n} cl",
+  hist_empty: "ボトルは空",
+  unit_cl: "cl",
+  unit_years: "年",
   l_abv: "ABV %",
   l_location: "保管場所（ラック · 段 · 左から数えた場所）",
   ph_regal: "ラック",
@@ -15993,6 +17019,51 @@ ko: {
   l_grape: "증류소",
   l_age: "숙성 연수",
   l_cask: "캐스크",
+  l_size: "병 용량 (cl)",
+  l_bottled: "병입 연도",
+  l_peat: "피트",
+  peat_none: "–",
+  peat_light: "약함",
+  peat_medium: "중간",
+  peat_heavy: "강함",
+  l_bottler: "독립 병입자",
+  l_batch: "캐스크/배치 번호",
+  l_value: "시장 가치",
+  l_tasting: "테이스팅",
+  ph_nose: "향",
+  ph_palate: "맛",
+  ph_finishnote: "피니시",
+  ph_score: "점수 (0–100)",
+  dm_amount: "양 (cl)",
+  dm_bottle_open: "개봉한 병: {n} cl 남음",
+  dm_bottle_new: "새 병({n} cl)을 개봉합니다",
+  dm_after: "이후 {n} cl",
+  dm_finish: "이렇게 하면 병이 비게 됩니다",
+  dm_last2: "마지막 병이 비게 됩니다 — 이 항목은 컬렉션에서 삭제됩니다.",
+  toast_amount: "양을 cl 단위로 입력하세요",
+  toast_dram_left: "건배! 병에 {n} cl 남음",
+  state_left: "{n} cl 남음",
+  filt_open: "🔓 개봉",
+  filt_sealed: "🔒 미개봉",
+  filt_peated: "🌫 피티드",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ 숙성 연수",
+  sort_score: "↕ 점수",
+  s_volume: "컬렉션 총량",
+  s_open_bottles: "개봉한 병",
+  s_poured: "마신 양",
+  s_drams: "드램",
+  s_marketval: "시장 가치",
+  s_purchase: "총 구매 가격",
+  s_percl: "cl당 평균 가격",
+  s_bycask: "캐스크별",
+  s_byage: "숙성 연수별",
+  s_age_nas: "숙성 연수 미표기",
+  s_bypeat: "피트별",
+  hist_cl: "{n} cl",
+  hist_empty: "빈 병",
+  unit_cl: "cl",
+  unit_years: "년",
   l_abv: "ABV %",
   l_location: "보관 위치 (랙 · 단 · 왼쪽부터 칸)",
   ph_regal: "랙",
@@ -16578,6 +17649,51 @@ zh: {
   l_grape: "酒厂",
   l_age: "年份（年）",
   l_cask: "酒桶",
+  l_size: "瓶容量 (cl)",
+  l_bottled: "装瓶年份",
+  l_peat: "泥煤",
+  peat_none: "–",
+  peat_light: "轻度",
+  peat_medium: "中度",
+  peat_heavy: "重度",
+  l_bottler: "独立装瓶商",
+  l_batch: "桶号/批次号",
+  l_value: "市场价值",
+  l_tasting: "品鉴",
+  ph_nose: "香气",
+  ph_palate: "口感",
+  ph_finishnote: "余韵",
+  ph_score: "评分 (0–100)",
+  dm_amount: "用量 (cl)",
+  dm_bottle_open: "已开瓶：剩余 {n} cl",
+  dm_bottle_new: "将开启一瓶新酒 ({n} cl)",
+  dm_after: "之后剩余 {n} cl",
+  dm_finish: "这样瓶子就空了",
+  dm_last2: "这将喝空最后一瓶——该条目将从收藏中移除。",
+  toast_amount: "请输入用量（cl）",
+  toast_dram_left: "干杯！瓶中还剩 {n} cl",
+  state_left: "剩余 {n} cl",
+  filt_open: "🔓 已开瓶",
+  filt_sealed: "🔒 未开封",
+  filt_peated: "🌫 泥煤风味",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ 酒龄",
+  sort_score: "↕ 评分",
+  s_volume: "收藏总量",
+  s_open_bottles: "已开瓶",
+  s_poured: "已饮用量",
+  s_drams: "杯数 (Dram)",
+  s_marketval: "市场价值",
+  s_purchase: "购买总价",
+  s_percl: "每 cl 平均价格",
+  s_bycask: "按酒桶",
+  s_byage: "按酒龄",
+  s_age_nas: "无年份标注",
+  s_bypeat: "按泥煤",
+  hist_cl: "{n} cl",
+  hist_empty: "空瓶",
+  unit_cl: "cl",
+  unit_years: "年",
   l_abv: "ABV %",
   l_location: "存放位置（酒架 · 层 · 从左数第几位）",
   ph_regal: "酒架",
@@ -17163,6 +18279,51 @@ hi: {
   l_grape: "डिस्टिलरी",
   l_age: "आयु (वर्ष)",
   l_cask: "कास्क",
+  l_size: "बोतल का आकार (cl)",
+  l_bottled: "बॉटलिंग (वर्ष)",
+  l_peat: "पीट",
+  peat_none: "–",
+  peat_light: "हल्का",
+  peat_medium: "मध्यम",
+  peat_heavy: "तेज़",
+  l_bottler: "बॉटलर",
+  l_batch: "कास्क / बैच नं.",
+  l_value: "बाज़ार मूल्य",
+  l_tasting: "टेस्टिंग",
+  ph_nose: "नोज़",
+  ph_palate: "पैलेट",
+  ph_finishnote: "फ़िनिश",
+  ph_score: "स्कोर (0–100)",
+  dm_amount: "मात्रा (cl)",
+  dm_bottle_open: "खुली बोतल: {n} cl बचा",
+  dm_bottle_new: "एक नई बोतल ({n} cl) खोली जाएगी",
+  dm_after: "फिर {n} cl",
+  dm_finish: "इसके बाद बोतल खाली हो जाएगी",
+  dm_last2: "इससे आख़िरी बोतल खाली हो जाएगी — यह प्रविष्टि संग्रह से हटा दी जाएगी।",
+  toast_amount: "कृपया cl में मात्रा दर्ज करें",
+  toast_dram_left: "चियर्स! बोतल में {n} cl बचा",
+  state_left: "{n} cl बचा",
+  filt_open: "🔓 खुली",
+  filt_sealed: "🔒 सीलबंद",
+  filt_peated: "🌫 पीटेड",
+  sort_abv: "↕ ABV",
+  sort_age: "↕ आयु",
+  sort_score: "↕ स्कोर",
+  s_volume: "संग्रह में मात्रा",
+  s_open_bottles: "खुली बोतलें",
+  s_poured: "पी गई मात्रा",
+  s_drams: "ड्राम",
+  s_marketval: "बाज़ार मूल्य",
+  s_purchase: "कुल खरीद मूल्य",
+  s_percl: "औसत मूल्य प्रति cl",
+  s_bycask: "कास्क के अनुसार",
+  s_byage: "आयु के अनुसार",
+  s_age_nas: "आयु का उल्लेख नहीं",
+  s_bypeat: "पीट के अनुसार",
+  hist_cl: "{n} cl",
+  hist_empty: "बोतल खाली",
+  unit_cl: "cl",
+  unit_years: "वर्ष",
   l_abv: "ABV %",
   l_location: "भंडारण (रैक · स्तर · बाएँ से स्थान)",
   ph_regal: "रैक",
@@ -17854,6 +19015,32 @@ function wikiUrl(w) {
   return 'https://' + lang + '.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(q) + '&go=Go';
 }
 
+// Zustand der Flaschen auf der Karte: angebrochene Flaschen mit Füllstand, ungeöffnete, Flaschengröße
+function bottleStateHtml(w) {
+  const n = w.count || 1, op = w.opened || [], s = Math.max(0, n - op.length), size = w.size || 70;
+  if (!op.length && size === 70) return '';
+  let h = '<div class="bottle-state">';
+  op.slice().sort((a, b) => a.left - b.left).forEach(o => {
+    const pct = Math.max(2, Math.min(100, Math.round(o.left / size * 100)));
+    h += `<span class="bs-item" title="${esc(new Date(o.at).toLocaleDateString(dateLocale()))}">🔓 ${t('state_left', { n: o.left })}<span class="fill-bar"><span style="width:${pct}%"></span></span></span>`;
+  });
+  if (op.length && s) h += `<span class="bs-item">🔒 ${s}</span>`;
+  if (size !== 70) h += `<span class="bs-item">📏 ${size} ${t('unit_cl')}</span>`;
+  return h + '</div>';
+}
+// Zusätzliche Filter neben den Sorten: geöffnet / ungeöffnet / torfig (nochmal tippen hebt auf)
+let stateFilter = 'alle';
+function stateChipsHtml() {
+  return [['open', 'filt_open'], ['sealed', 'filt_sealed'], ['peated', 'filt_peated']].map(([k, key]) =>
+    `<button class="filter-chip ${stateFilter === k ? 'active' : ''}" onclick="setStateFilter('${k}')">${t(key)}</button>`).join('');
+}
+function setStateFilter(k) { stateFilter = stateFilter === k ? 'alle' : k; renderKeller(); }
+function matchState(w) {
+  if (stateFilter === 'open') return (w.opened || []).length > 0;
+  if (stateFilter === 'sealed') return (w.count || 1) - (w.opened || []).length > 0;
+  if (stateFilter === 'peated') return !!w.peat;
+  return true;
+}
 function renderKeller() {
   const q = document.getElementById('search-input').value.toLowerCase();
   // stats
@@ -17875,15 +19062,16 @@ function renderKeller() {
   document.getElementById('filter-scroll').innerHTML = TYPES.map(ty => `
     <button class="filter-chip ${activeFilter===ty?'active':''}" onclick="setFilter('${ty}')">${TYPE_LABELS[ty]}</button>
   `).join('') + `
+    ${stateChipsHtml()}
     <button class="filter-chip ${viewMode==='list'?'active':''}" onclick="toggleViewMode()">${t('list_chip')}</button>
     ${shoppingChipHtml()}
   `;
 
   // list
   let list = wines.filter(w => {
-    const matchQ = !q || w.name.toLowerCase().includes(q) || (w.region||'').toLowerCase().includes(q) || (w.country||'').toLowerCase().includes(q) || (w.grape||'').toLowerCase().includes(q);
+    const matchQ = !q || w.name.toLowerCase().includes(q) || (w.region||'').toLowerCase().includes(q) || (w.country||'').toLowerCase().includes(q) || (w.grape||'').toLowerCase().includes(q) || [w.cask, w.bottler, w.batch, w.nose, w.palate, w.finishNote].some(x => (x||'').toLowerCase().includes(q));
     const matchF = activeFilter === 'alle' || w.type === activeFilter;
-    return matchQ && matchF;
+    return matchQ && matchF && matchState(w);
   });
 
   // sort
@@ -17899,6 +19087,9 @@ function renderKeller() {
   else if (sortMode === 'grape') list.sort(cmpText('grape'));
   else if (sortMode === 'region') list.sort(cmpText('region'));
   else if (sortMode === 'country') list.sort(cmpText('country'));
+  else if (sortMode === 'abv') list.sort((a,b) => (b.abv||0) - (a.abv||0));
+  else if (sortMode === 'age') list.sort((a,b) => (b.age||0) - (a.age||0));
+  else if (sortMode === 'score') list.sort((a,b) => (b.score||0) - (a.score||0));
 
   const el = document.getElementById('wine-list');
   if (!list.length) {
@@ -17916,7 +19107,7 @@ function renderKeller() {
         ${wineImgHtml(w,'wine-row-img')}
         <div class="wine-row-info">
           <div class="wine-row-name">${esc(w.name)}</div>
-          <div class="wine-row-sub">${w.year||'–'} · ${TYPE_LABELS[w.type]||TYPE_LABELS.other||''}${w.grape?' · '+esc(w.grape):''}${w.age?' · '+w.age+' y':''}${w.abv?' · '+w.abv+'%':''}${regionCountry?' · '+esc(regionCountry):''}${loc?' · 📍 '+esc(loc):''}</div>
+          <div class="wine-row-sub">${w.year||'–'} · ${TYPE_LABELS[w.type]||TYPE_LABELS.other||''}${w.grape?' · '+esc(w.grape):''}${w.age?' · '+w.age+' y':''}${w.abv?' · '+w.abv+'%':''}${w.score?' · '+w.score+' P':''}${(w.opened||[]).length?' · 🔓 '+(w.opened||[]).length:''}${regionCountry?' · '+esc(regionCountry):''}${loc?' · 📍 '+esc(loc):''}</div>
         </div>
         <button class="wine-row-delete" onclick="deleteWine('${w.id}')" aria-label="${esc(t('rack_delete'))}" title="${esc(t('rack_delete'))}">🗑</button>
       </div>`;
@@ -17934,7 +19125,7 @@ function renderKeller() {
         ${wineImgHtml(w,'wine-card-img')}
         <div style="flex:1;min-width:0">
           <div class="wine-name">${esc(w.name)}</div>
-          <div class="wine-year">${w.year||''} ${w.grape?'· '+esc(w.grape):''}</div>${serveCardLine(w)}
+          <div class="wine-year">${w.year||''} ${w.grape?'· '+esc(w.grape):''}${w.age?' · '+w.age+' y':''}${w.abv?' · '+w.abv+'%':''}${w.score?' · '+w.score+' P':''}${w.peat?' · 🌫 '+t('peat_'+w.peat):''}</div>${serveCardLine(w)}
         </div>
         ${typeGrape(w)}
       </div>
@@ -17943,6 +19134,7 @@ function renderKeller() {
         ${regionCountry?`<div class="wine-region">${wineRegionLinks(w)}</div>`:''}
         <div class="wine-count-badge">${w.count||1} ${t('fl')}</div>
       </div>
+      ${bottleStateHtml(w)}
       ${serveTempHtml(w, 'wine-temp')}
       ${loc || settings.racks.length ? `<div class="card-slots">${wineSlotChips(w)}</div>` : ''}
       ${mmBadgeHtml(w)}
@@ -17962,7 +19154,7 @@ function setSort(s) { sortMode = s; renderKeller(); }
 
 
 let drinkId = null;
-let drinkSlotRef = null;   // Platz, aus dem die Flasche genommen wird (null = nicht eingelagerte Flasche bzw. Wein ohne Platz)
+let drinkSlotRef = null;   // Platz, aus dem die Flasche genommen wird (null = nicht eingelagerte Flasche bzw. Whiskey ohne Platz)
 let drinkSlotOpts = [];
 function renderDrinkSlots() {
   document.getElementById('drink-slots').innerHTML = drinkSlotOpts.map((o, i) => `<button type="button" class="occ-chip${o.sel ? ' active' : ''}" onclick="pickDrinkSlot(${i})">${esc(o.label)}</button>`).join('');
@@ -17972,9 +19164,8 @@ function pickDrinkSlot(i) {
   drinkSlotRef = drinkSlotOpts[i].ref;
   renderDrinkSlots();
 }
-// Wein mit Lagerplätzen: Auswahl, aus welchem Platz die Flasche genommen wird (Vorauswahl: übergebener Platz, sonst der erste)
+// Whiskey mit Lagerplätzen: Auswahl, aus welchem Platz die Flasche genommen wird (nur nötig, wenn sie leer wird; Vorauswahl: übergebener Platz, sonst der erste)
 function setupDrinkSlots(w, presetRef) {
-  const wrap = document.getElementById('drink-slot-wrap');
   drinkSlotOpts = []; drinkSlotRef = null;
   const vp = validPlacements(w);
   if (vp.length) {
@@ -17991,7 +19182,31 @@ function setupDrinkSlots(w, presetRef) {
     drinkSlotRef = drinkSlotOpts[sel].ref;
     renderDrinkSlots();
   }
-  wrap.style.display = vp.length ? 'block' : 'none';
+}
+// Die Flasche, aus der eingeschenkt wird: die angebrochene mit dem kleinsten Rest, sonst wird eine neue geöffnet
+function currentBottle(w) {
+  const arr = w.opened || [];
+  if (arr.length) { const o = arr.slice().sort((a, b) => a.left - b.left)[0]; return { o, idx: arr.indexOf(o), isNew: false, left: o.left }; }
+  return { o: null, idx: -1, isNew: true, left: w.size || 70 };
+}
+function renderDrinkAmounts() {
+  const cur = parseFloat(document.getElementById('drink-cl').value);
+  document.getElementById('drink-amount-chips').innerHTML = [2, 4, 6, 10].map(n => `<button type="button" class="occ-chip${cur === n ? ' active' : ''}" onclick="setDrinkCl(${n})">${n} ${t('unit_cl')}</button>`).join('');
+}
+function setDrinkCl(n) { document.getElementById('drink-cl').value = n; drinkAmountChanged(); }
+function drinkAmountChanged() {
+  const w = wines.find(x => x.id === drinkId);
+  if (!w) return;
+  const cur = currentBottle(w), size = w.size || 70;
+  const cl = cleanCl(document.getElementById('drink-cl').value) || 0;
+  const wantEmpty = document.getElementById('drink-empty').checked;
+  const finishing = wantEmpty || (cl > 0 && cl >= cur.left);
+  const after = Math.max(0, Math.round((cur.left - cl) * 10) / 10);
+  document.getElementById('drink-bottle-info').textContent = (cur.isNew ? t('dm_bottle_new', { n: size }) : t('dm_bottle_open', { n: cur.left })) + (finishing ? '' : ' · ' + t('dm_after', { n: after }));
+  const note = document.getElementById('drink-modal-note');
+  if (finishing && (w.count || 1) <= 1) { note.textContent = t('dm_last2'); note.style.display = 'block'; } else note.style.display = 'none';
+  document.getElementById('drink-slot-wrap').style.display = (finishing && drinkSlotOpts.length) ? 'block' : 'none';
+  renderDrinkAmounts();
 }
 function drinkOne(id, presetRef) {
   const w = wines.find(x => x.id === id);
@@ -18000,10 +19215,10 @@ function drinkOne(id, presetRef) {
   document.getElementById('drink-with').value = '';
   document.querySelectorAll('#drink-occasions .occ-chip').forEach(c => c.classList.remove('active'));
   document.getElementById('drink-modal-wine').textContent = w.name + (w.year ? ' · ' + w.year : '');
-  const note = document.getElementById('drink-modal-note');
-  if ((w.count||1) <= 1) { note.textContent = t('dm_last'); note.style.display = 'block'; }
-  else { note.style.display = 'none'; }
+  document.getElementById('drink-cl').value = Number(settings.dramCl) > 0 ? settings.dramCl : 4;
+  document.getElementById('drink-empty').checked = false;
   setupDrinkSlots(w, presetRef);
+  drinkAmountChanged();
   document.getElementById('drink-modal').classList.add('show');
 }
 
@@ -18012,38 +19227,58 @@ function confirmDrink() {
   if (!w) { closeModal('drink-modal'); return; }
   const companions = document.getElementById('drink-with').value.trim();
   const occasions = [...document.querySelectorAll('#drink-occasions .occ-chip.active')].map(c => c.getAttribute('data-occ'));
-  const ref = drinkSlotRef; drinkSlotRef = null;
+  const size = w.size || 70;
+  const cl = cleanCl(document.getElementById('drink-cl').value);
+  if (!cl) { showToast(t('toast_amount')); return; }
+  const wantEmpty = document.getElementById('drink-empty').checked;
+  const cur = currentBottle(w);
+  const poured = Math.min(cl, cur.left);
+  const newLeft = wantEmpty ? 0 : Math.round((cur.left - poured) * 10) / 10;
+  const finishing = newLeft <= 0;
+  w.opened = (w.opened || []).slice();
+  if (cur.isNew) { w.opened.push({ at: new Date().toISOString(), left: finishing ? 0.1 : newLeft }); cur.idx = w.opened.length - 1; }
+  else w.opened[cur.idx] = { at: cur.o.at, left: finishing ? 0.1 : newLeft };
+  settings.dramCl = cl; try { saveSettings(); } catch (e) {}
+  const ref = finishing ? drinkSlotRef : null; drinkSlotRef = null;
   const rr = ref && rackById(ref.rack);
-  const where = rr ? t('ph_regal') + ' ' + rr.name + ' · ' + t('ph_ebene') + ' ' + ref.e + ' · ' + t('loc_slot') + ' ' + ref.p : null;   // aus dem Regal getrunken: genau dieser Platz kommt in die Historie
-  if ((w.count||1) <= 1) wines = wines.filter(x => x.id !== drinkId);
-  else {
-    w.count = (w.count||1) - 1;
-    if (ref) {   // der Platz der getrunkenen Flasche wird frei
-      const list = validPlacements(w);
-      const i = list.findIndex(x => x.rack === ref.rack && x.e === ref.e && x.p === ref.p);
-      if (i >= 0) { list.splice(i, 1); setPlacements(w, list); }
+  const where = rr ? t('ph_regal') + ' ' + rr.name + ' · ' + t('ph_ebene') + ' ' + ref.e + ' · ' + t('loc_slot') + ' ' + ref.p : null;   // aus dem Regal geleert: genau dieser Platz kommt in die Historie
+  let removed = false;
+  if (finishing) {
+    w.opened.splice(cur.idx, 1);
+    if ((w.count || 1) <= 1) { wines = wines.filter(x => x.id !== drinkId); removed = true; }
+    else {
+      w.count = (w.count || 1) - 1;
+      if (ref) {   // der Platz der leeren Flasche wird frei
+        const list = validPlacements(w);
+        const i = list.findIndex(x => x.rack === ref.rack && x.e === ref.e && x.p === ref.p);
+        if (i >= 0) { list.splice(i, 1); setPlacements(w, list); }
+      }
+      if ((w.placements || []).length > w.count) setPlacements(w, validPlacements(w));
     }
-    if ((w.placements||[]).length > w.count) setPlacements(w, validPlacements(w));
   }
-  recordDrunk(w, companions, occasions, where);
+  if (!removed) w.opened = cleanOpened(w.opened, w.count || 1, size);
+  recordDrunk(w, companions, occasions, where, { cl: poured, size, empty: finishing });
   save(); saveDrunk();
   closeModal('drink-modal');
   if (lvlSheetOpen()) renderLevelSheet();
   const active = document.querySelector('.tab.active');
   if (active && active.id === 'tab-racks') { rackFilledSlot = null; renderRacks(); }
   else renderKeller();
-  showToast(t('toast_prost'));
+  showToast(finishing ? t('toast_prost') : t('toast_dram_left', { n: newLeft }));
   celebrate();
-  const lowRows = mmLowRows(w, !wines.includes(w));
-  if (lowRows.length) setTimeout(() => offerRestock(w, lowRows[0]), 700);
+  if (finishing) {
+    const lowRows = mmLowRows(w, removed);
+    if (lowRows.length) setTimeout(() => offerRestock(w, lowRows[0]), 700);
+  }
 }
 
-function recordDrunk(w, companions, occasions, locText) {
+function recordDrunk(w, companions, occasions, locText, extra) {
   drunkWines.push({
     id: Date.now().toString() + Math.random().toString(36).slice(2,7),
     name: w.name, year: w.year||null, type: w.type||'other',
     region: w.region||'', country: w.country||'', grape: w.grape||'', location: locText != null ? locText : formatLocation(w),
     price: w.price||0, rating: w.rating||0,
+    cl: extra && extra.cl ? extra.cl : null, size: extra && extra.size ? extra.size : null, empty: !!(extra && extra.empty),
     companions: companions||'', occasions: occasions||[],
     date: new Date().toISOString()
   });
@@ -18132,6 +19367,16 @@ function editWine(id) {
   document.getElementById('f-age').value = w.age||'';
   document.getElementById('f-abv').value = w.abv||'';
   document.getElementById('f-cask').value = w.cask||'';
+  document.getElementById('f-size').value = (w.size && w.size !== 70) ? w.size : '';
+  document.getElementById('f-bottled').value = w.bottled||'';
+  document.getElementById('f-batch').value = w.batch||'';
+  document.getElementById('f-bottler').value = w.bottler||'';
+  document.getElementById('f-peat').value = w.peat||'';
+  document.getElementById('f-value').value = w.value||'';
+  document.getElementById('f-nose').value = w.nose||'';
+  document.getElementById('f-palate').value = w.palate||'';
+  document.getElementById('f-finish').value = w.finishNote||'';
+  document.getElementById('f-score').value = w.score||'';
   serveWriteForm(w.serve);
   document.getElementById('f-loc-regal').value = w.locRegal||'';
   document.getElementById('f-loc-ebene').value = w.locEbene||'';
@@ -18169,8 +19414,9 @@ function openAddModal() {
   formToken++;
   editId = null;
   lastAutoLookupKey = '';
-  ['f-name','f-year','f-region','f-country','f-grape','f-age','f-abv','f-cask','f-loc-regal','f-loc-ebene','f-loc-platz','f-note','f-temp-from','f-temp-to','f-price','f-image','f-ean','f-photo'].forEach(id => document.getElementById(id).value = '');
+  ['f-name','f-year','f-region','f-country','f-grape','f-age','f-abv','f-cask','f-size','f-bottled','f-batch','f-bottler','f-value','f-nose','f-palate','f-finish','f-score','f-loc-regal','f-loc-ebene','f-loc-platz','f-note','f-temp-from','f-temp-to','f-price','f-image','f-ean','f-photo'].forEach(id => document.getElementById(id).value = '');
   serveWriteForm(null);
+  document.getElementById('f-peat').value = '';
   updateImagePreview();
   if (formPhotoPending) photoDel(formPhotoPending);
   formPhotoPending = null; updateFormPhoto(); renderMinMaxFields(null);
@@ -18255,6 +19501,17 @@ function saveWine() {
     age: parseInt(document.getElementById('f-age').value)||null,
     abv: document.getElementById('f-abv').value||null,
     cask: document.getElementById('f-cask').value.trim()||null,
+    size: document.getElementById('f-size').value||null,
+    bottled: parseInt(document.getElementById('f-bottled').value)||null,
+    batch: document.getElementById('f-batch').value.trim()||null,
+    bottler: document.getElementById('f-bottler').value.trim()||null,
+    peat: document.getElementById('f-peat').value||null,
+    value: parseFloat(document.getElementById('f-value').value)||null,
+    nose: document.getElementById('f-nose').value.trim()||null,
+    palate: document.getElementById('f-palate').value.trim()||null,
+    finishNote: document.getElementById('f-finish').value.trim()||null,
+    score: parseInt(document.getElementById('f-score').value)||null,
+    opened: editId ? ((wines.find(w => w.id === editId) || {}).opened || []) : [],
     serve: serveReadForm(),
     locRegal: document.getElementById('f-loc-regal').value.trim()||null,
     locEbene: document.getElementById('f-loc-ebene').value.trim()||null,
@@ -18304,7 +19561,7 @@ function saveWine() {
     savedId = existing ? existing.id : wine.id;
     if (existing) {
       existing.count = (existing.count||1) + (wine.count||1);
-      ['region','country','grape','age','abv','cask','serve','locRegal','locEbene','locPlatz','tempFrom','tempTo','price','image','rating','note','ean','photo'].forEach(k => {
+      ['region','country','grape','age','abv','cask','bottled','batch','bottler','peat','nose','palate','finishNote','score','value','serve','locRegal','locEbene','locPlatz','tempFrom','tempTo','price','image','rating','note','ean','photo'].forEach(k => {
         if (!existing[k] && wine[k]) existing[k] = wine[k];
       });
       if (!Object.keys(existing.minMax || {}).length && Object.keys(wine.minMax || {}).length) existing.minMax = wine.minMax;
@@ -18605,6 +19862,56 @@ function statNice(v) {   // auf eine runde Zahl (1, 1.5, 2, 2.5, 3, 4, 5, 7.5 ×
   return steps.reduce((a, b) => Math.abs(b - m) < Math.abs(a - m) ? b : a) * k;
 }
 const STAT_CUR_SCALE = { '€': 1, '$': 1.1, '£': 0.85, 'CHF': 0.95, 'A$': 1.6, 'C$': 1.5, 'SEK': 11, 'NOK': 11, 'DKK': 7.5, 'RUB': 100, 'PLN': 4.3, 'UAH': 45, 'JPY': 170, 'CNY': 7.5, 'KRW': 1500, 'INR': 100, 'HUF': 380, 'CZK': 24, 'RON': 5 };   // grober Faktor zum Euro, nur für runde Preisklassen
+// Whiskey-Auswertungen: Menge in cl, Drams, Marktwert gegen Kaufpreis, Preis pro cl, nach Fass / Alter / Torf
+function whiskyStatsHtml() {
+  let h = '';
+  const bottles = (w) => w.count || 1;
+  const size = (w) => w.size || 70;
+  // Menge: ungeöffnete Flaschen voll, geöffnete mit Rest
+  let cl = 0, openN = 0;
+  wines.forEach(w => { const op = w.opened || [], s = Math.max(0, bottles(w) - op.length); cl += s * size(w) + op.reduce((a, o) => a + o.left, 0); openN += op.length; });
+  const poured = drunkWines.reduce((a, x) => a + (x.cl || 0), 0), drams = drunkWines.filter(x => x.cl).length;
+  if (wines.length) {
+    h += `<div class="stats-title" style="margin-top:20px">${t('s_volume')}</div><div class="stats-grid">
+      <div class="stats-card"><div class="big">${Math.round(cl)} ${t('unit_cl')}</div><div class="label">${t('s_volume')}</div></div>
+      <div class="stats-card"><div class="big">${openN}</div><div class="label">${t('s_open_bottles')}</div></div>
+      ${poured ? `<div class="stats-card"><div class="big">${Math.round(poured)} ${t('unit_cl')}</div><div class="label">${t('s_poured')}</div></div>
+      <div class="stats-card"><div class="big">${drams}</div><div class="label">${t('s_drams')}</div></div>` : ''}
+    </div>`;
+  }
+  // Preis pro cl und Marktwert gegen Kaufpreis
+  const priced = wines.filter(w => w.price > 0);
+  const valued = wines.filter(w => w.value > 0);
+  if (priced.length || valued.length) {
+    const sumP = priced.reduce((a, w) => a + w.price * bottles(w), 0), clP = priced.reduce((a, w) => a + size(w) * bottles(w), 0);
+    const sumV = valued.reduce((a, w) => a + w.value * bottles(w), 0);
+    const purchaseOfValued = valued.filter(w => w.price > 0).reduce((a, w) => a + w.price * bottles(w), 0);
+    const comparable = valued.filter(w => w.price > 0).reduce((a, w) => a + w.value * bottles(w), 0);
+    const diff = purchaseOfValued > 0 ? Math.round((comparable - purchaseOfValued) / purchaseOfValued * 100) : null;
+    h += '<div class="stats-grid" style="margin-top:12px">';
+    if (clP) h += `<div class="stats-card"><div class="big">${fmtMoney((sumP / clP).toFixed(2))}</div><div class="label">${t('s_percl')}</div></div>`;
+    if (sumP) h += `<div class="stats-card"><div class="big">${fmtMoney(Math.round(sumP))}</div><div class="label">${t('s_purchase')}</div></div>`;
+    if (sumV) h += `<div class="stats-card"><div class="big">${fmtMoney(Math.round(sumV))}</div><div class="label">${t('s_marketval')}${diff != null ? ' (' + (diff > 0 ? '+' : '') + diff + ' %)' : ''}</div></div>`;
+    h += '</div>';
+  }
+  const groupRows = (keyFn, labelFn) => {
+    const g = new Map();
+    wines.forEach(w => { const k = keyFn(w); if (k == null || k === '') return; const e = g.get(k) || { label: labelFn(k, w), n: 0 }; e.n += bottles(w); g.set(k, e); });
+    return [...g.values()];
+  };
+  // Nach Fass (Freitext, ohne Groß-/Kleinschreibung zusammengefasst)
+  const cask = groupRows(w => String(w.cask || '').trim().toLowerCase(), (k, w) => String(w.cask).trim()).sort((a, b) => b.n - a.n).slice(0, 8);
+  if (cask.length) h += `<div class="stats-title" style="margin-top:20px">${t('s_bycask')}</div>` + statBarRows(cask, 'var(--gold)', true);
+  // Nach Alter (Klassen)
+  const ageClass = (w) => !w.age ? 'nas' : w.age < 10 ? '<10' : w.age <= 12 ? '10–12' : w.age <= 17 ? '13–17' : w.age <= 24 ? '18–24' : '25+';
+  const order = ['nas', '<10', '10–12', '13–17', '18–24', '25+'];
+  const ages = order.map(k => ({ label: k === 'nas' ? t('s_age_nas') : k + ' ' + t('unit_years'), n: wines.filter(w => ageClass(w) === k).reduce((a, w) => a + bottles(w), 0) })).filter(r => r.n);
+  if (ages.length > 1) h += `<div class="stats-title" style="margin-top:20px">${t('s_byage')}</div>` + statBarRows(ages, 'var(--gold)', true);
+  // Nach Torf
+  const peat = PEAT_LEVELS.map(k => ({ label: t('peat_' + k), n: wines.filter(w => w.peat === k).reduce((a, w) => a + bottles(w), 0) })).filter(r => r.n);
+  if (peat.length) h += `<div class="stats-title" style="margin-top:20px">${t('s_bypeat')}</div>` + statBarRows(peat, 'var(--gold)', true);
+  return h;
+}
 function statsMoreHtml() {
   let h = '';
   const bottles = (w) => w.count || 1;
@@ -18619,6 +19926,7 @@ function statsMoreHtml() {
     return `<div class="stats-title" style="margin-top:20px">${t(titleKey)}</div>` + statBarRows(top.map(e => ({ label: e.label, n: e.n, click: e.raw ? statSearchLink(e.raw) : null })), 'var(--gold)', true) + statMore(all.length, top.length);
   };
   h += byField('country', 's_bycountry', true) + byField('region', 's_byregion', false) + byField('grape', 's_bygrape', false);
+  h += whiskyStatsHtml();
   // Nach Jahrgang (Säulen, seitlich scrollbar)
   const vint = new Map();
   wines.forEach(w => { if (w.year) vint.set(w.year, (vint.get(w.year) || 0) + bottles(w)); });
@@ -18667,10 +19975,10 @@ function statsMoreHtml() {
     h += `<div class="stats-title" style="margin-top:20px">${t('s_drunk_month')}</div><div class="col-chart">` + months.map(m => `<div class="col" title="${esc(m.full)}: ${m.n}"><div class="col-n">${m.n || ''}</div><div class="col-bar" style="height:${m.n ? Math.max(3, Math.round(m.n / mx * 70)) : 2}px;${m.n ? '' : 'opacity:.35'}"></div><div class="col-l">${esc(m.label)}</div></div>`).join('') + '</div>';
     const yrows = [...byYear].sort((a, b) => b[0] - a[0]).slice(0, 8).map(([y, n]) => ({ label: String(y), n }));
     if (yrows.length) h += `<div class="stats-title" style="margin-top:6px">${t('s_drunk_year')}</div>` + statBarRows(yrows, 'var(--wine-light)') + statMore(byYear.size, yrows.length);
-    const spent = drunkWines.filter(x => x.price > 0), sp = spent.reduce((a, x) => a + x.price, 0);
+    const spent = drunkWines.filter(x => x.price > 0), sp = spent.reduce((a, x) => a + drunkCost(x), 0);
     if (spent.length) h += `<div class="stats-title" style="margin-top:20px">${t('s_spent')}</div><div class="stats-grid">
       <div class="stats-card"><div class="big">${fmtMoney(Math.round(sp))}</div><div class="label">${t('s_spent_total')}</div></div>
-      <div class="stats-card"><div class="big">${fmtMoney(Math.round(sp / spent.length))}</div><div class="label">${t('s_price_avg')}</div></div>
+      <div class="stats-card"><div class="big">${fmtMoney(Math.round(sp / drunkBottles(spent)))}</div><div class="label">${t('s_price_avg')}</div></div>
     </div>`;
   }
   // Beste Länder und Rebsorten nach durchschnittlicher Bewertung (Keller und getrunkene Weine zusammen)
@@ -18790,7 +20098,7 @@ function renderHistory() {
     .filter(w => histFilterType === 'alle' || w.type === histFilterType)
     .filter(w => histFilterOcc === 'alle' || (w.occasions||[]).includes(histFilterOcc))
     .sort((a,b) => new Date(b.date) - new Date(a.date));
-  const drunkVal = list.reduce((s,w) => s+(w.price||0), 0);
+  const drunkVal = list.reduce((s,w) => s+drunkCost(w), 0);
 
   let html = `<div class="stats-title">${t('s_drunk')} (${list.length})</div>`;
   if (drunkVal > 0) {
@@ -18806,7 +20114,7 @@ function renderHistory() {
       const d = dt.toLocaleDateString(dateLocale());
       const time = dt.toLocaleTimeString(dateLocale(), {hour:'2-digit', minute:'2-digit'});
       html += `<div class="stats-card" onclick="editHistory('${w.id}')" style="margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer">
-        <div><div style="font-size:13px">${esc(w.name)} <span style="font-size:11px;color:var(--text-dim)">✏️</span></div><div style="font-size:11px;color:var(--text-muted)">${w.year||''}${w.grape?' · '+esc(w.grape):''}${w.location?' · 📍 '+esc(w.location):''}${w.companions?' · 👥 '+esc(w.companions):''}${(w.occasions&&w.occasions.length)?' · 🎉 '+esc(occLabels(w.occasions)):''}</div></div>
+        <div><div style="font-size:13px">${esc(w.name)} <span style="font-size:11px;color:var(--text-dim)">✏️</span></div><div style="font-size:11px;color:var(--text-muted)">${w.year||''}${w.grape?' · '+esc(w.grape):''}${w.cl?' · 🥃 '+t('hist_cl',{n:w.cl}):''}${w.empty?' · 🏁 '+t('hist_empty'):''}${w.location?' · 📍 '+esc(w.location):''}${w.companions?' · 👥 '+esc(w.companions):''}${(w.occasions&&w.occasions.length)?' · 🎉 '+esc(occLabels(w.occasions)):''}</div></div>
         <div style="font-size:11px;color:var(--text-muted);white-space:nowrap;text-align:right">${d}<br>${time}</div>
       </div>`;
     });
@@ -20092,9 +21400,9 @@ function wishToKeller(id) {
 // ═══════════════════════════════════════
 // EXPORT
 // ═══════════════════════════════════════
-const EXPORT_HEADERS = ['Name','Jahr','Typ','Region','Land','Destillerie','Alter','ABV','Fass','Regal','Ebene','Platz','Flaschen','Bewertung','Preis','Notiz'];
+const EXPORT_HEADERS = ['Name','Jahr','Typ','Region','Land','Destillerie','Alter','ABV','Fass','Größe','Abgefüllt','Abfüller','Batch','Torf','Punkte','Marktwert','Regal','Ebene','Platz','Flaschen','Geöffnet','Bewertung','Preis','Notiz'];
 function exportRows() {
-  return wines.map(w => [w.name,w.year||'',w.type,w.region||'',w.country||'',w.grape||'',w.age||'',w.abv||'',w.cask||'',w.locRegal||'',w.locEbene||'',w.locPlatz||'',w.count||1,w.rating||'',w.price||'',w.note||'']);
+  return wines.map(w => [w.name,w.year||'',w.type,w.region||'',w.country||'',w.grape||'',w.age||'',w.abv||'',w.cask||'',w.size||70,w.bottled||'',w.bottler||'',w.batch||'',w.peat||'',w.score||'',w.value||'',w.locRegal||'',w.locEbene||'',w.locPlatz||'',w.count||1,(w.opened||[]).length||'',w.rating||'',w.price||'',w.note||'']);
 }
 
 async function exportCSV() {
@@ -20263,7 +21571,7 @@ function importRowsIntoWines(rows) {
   const col = name => header.indexOf(name);
   const idx = {
     name: col('name'), year: col('jahr') > -1 ? col('jahr') : col('jahrgang'), type: col('typ'),
-    region: col('region'), country: col('land'), grape: col('destillerie') > -1 ? col('destillerie') : col('rebsorte'), age: col('alter'), abv: col('abv'), cask: col('fass'), location: col('lagerplatz'),
+    region: col('region'), country: col('land'), grape: col('destillerie') > -1 ? col('destillerie') : col('rebsorte'), age: col('alter'), abv: col('abv'), cask: col('fass'), size: col('größe'), bottled: col('abgefüllt'), bottler: col('abfüller'), batch: col('batch'), peat: col('torf'), score: col('punkte'), value: col('marktwert'), location: col('lagerplatz'),
     locRegal: col('regal'), locEbene: col('ebene'), locPlatz: col('platz'), count: col('flaschen'),
     rating: col('bewertung'), price: col('preis'),
     note: col('notiz')
@@ -20276,7 +21584,7 @@ function importRowsIntoWines(rows) {
     // cleanWine begrenzt Typ, Bewertung (0-5), Anzahl (>=1), Preis (versteht Dezimalkomma) und vergibt eine saubere ID
     const w = cleanWine({
       name: get(cols, 'name'), year: get(cols, 'year'), type: get(cols, 'type').toLowerCase(),
-      region: get(cols, 'region'), country: get(cols, 'country'), grape: get(cols, 'grape'), age: get(cols, 'age'), abv: get(cols, 'abv'), cask: get(cols, 'cask'), location: get(cols, 'location'),
+      region: get(cols, 'region'), country: get(cols, 'country'), grape: get(cols, 'grape'), age: get(cols, 'age'), abv: get(cols, 'abv'), cask: get(cols, 'cask'), size: get(cols, 'size'), bottled: get(cols, 'bottled'), bottler: get(cols, 'bottler'), batch: get(cols, 'batch'), peat: get(cols, 'peat'), score: get(cols, 'score'), value: get(cols, 'value'), location: get(cols, 'location'),
       locRegal: get(cols, 'locRegal'), locEbene: get(cols, 'locEbene'), locPlatz: get(cols, 'locPlatz'),
       count: get(cols, 'count'), rating: get(cols, 'rating'), price: get(cols, 'price'),
       note: get(cols, 'note')

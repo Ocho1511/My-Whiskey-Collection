@@ -27,7 +27,7 @@
 <li><a href="#start">Översikt och första stegen</a></li>
 <li><a href="#add">Lägga till en whisky</a></li>
 <li><a href="#cellar">Samlingen</a></li>
-<li><a href="#drink">Dricka en whisky</a></li>
+<li><a href="#drink">Dricka en whisky</a><br><small>↳ <a href="#dram">4a. Flaskor, drams och provningsanteckningar</a></small></li>
 <li><a href="#racks">Hyllor och lagring</a></li>
 <li><a href="#history">Historik</a></li>
 <li><a href="#wish">Önskelista</a></li>
@@ -118,6 +118,27 @@
 <p><em>Drick</em> tar bort en flaska och skapar en post i <a href="#history">Historik</a>. Konfetti och ljud firar det (kan stängas av i Setup). Om det är den <strong>sista flaskan</strong> meddelar appen det: whiskyn försvinner då från samlingen (men finns kvar i Historik).</p>
 <p>Whisky serveras bäst ren vid cirka 16–20 °C; appen visar den uppskattningen som serveringstemperatur.</p>
 <div class="tip"><strong>Snabbt med skanning:</strong> Den runda 🥃-knappen i samlingen fotograferar en etikett, känner igen whiskyn i din samling och öppnar direkt dialogen Drick.</div>
+
+<h2 id="dram">4a. Flaskor, drams och provningsanteckningar</h2>
+
+<p>En flaska räcker många kvällar, så <em>Drick</em> hälls nu upp som en dram och håller reda på fyllnadsnivån i stället för att ta bort en hel flaska.</p>
+<ul>
+<li><strong>Drick:</strong> Tryck på <em>Drick</em> och välj mängd i cl (2, 4, 6, 10 eller ett eget värde). Appen häller upp från den öppnade flaskan med minst kvar, eller öppnar en ny, oöppnad flaska. Innan du bekräftar ser du vad som finns kvar efteråt.</li>
+<li><strong>Flaskan är tom:</strong> Kryssa i “Flaskan är då tom” (eller häll upp resten). Först då tas en flaska bort från lagret, och du får frågan vilken hyllplats den kom från.</li>
+<li><strong>På kortet:</strong> 🔓 öppnade flaskor med återstående cl och en fyllnadsstapel, 🔒 oöppnade flaskor och flaskstorleken. Filtren <em>🔓 Öppnad</em>, <em>🔒 Oöppnad</em> och <em>🌫 Torvig</em> avgränsar listan.</li>
+<li><strong>Historik:</strong> varje dram är en post med sin mängd i cl; en tömd flaska markeras med 🏁. Priset för en dram räknas proportionellt.</li>
+</ul>
+<h3>Nya fält</h3>
+<ul>
+<li><strong>Flaska:</strong> storlek (cl), buteljerad (år), buteljerare, fat-/batchnr, torv (lätt, medel, kraftig) och marknadsvärde.</li>
+<li><strong>Provning:</strong> doft, smak, eftersmak och poäng (0–100).</li>
+</ul>
+<h3>Sortering, sökning och statistik</h3>
+<ul>
+<li>Sortera efter ABV, ålder eller poäng. Sökningen hittar även fat, buteljerare, batchnummer och provningsanteckningar.</li>
+<li>Statistik: volym i cl, öppnade flaskor, drucken mängd och antal drams, marknadsvärde jämfört med inköpspriset, genomsnittligt pris per cl samt staplar per fat, ålder och torv.</li>
+<li>CSV- och Excel-exporten innehåller de nya kolumnerna; importen förstår dem.</li>
+</ul>
 
 <!-- ───────────────── 5 ───────────────── -->
 <h2 id="racks">5. Hyllor och lagring</h2>

@@ -27,7 +27,7 @@
 <li><a href="#start">Overblik og de første skridt</a></li>
 <li><a href="#add">Tilføje en whisky</a></li>
 <li><a href="#cellar">Samlingen</a></li>
-<li><a href="#drink">Drikke en whisky</a></li>
+<li><a href="#drink">Drikke en whisky</a><br><small>↳ <a href="#dram">4a. Flasker, drams og smagsnoter</a></small></li>
 <li><a href="#racks">Reoler og opbevaring</a></li>
 <li><a href="#history">Historik</a></li>
 <li><a href="#wish">Ønskeliste</a></li>
@@ -118,6 +118,27 @@
 <p><em>Drik</em> fjerner én flaske og opretter en post i <a href="#history">Historik</a>. Konfetti og lyd fejrer det (kan slås fra i Opsætning). Hvis det er den <strong>sidste flaske</strong>, fortæller appen det: whiskyen forsvinder så fra samlingen (men bliver i Historik).</p>
 <p>Whisky serveres bedst ren ved ca. 16–20 °C; appen viser dette skøn som serveringstemperatur.</p>
 <div class="tip"><strong>Hurtigt med scanning:</strong> Den runde 🥃-knap i samlingen fotograferer en etiket, genkender whiskyen i din samling og åbner straks Drik-dialogen.</div>
+
+<h2 id="dram">4a. Flasker, drams og smagsnoter</h2>
+
+<p>En flaske holder til mange aftener, så <em>Drik</em> skænker nu en dram og holder styr på fyldningsniveauet i stedet for at fjerne en hel flaske.</p>
+<ul>
+<li><strong>Drik:</strong> Tryk på <em>Drik</em> og vælg mængden i cl (2, 4, 6, 10 eller en egen værdi). Appen skænker fra den åbnede flaske med mindst tilbage, eller åbner en ny, uåbnet flaske. Før du bekræfter, kan du se, hvad der er tilbage bagefter.</li>
+<li><strong>Flasken er tom:</strong> Sæt kryds i “Flasken er tom efter dette” (eller skænk resten). Først da fjernes en flaske fra beholdningen, og du bliver spurgt, hvilken hyldeplads den kom fra.</li>
+<li><strong>På kortet:</strong> 🔓 åbnede flasker med resterende cl og en fyldningsbjælke, 🔒 uåbnede flasker og flaskestørrelsen. Filtrene <em>🔓 Åbnet</em>, <em>🔒 Uåbnet</em> og <em>🌫 Tørvet</em> afgrænser listen.</li>
+<li><strong>Historik:</strong> hver dram er en post med sin mængde i cl; en tømt flaske er markeret med 🏁. Prisen for en dram tælles forholdsmæssigt.</li>
+</ul>
+<h3>Nye felter</h3>
+<ul>
+<li><strong>Flaske:</strong> størrelse (cl), aftappet (år), aftapper, fad-/batchnr., tørv (let, middel, kraftig) og markedsværdi.</li>
+<li><strong>Smagning:</strong> duft, smag, eftersmag og point (0–100).</li>
+</ul>
+<h3>Sortering, søgning og statistik</h3>
+<ul>
+<li>Sortér efter ABV, alder eller point. Søgningen finder også fad, aftapper, batchnummer og smagsnoter.</li>
+<li>Statistik: volumen i cl, åbnede flasker, drukket mængde og antal drams, markedsværdi sammenlignet med købsprisen, gennemsnitlig pris pr. cl samt søjler efter fad, alder og tørv.</li>
+<li>CSV- og Excel-eksporten indeholder de nye kolonner; importen forstår dem.</li>
+</ul>
 
 <!-- ───────────────── 5 ───────────────── -->
 <h2 id="racks">5. Reoler og opbevaring</h2>
