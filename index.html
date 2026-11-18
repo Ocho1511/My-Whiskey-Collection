@@ -89,7 +89,6 @@
   --wine-light: #b02340;
   --gold: #c4a24a;
   --gold-light: #dfc06e;
-  --white-wine: #c8b45a;
   --rose: #c47080;
   --sparkling: #8ab4c8;
   --text: #e8ddd4;
@@ -267,17 +266,12 @@ input::placeholder, textarea::placeholder { color: #9a8893; opacity: 1; }
   line-height: 1.3;
 }
 .wine-year { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-top: 2px; }
-.wine-type-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  margin-top: 5px;
-  flex-shrink: 0;
-}
-.dot-rot { background: #c8801e; }
-.dot-weiß { background: #a8501c; }
-.dot-rosé { background: var(--rose); }
-.dot-sekt { background: #7a8a5c; }
-.dot-other { background: #8a7080; }
+
+
+
+
+
+
 .wine-type-grape { flex-shrink: 0; margin-top: 2px; display: block; line-height: 0; color: inherit; text-decoration: none; }
 a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 .wine-row .wine-type-grape { margin-top: 0; }
@@ -367,7 +361,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
   align-items: center;
   gap: 10px;
 }
-.wine-row .wine-type-dot { margin-top: 0; }
+
 .wine-row-info { flex: 1; min-width: 0; }
 .wine-row-name { font-family: var(--heading-font, 'Playfair Display', serif); font-size: 14px; color: var(--text); }
 .wine-row-sub { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-top: 2px; }
@@ -598,7 +592,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 #f-photo-box img { max-width: 100%; max-height: 220px; border-radius: 10px; display: block; }
 .mm-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 8px; flex-wrap: wrap; }
 .mm-row label { display: flex; flex-direction: column; font-size: 12px; color: var(--text-muted); gap: 4px; flex: 1; min-width: 90px; }
-.mm-cellar { width: 100%; font-size: 12px; font-weight: 700; color: var(--gold-light); }
+
 .mm-badge { font-size: 11px; font-weight: 600; border-radius: 8px; padding: 3px 8px; margin: 6px 0 0; display: inline-block; }
 .mm-badge.ok { color: var(--green-text); background: rgba(60,160,90,.12); }
 .mm-badge.low { color: #fff; background: var(--red-alert); }
@@ -749,8 +743,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
   font-size: 16px;
   cursor: pointer;
 }
-/* ── STATS TAB ── */
-.stats-section { padding: 0 16px 20px; }
+
 .stats-title {
   font-family: var(--heading-font, 'Playfair Display', serif);
   font-size: 14px;
@@ -789,7 +782,7 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 .type-bar-row.wide .type-bar-label { width: 120px; }
 .type-bar-row.wide .type-bar-count { width: auto; min-width: 24px; white-space: nowrap; }
 .stat-more { font-size: 11px; color: var(--text-muted); margin: -4px 0 12px; }
-.stat-warn { margin: 10px 0 4px; color: var(--red-text, #ee7f7a); font-size: 13px; cursor: pointer; }
+
 .stats-card .sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .stats-card.clickable { cursor: pointer; }
 .stats-card.full { grid-column: 1 / -1; }
@@ -800,38 +793,13 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 .col-chart .col-l { font-size: 9px; color: var(--text-dim); margin-top: 4px; white-space: nowrap; }
 .type-bar-count { font-size: 11px; font-weight: 600; color: var(--text); width: 24px; text-align: right; }
 
-.rt-seg {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.rt-jung { background: #1d6c8f; color: #fff; }
-.rt-optimal { background: #2f8a52; color: #fff; }
-.rt-peak { background: #c4972a; color: #211705; }
-.rt-over { background: #a5322f; color: #fff; }
-.rt-now-marker {
-  position: relative;
-  width: 100%;
-  height: 8px;
-  margin-bottom: 6px;
-}
-.rt-now-line {
-  position: absolute;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: #fff;
-  border-radius: 1px;
-  transform: translateX(-50%);
-}
+
+
+
+
+
+
+
 
 /* ── WISHLIST TAB ── */
 .wish-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
@@ -3453,7 +3421,6 @@ de: {
   sx_none: "Keine Empfehlung gefunden",
   sx_applied: "Empfehlung übernommen ✓",
   sx_fav_set: "Als Favorit gesetzt ✓",
-  sx_wish_added: "Auf die Wunschliste gesetzt ✓",
   sx_glass_view: "Glas ansehen",
   sx_glass_glencairn: "Glencairn-Glas",
   sx_glass_tumbler: "Tumbler",
@@ -3464,8 +3431,6 @@ de: {
   sx_water_drops: "2–3 Tropfen Wasser",
   sx_mix_soda: "1:3 mit Soda oder Ginger Ale",
   sx_mix_cocktail: "nach Rezept",
-  sx_rec_title: "Rezepte",
-  sx_rec_sub: "Klassiker und Cocktails",
   sx_rec_all: "Alle",
   sx_rec_fav: "⭐ Favoriten",
   sx_rec_own: "Eigene",
@@ -3980,7 +3945,6 @@ de: {
   barcode_invalid: "Das ist kein gültiger Flaschen-Barcode",
   barcode_looking: "Barcode wird gesucht…",
   barcode_found: "Gefunden: {name}",
-  barcode_notwine: "Dieser Barcode gehört nicht zu einem Whiskey",
   barcode_year: "Bitte den Jahr eintragen",
   barcode_known: "{name} ist schon in der Sammlung. Noch eine Flasche hinzufügen?",
   barcode_added: "Flasche hinzugefügt – jetzt {n} Stück",
@@ -4065,7 +4029,6 @@ de: {
   dm_title: "Whiskey trinken",
   dm_with: "Mit wem getrunken?",
   dm_with_ph: "z.B. Anna, Ben",
-  dm_last: "Dies ist die letzte Flasche — der Whiskey wird aus der Sammlung entfernt.",
   btn_drink_confirm: "🥃 Trinken",
   dm_occasion: "Anlass",
   occ_spring: "Frühling",
@@ -4083,7 +4046,6 @@ en: {
   sx_none: "No recommendation found",
   sx_applied: "Recommendation applied ✓",
   sx_fav_set: "Set as favourite ✓",
-  sx_wish_added: "Added to the wish list ✓",
   sx_glass_view: "See the glass",
   sx_glass_glencairn: "Glencairn glass",
   sx_glass_tumbler: "Tumbler",
@@ -4094,8 +4056,6 @@ en: {
   sx_water_drops: "2–3 drops of water",
   sx_mix_soda: "1:3 with soda or ginger ale",
   sx_mix_cocktail: "per recipe",
-  sx_rec_title: "Recipes",
-  sx_rec_sub: "Classics and cocktails",
   sx_rec_all: "All",
   sx_rec_fav: "⭐ Favourites",
   sx_rec_own: "Mine",
@@ -4610,7 +4570,6 @@ en: {
   barcode_invalid: "That is not a valid bottle barcode",
   barcode_looking: "Looking up barcode…",
   barcode_found: "Found: {name}",
-  barcode_notwine: "This barcode does not belong to a whiskey",
   barcode_year: "Please enter the year",
   barcode_known: "{name} is already in your collection. Add one more bottle?",
   barcode_added: "Bottle added – now {n} in stock",
@@ -4695,7 +4654,6 @@ en: {
   dm_title: "Drink whiskey",
   dm_with: "Drunk with whom?",
   dm_with_ph: "e.g. Anna, Ben",
-  dm_last: "This is the last bottle — the whiskey will be removed from the collection.",
   btn_drink_confirm: "🥃 Drink",
   dm_occasion: "Occasion",
   occ_spring: "Spring",
@@ -4713,7 +4671,6 @@ es: {
   sx_none: "No se encontró ninguna recomendación",
   sx_applied: "Recomendación aplicada ✓",
   sx_fav_set: "Marcado como favorito ✓",
-  sx_wish_added: "Añadido a la lista de deseos ✓",
   sx_glass_view: "Ver el vaso",
   sx_glass_glencairn: "Copa Glencairn",
   sx_glass_tumbler: "Vaso corto",
@@ -4724,8 +4681,6 @@ es: {
   sx_water_drops: "2–3 gotas de agua",
   sx_mix_soda: "1:3 con soda o ginger ale",
   sx_mix_cocktail: "según la receta",
-  sx_rec_title: "Recetas",
-  sx_rec_sub: "Clásicos y cócteles",
   sx_rec_all: "Todas",
   sx_rec_fav: "⭐ Favoritas",
   sx_rec_own: "Mías",
@@ -5240,7 +5195,6 @@ es: {
   barcode_invalid: "Este no es un código de barras de botella válido",
   barcode_looking: "Buscando código de barras…",
   barcode_found: "Encontrado: {name}",
-  barcode_notwine: "Este código de barras no corresponde a un whisky",
   barcode_year: "Introduce el año",
   barcode_known: "{name} ya está en tu colección. ¿Añadir una botella más?",
   barcode_added: "Botella añadida – ahora hay {n} en stock",
@@ -5325,7 +5279,6 @@ es: {
   dm_title: "Beber whisky",
   dm_with: "¿Con quién lo bebiste?",
   dm_with_ph: "p.ej. Anna, Ben",
-  dm_last: "Es la última botella — el whisky se eliminará de la colección.",
   btn_drink_confirm: "🥃 Beber",
   dm_occasion: "Ocasión",
   occ_spring: "Primavera",
@@ -5343,7 +5296,6 @@ sv: {
   sx_none: "Ingen rekommendation hittades",
   sx_applied: "Rekommendation tillämpad ✓",
   sx_fav_set: "Markerad som favorit ✓",
-  sx_wish_added: "Tillagd i önskelistan ✓",
   sx_glass_view: "Visa glaset",
   sx_glass_glencairn: "Glencairn-glas",
   sx_glass_tumbler: "Tumbler",
@@ -5354,8 +5306,6 @@ sv: {
   sx_water_drops: "2–3 droppar vatten",
   sx_mix_soda: "1:3 med sodavatten eller ginger ale",
   sx_mix_cocktail: "enligt recept",
-  sx_rec_title: "Recept",
-  sx_rec_sub: "Klassiker och cocktails",
   sx_rec_all: "Alla",
   sx_rec_fav: "⭐ Favoriter",
   sx_rec_own: "Mina",
@@ -5870,7 +5820,6 @@ sv: {
   barcode_invalid: "Det där är inte en giltig flaskstreckkod",
   barcode_looking: "Söker efter streckkod…",
   barcode_found: "Hittad: {name}",
-  barcode_notwine: "Den här streckkoden tillhör ingen whisky",
   barcode_year: "Ange år",
   barcode_known: "{name} finns redan i din samling. Lägga till en flaska till?",
   barcode_added: "Flaska tillagd – nu {n} i lager",
@@ -5955,7 +5904,6 @@ sv: {
   dm_title: "Drick whisky",
   dm_with: "Med vem drack du?",
   dm_with_ph: "t.ex. Anna, Ben",
-  dm_last: "Detta är sista flaskan — whiskyn tas bort från samlingen.",
   btn_drink_confirm: "🥃 Drick",
   dm_occasion: "Tillfälle",
   occ_spring: "Vår",
@@ -5973,7 +5921,6 @@ da: {
   sx_none: "Ingen anbefaling fundet",
   sx_applied: "Anbefaling anvendt ✓",
   sx_fav_set: "Markeret som favorit ✓",
-  sx_wish_added: "Tilføjet til ønskelisten ✓",
   sx_glass_view: "Se glasset",
   sx_glass_glencairn: "Glencairn-glas",
   sx_glass_tumbler: "Tumbler",
@@ -5984,8 +5931,6 @@ da: {
   sx_water_drops: "2–3 dråber vand",
   sx_mix_soda: "1:3 med danskvand eller ginger ale",
   sx_mix_cocktail: "efter opskrift",
-  sx_rec_title: "Opskrifter",
-  sx_rec_sub: "Klassikere og cocktails",
   sx_rec_all: "Alle",
   sx_rec_fav: "⭐ Favoritter",
   sx_rec_own: "Mine",
@@ -6500,7 +6445,6 @@ da: {
   barcode_invalid: "Det er ikke en gyldig flaskestregkode",
   barcode_looking: "Søger efter stregkode…",
   barcode_found: "Fundet: {name}",
-  barcode_notwine: "Denne stregkode hører ikke til en whisky",
   barcode_year: "Indtast år",
   barcode_known: "{name} er allerede i din samling. Tilføj endnu en flaske?",
   barcode_added: "Flaske tilføjet – nu {n} på lager",
@@ -6585,7 +6529,6 @@ da: {
   dm_title: "Drik whisky",
   dm_with: "Med hvem drak du?",
   dm_with_ph: "f.eks. Anna, Ben",
-  dm_last: "Dette er den sidste flaske — whiskyen fjernes fra samlingen.",
   btn_drink_confirm: "🥃 Drik",
   dm_occasion: "Anledning",
   occ_spring: "Forår",
@@ -6603,7 +6546,6 @@ fi: {
   sx_none: "Suositusta ei löytynyt",
   sx_applied: "Suositus otettu käyttöön ✓",
   sx_fav_set: "Merkitty suosikiksi ✓",
-  sx_wish_added: "Lisätty toivelistalle ✓",
   sx_glass_view: "Katso lasi",
   sx_glass_glencairn: "Glencairn-lasi",
   sx_glass_tumbler: "Tumbler",
@@ -6614,8 +6556,6 @@ fi: {
   sx_water_drops: "2–3 tippaa vettä",
   sx_mix_soda: "1:3 soodaveden tai ginger alen kanssa",
   sx_mix_cocktail: "reseptin mukaan",
-  sx_rec_title: "Reseptit",
-  sx_rec_sub: "Klassikot ja cocktailit",
   sx_rec_all: "Kaikki",
   sx_rec_fav: "⭐ Suosikit",
   sx_rec_own: "Omat",
@@ -7131,7 +7071,6 @@ fi: {
   barcode_invalid: "Tämä ei ole kelvollinen pullon viivakoodi",
   barcode_looking: "Haetaan viivakoodia…",
   barcode_found: "Löytyi: {name}",
-  barcode_notwine: "Tämä viivakoodi ei kuulu viskille",
   barcode_year: "Anna vuosi",
   barcode_known: "{name} on jo kokoelmassasi. Lisätäänkö vielä yksi pullo?",
   barcode_added: "Pullo lisätty – nyt {n} kpl",
@@ -7215,7 +7154,6 @@ fi: {
   dm_title: "Juo viski",
   dm_with: "Kenen kanssa joit?",
   dm_with_ph: "esim. Anna, Ben",
-  dm_last: "Tämä on viimeinen pullo — viski poistetaan kokoelmasta.",
   btn_drink_confirm: "🥃 Juo",
   dm_occasion: "Tilaisuus",
   occ_spring: "Kevät",
@@ -7233,7 +7171,6 @@ ru: {
   sx_none: "Рекомендация не найдена",
   sx_applied: "Рекомендация применена ✓",
   sx_fav_set: "Отмечено как любимое ✓",
-  sx_wish_added: "Добавлено в список желаний ✓",
   sx_glass_view: "Показать бокал",
   sx_glass_glencairn: "Бокал Glencairn",
   sx_glass_tumbler: "Тумблер",
@@ -7244,8 +7181,6 @@ ru: {
   sx_water_drops: "2–3 капли воды",
   sx_mix_soda: "1:3 с содовой или имбирным элем",
   sx_mix_cocktail: "по рецепту",
-  sx_rec_title: "Рецепты",
-  sx_rec_sub: "Классика и коктейли",
   sx_rec_all: "Все",
   sx_rec_fav: "⭐ Любимые",
   sx_rec_own: "Мои",
@@ -7760,7 +7695,6 @@ ru: {
   barcode_invalid: "Это недействительный штрихкод бутылки",
   barcode_looking: "Поиск штрихкода…",
   barcode_found: "Найдено: {name}",
-  barcode_notwine: "Этот штрихкод не относится к виски",
   barcode_year: "Укажите год",
   barcode_known: "{name} уже есть в вашей коллекции. Добавить ещё одну бутылку?",
   barcode_added: "Бутылка добавлена – теперь в наличии {n}",
@@ -7845,7 +7779,6 @@ ru: {
   dm_title: "Выпить виски",
   dm_with: "С кем вы пили?",
   dm_with_ph: "напр. Anna, Ben",
-  dm_last: "Это последняя бутылка — виски будет удалено из коллекции.",
   btn_drink_confirm: "🥃 Выпить",
   dm_occasion: "Повод",
   occ_spring: "Весна",
@@ -7863,7 +7796,6 @@ it: {
   sx_none: "Nessun consiglio trovato",
   sx_applied: "Consiglio applicato ✓",
   sx_fav_set: "Impostato come preferito ✓",
-  sx_wish_added: "Aggiunto alla lista desideri ✓",
   sx_glass_view: "Vedi il bicchiere",
   sx_glass_glencairn: "Bicchiere Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -7874,8 +7806,6 @@ it: {
   sx_water_drops: "2–3 gocce d'acqua",
   sx_mix_soda: "1:3 con acqua di soda o ginger ale",
   sx_mix_cocktail: "secondo la ricetta",
-  sx_rec_title: "Ricette",
-  sx_rec_sub: "Classici e cocktail",
   sx_rec_all: "Tutte",
   sx_rec_fav: "⭐ Preferite",
   sx_rec_own: "Mie",
@@ -8390,7 +8320,6 @@ it: {
   barcode_invalid: "Questo non è un codice a barre valido per una bottiglia",
   barcode_looking: "Ricerca del codice a barre…",
   barcode_found: "Trovato: {name}",
-  barcode_notwine: "Questo codice a barre non appartiene a un whisky",
   barcode_year: "Inserisci l'anno",
   barcode_known: "{name} è già nella tua collezione. Aggiungere un'altra bottiglia?",
   barcode_added: "Bottiglia aggiunta – ora ne hai {n}",
@@ -8475,7 +8404,6 @@ it: {
   dm_title: "Bevi whisky",
   dm_with: "Con chi hai bevuto?",
   dm_with_ph: "es. Anna, Ben",
-  dm_last: "Questa è l'ultima bottiglia — il whisky verrà rimosso dalla collezione.",
   btn_drink_confirm: "🥃 Bevi",
   dm_occasion: "Occasione",
   occ_spring: "Primavera",
@@ -8493,7 +8421,6 @@ fr: {
   sx_none: "Aucune recommandation trouvée",
   sx_applied: "Recommandation appliquée ✓",
   sx_fav_set: "Défini comme favori ✓",
-  sx_wish_added: "Ajouté à la liste de souhaits ✓",
   sx_glass_view: "Voir le verre",
   sx_glass_glencairn: "Verre Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -8504,8 +8431,6 @@ fr: {
   sx_water_drops: "2–3 gouttes d'eau",
   sx_mix_soda: "1:3 avec de l'eau gazeuse ou du ginger ale",
   sx_mix_cocktail: "selon la recette",
-  sx_rec_title: "Recettes",
-  sx_rec_sub: "Classiques et cocktails",
   sx_rec_all: "Toutes",
   sx_rec_fav: "⭐ Favoris",
   sx_rec_own: "Les miennes",
@@ -9020,7 +8945,6 @@ fr: {
   barcode_invalid: "Ce n'est pas un code-barres de bouteille valide",
   barcode_looking: "Recherche du code-barres…",
   barcode_found: "Trouvé : {name}",
-  barcode_notwine: "Ce code-barres n'appartient pas à un whisky",
   barcode_year: "Veuillez saisir l'année",
   barcode_known: "{name} est déjà dans votre collection. Ajouter une bouteille de plus ?",
   barcode_added: "Bouteille ajoutée – {n} en stock désormais",
@@ -9105,7 +9029,6 @@ fr: {
   dm_title: "Boire un whisky",
   dm_with: "Avec qui l'avez-vous bu ?",
   dm_with_ph: "ex. Anna, Ben",
-  dm_last: "C'est la dernière bouteille — le whisky sera retiré de la collection.",
   btn_drink_confirm: "🥃 Boire",
   dm_occasion: "Occasion",
   occ_spring: "Printemps",
@@ -9123,7 +9046,6 @@ pl: {
   sx_none: "Nie znaleziono rekomendacji",
   sx_applied: "Rekomendacja zastosowana ✓",
   sx_fav_set: "Ustawiono jako ulubiony ✓",
-  sx_wish_added: "Dodano do listy życzeń ✓",
   sx_glass_view: "Zobacz szklankę",
   sx_glass_glencairn: "Kieliszek Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -9134,8 +9056,6 @@ pl: {
   sx_water_drops: "2–3 krople wody",
   sx_mix_soda: "1:3 z wodą gazowaną lub ginger ale",
   sx_mix_cocktail: "według przepisu",
-  sx_rec_title: "Przepisy",
-  sx_rec_sub: "Klasyki i koktajle",
   sx_rec_all: "Wszystkie",
   sx_rec_fav: "⭐ Ulubione",
   sx_rec_own: "Moje",
@@ -9650,7 +9570,6 @@ pl: {
   barcode_invalid: "To nie jest prawidłowy kod kreskowy butelki",
   barcode_looking: "Wyszukiwanie kodu kreskowego…",
   barcode_found: "Znaleziono: {name}",
-  barcode_notwine: "Ten kod kreskowy nie należy do whisky",
   barcode_year: "Wpisz rok",
   barcode_known: "{name} jest już w Twojej kolekcji. Dodać jeszcze jedną butelkę?",
   barcode_added: "Dodano butelkę – teraz w zapasie: {n}",
@@ -9735,7 +9654,6 @@ pl: {
   dm_title: "Wypij whisky",
   dm_with: "Z kim piłeś?",
   dm_with_ph: "np. Anna, Ben",
-  dm_last: "To ostatnia butelka — whisky zostanie usunięta z kolekcji.",
   btn_drink_confirm: "🥃 Wypij",
   dm_occasion: "Okazja",
   occ_spring: "Wiosna",
@@ -9753,7 +9671,6 @@ hu: {
   sx_none: "Nem található ajánlás",
   sx_applied: "Ajánlás alkalmazva ✓",
   sx_fav_set: "Kedvencnek jelölve ✓",
-  sx_wish_added: "Hozzáadva a kívánságlistához ✓",
   sx_glass_view: "A pohár megtekintése",
   sx_glass_glencairn: "Glencairn pohár",
   sx_glass_tumbler: "Tumbler",
@@ -9764,8 +9681,6 @@ hu: {
   sx_water_drops: "2–3 csepp víz",
   sx_mix_soda: "1:3 szódával vagy ginger ale-lel",
   sx_mix_cocktail: "a recept szerint",
-  sx_rec_title: "Receptek",
-  sx_rec_sub: "Klasszikusok és koktélok",
   sx_rec_all: "Mind",
   sx_rec_fav: "⭐ Kedvencek",
   sx_rec_own: "Saját",
@@ -10280,7 +10195,6 @@ hu: {
   barcode_invalid: "Ez nem érvényes palackvonalkód",
   barcode_looking: "Vonalkód keresése…",
   barcode_found: "Megtalálva: {name}",
-  barcode_notwine: "Ez a vonalkód nem whiskyhez tartozik",
   barcode_year: "Kérjük, add meg az évet",
   barcode_known: "A(z) {name} már a gyűjteményedben van. Hozzáadsz még egy palackot?",
   barcode_added: "Palack hozzáadva – most {n} db van készleten",
@@ -10365,7 +10279,6 @@ hu: {
   dm_title: "Whisky elfogyasztása",
   dm_with: "Kivel ittad?",
   dm_with_ph: "pl. Anna, Ben",
-  dm_last: "Ez az utolsó palack — a whisky eltávolításra kerül a gyűjteményből.",
   btn_drink_confirm: "🥃 Iszom",
   dm_occasion: "Alkalom",
   occ_spring: "Tavasz",
@@ -10383,7 +10296,6 @@ cs: {
   sx_none: "Žádné doporučení nenalezeno",
   sx_applied: "Doporučení použito ✓",
   sx_fav_set: "Nastaveno jako oblíbené ✓",
-  sx_wish_added: "Přidáno do seznamu přání ✓",
   sx_glass_view: "Zobrazit sklenici",
   sx_glass_glencairn: "Sklenice Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -10394,8 +10306,6 @@ cs: {
   sx_water_drops: "2–3 kapky vody",
   sx_mix_soda: "1:3 se sodou nebo ginger ale",
   sx_mix_cocktail: "podle receptu",
-  sx_rec_title: "Recepty",
-  sx_rec_sub: "Klasiky a koktejly",
   sx_rec_all: "Vše",
   sx_rec_fav: "⭐ Oblíbené",
   sx_rec_own: "Moje",
@@ -10910,7 +10820,6 @@ cs: {
   barcode_invalid: "Toto není platný čárový kód lahve",
   barcode_looking: "Vyhledávání čárového kódu…",
   barcode_found: "Nalezeno: {name}",
-  barcode_notwine: "Tento čárový kód nepatří k whisky",
   barcode_year: "Zadejte prosím rok",
   barcode_known: "{name} už ve sbírce je. Přidat ještě jednu lahev?",
   barcode_added: "Lahev přidána – nyní {n} ks",
@@ -10995,7 +10904,6 @@ cs: {
   dm_title: "Vypít whisky",
   dm_with: "S kým jste pili?",
   dm_with_ph: "např. Anna, Ben",
-  dm_last: "Toto je poslední lahev — whisky bude odstraněna ze sbírky.",
   btn_drink_confirm: "🥃 Vypít",
   dm_occasion: "Příležitost",
   occ_spring: "Jaro",
@@ -11013,7 +10921,6 @@ sk: {
   sx_none: "Nenašlo sa žiadne odporúčanie",
   sx_applied: "Odporúčanie použité ✓",
   sx_fav_set: "Nastavené ako obľúbené ✓",
-  sx_wish_added: "Pridané do zoznamu želaní ✓",
   sx_glass_view: "Zobraziť pohár",
   sx_glass_glencairn: "Pohár Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -11024,8 +10931,6 @@ sk: {
   sx_water_drops: "2–3 kvapky vody",
   sx_mix_soda: "1:3 so sódou alebo ginger ale",
   sx_mix_cocktail: "podľa receptu",
-  sx_rec_title: "Recepty",
-  sx_rec_sub: "Klasiky a kokteily",
   sx_rec_all: "Všetko",
   sx_rec_fav: "⭐ Obľúbené",
   sx_rec_own: "Moje",
@@ -11540,7 +11445,6 @@ sk: {
   barcode_invalid: "Toto nie je platný čiarový kód fľaše",
   barcode_looking: "Vyhľadáva sa čiarový kód…",
   barcode_found: "Nájdené: {name}",
-  barcode_notwine: "Tento čiarový kód nepatrí whisky",
   barcode_year: "Zadajte prosím rok",
   barcode_known: "{name} je už vo vašej zbierke. Pridať ešte jednu fľašu?",
   barcode_added: "Fľaša pridaná – teraz {n} ks",
@@ -11625,7 +11529,6 @@ sk: {
   dm_title: "Vypiť whisky",
   dm_with: "S kým ste pili?",
   dm_with_ph: "napr. Anna, Ben",
-  dm_last: "Toto je posledná fľaša — whisky bude odstránená zo zbierky.",
   btn_drink_confirm: "🥃 Vypiť",
   dm_occasion: "Príležitosť",
   occ_spring: "Jar",
@@ -11643,7 +11546,6 @@ ro: {
   sx_none: "Nu s-a găsit nicio recomandare",
   sx_applied: "Recomandare aplicată ✓",
   sx_fav_set: "Setat ca favorit ✓",
-  sx_wish_added: "Adăugat în lista de dorințe ✓",
   sx_glass_view: "Vezi paharul",
   sx_glass_glencairn: "Pahar Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -11654,8 +11556,6 @@ ro: {
   sx_water_drops: "2–3 picături de apă",
   sx_mix_soda: "1:3 cu apă carbogazoasă sau ginger ale",
   sx_mix_cocktail: "conform rețetei",
-  sx_rec_title: "Rețete",
-  sx_rec_sub: "Clasice și cocktailuri",
   sx_rec_all: "Toate",
   sx_rec_fav: "⭐ Favorite",
   sx_rec_own: "Ale mele",
@@ -12170,7 +12070,6 @@ ro: {
   barcode_invalid: "Acesta nu este un cod de bare valid pentru sticlă",
   barcode_looking: "Se caută codul de bare…",
   barcode_found: "Găsit: {name}",
-  barcode_notwine: "Acest cod de bare nu aparține unui whisky",
   barcode_year: "Te rugăm să introduci anul",
   barcode_known: "{name} este deja în colecție. Adaugi încă o sticlă?",
   barcode_added: "Sticlă adăugată – acum {n} în stoc",
@@ -12255,7 +12154,6 @@ ro: {
   dm_title: "Bea whisky",
   dm_with: "Cu cine ai băut?",
   dm_with_ph: "ex. Anna, Ben",
-  dm_last: "Aceasta este ultima sticlă — whisky-ul va fi eliminat din colecție.",
   btn_drink_confirm: "🥃 Bea",
   dm_occasion: "Ocazie",
   occ_spring: "Primăvară",
@@ -12273,7 +12171,6 @@ hr: {
   sx_none: "Preporuka nije pronađena",
   sx_applied: "Preporuka primijenjena ✓",
   sx_fav_set: "Postavljeno kao favorit ✓",
-  sx_wish_added: "Dodano na listu želja ✓",
   sx_glass_view: "Pogledaj čašu",
   sx_glass_glencairn: "Glencairn čaša",
   sx_glass_tumbler: "Tumbler",
@@ -12284,8 +12181,6 @@ hr: {
   sx_water_drops: "2–3 kapi vode",
   sx_mix_soda: "1:3 sa sodom ili ginger aleom",
   sx_mix_cocktail: "prema receptu",
-  sx_rec_title: "Recepti",
-  sx_rec_sub: "Klasici i koktel",
   sx_rec_all: "Svi",
   sx_rec_fav: "⭐ Favoriti",
   sx_rec_own: "Moji",
@@ -12800,7 +12695,6 @@ hr: {
   barcode_invalid: "Ovo nije valjan barkod boce",
   barcode_looking: "Traženje barkoda…",
   barcode_found: "Pronađeno: {name}",
-  barcode_notwine: "Ovaj barkod ne pripada viskiju",
   barcode_year: "Upiši godinu",
   barcode_known: "{name} je već u tvojoj kolekciji. Dodati još jednu bocu?",
   barcode_added: "Boca dodana – sada ih je {n} na zalihi",
@@ -12885,7 +12779,6 @@ hr: {
   dm_title: "Popij viski",
   dm_with: "S kim ste pili?",
   dm_with_ph: "npr. Anna, Ben",
-  dm_last: "Ovo je posljednja boca — viski će biti uklonjen iz kolekcije.",
   btn_drink_confirm: "🥃 Popij",
   dm_occasion: "Prigoda",
   occ_spring: "Proljeće",
@@ -12903,7 +12796,6 @@ pt: {
   sx_none: "Nenhuma recomendação encontrada",
   sx_applied: "Recomendação aplicada ✓",
   sx_fav_set: "Definido como favorito ✓",
-  sx_wish_added: "Adicionado à lista de desejos ✓",
   sx_glass_view: "Ver o copo",
   sx_glass_glencairn: "Copo Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -12914,8 +12806,6 @@ pt: {
   sx_water_drops: "2–3 gotas de água",
   sx_mix_soda: "1:3 com água com gás ou ginger ale",
   sx_mix_cocktail: "conforme a receita",
-  sx_rec_title: "Receitas",
-  sx_rec_sub: "Clássicos e cocktails",
   sx_rec_all: "Todas",
   sx_rec_fav: "⭐ Favoritas",
   sx_rec_own: "Minhas",
@@ -13430,7 +13320,6 @@ pt: {
   barcode_invalid: "Este não é um código de barras de garrafa válido",
   barcode_looking: "A procurar o código de barras…",
   barcode_found: "Encontrado: {name}",
-  barcode_notwine: "Este código de barras não pertence a um uísque",
   barcode_year: "Introduza o ano",
   barcode_known: "{name} já está na coleção. Adicionar mais uma garrafa?",
   barcode_added: "Garrafa adicionada – agora {n} em stock",
@@ -13515,7 +13404,6 @@ pt: {
   dm_title: "Beber uísque",
   dm_with: "Com quem bebeu?",
   dm_with_ph: "ex. Anna, Ben",
-  dm_last: "Esta é a última garrafa — o uísque será removido da coleção.",
   btn_drink_confirm: "🥃 Beber",
   dm_occasion: "Ocasião",
   occ_spring: "Primavera",
@@ -13533,7 +13421,6 @@ no: {
   sx_none: "Ingen anbefaling funnet",
   sx_applied: "Anbefaling brukt ✓",
   sx_fav_set: "Satt som favoritt ✓",
-  sx_wish_added: "Lagt til på ønskelisten ✓",
   sx_glass_view: "Se glasset",
   sx_glass_glencairn: "Glencairn-glass",
   sx_glass_tumbler: "Tumbler",
@@ -13544,8 +13431,6 @@ no: {
   sx_water_drops: "2–3 dråper vann",
   sx_mix_soda: "1:3 med sodavann eller ginger ale",
   sx_mix_cocktail: "etter oppskrift",
-  sx_rec_title: "Oppskrifter",
-  sx_rec_sub: "Klassikere og cocktailer",
   sx_rec_all: "Alle",
   sx_rec_fav: "⭐ Favoritter",
   sx_rec_own: "Mine",
@@ -14060,7 +13945,6 @@ no: {
   barcode_invalid: "Dette er ikke en gyldig flaskestrekkode",
   barcode_looking: "Søker etter strekkode…",
   barcode_found: "Funnet: {name}",
-  barcode_notwine: "Denne strekkoden tilhører ikke en whisky",
   barcode_year: "Oppgi året",
   barcode_known: "{name} er allerede i samlingen din. Legge til én flaske til?",
   barcode_added: "Flaske lagt til – nå {n} på lager",
@@ -14145,7 +14029,6 @@ no: {
   dm_title: "Drikk whisky",
   dm_with: "Hvem drakk du med?",
   dm_with_ph: "f.eks. Anna, Ben",
-  dm_last: "Dette er den siste flasken — whiskyen fjernes fra samlingen.",
   btn_drink_confirm: "🥃 Drikk",
   dm_occasion: "Anledning",
   occ_spring: "Vår",
@@ -14163,7 +14046,6 @@ nl: {
   sx_none: "Geen aanbeveling gevonden",
   sx_applied: "Aanbeveling toegepast ✓",
   sx_fav_set: "Als favoriet ingesteld ✓",
-  sx_wish_added: "Aan de verlanglijst toegevoegd ✓",
   sx_glass_view: "Bekijk het glas",
   sx_glass_glencairn: "Glencairn-glas",
   sx_glass_tumbler: "Tumbler",
@@ -14174,8 +14056,6 @@ nl: {
   sx_water_drops: "2–3 druppels water",
   sx_mix_soda: "1:3 met sodawater of ginger ale",
   sx_mix_cocktail: "volgens recept",
-  sx_rec_title: "Recepten",
-  sx_rec_sub: "Klassiekers en cocktails",
   sx_rec_all: "Alle",
   sx_rec_fav: "⭐ Favorieten",
   sx_rec_own: "Mijn",
@@ -14690,7 +14570,6 @@ nl: {
   barcode_invalid: "Dit is geen geldige flessenbarcode",
   barcode_looking: "Barcode wordt gezocht…",
   barcode_found: "Gevonden: {name}",
-  barcode_notwine: "Deze barcode hoort niet bij een whisky",
   barcode_year: "Voer het jaar in",
   barcode_known: "{name} zit al in je collectie. Nog een fles toevoegen?",
   barcode_added: "Fles toegevoegd – nu {n} op voorraad",
@@ -14775,7 +14654,6 @@ nl: {
   dm_title: "Whisky drinken",
   dm_with: "Met wie heb je gedronken?",
   dm_with_ph: "bijv. Anna, Ben",
-  dm_last: "Dit is de laatste fles — de whisky wordt uit de collectie verwijderd.",
   btn_drink_confirm: "🥃 Drinken",
   dm_occasion: "Gelegenheid",
   occ_spring: "Lente",
@@ -14793,7 +14671,6 @@ el: {
   sx_none: "Δεν βρέθηκε πρόταση",
   sx_applied: "Η πρόταση εφαρμόστηκε ✓",
   sx_fav_set: "Ορίστηκε ως αγαπημένο ✓",
-  sx_wish_added: "Προστέθηκε στη λίστα επιθυμιών ✓",
   sx_glass_view: "Δείτε το ποτήρι",
   sx_glass_glencairn: "Ποτήρι Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -14804,8 +14681,6 @@ el: {
   sx_water_drops: "2–3 σταγόνες νερό",
   sx_mix_soda: "1:3 με σόδα ή ginger ale",
   sx_mix_cocktail: "σύμφωνα με τη συνταγή",
-  sx_rec_title: "Συνταγές",
-  sx_rec_sub: "Κλασικά και κοκτέιλ",
   sx_rec_all: "Όλες",
   sx_rec_fav: "⭐ Αγαπημένα",
   sx_rec_own: "Δικές μου",
@@ -15320,7 +15195,6 @@ el: {
   barcode_invalid: "Αυτός δεν είναι έγκυρος γραμμωτός κώδικας μπουκαλιού",
   barcode_looking: "Αναζήτηση γραμμωτού κώδικα…",
   barcode_found: "Βρέθηκε: {name}",
-  barcode_notwine: "Αυτό το barcode δεν ανήκει σε ουίσκι",
   barcode_year: "Εισαγάγετε το έτος",
   barcode_known: "Το {name} υπάρχει ήδη στη συλλογή σας. Να προστεθεί άλλο ένα μπουκάλι;",
   barcode_added: "Το μπουκάλι προστέθηκε – τώρα {n} σε απόθεμα",
@@ -15405,7 +15279,6 @@ el: {
   dm_title: "Πίνετε ουίσκι",
   dm_with: "Με ποιον το ήπιατε;",
   dm_with_ph: "π.χ. Άννα, Μπεν",
-  dm_last: "Αυτό είναι το τελευταίο μπουκάλι — το ουίσκι θα αφαιρεθεί από τη συλλογή.",
   btn_drink_confirm: "🥃 Πίνω",
   dm_occasion: "Περίσταση",
   occ_spring: "Άνοιξη",
@@ -15423,7 +15296,6 @@ uk: {
   sx_none: "Рекомендацію не знайдено",
   sx_applied: "Рекомендацію застосовано ✓",
   sx_fav_set: "Встановлено як улюблене ✓",
-  sx_wish_added: "Додано до списку бажань ✓",
   sx_glass_view: "Переглянути келих",
   sx_glass_glencairn: "Келих Glencairn",
   sx_glass_tumbler: "Tumbler",
@@ -15434,8 +15306,6 @@ uk: {
   sx_water_drops: "2–3 краплі води",
   sx_mix_soda: "1:3 з содовою або імбирним елем",
   sx_mix_cocktail: "за рецептом",
-  sx_rec_title: "Рецепти",
-  sx_rec_sub: "Класика та коктейлі",
   sx_rec_all: "Усі",
   sx_rec_fav: "⭐ Улюблені",
   sx_rec_own: "Мої",
@@ -15950,7 +15820,6 @@ uk: {
   barcode_invalid: "Це недійсний штрихкод пляшки",
   barcode_looking: "Пошук штрихкоду…",
   barcode_found: "Знайдено: {name}",
-  barcode_notwine: "Цей штрихкод не належить віскі",
   barcode_year: "Введіть рік",
   barcode_known: "{name} уже є у вашій колекції. Додати ще одну пляшку?",
   barcode_added: "Пляшку додано – тепер у наявності {n}",
@@ -16035,7 +15904,6 @@ uk: {
   dm_title: "Випити віскі",
   dm_with: "З ким випито?",
   dm_with_ph: "напр. Анна, Борис",
-  dm_last: "Це остання пляшка — віскі буде видалено з колекції.",
   btn_drink_confirm: "🥃 Випити",
   dm_occasion: "Нагода",
   occ_spring: "Весна",
@@ -16053,7 +15921,6 @@ ja: {
   sx_none: "おすすめが見つかりませんでした",
   sx_applied: "おすすめを反映しました ✓",
   sx_fav_set: "お気に入りに設定しました ✓",
-  sx_wish_added: "ほしい物リストに追加しました ✓",
   sx_glass_view: "グラスを見る",
   sx_glass_glencairn: "グレンケアングラス",
   sx_glass_tumbler: "タンブラー",
@@ -16064,8 +15931,6 @@ ja: {
   sx_water_drops: "水を2〜3滴",
   sx_mix_soda: "ソーダまたはジンジャーエールで1:3",
   sx_mix_cocktail: "レシピどおり",
-  sx_rec_title: "レシピ",
-  sx_rec_sub: "クラシックとカクテル",
   sx_rec_all: "すべて",
   sx_rec_fav: "⭐ お気に入り",
   sx_rec_own: "マイレシピ",
@@ -16580,7 +16445,6 @@ ja: {
   barcode_invalid: "有効なボトルのバーコードではありません",
   barcode_looking: "バーコードを検索しています…",
   barcode_found: "見つかりました：{name}",
-  barcode_notwine: "このバーコードはウイスキーのものではありません",
   barcode_year: "年を入力してください",
   barcode_known: "{name}はすでにコレクションにあります。ボトルをもう1本追加しますか？",
   barcode_added: "ボトルを追加しました – 現在 {n} 本",
@@ -16665,7 +16529,6 @@ ja: {
   dm_title: "ウイスキーを飲む",
   dm_with: "誰と飲みましたか？",
   dm_with_ph: "例: アンナ、ベン",
-  dm_last: "これが最後のボトルです — ウイスキーはコレクションから削除されます。",
   btn_drink_confirm: "🥃 飲む",
   dm_occasion: "シーン",
   occ_spring: "春",
@@ -16683,7 +16546,6 @@ ko: {
   sx_none: "추천을 찾지 못했어요",
   sx_applied: "추천을 적용했어요 ✓",
   sx_fav_set: "즐겨찾기로 설정했어요 ✓",
-  sx_wish_added: "위시리스트에 추가했어요 ✓",
   sx_glass_view: "잔 보기",
   sx_glass_glencairn: "글렌케언 글라스",
   sx_glass_tumbler: "텀블러",
@@ -16694,8 +16556,6 @@ ko: {
   sx_water_drops: "물 2–3방울",
   sx_mix_soda: "소다 또는 진저에일과 1:3",
   sx_mix_cocktail: "레시피대로",
-  sx_rec_title: "레시피",
-  sx_rec_sub: "클래식과 칵테일",
   sx_rec_all: "전체",
   sx_rec_fav: "⭐ 즐겨찾기",
   sx_rec_own: "내 레시피",
@@ -17210,7 +17070,6 @@ ko: {
   barcode_invalid: "유효한 병 바코드가 아닙니다",
   barcode_looking: "바코드를 검색하는 중…",
   barcode_found: "찾음: {name}",
-  barcode_notwine: "이 바코드는 위스키의 것이 아니에요",
   barcode_year: "연도를 입력하세요",
   barcode_known: "{name}은(는) 이미 컬렉션에 있어요. 한 병 더 추가할까요?",
   barcode_added: "병이 추가되었습니다 – 현재 {n}병",
@@ -17295,7 +17154,6 @@ ko: {
   dm_title: "위스키 마시기",
   dm_with: "누구와 마셨나요?",
   dm_with_ph: "예: Anna, Ben",
-  dm_last: "마지막 병이에요 — 위스키가 컬렉션에서 삭제됩니다.",
   btn_drink_confirm: "🥃 마시기",
   dm_occasion: "계기",
   occ_spring: "봄",
@@ -17313,7 +17171,6 @@ zh: {
   sx_none: "未找到推荐",
   sx_applied: "已应用推荐 ✓",
   sx_fav_set: "已设为收藏 ✓",
-  sx_wish_added: "已加入心愿单 ✓",
   sx_glass_view: "查看酒杯",
   sx_glass_glencairn: "Glencairn 闻香杯",
   sx_glass_tumbler: "平底杯",
@@ -17324,8 +17181,6 @@ zh: {
   sx_water_drops: "2–3 滴水",
   sx_mix_soda: "与苏打水或姜汁汽水 1:3",
   sx_mix_cocktail: "按配方",
-  sx_rec_title: "配方",
-  sx_rec_sub: "经典与鸡尾酒",
   sx_rec_all: "全部",
   sx_rec_fav: "⭐ 收藏",
   sx_rec_own: "我的",
@@ -17840,7 +17695,6 @@ zh: {
   barcode_invalid: "这不是有效的酒瓶条形码",
   barcode_looking: "正在查询条形码…",
   barcode_found: "已找到：{name}",
-  barcode_notwine: "此条形码不属于威士忌",
   barcode_year: "请输入年份",
   barcode_known: "{name} 已在您的收藏中。再添加一瓶吗？",
   barcode_added: "已添加酒瓶 – 现有 {n} 瓶",
@@ -17925,7 +17779,6 @@ zh: {
   dm_title: "喝威士忌",
   dm_with: "和谁一起喝的？",
   dm_with_ph: "例如：小红、小明",
-  dm_last: "这是最后一瓶——该威士忌将从收藏中移除。",
   btn_drink_confirm: "🥃 饮用",
   dm_occasion: "场合",
   occ_spring: "春天",
@@ -17943,7 +17796,6 @@ hi: {
   sx_none: "कोई सुझाव नहीं मिला",
   sx_applied: "सुझाव लागू किया गया ✓",
   sx_fav_set: "पसंदीदा में जोड़ा गया ✓",
-  sx_wish_added: "इच्छा सूची में जोड़ा गया ✓",
   sx_glass_view: "गिलास देखें",
   sx_glass_glencairn: "ग्लेनकेयर्न ग्लास",
   sx_glass_tumbler: "टम्बलर",
@@ -17954,8 +17806,6 @@ hi: {
   sx_water_drops: "2–3 बूँद पानी",
   sx_mix_soda: "सोडा या जिंजर एल के साथ 1:3",
   sx_mix_cocktail: "रेसिपी के अनुसार",
-  sx_rec_title: "रेसिपी",
-  sx_rec_sub: "क्लासिक और कॉकटेल",
   sx_rec_all: "सभी",
   sx_rec_fav: "⭐ पसंदीदा",
   sx_rec_own: "मेरी",
@@ -18470,7 +18320,6 @@ hi: {
   barcode_invalid: "यह मान्य बोतल बारकोड नहीं है",
   barcode_looking: "बारकोड खोजा जा रहा है…",
   barcode_found: "मिला: {name}",
-  barcode_notwine: "यह बारकोड किसी व्हिस्की का नहीं है",
   barcode_year: "कृपया वर्ष दर्ज करें",
   barcode_known: "{name} पहले से आपके संग्रह में है। एक और बोतल जोड़ें?",
   barcode_added: "बोतल जोड़ी गई – अब स्टॉक में {n} हैं",
@@ -18555,7 +18404,6 @@ hi: {
   dm_title: "व्हिस्की पिएँ",
   dm_with: "किसके साथ पी?",
   dm_with_ph: "जैसे अन्ना, बेन",
-  dm_last: "यह आखिरी बोतल है — व्हिस्की संग्रह से हटा दी जाएगी।",
   btn_drink_confirm: "🥃 पिएँ",
   dm_occasion: "अवसर",
   occ_spring: "वसंत",
@@ -20013,7 +19861,7 @@ function renderStats() {
   const avg = rated.length ? (rated.reduce((s,w)=>s+w.rating,0)/rated.length).toFixed(1) : '–';
   const types = {};
   wines.forEach(w => { types[w.type] = (types[w.type]||0) + (w.count||1); });
-  const typeColors = { rot:'var(--wine-light)', weiß:'var(--white-wine)', rosé:'var(--rose)', sekt:'var(--sparkling)', other:'var(--text-muted)' };
+  const typeColors = TYPE_FILL;   // gleiche Bernstein-/Kupfertöne wie auf den Karten und Flaschen
 
   let html = `
     <div class="stats-grid">
