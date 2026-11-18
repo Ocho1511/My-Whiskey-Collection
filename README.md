@@ -4,6 +4,6 @@ Personal whiskey collection app (PWA): stock, storage racks with QR labels, wish
 
 - `index.html` – the app (single file, 24 languages)
 - `anleitung*.html`, `support.html`, `datenschutz.html` – guide, support and privacy pages
-- `worker/` – Cloudflare Worker (AI proxy, sync, barcode, bottle images, rates), see `worker/README.md`
+- Backend: shared Cloudflare workers (sync, barcode, page image via the Gin-Factory repo `scan-proxy/`; AI proxy and exchange rates via the Weinkeller worker), no worker code lives in this repo
 
 Derived from the Weinkeller app but independent: own storage keys, own worker, own pages.
