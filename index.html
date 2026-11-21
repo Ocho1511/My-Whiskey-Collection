@@ -2297,7 +2297,7 @@ function setSyncBase(v) { syncBase = v; try { localStorage.setItem(SYNCBASE_KEY,
 async function cloudCall(op, extra) {
   const resp = await fetch(SCAN_PROXY_URL + '/sync', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(Object.assign({ op, code: settings.syncCode }, extra || {}))
+    body: JSON.stringify(Object.assign({ op, code: settings.syncCode, app: 'whiskey' }, extra || {}))
   });
   if (!resp.ok) throw new Error('sync_http_' + resp.status);
   return resp.json();
@@ -2316,7 +2316,7 @@ function photoCloudOn() { return settings.storage === 'cloud' && !!settings.sync
 async function photoCall(op, extra) {
   const resp = await fetch(SCAN_PROXY_URL + '/photo', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(Object.assign({ op, code: settings.syncCode }, extra || {}))
+    body: JSON.stringify(Object.assign({ op, code: settings.syncCode, app: 'whiskey' }, extra || {}))
   });
   if (!resp.ok) throw new Error('photo_http_' + resp.status);
   return resp.json();
