@@ -20100,6 +20100,7 @@ function fillConfirmed(force) {
   setTimeout(() => {
     el.scrollIntoView({ block: 'center', behavior: 'smooth' });
     el.focus();
+    if (force && el.tagName === 'SELECT' && el.showPicker) { try { el.showPicker(); } catch (e) { /* ohne Unterstuetzung bleibt es beim Fokus */ } }   // Regal-Auswahl direkt aufklappen
     const g = document.getElementById('loc-group');
     if (g) { g.classList.remove('loc-flash'); void g.offsetWidth; g.classList.add('loc-flash'); }
   }, 150);
