@@ -19896,12 +19896,31 @@ function startStoreFromScan() {
   if (!settings.racks.length) { showToast(t('racks_none')); return; }
   openAddModal();
   storeFromScan = true; rackStoreScan = true;
+  ['f-loc-regal', 'f-loc-ebene', 'f-loc-platz'].forEach(id => { document.getElementById(id).value = ''; });   // hier wählst du das Fach selbst im Regal
+  locPickerFill();
   document.getElementById('modal-title').textContent = t('store_modal_title');
   const sb = document.getElementById('add-save-btn'); sb.dataset.i18n = 'store_save_btn'; sb.textContent = t('store_save_btn');
   document.getElementById('camera-input').click();   // im selben Tipp, damit iOS die Kamera zulässt
 }
 // ── Lagerplatz im Formular "hinzufügen/bearbeiten": Auswahl Regal → Ebene → freier Platz (schreibt in die Textfelder f-loc-*) ──
 let skipStoreAsk = false;   // der Nutzer hat vor dem Speichern "ohne Lagerplatz" gewählt: danach nicht noch einmal fragen
+// Ersten freien Platz vorschlagen (Regal, Ebene, Platz von links); im Formular änderbar oder über "noch kein Lagerplatz" zu leeren
+function firstFreeSlot() {
+  for (const r of settings.racks) {
+    const map = slotMapFor(r.id);
+    for (let e = 1; e <= r.rows; e++) {
+      const cap = rackCap(r, e);
+      for (let p = 1; p <= rackCols(r, e); p++) if ((map.get(e + '|' + p) || []).length < cap) return { r, e, p };
+    }
+  }
+  return null;
+}
+function suggestPlace() {
+  const f = firstFreeSlot();
+  document.getElementById('f-loc-regal').value = f ? f.r.name : '';
+  document.getElementById('f-loc-ebene').value = f ? String(f.e) : '';
+  document.getElementById('f-loc-platz').value = f ? String(f.p) : '';
+}
 function locPickerFill() {
   const grp = document.getElementById('loc-group'), box = document.getElementById('loc-picker');
   if (!grp || !box) return;
@@ -20031,6 +20050,7 @@ function openAddModal() {
   document.getElementById('f-count').value = 1;
   document.getElementById('f-type').value = 'rot';
   setStar(0);
+  suggestPlace();
   locPickerFill();
   fillPickerInit(true);
   document.getElementById('modal-title').textContent = t('m_add_title');
