@@ -1649,7 +1649,8 @@ input[type="file"] { display: none; }
     </div>
     <div class="form-group" id="fill-group">
       <label data-i18n="l_fill">Füllstand (falls angebrochen)</label>
-      <select id="f-fill" onchange="formFillTouched = true"></select>
+      <input type="text" inputmode="decimal" id="f-fill" value="1" autocomplete="off" oninput="formFillTouched = true" onfocus="this.select()">
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px" data-i18n="fill_hint">1 = voll · 0,5 = halb · 0,25 = ein Viertel</div>
     </div>
     <div class="form-group" id="loc-group">
       <label data-i18n="l_location">Lagerplatz (Regal · Ebene · Platz von links)</label>
@@ -3812,6 +3813,7 @@ de: {
   loc_slot_ph: "Platz wählen",
   loc_ask_before: "Kein Lagerplatz gewählt. OK = Lagerplatz jetzt wählen · Abbrechen = ohne Lagerplatz speichern",
   l_fill: "Füllstand (falls angebrochen)",
+  fill_hint: "1 = voll · 0,5 = halb · 0,25 = ein Viertel",
   fill_full: "ungeöffnet (voll)",
   fill_pct: "ca. {n} %",
   fill_ask: "Ist die Flasche noch ungeöffnet (voll)? OK = ja · Abbrechen = Füllstand jetzt angeben",
@@ -4457,6 +4459,7 @@ en: {
   loc_slot_ph: "Choose slot",
   loc_ask_before: "No storage place chosen. OK = choose one now · Cancel = save without a storage place",
   l_fill: "Fill level (if opened)",
+  fill_hint: "1 = full · 0.5 = half · 0.25 = a quarter",
   fill_full: "sealed (full)",
   fill_pct: "about {n} %",
   fill_ask: "Is the bottle still sealed (full)? OK = yes · Cancel = enter the fill level now",
@@ -5102,6 +5105,7 @@ es: {
   loc_slot_ph: "Elegir sitio",
   loc_ask_before: "No se ha elegido ubicación. Aceptar = elegir ubicación ahora · Cancelar = guardar sin ubicación",
   l_fill: "Nivel de llenado (si está abierta)",
+  fill_hint: "1 = llena · 0,5 = a la mitad · 0,25 = un cuarto",
   fill_full: "sin abrir (llena)",
   fill_pct: "aprox. {n} %",
   fill_ask: "¿La botella sigue sin abrir (llena)? Aceptar = sí · Cancelar = indicar el nivel de llenado ahora",
@@ -5747,6 +5751,7 @@ sv: {
   loc_slot_ph: "Välj plats",
   loc_ask_before: "Ingen lagringsplats vald. OK = välj lagringsplats nu · Avbryt = spara utan lagringsplats",
   l_fill: "Fyllnadsnivå (om öppnad)",
+  fill_hint: "1 = full · 0,5 = halv · 0,25 = en fjärdedel",
   fill_full: "oöppnad (full)",
   fill_pct: "ca {n} %",
   fill_ask: "Är flaskan fortfarande oöppnad (full)? OK = ja · Avbryt = ange fyllnadsnivå nu",
@@ -6392,6 +6397,7 @@ da: {
   loc_slot_ph: "Vælg plads",
   loc_ask_before: "Ingen lagerplads valgt. OK = vælg lagerplads nu · Annuller = gem uden lagerplads",
   l_fill: "Fyldningsgrad (hvis åbnet)",
+  fill_hint: "1 = fuld · 0,5 = halv · 0,25 = en fjerdedel",
   fill_full: "uåbnet (fuld)",
   fill_pct: "ca. {n} %",
   fill_ask: "Er flasken stadig uåbnet (fuld)? OK = ja · Annuller = angiv fyldningsgrad nu",
@@ -7038,6 +7044,7 @@ fi: {
   loc_slot_ph: "Valitse paikka",
   loc_ask_before: "Säilytyspaikkaa ei ole valittu. OK = valitse säilytyspaikka nyt · Peruuta = tallenna ilman säilytyspaikkaa",
   l_fill: "Täyttöaste (jos avattu)",
+  fill_hint: "1 = täynnä · 0,5 = puolillaan · 0,25 = neljännes",
   fill_full: "avaamaton (täysi)",
   fill_pct: "noin {n} %",
   fill_ask: "Onko pullo vielä avaamaton (täysi)? OK = kyllä · Peruuta = anna täyttöaste nyt",
@@ -7682,6 +7689,7 @@ ru: {
   loc_slot_ph: "Выберите место",
   loc_ask_before: "Место хранения не выбрано. OK = выбрать место сейчас · Отмена = сохранить без места хранения",
   l_fill: "Уровень наполнения (если открыта)",
+  fill_hint: "1 = полная · 0,5 = наполовину · 0,25 = четверть",
   fill_full: "не открыта (полная)",
   fill_pct: "прибл. {n} %",
   fill_ask: "Бутылка ещё не открыта (полная)? OK = да · Отмена = указать уровень наполнения сейчас",
@@ -8327,6 +8335,7 @@ it: {
   loc_slot_ph: "Scegli posto",
   loc_ask_before: "Nessuna posizione scelta. OK = scegli la posizione ora · Annulla = salva senza posizione",
   l_fill: "Livello di riempimento (se aperta)",
+  fill_hint: "1 = piena · 0,5 = metà · 0,25 = un quarto",
   fill_full: "non aperta (piena)",
   fill_pct: "circa {n} %",
   fill_ask: "La bottiglia è ancora chiusa (piena)? OK = sì · Annulla = indica ora il livello di riempimento",
@@ -8972,6 +8981,7 @@ fr: {
   loc_slot_ph: "Choisir la place",
   loc_ask_before: "Aucun emplacement choisi. OK = choisir un emplacement maintenant · Annuler = enregistrer sans emplacement",
   l_fill: "Niveau de remplissage (si ouverte)",
+  fill_hint: "1 = pleine · 0,5 = à moitié · 0,25 = un quart",
   fill_full: "non ouverte (pleine)",
   fill_pct: "env. {n} %",
   fill_ask: "La bouteille est-elle encore fermée (pleine) ? OK = oui · Annuler = indiquer le niveau de remplissage maintenant",
@@ -9617,6 +9627,7 @@ pl: {
   loc_slot_ph: "Wybierz miejsce",
   loc_ask_before: "Nie wybrano miejsca przechowywania. OK = wybierz miejsce teraz · Anuluj = zapisz bez miejsca przechowywania",
   l_fill: "Poziom napełnienia (jeśli otwarta)",
+  fill_hint: "1 = pełna · 0,5 = pół · 0,25 = ćwierć",
   fill_full: "nieotwarta (pełna)",
   fill_pct: "ok. {n} %",
   fill_ask: "Czy butelka jest nadal nieotwarta (pełna)? OK = tak · Anuluj = podaj poziom napełnienia teraz",
@@ -10262,6 +10273,7 @@ hu: {
   loc_slot_ph: "Hely választása",
   loc_ask_before: "Nincs tárolóhely kiválasztva. OK = tárolóhely választása most · Mégse = mentés tárolóhely nélkül",
   l_fill: "Töltöttségi szint (ha bontott)",
+  fill_hint: "1 = tele · 0,5 = fél · 0,25 = negyed",
   fill_full: "bontatlan (tele)",
   fill_pct: "kb. {n} %",
   fill_ask: "Az üveg még bontatlan (tele)? OK = igen · Mégse = töltöttségi szint megadása most",
@@ -10907,6 +10919,7 @@ cs: {
   loc_slot_ph: "Vyberte místo",
   loc_ask_before: "Není vybráno místo uložení. OK = vybrat místo nyní · Zrušit = uložit bez místa uložení",
   l_fill: "Úroveň naplnění (pokud otevřená)",
+  fill_hint: "1 = plná · 0,5 = půl · 0,25 = čtvrtina",
   fill_full: "neotevřená (plná)",
   fill_pct: "cca {n} %",
   fill_ask: "Je láhev stále neotevřená (plná)? OK = ano · Zrušit = zadat úroveň naplnění nyní",
@@ -11552,6 +11565,7 @@ sk: {
   loc_slot_ph: "Vyberte miesto",
   loc_ask_before: "Nie je vybrané miesto uloženia. OK = vybrať miesto teraz · Zrušiť = uložiť bez miesta uloženia",
   l_fill: "Úroveň naplnenia (ak otvorená)",
+  fill_hint: "1 = plná · 0,5 = polovica · 0,25 = štvrtina",
   fill_full: "neotvorená (plná)",
   fill_pct: "cca {n} %",
   fill_ask: "Je fľaša stále neotvorená (plná)? OK = áno · Zrušiť = zadať úroveň naplnenia teraz",
@@ -12197,6 +12211,7 @@ ro: {
   loc_slot_ph: "Alege locul",
   loc_ask_before: "Nu a fost ales niciun loc de depozitare. OK = alege locul acum · Anulare = salvează fără loc de depozitare",
   l_fill: "Nivel de umplere (dacă e deschisă)",
+  fill_hint: "1 = plină · 0,5 = pe jumătate · 0,25 = un sfert",
   fill_full: "nedeschisă (plină)",
   fill_pct: "aprox. {n} %",
   fill_ask: "Sticla este încă nedeschisă (plină)? OK = da · Anulare = indică nivelul de umplere acum",
@@ -12842,6 +12857,7 @@ hr: {
   loc_slot_ph: "Odaberi mjesto",
   loc_ask_before: "Mjesto pohrane nije odabrano. U redu = odaberi mjesto sada · Odustani = spremi bez mjesta pohrane",
   l_fill: "Razina napunjenosti (ako je otvorena)",
+  fill_hint: "1 = puna · 0,5 = pola · 0,25 = četvrtina",
   fill_full: "neotvorena (puna)",
   fill_pct: "oko {n} %",
   fill_ask: "Je li boca još neotvorena (puna)? U redu = da · Odustani = unesi razinu napunjenosti sada",
@@ -13487,6 +13503,7 @@ pt: {
   loc_slot_ph: "Escolher lugar",
   loc_ask_before: "Nenhum local de armazenamento escolhido. OK = escolher local agora · Cancelar = guardar sem local de armazenamento",
   l_fill: "Nível de enchimento (se aberta)",
+  fill_hint: "1 = cheia · 0,5 = meio · 0,25 = um quarto",
   fill_full: "fechada (cheia)",
   fill_pct: "aprox. {n} %",
   fill_ask: "A garrafa ainda está fechada (cheia)? OK = sim · Cancelar = indicar o nível de enchimento agora",
@@ -14132,6 +14149,7 @@ no: {
   loc_slot_ph: "Velg plass",
   loc_ask_before: "Ingen lagringsplass valgt. OK = velg lagringsplass nå · Avbryt = lagre uten lagringsplass",
   l_fill: "Fyllingsgrad (hvis åpnet)",
+  fill_hint: "1 = full · 0,5 = halv · 0,25 = en fjerdedel",
   fill_full: "uåpnet (full)",
   fill_pct: "ca. {n} %",
   fill_ask: "Er flasken fortsatt uåpnet (full)? OK = ja · Avbryt = angi fyllingsgrad nå",
@@ -14777,6 +14795,7 @@ nl: {
   loc_slot_ph: "Kies plaats",
   loc_ask_before: "Geen opslagplaats gekozen. OK = nu een opslagplaats kiezen · Annuleren = opslaan zonder opslagplaats",
   l_fill: "Vulniveau (indien geopend)",
+  fill_hint: "1 = vol · 0,5 = half · 0,25 = een kwart",
   fill_full: "ongeopend (vol)",
   fill_pct: "ca. {n} %",
   fill_ask: "Is de fles nog ongeopend (vol)? OK = ja · Annuleren = nu het vulniveau opgeven",
@@ -15422,6 +15441,7 @@ el: {
   loc_slot_ph: "Επιλέξτε θέση",
   loc_ask_before: "Δεν έχει επιλεγεί θέση αποθήκευσης. OK = επιλογή θέσης τώρα · Άκυρο = αποθήκευση χωρίς θέση αποθήκευσης",
   l_fill: "Στάθμη γεμίσματος (αν έχει ανοιχτεί)",
+  fill_hint: "1 = γεμάτο · 0,5 = μισό · 0,25 = ένα τέταρτο",
   fill_full: "κλειστό (γεμάτο)",
   fill_pct: "περ. {n} %",
   fill_ask: "Είναι το μπουκάλι ακόμη κλειστό (γεμάτο); OK = ναι · Άκυρο = δήλωση στάθμης γεμίσματος τώρα",
@@ -16067,6 +16087,7 @@ uk: {
   loc_slot_ph: "Виберіть місце",
   loc_ask_before: "Місце зберігання не вибрано. OK = вибрати місце зараз · Скасувати = зберегти без місця зберігання",
   l_fill: "Рівень наповнення (якщо відкрита)",
+  fill_hint: "1 = повна · 0,5 = наполовину · 0,25 = чверть",
   fill_full: "не відкрита (повна)",
   fill_pct: "прибл. {n} %",
   fill_ask: "Пляшка ще не відкрита (повна)? OK = так · Скасувати = вказати рівень наповнення зараз",
@@ -16712,6 +16733,7 @@ ja: {
   loc_slot_ph: "場所を選択",
   loc_ask_before: "保管場所が選択されていません。OK = 今すぐ保管場所を選ぶ · キャンセル = 保管場所なしで保存",
   l_fill: "残量（開封済みの場合）",
+  fill_hint: "1 = 満タン · 0.5 = 半分 · 0.25 = 4分の1",
   fill_full: "未開封（満量）",
   fill_pct: "約{n} %",
   fill_ask: "ボトルはまだ未開封（満量）ですか？ OK = はい · キャンセル = 今すぐ残量を入力",
@@ -17357,6 +17379,7 @@ ko: {
   loc_slot_ph: "칸 선택",
   loc_ask_before: "보관 위치를 선택하지 않았습니다. 확인 = 지금 보관 위치 선택 · 취소 = 보관 위치 없이 저장",
   l_fill: "남은 양(개봉한 경우)",
+  fill_hint: "1 = 가득 · 0.5 = 절반 · 0.25 = 4분의 1",
   fill_full: "미개봉(가득 참)",
   fill_pct: "약 {n} %",
   fill_ask: "병이 아직 미개봉(가득 참) 상태인가요? 확인 = 예 · 취소 = 지금 남은 양 입력",
@@ -18002,6 +18025,7 @@ zh: {
   loc_slot_ph: "选择位",
   loc_ask_before: "尚未选择存放位置。确定 = 现在选择存放位置 · 取消 = 不选存放位置直接保存",
   l_fill: "剩余量（如已开封）",
+  fill_hint: "1 = 满瓶 · 0.5 = 一半 · 0.25 = 四分之一",
   fill_full: "未开封（满瓶）",
   fill_pct: "约 {n} %",
   fill_ask: "这瓶酒还未开封（满瓶）吗？确定 = 是 · 取消 = 现在填写剩余量",
@@ -18647,6 +18671,7 @@ hi: {
   loc_slot_ph: "स्थान चुनें",
   loc_ask_before: "कोई भंडारण स्थान नहीं चुना गया। ठीक है = अभी भंडारण स्थान चुनें · रद्द करें = भंडारण स्थान के बिना सहेजें",
   l_fill: "भराव स्तर (यदि खोली गई हो)",
+  fill_hint: "1 = पूरी · 0.5 = आधी · 0.25 = चौथाई",
   fill_full: "बिना खुली (पूरी भरी)",
   fill_pct: "लगभग {n} %",
   fill_ask: "क्या बोतल अभी भी बिना खुली (पूरी भरी) है? ठीक है = हाँ · रद्द करें = अभी भराव स्तर बताएँ",
@@ -19922,25 +19947,27 @@ function fillPickerInit(show) {
   const g = document.getElementById('fill-group');
   if (!g) return;
   g.style.display = show ? 'block' : 'none';
-  const sel = document.getElementById('f-fill');
-  sel.innerHTML = `<option value="">${esc(t('fill_full'))}</option>` + [90, 75, 50, 25, 10].map(n => `<option value="${n}">${esc(t('fill_pct', { n }))}</option>`).join('');
-  sel.value = '';
+  document.getElementById('f-fill').value = '1';
 }
 // Angebrochene Flasche aus der Auswahl: Rest in cl = Flaschengröße x Prozent
 function fillFromForm(sizeVal) {
-  const pct = parseInt(document.getElementById('f-fill').value);
-  if (!pct || pct >= 100) return [];
+  const v = parseFloat(String(document.getElementById('f-fill').value).replace(',', '.'));
+  if (!(v > 0) || v >= 1) return [];
   const size = cleanSize(sizeVal);
-  return [{ at: new Date().toISOString(), left: Math.max(0.1, Math.round(size * pct / 10) / 10) }];
+  return [{ at: new Date().toISOString(), left: Math.max(0.1, Math.round(size * v * 10) / 10) }];
 }
 // Nach einem Scan: vor dem Speichern nach dem Füllstand fragen (OK = ungeöffnet, Abbrechen = jetzt angeben). true = Speichern abbrechen.
 function askFillBeforeSave() {
-  if (editId || !formScanned || formFillTouched) return false;
-  if (confirm(t('fill_ask'))) return false;
-  const sel = document.getElementById('f-fill');
-  sel.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  setTimeout(() => sel.focus(), 300);
-  return true;
+  return false;   // das Feld steht sichtbar auf 1 (voll); nach dem Scan springt der Cursor hinein (fillFocus)
+}
+// Nach einem Scan: Cursor direkt in den Füllstand
+function fillFocus() {
+  if (editId || !formScanned) return;
+  const g = document.getElementById('fill-group');
+  if (!g || g.style.display === 'none' || !document.getElementById('f-name').value.trim()) return;
+  const el = document.getElementById('f-fill');
+  el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  setTimeout(() => { el.focus(); el.select(); }, 350);
 }
 // Bekannte Flasche per Barcode nochmal hinzugefügt (Anzahl +1): ist die neue Flasche schon angebrochen?
 function askFillForAddedBottle(w) {
@@ -20136,7 +20163,8 @@ function saveWine() {
 // ═══════════════════════════════════════
 // KI SCAN
 // ═══════════════════════════════════════
-async function handleScan(e) {
+async function handleScan(e) { await handleScan0(e); fillFocus(); }
+async function handleScan0(e) {
   formScanned = true;
   const file = e.target.files[0];
   if (!file) return;
@@ -20255,7 +20283,8 @@ function showBarcodeMiss(on) {
   if (on) { try { b.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {} }
 }
 function barcodeMissScan() { showBarcodeMiss(false); document.getElementById('camera-input').click(); }
-async function scanBarcodeForWine() {
+async function scanBarcodeForWine() { await scanBarcodeForWine0(); fillFocus(); }
+async function scanBarcodeForWine0() {
   formScanned = true;
   showBarcodeMiss(false);
   const r = await scanCode('barcode');
