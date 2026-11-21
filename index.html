@@ -382,6 +382,8 @@ a.wine-type-grape { cursor: pointer; padding: 4px; margin: -4px; }
 .fill-bar > span { display: block; height: 100%; background: var(--gold); }
 .loc-picker-on #f-loc-regal, .loc-picker-on #f-loc-ebene, .loc-picker-on #f-loc-platz { display: none; }
 .loc-picker-on .input-with-scan { justify-content: flex-start; margin-top: 8px; }
+@keyframes locFlash { 0% { box-shadow: 0 0 0 0 rgba(212,175,90,.9); } 100% { box-shadow: 0 0 0 14px rgba(212,175,90,0); } }
+.loc-flash { animation: locFlash 1.2s ease-out 1; border-radius: 12px; }
 .wine-count-badge {
   margin-left: auto;
   background: var(--surface);
@@ -1656,7 +1658,7 @@ input[type="file"] { display: none; }
     </div>
     <div class="form-group" id="fill-group">
       <label data-i18n="l_fill">Füllstand (falls angebrochen)</label>
-      <input type="text" inputmode="decimal" id="f-fill" value="1" autocomplete="off" oninput="formFillTouched = true" onchange="fillConfirmed()" onfocus="this.select()">
+      <div style="display:flex;gap:8px;align-items:stretch"><input type="text" inputmode="decimal" id="f-fill" value="1" autocomplete="off" style="flex:1;min-width:0" oninput="formFillTouched = true" onchange="fillConfirmed()" onkeydown="if (event.key === 'Enter') { event.preventDefault(); fillConfirmed(true); }" onfocus="this.select()"><button type="button" class="btn-secondary" style="width:auto;flex:none;margin:0;padding:0 20px" onclick="fillConfirmed(true)">OK ›</button></div>
       <div style="font-size:12px;color:var(--text-muted);margin-top:4px" data-i18n="fill_hint">1 = voll · 0,5 = halb · 0,25 = ein Viertel</div>
     </div>
     <div class="form-group" id="loc-group">
@@ -20017,11 +20019,18 @@ function suggestPlace() {
   document.getElementById('f-loc-platz').value = f ? String(f.p) : '';
 }
 // Nach der Bestätigung des Füllstands: Cursor direkt zum Lagerplatz
-function fillConfirmed() {
-  if (editId || fillValue() === null) return;
+function fillConfirmed(force) {
+  if (editId) return;
+  if (fillValue() === null) { if (force) showToast(t('fill_required')); return; }
   const el = document.getElementById(settings.racks.length ? 'lp-rack' : 'f-loc-regal');
   if (!el) return;
-  setTimeout(() => { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); el.focus(); }, 200);
+  try { document.getElementById('f-fill').blur(); } catch (e) {}
+  setTimeout(() => {
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    el.focus();
+    const g = document.getElementById('loc-group');
+    if (g) { g.classList.remove('loc-flash'); void g.offsetWidth; g.classList.add('loc-flash'); }
+  }, 150);
 }
 function locPickerFill() {
   const grp = document.getElementById('loc-group'), box = document.getElementById('loc-picker');
