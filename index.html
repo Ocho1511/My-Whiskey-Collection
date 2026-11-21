@@ -1656,7 +1656,7 @@ input[type="file"] { display: none; }
     </div>
     <div class="form-group" id="fill-group">
       <label data-i18n="l_fill">Füllstand (falls angebrochen)</label>
-      <input type="text" inputmode="decimal" id="f-fill" value="1" autocomplete="off" oninput="formFillTouched = true" onfocus="this.select()">
+      <input type="text" inputmode="decimal" id="f-fill" value="1" autocomplete="off" oninput="formFillTouched = true" onchange="fillConfirmed()" onfocus="this.select()">
       <div style="font-size:12px;color:var(--text-muted);margin-top:4px" data-i18n="fill_hint">1 = voll · 0,5 = halb · 0,25 = ein Viertel</div>
     </div>
     <div class="form-group" id="loc-group">
@@ -19985,21 +19985,43 @@ function startStoreFromScan() {
 // ── Lagerplatz im Formular "hinzufügen/bearbeiten": Auswahl Regal → Ebene → freier Platz (schreibt in die Textfelder f-loc-*) ──
 let skipStoreAsk = false;   // der Nutzer hat vor dem Speichern "ohne Lagerplatz" gewählt: danach nicht noch einmal fragen
 // Ersten freien Platz vorschlagen (Regal, Ebene, Platz von links); im Formular änderbar oder über "noch kein Lagerplatz" zu leeren
+function allSlots() {
+  const list = [];
+  for (const r of settings.racks) for (let e = 1; e <= r.rows; e++) for (let p = 1; p <= rackCols(r, e); p++) list.push({ r, e, p });
+  return list;
+}
+// Zuletzt vergebener Platz (gerätegebunden); der Vorschlag beginnt dort
 function firstFreeSlot() {
-  for (const r of settings.racks) {
-    const map = slotMapFor(r.id);
-    for (let e = 1; e <= r.rows; e++) {
-      const cap = rackCap(r, e);
-      for (let p = 1; p <= rackCols(r, e); p++) if ((map.get(e + '|' + p) || []).length < cap) return { r, e, p };
-    }
-  }
+  const list = allSlots();
+  if (!list.length) return null;
+  const maps = {};
+  const free = (x) => { const m = maps[x.r.id] || (maps[x.r.id] = slotMapFor(x.r.id)); return (m.get(x.e + '|' + x.p) || []).length < rackCap(x.r, x.e); };
+  const lp = settings.lastPlace;
+  let start = 0;
+  if (lp) { const i = list.findIndex(x => x.r.name === lp.name && x.e === lp.e && x.p === lp.p); if (i >= 0) start = i; }
+  for (let k = 0; k < list.length; k++) { const x = list[(start + k) % list.length]; if (free(x)) return x; }
   return null;
+}
+function rememberPlace() {
+  if (editId || storeFromScan) return;
+  const name = document.getElementById('f-loc-regal').value.trim();
+  const e = parseInt(document.getElementById('f-loc-ebene').value), p = parseInt(document.getElementById('f-loc-platz').value);
+  if (!name || !(e >= 1) || !(p >= 1)) return;
+  settings.lastPlace = { name, e, p };
+  saveSettings();
 }
 function suggestPlace() {
   const f = firstFreeSlot();
   document.getElementById('f-loc-regal').value = f ? f.r.name : '';
   document.getElementById('f-loc-ebene').value = f ? String(f.e) : '';
   document.getElementById('f-loc-platz').value = f ? String(f.p) : '';
+}
+// Nach der Bestätigung des Füllstands: Cursor direkt zum Lagerplatz
+function fillConfirmed() {
+  if (editId || fillValue() === null) return;
+  const el = document.getElementById(settings.racks.length ? 'lp-rack' : 'f-loc-regal');
+  if (!el) return;
+  setTimeout(() => { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); el.focus(); }, 200);
 }
 function locPickerFill() {
   const grp = document.getElementById('loc-group'), box = document.getElementById('loc-picker');
@@ -20199,6 +20221,7 @@ function saveWine() {
   if (!name) { showToast(t('toast_name')); return; }
   if (askFillBeforeSave()) return;
   if (askLocationBeforeSave()) return;
+  rememberPlace();
   // Bild: in der Store-Version zählt nur, was der Nutzer selbst einträgt; ein dort ausgeblendetes (von der Web-App stammendes) Bild bleibt beim Speichern erhalten
   let imgVal = document.getElementById('f-image').value.trim() || null, imgUser = false;
   if (autoImagesOff()) {
