@@ -20069,7 +20069,7 @@ function firstFreeSlot() {
   const list = allSlots();
   if (!list.length) return null;
   const maps = {};
-  const free = (x) => { const m = maps[x.r.id] || (maps[x.r.id] = slotMapFor(x.r.id)); return (m.get(x.e + '|' + x.p) || []).length < rackCap(x.r, x.e); };
+  const free = (x) => { const m = maps[x.r.id] || (maps[x.r.id] = slotMapFor(x.r.id)); return (m.get(x.e + '|' + x.p) || []).length < SLOT_MAX; };
   const lp = settings.lastPlace;
   let start = 0;
   if (lp) { const i = list.findIndex(x => x.r.name === lp.name && x.e === lp.e && x.p === lp.p); if (i >= 0) start = i; }
@@ -20134,7 +20134,7 @@ function locPickSlots(r, e, p) {
   if (!r || !e) { sl.style.display = 'none'; return; }
   const own = new Set();   // beim Bearbeiten bleibt der eigene Platz wählbar, auch wenn das Fach sonst voll wäre
   if (editId) { const w = wines.find(x => x.id === editId); if (w) (w.placements || []).forEach(x => { if (x.rack === r.id && x.e === e) own.add(x.p); }); }
-  const map = slotMapFor(r.id), cap = rackCap(r, e);
+  const map = slotMapFor(r.id), cap = SLOT_MAX;
   let h = `<option value="">${esc(t('loc_slot_ph'))}</option>`;
   for (let i = 1; i <= rackCols(r, e); i++) {
     const used = (map.get(e + '|' + i) || []).length;
@@ -20383,7 +20383,7 @@ function saveWine() {
     if (typed && !sameSlot(typed, list[0])) {
       const entries = slotMapFor(typed.rack).get(typed.e + '|' + typed.p) || [];
       const used = entries.filter(x => x.w.id !== wine.id).length + list.slice(1).filter(x => sameSlot(x, typed)).length;
-      if (used >= rackCap(typedRack, typed.e)) {
+      if (used >= SLOT_MAX) {
         const clash = (entries.find(x => x.w.id !== wine.id) || entries[0] || {}).w;
         // Neuer Eintrag desselben Weins darf sich den Platz teilen (wird unten zusammengeführt)
         if (!(clash && !editId && sameWine(clash, wine))) { showToast(t('toast_slot_taken', { w: clash ? clash.name : '' })); return; }
@@ -20405,7 +20405,7 @@ function saveWine() {
       });
       if (!Object.keys(existing.minMax || {}).length && Object.keys(wine.minMax || {}).length) existing.minMax = wine.minMax;
       if ((wine.opened || []).length) existing.opened = cleanOpened((existing.opened || []).concat(wine.opened), existing.count || 1, existing.size || 70);
-      const addPl = (wine.placements || []).filter(x => { const rr = rackById(x.rack); return rr && (slotMapFor(x.rack).get(x.e + '|' + x.p) || []).length < rackCap(rr, x.e); });
+      const addPl = (wine.placements || []).filter(x => { const rr = rackById(x.rack); return rr && (slotMapFor(x.rack).get(x.e + '|' + x.p) || []).length < SLOT_MAX; });
       if (addPl.length) setPlacements(existing, validPlacements(existing).concat(addPl));
       showToast(t('toast_count', {n: existing.count}));
     } else {
@@ -21007,6 +21007,8 @@ let storeFromScan = false;      // das Formular "Wein hinzufügen" wurde von der
 let rackStoreFilter = null;     // Wein-ID: Regalkarte zeigt nur die noch nicht eingelagerten Flaschen dieses Weins (Einlagern-Knopf der Keller-Karte)
 function rackById(id) { return settings.racks.find(r => r.id === id) || null; }
 // Alle Ebenen haben gleich viele Plätze; Flaschen pro Platz: Standard des Regals, je Ebene überschreibbar (r.lv[Ebene].cap)
+// Keine Höchstzahl Flaschen pro Platz (nur die Wein-App begrenzt): beim Buchen zählt jeder vorhandene Platz als frei
+const SLOT_MAX = 999;
 function rackCols(r) { return r.cols; }
 function rackCap(r, e) { return (r && ((r.lv && r.lv[e] && r.lv[e].cap) || r.cap)) || 1; }
 function rackMaxCols(r) { return r.cols; }
@@ -21083,7 +21085,7 @@ function slotClick(e, p) {
   if (!r) return;
   const entries = slotMapFor(r.id).get(e + '|' + p) || [];
   if (p > rackCols(r, e)) return;
-  const free = rackCap(r, e) - entries.length;
+  const free = SLOT_MAX - entries.length;
   if (rackMove) {
     if (rackMove.rack === r.id && rackMove.e === e && rackMove.p === p) { cancelMove(); return; }
     if (free < 1) return;
