@@ -19952,10 +19952,10 @@ function locPickChanged(which) {
 // Rückgabe true = Speichern abbrechen (der Nutzer wählt jetzt einen Platz).
 function askLocationBeforeSave() {
   skipStoreAsk = false;
-  if (editId || storeFromScan || !settings.racks.length) return false;
+  if (editId || storeFromScan) return false;
   if (document.getElementById('f-loc-regal').value.trim()) return false;
   if (confirm(t('loc_ask_before'))) {
-    const sel = document.getElementById('lp-rack');
+    const sel = document.getElementById(settings.racks.length ? 'lp-rack' : 'f-loc-regal');
     sel.scrollIntoView({ block: 'center', behavior: 'smooth' });
     setTimeout(() => sel.focus(), 300);
     return true;
