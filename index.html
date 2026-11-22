@@ -20143,12 +20143,18 @@ function locPickSlots(r, e, p) {
   sl.innerHTML = h; sl.style.display = 'block';
   sl.value = p && [...sl.options].some(o => o.value === String(p)) ? String(p) : '';
 }
+// Nach der Auswahl direkt zum nächsten Feld (Regal, dann Ebene, dann Platz) und die Auswahl aufklappen
+function locNext(id) {
+  const el = document.getElementById(id);
+  if (!el || el.style.display === 'none') return;
+  setTimeout(() => { el.focus(); if (el.showPicker) { try { el.showPicker(); } catch (e) { /* ohne Unterstuetzung bleibt es beim Fokus */ } } }, 120);
+}
 function locPickChanged(which) {
   const r = settings.racks.find(x => x.id === document.getElementById('lp-rack').value) || null;
   const reg = document.getElementById('f-loc-regal'), eb = document.getElementById('f-loc-ebene'), pl = document.getElementById('f-loc-platz');
-  if (which === 'rack') { reg.value = r ? r.name : ''; eb.value = ''; pl.value = ''; locPickLevels(r, '', ''); return; }
+  if (which === 'rack') { reg.value = r ? r.name : ''; eb.value = ''; pl.value = ''; locPickLevels(r, '', ''); if (r) locNext('lp-level'); return; }
   const e = +document.getElementById('lp-level').value || 0;
-  if (which === 'level') { eb.value = e ? String(e) : ''; pl.value = ''; locPickSlots(r, e, ''); return; }
+  if (which === 'level') { eb.value = e ? String(e) : ''; pl.value = ''; locPickSlots(r, e, ''); if (e) locNext('lp-slot'); return; }
   pl.value = document.getElementById('lp-slot').value || '';
 }
 // Vor dem Speichern einer NEUEN Flasche: ist ein Regal vorhanden, aber kein Lagerplatz gewählt, wird gefragt.
