@@ -1352,6 +1352,11 @@ input[type="file"] { display: none; }
       </select>
     </div>
     <div class="form-group" style="margin-top:14px">
+      <button type="button" class="btn-secondary" onclick="document.getElementById('bulk-input').click()" data-i18n="bulk_btn">🖼️ Mehrere Fotos zuordnen</button>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px" data-i18n="bulk_desc">Wähle mehrere Bilder aus der Mediathek oder aus Dateien und ordne sie nacheinander deinen Flaschen zu.</div>
+      <input type="file" id="bulk-input" accept="image/*" multiple style="display:none" onchange="bulkStart(event)">
+    </div>
+    <div class="form-group" style="margin-top:14px">
       <label data-i18n="setup_font">Schriftart</label>
       <select id="setup-font" onchange="setFont(this.value)">
         <option value="inter" style="font-family:'Inter',sans-serif">Standard</option>
@@ -1527,6 +1532,26 @@ input[type="file"] { display: none; }
       <button class="btn-secondary" onclick="copyShoppingList()" data-i18n="mm_copy">Kopieren</button>
       <button class="btn-secondary" onclick="shareShoppingList()" data-i18n="mm_share">Liste teilen</button>
       <button class="btn-primary" onclick="shoppingToWishlist()" data-i18n="mm_to_wish" style="flex-basis:100%">Auf die Wunschliste setzen</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="bulk-modal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <h2 data-i18n="bulk_title">Foto zuordnen</h2>
+    <div class="qr-hint" id="bulk-progress"></div>
+    <div id="bulk-img" class="image-preview" style="margin-bottom:10px"></div>
+    <div class="form-group">
+      <label data-i18n="bulk_pick">Zu welcher Flasche gehört dieses Foto?</label>
+      <select id="bulk-wine"></select>
+    </div>
+    <div class="form-group" id="bulk-where-wrap" style="display:none">
+      <label data-i18n="photo_where">Foto speichern</label>
+      <select id="bulk-where"><option value="cloud" data-i18n="photo_where_cloud">☁️ In der Cloud (auf allen Geräten)</option><option value="local" data-i18n="photo_where_local">📱 Nur auf diesem Handy</option></select>
+    </div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="bulkSkip()" data-i18n="bulk_skip">Überspringen</button>
+      <button class="btn-primary" onclick="bulkAssign()" data-i18n="bulk_assign">Zuordnen</button>
     </div>
   </div>
 </div>
@@ -2670,6 +2695,60 @@ function photoGC() {
   if (formPhotoPending) used.add(formPhotoPending);
   [...photoCache.keys()].forEach(id => { if (!used.has(id)) photoDel(id); });
 }
+// ── Mehrere Fotos auf einmal: nacheinander einer Flasche zuordnen (Vorschlag: Name der Datei passt zum Flaschennamen) ──
+let bulkQueue = [], bulkTotal = 0, bulkDone = 0, bulkCur = null;
+async function bulkStart(e) {
+  const files = [...(e.target.files || [])].filter(f => /^image\//.test(f.type));
+  e.target.value = '';
+  if (!files.length) return;
+  if (!wines.length) { showToast(t('bulk_none')); return; }
+  bulkQueue = files; bulkTotal = files.length; bulkDone = 0;
+  document.getElementById('bulk-modal').classList.add('show');
+  await bulkNext();
+}
+function bulkNorm(x) { return String(x || '').toLowerCase().replace(/\.[a-z0-9]+$/, '').replace(/[^a-z0-9äöüßáàâéèêíóôúñçå]+/g, ' ').trim(); }
+function bulkGuess(fileName) {
+  const f = bulkNorm(fileName);
+  if (!f) return '';
+  let best = null, bestLen = 0;
+  wines.forEach(w => { const n = bulkNorm(w.name); if (n && (f.includes(n) || n.includes(f)) && n.length > bestLen) { best = w; bestLen = n.length; } });
+  return best ? best.id : '';
+}
+async function bulkNext() {
+  if (!bulkQueue.length) { closeModal('bulk-modal'); showToast(t('bulk_done', { n: bulkDone })); return; }
+  const file = bulkQueue[0];
+  try { bulkCur = { file, dataUrl: 'data:image/jpeg;base64,' + await imageToBase64(file, 1000) }; }
+  catch (err) { bulkQueue.shift(); return bulkNext(); }
+  const n = bulkTotal - bulkQueue.length + 1;
+  document.getElementById('bulk-progress').textContent = t('bulk_progress', { n, m: bulkTotal });
+  document.getElementById('bulk-img').innerHTML = '<img src="' + bulkCur.dataUrl + '" alt="" style="max-width:100%;max-height:220px;border-radius:10px;display:block">';
+  const sel = document.getElementById('bulk-wine');
+  const guess = bulkGuess(file.name);
+  const sorted = wines.slice().sort((a, b) => (!!a.photo - !!b.photo) || String(a.name).localeCompare(String(b.name)));
+  sel.innerHTML = sorted.map(w => '<option value="' + esc(w.id) + '">' + esc(w.name + (w.year ? ' · ' + w.year : '') + (w.photo ? ' 📷' : '')) + '</option>').join('');
+  sel.value = guess || (sorted[0] || {}).id || '';
+  const wrap = document.getElementById('bulk-where-wrap');
+  wrap.style.display = photoCloudOn() ? 'block' : 'none';
+}
+async function bulkAssign() {
+  if (!bulkCur) return;
+  const w = wines.find(x => x.id === document.getElementById('bulk-wine').value);
+  if (w) {
+    try {
+      const id = 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      await photoPut(id, bulkCur.dataUrl);
+      const old = w.photo;
+      w.photo = id;
+      w.photoCloud = photoCloudOn() && document.getElementById('bulk-where').value === 'cloud';
+      if (old && old !== id) photoDel(old);
+      save();
+      bulkDone++;
+    } catch (err) { showToast(t('photo_fail')); }
+  }
+  bulkQueue.shift(); bulkCur = null;
+  await bulkNext();
+}
+async function bulkSkip() { bulkQueue.shift(); bulkCur = null; await bulkNext(); }
 async function handlePhotoPick(e) {
   const file = e.target.files[0];
   e.target.value = '';
@@ -4088,6 +4167,15 @@ de: {
   photo_where: "Foto speichern",
   photo_where_cloud: "☁️ In der Cloud (auf allen Geräten)",
   photo_where_local: "📱 Nur auf diesem Handy",
+  bulk_btn: "🖼️ Mehrere Fotos zuordnen",
+  bulk_desc: "Wähle mehrere Bilder aus der Mediathek oder aus Dateien und ordne sie nacheinander deinen Flaschen zu.",
+  bulk_title: "Foto zuordnen",
+  bulk_pick: "Zu welcher Flasche gehört dieses Foto?",
+  bulk_assign: "Zuordnen",
+  bulk_skip: "Überspringen",
+  bulk_progress: "Foto {n} von {m}",
+  bulk_done: "{n} Fotos zugeordnet",
+  bulk_none: "Es sind noch keine Flaschen vorhanden.",
   photo_remove: "Foto entfernen",
   photo_saved: "Foto gespeichert ✓",
   photo_fail: "Foto konnte nicht gespeichert werden",
@@ -4751,6 +4839,15 @@ en: {
   photo_where: "Save photo",
   photo_where_cloud: "☁️ In the cloud (on all devices)",
   photo_where_local: "📱 Only on this phone",
+  bulk_btn: "🖼️ Assign several photos",
+  bulk_desc: "Choose several pictures from your library or Files and assign them to your bottles one after another.",
+  bulk_title: "Assign photo",
+  bulk_pick: "Which bottle does this photo belong to?",
+  bulk_assign: "Assign",
+  bulk_skip: "Skip",
+  bulk_progress: "Photo {n} of {m}",
+  bulk_done: "{n} photos assigned",
+  bulk_none: "There are no bottles yet.",
   photo_remove: "Remove photo",
   photo_saved: "Photo saved ✓",
   photo_fail: "Photo could not be saved",
@@ -5414,6 +5511,15 @@ es: {
   photo_where: "Guardar foto",
   photo_where_cloud: "☁️ En la nube (en todos los dispositivos)",
   photo_where_local: "📱 Solo en este móvil",
+  bulk_btn: "🖼️ Asignar varias fotos",
+  bulk_desc: "Elige varias imágenes de tu fototeca o de Archivos y asígnalas a tus botellas una tras otra.",
+  bulk_title: "Asignar foto",
+  bulk_pick: "¿A qué botella pertenece esta foto?",
+  bulk_assign: "Asignar",
+  bulk_skip: "Omitir",
+  bulk_progress: "Foto {n} de {m}",
+  bulk_done: "{n} fotos asignadas",
+  bulk_none: "Todavía no hay botellas.",
   photo_remove: "Quitar foto",
   photo_saved: "Foto guardada ✓",
   photo_fail: "No se pudo guardar la foto",
@@ -6077,6 +6183,15 @@ sv: {
   photo_where: "Spara foto",
   photo_where_cloud: "☁️ I molnet (på alla enheter)",
   photo_where_local: "📱 Bara på den här telefonen",
+  bulk_btn: "🖼️ Tilldela flera foton",
+  bulk_desc: "Välj flera bilder från ditt bibliotek eller Filer och tilldela dem till dina flaskor en i taget.",
+  bulk_title: "Tilldela foto",
+  bulk_pick: "Vilken flaska hör det här fotot till?",
+  bulk_assign: "Tilldela",
+  bulk_skip: "Hoppa över",
+  bulk_progress: "Foto {n} av {m}",
+  bulk_done: "{n} foton tilldelade",
+  bulk_none: "Det finns inga flaskor ännu.",
   photo_remove: "Ta bort foto",
   photo_saved: "Foto sparat ✓",
   photo_fail: "Fotot kunde inte sparas",
@@ -6740,6 +6855,15 @@ da: {
   photo_where: "Gem foto",
   photo_where_cloud: "☁️ I skyen (på alle enheder)",
   photo_where_local: "📱 Kun på denne telefon",
+  bulk_btn: "🖼️ Tildel flere fotos",
+  bulk_desc: "Vælg flere billeder fra dit bibliotek eller Filer, og tildel dem til dine flasker et ad gangen.",
+  bulk_title: "Tildel foto",
+  bulk_pick: "Hvilken flaske hører dette foto til?",
+  bulk_assign: "Tildel",
+  bulk_skip: "Spring over",
+  bulk_progress: "Foto {n} af {m}",
+  bulk_done: "{n} fotos tildelt",
+  bulk_none: "Der er endnu ingen flasker.",
   photo_remove: "Fjern foto",
   photo_saved: "Foto gemt ✓",
   photo_fail: "Fotoet kunne ikke gemmes",
@@ -7403,6 +7527,15 @@ fi: {
   photo_where: "Tallenna kuva",
   photo_where_cloud: "☁️ Pilveen (kaikille laitteille)",
   photo_where_local: "📱 Vain tälle puhelimelle",
+  bulk_btn: "🖼️ Liitä useita kuvia",
+  bulk_desc: "Valitse useita kuvia kirjastostasi tai Tiedostot-apista ja liitä ne pulloihisi yksi kerrallaan.",
+  bulk_title: "Liitä kuva",
+  bulk_pick: "Mihin pulloon tämä kuva kuuluu?",
+  bulk_assign: "Liitä",
+  bulk_skip: "Ohita",
+  bulk_progress: "Kuva {n} / {m}",
+  bulk_done: "{n} kuvaa liitetty",
+  bulk_none: "Pulloja ei vielä ole.",
   photo_remove: "Poista kuva",
   photo_saved: "Kuva tallennettu ✓",
   photo_fail: "Kuvaa ei voitu tallentaa",
@@ -8066,6 +8199,15 @@ ru: {
   photo_where: "Сохранить фото",
   photo_where_cloud: "☁️ В облаке (на всех устройствах)",
   photo_where_local: "📱 Только на этом телефоне",
+  bulk_btn: "🖼️ Привязать несколько фото",
+  bulk_desc: "Выберите несколько изображений из медиатеки или приложения «Файлы» и по очереди привяжите их к своим бутылкам.",
+  bulk_title: "Привязать фото",
+  bulk_pick: "К какой бутылке относится это фото?",
+  bulk_assign: "Привязать",
+  bulk_skip: "Пропустить",
+  bulk_progress: "Фото {n} из {m}",
+  bulk_done: "Привязано фото: {n}",
+  bulk_none: "Бутылок пока нет.",
   photo_remove: "Удалить фото",
   photo_saved: "Фото сохранено ✓",
   photo_fail: "Не удалось сохранить фото",
@@ -8729,6 +8871,15 @@ it: {
   photo_where: "Salva foto",
   photo_where_cloud: "☁️ Nel cloud (su tutti i dispositivi)",
   photo_where_local: "📱 Solo su questo telefono",
+  bulk_btn: "🖼️ Assegna più foto",
+  bulk_desc: "Scegli più immagini dalla libreria o da File e assegnale alle tue bottiglie una dopo l'altra.",
+  bulk_title: "Assegna foto",
+  bulk_pick: "A quale bottiglia appartiene questa foto?",
+  bulk_assign: "Assegna",
+  bulk_skip: "Salta",
+  bulk_progress: "Foto {n} di {m}",
+  bulk_done: "{n} foto assegnate",
+  bulk_none: "Non ci sono ancora bottiglie.",
   photo_remove: "Rimuovi foto",
   photo_saved: "Foto salvata ✓",
   photo_fail: "Impossibile salvare la foto",
@@ -9392,6 +9543,15 @@ fr: {
   photo_where: "Enregistrer la photo",
   photo_where_cloud: "☁️ Dans le cloud (sur tous les appareils)",
   photo_where_local: "📱 Uniquement sur ce téléphone",
+  bulk_btn: "🖼️ Associer plusieurs photos",
+  bulk_desc: "Choisissez plusieurs images dans votre photothèque ou dans Fichiers et associez-les à vos bouteilles une par une.",
+  bulk_title: "Associer la photo",
+  bulk_pick: "À quelle bouteille appartient cette photo ?",
+  bulk_assign: "Associer",
+  bulk_skip: "Passer",
+  bulk_progress: "Photo {n} sur {m}",
+  bulk_done: "{n} photos associées",
+  bulk_none: "Il n'y a pas encore de bouteilles.",
   photo_remove: "Supprimer la photo",
   photo_saved: "Photo enregistrée ✓",
   photo_fail: "La photo n'a pas pu être enregistrée",
@@ -10055,6 +10215,15 @@ pl: {
   photo_where: "Zapisz zdjęcie",
   photo_where_cloud: "☁️ W chmurze (na wszystkich urządzeniach)",
   photo_where_local: "📱 Tylko na tym telefonie",
+  bulk_btn: "🖼️ Przypisz kilka zdjęć",
+  bulk_desc: "Wybierz kilka zdjęć z biblioteki lub aplikacji Pliki i przypisuj je kolejno do swoich butelek.",
+  bulk_title: "Przypisz zdjęcie",
+  bulk_pick: "Do której butelki należy to zdjęcie?",
+  bulk_assign: "Przypisz",
+  bulk_skip: "Pomiń",
+  bulk_progress: "Zdjęcie {n} z {m}",
+  bulk_done: "Przypisano zdjęć: {n}",
+  bulk_none: "Nie ma jeszcze żadnych butelek.",
   photo_remove: "Usuń zdjęcie",
   photo_saved: "Zdjęcie zapisane ✓",
   photo_fail: "Nie udało się zapisać zdjęcia",
@@ -10718,6 +10887,15 @@ hu: {
   photo_where: "Fotó mentése",
   photo_where_cloud: "☁️ A felhőben (minden eszközön)",
   photo_where_local: "📱 Csak ezen a telefonon",
+  bulk_btn: "🖼️ Több fotó hozzárendelése",
+  bulk_desc: "Válassz ki több képet a könyvtárból vagy a Fájlok appból, és rendeld őket egymás után a palackjaidhoz.",
+  bulk_title: "Fotó hozzárendelése",
+  bulk_pick: "Melyik palackhoz tartozik ez a fotó?",
+  bulk_assign: "Hozzárendel",
+  bulk_skip: "Kihagyás",
+  bulk_progress: "{n}. fotó / {m}",
+  bulk_done: "{n} fotó hozzárendelve",
+  bulk_none: "Még nincsenek palackok.",
   photo_remove: "Fotó törlése",
   photo_saved: "Fotó mentve ✓",
   photo_fail: "A fotót nem sikerült menteni",
@@ -11381,6 +11559,15 @@ cs: {
   photo_where: "Uložit fotku",
   photo_where_cloud: "☁️ V cloudu (na všech zařízeních)",
   photo_where_local: "📱 Jen v tomto telefonu",
+  bulk_btn: "🖼️ Přiřadit více fotek",
+  bulk_desc: "Vyberte více obrázků z knihovny nebo z aplikace Soubory a postupně je přiřaďte ke svým lahvím.",
+  bulk_title: "Přiřadit fotku",
+  bulk_pick: "Ke které láhvi tato fotka patří?",
+  bulk_assign: "Přiřadit",
+  bulk_skip: "Přeskočit",
+  bulk_progress: "Fotka {n} z {m}",
+  bulk_done: "Přiřazeno fotek: {n}",
+  bulk_none: "Zatím tu nejsou žádné láhve.",
   photo_remove: "Odebrat foto",
   photo_saved: "Foto uloženo ✓",
   photo_fail: "Foto se nepodařilo uložit",
@@ -12044,6 +12231,15 @@ sk: {
   photo_where: "Uložiť fotku",
   photo_where_cloud: "☁️ V cloude (na všetkých zariadeniach)",
   photo_where_local: "📱 Iba v tomto telefóne",
+  bulk_btn: "🖼️ Priradiť viac fotiek",
+  bulk_desc: "Vyberte viac obrázkov z knižnice alebo z aplikácie Súbory a postupne ich priraďte k svojim fľašiam.",
+  bulk_title: "Priradiť fotku",
+  bulk_pick: "K ktorej fľaši táto fotka patrí?",
+  bulk_assign: "Priradiť",
+  bulk_skip: "Preskočiť",
+  bulk_progress: "Fotka {n} z {m}",
+  bulk_done: "Priradené fotky: {n}",
+  bulk_none: "Zatiaľ tu nie sú žiadne fľaše.",
   photo_remove: "Odstrániť foto",
   photo_saved: "Foto uložené ✓",
   photo_fail: "Foto sa nepodarilo uložiť",
@@ -12707,6 +12903,15 @@ ro: {
   photo_where: "Salvează fotografia",
   photo_where_cloud: "☁️ În cloud (pe toate dispozitivele)",
   photo_where_local: "📱 Doar pe acest telefon",
+  bulk_btn: "🖼️ Atribuie mai multe fotografii",
+  bulk_desc: "Alege mai multe imagini din bibliotecă sau din Fișiere și atribuie-le sticlelor tale, una după alta.",
+  bulk_title: "Atribuie fotografia",
+  bulk_pick: "Cărei sticle îi aparține această fotografie?",
+  bulk_assign: "Atribuie",
+  bulk_skip: "Omite",
+  bulk_progress: "Fotografia {n} din {m}",
+  bulk_done: "{n} fotografii atribuite",
+  bulk_none: "Nu există încă nicio sticlă.",
   photo_remove: "Elimină fotografia",
   photo_saved: "Fotografie salvată ✓",
   photo_fail: "Fotografia nu a putut fi salvată",
@@ -13370,6 +13575,15 @@ hr: {
   photo_where: "Spremi fotografiju",
   photo_where_cloud: "☁️ U oblaku (na svim uređajima)",
   photo_where_local: "📱 Samo na ovom telefonu",
+  bulk_btn: "🖼️ Dodijeli više fotografija",
+  bulk_desc: "Odaberi više slika iz biblioteke ili iz Datoteka i dodijeli ih svojim bocama jednu za drugom.",
+  bulk_title: "Dodijeli fotografiju",
+  bulk_pick: "Kojoj boci pripada ova fotografija?",
+  bulk_assign: "Dodijeli",
+  bulk_skip: "Preskoči",
+  bulk_progress: "Fotografija {n} od {m}",
+  bulk_done: "Dodijeljeno fotografija: {n}",
+  bulk_none: "Još nema boca.",
   photo_remove: "Ukloni fotografiju",
   photo_saved: "Fotografija spremljena ✓",
   photo_fail: "Fotografiju nije moguće spremiti",
@@ -14033,6 +14247,15 @@ pt: {
   photo_where: "Guardar foto",
   photo_where_cloud: "☁️ Na nuvem (em todos os dispositivos)",
   photo_where_local: "📱 Apenas neste telemóvel",
+  bulk_btn: "🖼️ Atribuir várias fotos",
+  bulk_desc: "Escolhe várias imagens da fototeca ou de Ficheiros e atribui-as às tuas garrafas, uma a seguir à outra.",
+  bulk_title: "Atribuir foto",
+  bulk_pick: "A que garrafa pertence esta foto?",
+  bulk_assign: "Atribuir",
+  bulk_skip: "Ignorar",
+  bulk_progress: "Foto {n} de {m}",
+  bulk_done: "{n} fotos atribuídas",
+  bulk_none: "Ainda não há garrafas.",
   photo_remove: "Remover foto",
   photo_saved: "Foto guardada ✓",
   photo_fail: "Não foi possível guardar a foto",
@@ -14696,6 +14919,15 @@ no: {
   photo_where: "Lagre bilde",
   photo_where_cloud: "☁️ I skyen (på alle enheter)",
   photo_where_local: "📱 Bare på denne telefonen",
+  bulk_btn: "🖼️ Tilordne flere bilder",
+  bulk_desc: "Velg flere bilder fra biblioteket eller Filer, og tilordne dem til flaskene dine ett etter ett.",
+  bulk_title: "Tilordne bilde",
+  bulk_pick: "Hvilken flaske hører dette bildet til?",
+  bulk_assign: "Tilordne",
+  bulk_skip: "Hopp over",
+  bulk_progress: "Bilde {n} av {m}",
+  bulk_done: "{n} bilder tilordnet",
+  bulk_none: "Det finnes ingen flasker ennå.",
   photo_remove: "Fjern bilde",
   photo_saved: "Bilde lagret ✓",
   photo_fail: "Bildet kunne ikke lagres",
@@ -15359,6 +15591,15 @@ nl: {
   photo_where: "Foto opslaan",
   photo_where_cloud: "☁️ In de cloud (op alle apparaten)",
   photo_where_local: "📱 Alleen op deze telefoon",
+  bulk_btn: "🖼️ Meerdere foto's toewijzen",
+  bulk_desc: "Kies meerdere afbeeldingen uit je fotobibliotheek of Bestanden en wijs ze één voor één toe aan je flessen.",
+  bulk_title: "Foto toewijzen",
+  bulk_pick: "Bij welke fles hoort deze foto?",
+  bulk_assign: "Toewijzen",
+  bulk_skip: "Overslaan",
+  bulk_progress: "Foto {n} van {m}",
+  bulk_done: "{n} foto's toegewezen",
+  bulk_none: "Er zijn nog geen flessen.",
   photo_remove: "Foto verwijderen",
   photo_saved: "Foto opgeslagen ✓",
   photo_fail: "Foto kon niet worden opgeslagen",
@@ -16022,6 +16263,15 @@ el: {
   photo_where: "Αποθήκευση φωτογραφίας",
   photo_where_cloud: "☁️ Στο cloud (σε όλες τις συσκευές)",
   photo_where_local: "📱 Μόνο σε αυτό το κινητό",
+  bulk_btn: "🖼️ Αντιστοίχιση πολλών φωτογραφιών",
+  bulk_desc: "Επίλεξε πολλές εικόνες από τη βιβλιοθήκη ή από τα Αρχεία και αντιστοίχισέ τες στα μπουκάλια σου μία μία.",
+  bulk_title: "Αντιστοίχιση φωτογραφίας",
+  bulk_pick: "Σε ποιο μπουκάλι ανήκει αυτή η φωτογραφία;",
+  bulk_assign: "Αντιστοίχιση",
+  bulk_skip: "Παράλειψη",
+  bulk_progress: "Φωτογραφία {n} από {m}",
+  bulk_done: "Αντιστοιχίστηκαν {n} φωτογραφίες",
+  bulk_none: "Δεν υπάρχουν ακόμη μπουκάλια.",
   photo_remove: "Αφαίρεση φωτογραφίας",
   photo_saved: "Η φωτογραφία αποθηκεύτηκε ✓",
   photo_fail: "Δεν ήταν δυνατή η αποθήκευση της φωτογραφίας",
@@ -16685,6 +16935,15 @@ uk: {
   photo_where: "Зберегти фото",
   photo_where_cloud: "☁️ У хмарі (на всіх пристроях)",
   photo_where_local: "📱 Лише на цьому телефоні",
+  bulk_btn: "🖼️ Призначити кілька фото",
+  bulk_desc: "Вибери кілька зображень із медіатеки або з Файлів і призначай їх своїм пляшкам одне за одним.",
+  bulk_title: "Призначити фото",
+  bulk_pick: "До якої пляшки належить це фото?",
+  bulk_assign: "Призначити",
+  bulk_skip: "Пропустити",
+  bulk_progress: "Фото {n} з {m}",
+  bulk_done: "Призначено фото: {n}",
+  bulk_none: "Пляшок ще немає.",
   photo_remove: "Видалити фото",
   photo_saved: "Фото збережено ✓",
   photo_fail: "Не вдалося зберегти фото",
@@ -17348,6 +17607,15 @@ ja: {
   photo_where: "写真の保存先",
   photo_where_cloud: "☁️ クラウド（すべてのデバイス）",
   photo_where_local: "📱 このスマホのみ",
+  bulk_btn: "🖼️ 複数の写真を割り当てる",
+  bulk_desc: "ライブラリまたは「ファイル」から複数の写真を選び、ボトルに順番に割り当てます。",
+  bulk_title: "写真を割り当てる",
+  bulk_pick: "この写真はどのボトルのものですか？",
+  bulk_assign: "割り当てる",
+  bulk_skip: "スキップ",
+  bulk_progress: "写真 {n} / {m}",
+  bulk_done: "{n}枚の写真を割り当てました",
+  bulk_none: "まだボトルがありません。",
   photo_remove: "写真を削除",
   photo_saved: "写真を保存しました ✓",
   photo_fail: "写真を保存できませんでした",
@@ -18011,6 +18279,15 @@ ko: {
   photo_where: "사진 저장",
   photo_where_cloud: "☁️ 클라우드(모든 기기)",
   photo_where_local: "📱 이 휴대폰에만",
+  bulk_btn: "🖼️ 여러 사진 지정하기",
+  bulk_desc: "보관함 또는 파일 앱에서 여러 사진을 선택하고 병에 차례로 지정하세요.",
+  bulk_title: "사진 지정",
+  bulk_pick: "이 사진은 어느 병의 것인가요?",
+  bulk_assign: "지정",
+  bulk_skip: "건너뛰기",
+  bulk_progress: "사진 {n} / {m}",
+  bulk_done: "사진 {n}장 지정됨",
+  bulk_none: "아직 병이 없습니다.",
   photo_remove: "사진 삭제",
   photo_saved: "사진을 저장했어요 ✓",
   photo_fail: "사진을 저장하지 못했어요",
@@ -18674,6 +18951,15 @@ zh: {
   photo_where: "保存照片",
   photo_where_cloud: "☁️ 云端（所有设备）",
   photo_where_local: "📱 仅此手机",
+  bulk_btn: "🖼️ 批量关联照片",
+  bulk_desc: "从相册或“文件”中选择多张图片，并依次关联到你的酒瓶。",
+  bulk_title: "关联照片",
+  bulk_pick: "这张照片属于哪一瓶？",
+  bulk_assign: "关联",
+  bulk_skip: "跳过",
+  bulk_progress: "第 {n} 张，共 {m} 张",
+  bulk_done: "已关联 {n} 张照片",
+  bulk_none: "还没有酒瓶。",
   photo_remove: "删除照片",
   photo_saved: "照片已保存 ✓",
   photo_fail: "无法保存照片",
@@ -19337,6 +19623,15 @@ hi: {
   photo_where: "फ़ोटो सहेजें",
   photo_where_cloud: "☁️ क्लाउड में (सभी डिवाइस पर)",
   photo_where_local: "📱 केवल इस फ़ोन पर",
+  bulk_btn: "🖼️ कई फ़ोटो असाइन करें",
+  bulk_desc: "लाइब्रेरी या फ़ाइलें से कई तस्वीरें चुनें और उन्हें एक-एक करके अपनी बोतलों को असाइन करें।",
+  bulk_title: "फ़ोटो असाइन करें",
+  bulk_pick: "यह फ़ोटो किस बोतल की है?",
+  bulk_assign: "असाइन करें",
+  bulk_skip: "छोड़ें",
+  bulk_progress: "फ़ोटो {n} / {m}",
+  bulk_done: "{n} फ़ोटो असाइन किए गए",
+  bulk_none: "अभी तक कोई बोतल नहीं है।",
   photo_remove: "फ़ोटो हटाएँ",
   photo_saved: "फ़ोटो सहेजी गई ✓",
   photo_fail: "फ़ोटो सहेजी नहीं जा सकी",
@@ -20532,7 +20827,7 @@ function openAddModal() {
   document.getElementById('add-modal').classList.add('show');
 }
 
-function closeModal(id) { if (id === 'add-modal') { storeFromScan = false; const sb = document.getElementById('add-save-btn'); if (sb) { sb.dataset.i18n = 'btn_save'; sb.textContent = t('btn_save'); } formToken++; if (formPhotoPending) { photoDel(formPhotoPending); formPhotoPending = null; } } document.getElementById(id).classList.remove('show'); }
+function closeModal(id) { if (id === 'bulk-modal') { bulkQueue = []; bulkCur = null; renderKeller(); } if (id === 'add-modal') { storeFromScan = false; const sb = document.getElementById('add-save-btn'); if (sb) { sb.dataset.i18n = 'btn_save'; sb.textContent = t('btn_save'); } formToken++; if (formPhotoPending) { photoDel(formPhotoPending); formPhotoPending = null; } } document.getElementById(id).classList.remove('show'); }
 
 // Fenster per Wischen nach unten schließen (wie iOS-Sheets). Gilt nur am Griff und am oberen Rand des Fensters (und nur ganz oben im Fenster),
 // damit das Scrollen im Fenster nie versehentlich schließt. Das Fenster folgt dem Finger, bei zu kurzem Zug schnappt es zurück.
