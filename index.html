@@ -1671,7 +1671,7 @@ input[type="file"] { display: none; }
       <div class="input-with-scan">
         <input id="f-loc-regal" placeholder="Regal" data-i18n-ph="ph_regal" type="text">
         <input id="f-loc-ebene" placeholder="Ebene" data-i18n-ph="ph_ebene" type="text">
-        <input id="f-loc-platz" placeholder="Platz v.l." data-i18n-ph="ph_platz" type="text">
+        <input id="f-loc-platz" placeholder="Platz v.l." data-i18n-ph="ph_platz" type="text" onchange="if (this.value.trim()) focusSave()">
         <button type="button" class="mini-scan-btn" onclick="document.getElementById('location-camera-input').click()" title="Lagerplatz scannen">📷</button>
         <button type="button" class="mini-scan-btn" onclick="scanShelfForForm()" title="QR">▦</button>
       </div>
@@ -20144,6 +20144,16 @@ function locPickSlots(r, e, p) {
   sl.value = p && [...sl.options].some(o => o.value === String(p)) ? String(p) : '';
 }
 // Nach der Auswahl direkt zum nächsten Feld (Regal, dann Ebene, dann Platz) und die Auswahl aufklappen
+// Platz gewählt: der Cursor wandert zum Speichern-Knopf (er blinkt kurz); gespeichert wird erst mit deinem Tipp
+function focusSave() {
+  const b = document.getElementById('add-save-btn');
+  if (!b) return;
+  setTimeout(() => {
+    b.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    b.focus();
+    b.classList.remove('loc-flash'); void b.offsetWidth; b.classList.add('loc-flash');
+  }, 150);
+}
 function locNext(id) {
   const el = document.getElementById(id);
   if (!el || el.style.display === 'none') return;
@@ -20156,6 +20166,7 @@ function locPickChanged(which) {
   const e = +document.getElementById('lp-level').value || 0;
   if (which === 'level') { eb.value = e ? String(e) : ''; pl.value = ''; locPickSlots(r, e, ''); if (e) locNext('lp-slot'); return; }
   pl.value = document.getElementById('lp-slot').value || '';
+  if (pl.value) focusSave();
 }
 // Vor dem Speichern einer NEUEN Flasche: ist ein Regal vorhanden, aber kein Lagerplatz gewählt, wird gefragt.
 // Rückgabe true = Speichern abbrechen (der Nutzer wählt jetzt einen Platz).
