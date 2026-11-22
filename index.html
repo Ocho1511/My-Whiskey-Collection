@@ -1470,7 +1470,6 @@ input[type="file"] { display: none; }
           <input id="rack-new-name" type="text" placeholder="Regal-Name" data-i18n-ph="rack_ph_name">
           <input id="rack-new-rows" type="number" min="1" max="30" placeholder="Ebenen" data-i18n-ph="rack_ph_rows">
           <input id="rack-new-cols" type="number" min="1" max="40" placeholder="Plätze" data-i18n-ph="rack_ph_cols">
-          <input id="rack-new-cap" type="number" min="1" max="500" placeholder="Flaschen/Platz" data-i18n-ph="rack_ph_cap">
           <button class="mini-scan-btn" onclick="addRack()" title="Regal hinzufügen">＋</button>
         </div>
       </details>
@@ -21281,7 +21280,7 @@ function rackById(id) { return settings.racks.find(r => r.id === id) || null; }
 // Keine Höchstzahl Flaschen pro Platz (nur die Wein-App begrenzt): beim Buchen zählt jeder vorhandene Platz als frei
 const SLOT_MAX = 999;
 function rackCols(r) { return r.cols; }
-function rackCap(r, e) { return (r && ((r.lv && r.lv[e] && r.lv[e].cap) || r.cap)) || 1; }
+function rackCap(r, e) { return SLOT_MAX; }   // keine Höchstzahl Flaschen pro Platz (nur die Wein-App begrenzt)
 function rackMaxCols(r) { return r.cols; }
 // Beschriftung einer Ebene: eigener Name (max. 6 Zeichen) oder "E<Nummer>"
 function levelLabel(r, e) { return (r && r.lv && r.lv[e] && r.lv[e].name) || 'E' + e; }
@@ -21469,8 +21468,8 @@ function bottlePreviewHtml(w) {
 // Belegung eines Regals: eingelagerte Flaschen / Plätze (Plätze x Flaschen pro Platz je Ebene)
 function rackFillCounts(r) {
   let total = 0, filled = 0;
-  for (let e = 1; e <= r.rows; e++) total += rackCols(r, e) * rackCap(r, e);
-  validPlacements({ placements: wines.flatMap(w => (w.placements || []).filter(x => x.rack === r.id)) }).forEach(() => { filled++; });
+  for (let e = 1; e <= r.rows; e++) total += rackCols(r, e);
+  { const seen = new Set(); validPlacements({ placements: wines.flatMap(w => (w.placements || []).filter(x => x.rack === r.id)) }).forEach(x => { seen.add(x.e + '|' + x.p); }); filled = seen.size; }   // belegte Plätze
   return { filled, total };
 }
 // Aktionsknöpfe der Regalkarte als gleich große Kacheln nebeneinander: Symbol oben, Text darunter (das Symbol steht in den Übersetzungen vorn im Text)
@@ -21495,8 +21494,8 @@ function renderRacks() {
   const maxCols = rackMaxCols(r);
   const map = slotMapFor(r.id);
   let total = 0, filled = 0;
-  for (let e = 1; e <= r.rows; e++) total += rackCols(r, e) * rackCap(r, e);
-  map.forEach((v, k) => { const [e, p] = k.split('|'); if (+e <= r.rows && +p <= rackCols(r, +e)) filled += v.length; });
+  for (let e = 1; e <= r.rows; e++) total += rackCols(r, e);
+  map.forEach((v, k) => { const [e, p] = k.split('|'); if (+e <= r.rows && +p <= rackCols(r, +e)) filled += 1; });
 
   const sw = rackStoreFilter ? wines.find(x => x.id === rackStoreFilter) : null;
   if (rackStoreFilter && !sw) rackStoreFilter = null;
@@ -21535,8 +21534,8 @@ function renderRacks() {
         const w = entries[0].w;
         const picked = rackFilledSlot && rackFilledSlot.rack === r.id && rackFilledSlot.e === e && rackFilledSlot.p === p;
         const moving = !!rackMove && rackMove.rack === r.id && rackMove.e === e && rackMove.p === p;
-        const badge = cap > 1 ? `<span class="rack-slot-count">${entries.length}/${cap}</span>` : '';
-        html += `<div class="rack-slot filled${picked?' picked':''}${moving?' moving':''}${dropping && entries.length < cap ? ' droppable' : ''}${slotW < 30 ? ' tiny' : ''}" data-slot="${e}|${p}" style="width:${slotW}px;height:${slotH}px" onclick="slotClick(${e},${p})" title="${esc(w.name)}${w.year?' · '+w.year:''}">${bottleVisual(w, slotW, slotMode)}${badge}</div>`;
+        const badge = entries.length > 1 ? `<span class="rack-slot-count">×${entries.length}</span>` : '';
+        html += `<div class="rack-slot filled${picked?' picked':''}${moving?' moving':''}${dropping ? ' droppable' : ''}${slotW < 30 ? ' tiny' : ''}" data-slot="${e}|${p}" style="width:${slotW}px;height:${slotH}px" onclick="slotClick(${e},${p})" title="${esc(w.name)}${w.year?' · '+w.year:''}">${bottleVisual(w, slotW, slotMode)}${badge}</div>`;
       } else html += `<div class="rack-slot${dropping?' droppable':''}" style="width:${slotW}px;height:${slotH}px" onclick="slotClick(${e},${p})"><div class="rack-empty" style="height:${Math.max(15, slotH-7)}px"></div></div>`;
     }
   }
@@ -21991,9 +21990,9 @@ function closeLevelSheet() { closeModal('lvl-modal'); renderRacks(); }
 function renderLevelSheet() {
   const r = rackById(lvlSheet.rack);
   if (!r) { closeLevelSheet(); return; }
-  const e = lvlSheet.e, bottles = levelBottles(r, e), fr = levelFree(r, e), total = rackCols(r, e) * rackCap(r, e);
+  const e = lvlSheet.e, bottles = levelBottles(r, e), fr = levelFree(r, e), total = rackCols(r, e);
   document.getElementById('lvl-title').textContent = r.name + ' · ' + levelLabel(r, e);
-  document.getElementById('lvl-sub').textContent = t('shelf_slots', { n: bottles.length, m: total });
+  document.getElementById('lvl-sub').textContent = t('shelf_slots', { n: new Set(bottles.map(b => b.p)).size, m: total });
   const groups = [];   // gleicher Wein im gleichen Platz (Kiste) = eine Zeile mit Anzahl
   bottles.forEach(b => { const g = groups.find(x => x.w === b.w && x.p === b.p); if (g) g.n++; else groups.push({ w: b.w, p: b.p, n: 1 }); });
   let h = `<div class="lvl-h">${t('shelf_on_level')}</div>`;
@@ -22078,14 +22077,14 @@ function renderRackSetup() {
   const cnt = document.getElementById('rack-setup-count');
   if (cnt) cnt.textContent = settings.racks.length ? '(' + settings.racks.length + ')' : '';
   list.innerHTML = settings.racks.map((r,i) => {
-    let h = `<div class="rack-setup-item${i === rackEditIdx ? ' editing' : ''}">${settings.racks.length > 1 ? `<span class="rack-drag" title="${esc(t('rack_drag_hint'))}" aria-hidden="true">⠿</span>` : ''}<span class="n">${esc(r.name)}</span><span class="d">${r.rows} × ${r.cols}${r.cap > 1 ? ' · ×' + r.cap : ''}${Object.keys(r.lv || {}).length ? ' *' : ''}</span><button class="rack-setup-edit" onclick="openQrLabels(${i})" title="${esc(t('qr_btn'))}">▦</button><button class="rack-setup-edit${i === rackEditIdx ? ' active' : ''}" aria-pressed="${i === rackEditIdx}" onclick="editRackLevels(${i})" aria-label="${esc(plainLabel('btn_edit'))}" title="${esc(plainLabel('btn_edit'))}">✏️</button><button class="rack-setup-edit" onclick="clearRack(${i})" title="${esc(t('rack_clear_btn'))}">🧹</button><button class="rack-setup-del" onclick="removeRack(${i})" aria-label="${esc(t('rack_delete_btn'))}" title="${esc(t('rack_delete_btn'))}">🗑</button></div>`;
+    let h = `<div class="rack-setup-item${i === rackEditIdx ? ' editing' : ''}">${settings.racks.length > 1 ? `<span class="rack-drag" title="${esc(t('rack_drag_hint'))}" aria-hidden="true">⠿</span>` : ''}<span class="n">${esc(r.name)}</span><span class="d">${r.rows} × ${r.cols}${Object.keys(r.lv || {}).length ? ' *' : ''}</span><button class="rack-setup-edit" onclick="openQrLabels(${i})" title="${esc(t('qr_btn'))}">▦</button><button class="rack-setup-edit${i === rackEditIdx ? ' active' : ''}" aria-pressed="${i === rackEditIdx}" onclick="editRackLevels(${i})" aria-label="${esc(plainLabel('btn_edit'))}" title="${esc(plainLabel('btn_edit'))}">✏️</button><button class="rack-setup-edit" onclick="clearRack(${i})" title="${esc(t('rack_clear_btn'))}">🧹</button><button class="rack-setup-del" onclick="removeRack(${i})" aria-label="${esc(t('rack_delete_btn'))}" title="${esc(t('rack_delete_btn'))}">🗑</button></div>`;
     if (i === rackEditIdx) {
       h += `<div class="rack-level-editor">`;
       h += `<div class="rle-fld"><span>${t('rack_name_label')}</span><input type="text" maxlength="60" value="${esc(r.name)}" onchange="renameRack(${i},this.value)"></div>`;
       h += `<div class="rle-fld"><span>${t('rack_cols_label')}</span><input type="number" min="1" max="${RACK_MAX_COLS}" value="${r.cols}" onchange="setRackCols(${i},this.value)"></div>`;
       h += `<div class="rle-title">${t('rack_levels_title')}</div>`;
-      h += `<div class="rle-row rle-head"><span></span><span>${t('rack_level_name')}</span><span>${t('rack_ph_cap')}</span><span></span></div>`;
-      for (let e = r.rows; e >= 1; e--) h += `<div class="rle-row"><span>E${e}</span><input type="text" class="rle-name" maxlength="6" placeholder="E${e}" value="${esc((r.lv && r.lv[e] && r.lv[e].name) || '')}" onchange="setLevelProp(${i},${e},'name',this.value)"><input type="number" min="1" max="500" value="${rackCap(r, e)}" onchange="setLevelProp(${i},${e},'cap',this.value)"><button class="rle-del" title="${esc(t('rack_remove_level'))}" onclick="removeRackLevel(${i},${e})"${r.rows <= 1 ? ' disabled' : ''}>✕</button></div>`;
+      h += `<div class="rle-row rle-head"><span></span><span>${t('rack_level_name')}</span><span></span></div>`;
+      for (let e = r.rows; e >= 1; e--) h += `<div class="rle-row"><span>E${e}</span><input type="text" class="rle-name" maxlength="6" placeholder="E${e}" value="${esc((r.lv && r.lv[e] && r.lv[e].name) || '')}" onchange="setLevelProp(${i},${e},'name',this.value)"><button class="rle-del" title="${esc(t('rack_remove_level'))}" onclick="removeRackLevel(${i},${e})"${r.rows <= 1 ? ' disabled' : ''}>✕</button></div>`;
       h += `<div class="rle-add"><button class="wine-btn" onclick="addRackLevel(${i},'top')"${r.rows >= RACK_MAX_ROWS ? ' disabled' : ''}>${t('rack_add_top')}</button><button class="wine-btn" onclick="addRackLevel(${i},'bottom')"${r.rows >= RACK_MAX_ROWS ? ' disabled' : ''}>${t('rack_add_bottom')}</button></div>`;
       h += '</div>';
     }
@@ -22312,7 +22311,7 @@ function addRack() {
   const name = document.getElementById('rack-new-name').value.trim();
   const rows = parseInt(document.getElementById('rack-new-rows').value);
   const cols = parseInt(document.getElementById('rack-new-cols').value);
-  const cap = Math.max(1, Math.min(500, parseInt(document.getElementById('rack-new-cap').value) || 1));
+  const cap = 1;
   if (!name || !(rows>=1) || !(cols>=1)) { showToast(t('rack_invalid')); return; }
   if (settings.racks.some(r => r.name === name)) { showToast(t('rack_dup')); return; }
   let id = rackIdFor(name);
@@ -22322,7 +22321,6 @@ function addRack() {
   document.getElementById('rack-new-name').value = '';
   document.getElementById('rack-new-rows').value = '';
   document.getElementById('rack-new-cols').value = '';
-  document.getElementById('rack-new-cap').value = '';
   renderRackSetup();
   showToast(t('rack_added'));
 }
