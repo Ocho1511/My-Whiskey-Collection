@@ -1576,8 +1576,13 @@ input[type="file"] { display: none; }
       <label data-i18n="l_type">Whiskey-Typ</label>
       <select id="f-type">
         <option value="rot" data-i18n="o_rot">🥃 Single Malt</option>
-        <option value="weiß" data-i18n="o_weiss">🌽 Bourbon / Rye</option>
+        <option value="bmalt" data-i18n="o_bmalt">🍂 Blended Malt</option>
         <option value="rosé" data-i18n="o_rose">🔀 Blended</option>
+        <option value="weiß" data-i18n="o_weiss">🌽 Bourbon</option>
+        <option value="rye" data-i18n="o_rye">🌾 Rye</option>
+        <option value="tenn" data-i18n="o_tenn">🔥 Tennessee</option>
+        <option value="irish" data-i18n="o_irish">☘️ Irisch</option>
+        <option value="jap" data-i18n="o_jap">🎌 Japanisch</option>
         <option value="sekt" data-i18n="o_sekt">🌍 World Whisky</option>
         <option value="other" data-i18n="o_other">◻️ Sonstiges</option>
       </select>
@@ -1811,10 +1816,15 @@ input[type="file"] { display: none; }
         <label data-i18n="l_type">Whiskey-Typ</label>
         <select id="w-type">
           <option value="rot" data-i18n="t_rot">Single Malt</option>
-          <option value="weiß" data-i18n="t_weiss">Bourbon / Rye</option>
-          <option value="rosé" data-i18n="t_rose">Blended</option>
-          <option value="sekt" data-i18n="t_sekt">World</option>
-          <option value="other" data-i18n="t_other">Sonstiges</option>
+        <option value="bmalt" data-i18n="t_bmalt">Blended Malt</option>
+        <option value="rosé" data-i18n="t_rose">Blended</option>
+        <option value="weiß" data-i18n="t_weiss">Bourbon</option>
+        <option value="rye" data-i18n="t_rye">Rye</option>
+        <option value="tenn" data-i18n="t_tenn">Tennessee</option>
+        <option value="irish" data-i18n="t_irish">Irisch</option>
+        <option value="jap" data-i18n="t_jap">Japanisch</option>
+        <option value="sekt" data-i18n="t_sekt">World Whisky</option>
+        <option value="other" data-i18n="t_other">Sonstiges</option>
         </select>
       </div>
     </div>
@@ -1953,7 +1963,11 @@ const SETTINGS_KEY = 'mywhiskey_v1_settings';
 // ── Daten bereinigen: schützt vor beschädigtem Speicher, Fehlimporten und manipulierten Cloud-Daten ──
 // Alles, was von außen kommt (Speicher, Import, Cloud), läuft durch diese Funktionen. So sind Typen, Zahlenbereiche
 // und IDs immer sauber, und Texte können keine Markierungen oder Skripte in die Oberfläche einschleusen.
-const VALID_TYPES = ['rot', 'weiß', 'rosé', 'sekt', 'other'];
+const TYPE_ORDER = ['rot','bmalt','rosé','weiß','rye','tenn','irish','jap','sekt','other'];   // Reihenfolge in Auswahl, Filter, Statistik
+const VALID_TYPES = TYPE_ORDER;
+// Stil-Familie für die Rezept-Vorschläge: neue Sorten zählen wie die nächstverwandte ursprüngliche
+const STYLE_FAM = { bmalt:'rosé', rye:'weiß', tenn:'weiß', irish:'sekt', jap:'sekt' };
+const styleFam = (t) => STYLE_FAM[t] || t;
 const cleanStr = (v, max) => (v == null ? '' : String(v)).slice(0, max || 500);
 const cleanText = (v, max) => cleanStr(v, max).trim() || null;
 function cleanId(v, used) {
@@ -2234,7 +2248,7 @@ function touchData() {
 // CLOUD-SYNC (newest wins)
 // ═══════════════════════════════════════
 function collectData() {
-  return { dv: 5, wines, wishes, drunkWines, racks: settings.racks || [], cellars: settings.cellars || [], owner: settings.owner || '', prefs: collectPrefs(), recipes: settings.recipes || [], favRecipes: settings.favRecipes || [], herbs: settings.herbs || [] };
+  return { dv: 6, wines, wishes, drunkWines, racks: settings.racks || [], cellars: settings.cellars || [], owner: settings.owner || '', prefs: collectPrefs(), recipes: settings.recipes || [], favRecipes: settings.favRecipes || [], herbs: settings.herbs || [] };
 }
 // Einstellungen, die mit in die Cloud gehen (gerätegebundenes bleibt draußen: Sync-Code und Speicherort, E-Mail, KI-Einwilligung, Gerätekennung)
 const PREF_KEYS = ['lang', 'currency', 'font', 'celeb', 'tempUnit'];
@@ -3220,7 +3234,7 @@ async function lookupWineData(name, year) {
       model: 'claude-sonnet-4-6',
       max_tokens: 1200,
       tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
-      system: `Du bist ein Whiskey-Experte. Recherchiere den aktuellen durchschnittlichen Marktpreis (Endverbraucher, 0,7-l-Flasche) mit der Websuche. Antworte am Ende mit GENAU EINEM JSON-Objekt (ohne Markdown) mit den Feldern: type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf ${aiLangName()} oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), tempFrom (empfohlene Trinktemperatur, untere Grenze in °C als ganze Zahl, z. B. 16, oder null), tempTo (obere Grenze in °C als ganze Zahl, z. B. 18, oder null), price (aktueller Durchschnittspreis pro Flasche in ${currencyName()} als Zahl ohne Währungssymbol, gerundet, oder null), image (eine direkte, öffentlich erreichbare URL zu einem Foto DER FLASCHE, die direkt auf eine Bilddatei zeigt und auf .jpg/.jpeg/.png/.webp endet; nur eine URL, die du über die Websuche tatsächlich gesehen hast, sonst null), page (die URL EINER Webseite, auf der die Flasche abgebildet ist – bevorzugt Wikipedia, die Seite der Destillerie oder ein Whisky-Shop; eine echte, über die Websuche gefundene Seiten-URL, sonst null). Für Beschreibungsfelder nutze dein Wissen; für Preis, Bild und Seite die Websuche. Nutze null nur wenn keine sinnvolle Angabe möglich ist.`,
+      system: `Du bist ein Whiskey-Experte. Recherchiere den aktuellen durchschnittlichen Marktpreis (Endverbraucher, 0,7-l-Flasche) mit der Websuche. Antworte am Ende mit GENAU EINEM JSON-Objekt (ohne Markdown) mit den Feldern: type (rot = Single Malt, bmalt = Blended Malt, rosé = Blended Scotch/Blended, weiß = Bourbon/American, rye = Rye, tenn = Tennessee, irish = Irish Whiskey, jap = Japanese, sekt = World-Whisky z. B. Indian/Taiwan/Australia, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf ${aiLangName()} oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), tempFrom (empfohlene Trinktemperatur, untere Grenze in °C als ganze Zahl, z. B. 16, oder null), tempTo (obere Grenze in °C als ganze Zahl, z. B. 18, oder null), price (aktueller Durchschnittspreis pro Flasche in ${currencyName()} als Zahl ohne Währungssymbol, gerundet, oder null), image (eine direkte, öffentlich erreichbare URL zu einem Foto DER FLASCHE, die direkt auf eine Bilddatei zeigt und auf .jpg/.jpeg/.png/.webp endet; nur eine URL, die du über die Websuche tatsächlich gesehen hast, sonst null), page (die URL EINER Webseite, auf der die Flasche abgebildet ist – bevorzugt Wikipedia, die Seite der Destillerie oder ein Whisky-Shop; eine echte, über die Websuche gefundene Seiten-URL, sonst null). Für Beschreibungsfelder nutze dein Wissen; für Preis, Bild und Seite die Websuche. Nutze null nur wenn keine sinnvolle Angabe möglich ist.`,
       messages: [{ role: 'user', content: `Whisky: ${name}${year ? ' (Abfüllung/Jahr ' + year + ')' : ''}. Nenne Typ, Region, Land, Destillerie, Alter, Alkoholgehalt, Fass, den aktuellen Durchschnittspreis pro Flasche in ${currencyName()}, eine direkte Bild-URL der Flasche und die URL einer Webseite, auf der die Flasche abgebildet ist.` }]
     })
   });
@@ -3246,7 +3260,7 @@ async function lookupWine() {
     const info = await lookupWineData(name, year);
     if (tok !== formToken) return;
     if (!info) { showToast(t('toast_scanfail')); return; }
-    if (['rot','weiß','rosé','sekt','other'].includes(info.type)) document.getElementById('f-type').value = info.type;
+    if (TYPE_ORDER.filter(x => x !== 'tonic').includes(info.type)) document.getElementById('f-type').value = info.type;
     setIfEmpty('f-region', info.region);
     setIfEmpty('f-country', info.land);
     setIfEmpty('f-grape', info.grape);
@@ -3286,7 +3300,7 @@ async function maybeAutoLookup() {
   try {
     const info = await lookupWineData(name, year);
     if (tok !== formToken || !info) return;
-    if (['rot','weiß','rosé','sekt','other'].includes(info.type)) setIfEmpty('f-type', info.type);
+    if (TYPE_ORDER.filter(x => x !== 'tonic').includes(info.type)) setIfEmpty('f-type', info.type);
     setIfEmpty('f-region', info.region);
     setIfEmpty('f-country', info.land);
     setIfEmpty('f-grape', info.grape);
@@ -3746,7 +3760,7 @@ de: {
   sort_country: "↕ Land",
   t_all: "Alle",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Sonstiges",
@@ -3898,10 +3912,20 @@ de: {
   wiki_open: "Wikipedia (Destillerie/Whiskey)",
   img_broken: "Bild nicht verfügbar",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Sonstiges",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irisch",
+  o_irish: "☘️ Irisch",
+  t_jap: "Japanisch",
+  o_jap: "🎌 Japanisch",
   btn_cancel: "Abbrechen",
   btn_save: "Speichern",
   btn_add: "Hinzufügen",
@@ -4399,7 +4423,7 @@ en: {
   sort_country: "↕ Country",
   t_all: "All",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Other",
@@ -4551,10 +4575,20 @@ en: {
   wiki_open: "Wikipedia (distillery/whiskey)",
   img_broken: "Image unavailable",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Other",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irish",
+  o_irish: "☘️ Irish",
+  t_jap: "Japanese",
+  o_jap: "🎌 Japanese",
   btn_cancel: "Cancel",
   btn_save: "Save",
   btn_add: "Add",
@@ -5052,7 +5086,7 @@ es: {
   sort_country: "↕ País",
   t_all: "Todos",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Otros",
@@ -5204,10 +5238,20 @@ es: {
   wiki_open: "Wikipedia (destilería/whisky)",
   img_broken: "Imagen no disponible",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Otros",
+  t_bmalt: "Malta mezclada",
+  o_bmalt: "🍂 Malta mezclada",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlandés",
+  o_irish: "☘️ Irlandés",
+  t_jap: "Japonés",
+  o_jap: "🎌 Japonés",
   btn_cancel: "Cancelar",
   btn_save: "Guardar",
   btn_add: "Añadir",
@@ -5705,7 +5749,7 @@ sv: {
   sort_country: "↕ Land",
   t_all: "Alla",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Övrigt",
@@ -5857,10 +5901,20 @@ sv: {
   wiki_open: "Wikipedia (destilleri/whisky)",
   img_broken: "Bilden är inte tillgänglig",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Övrigt",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irländsk",
+  o_irish: "☘️ Irländsk",
+  t_jap: "Japansk",
+  o_jap: "🎌 Japansk",
   btn_cancel: "Avbryt",
   btn_save: "Spara",
   btn_add: "Lägg till",
@@ -6358,7 +6412,7 @@ da: {
   sort_country: "↕ Land",
   t_all: "Alle",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Andet",
@@ -6510,10 +6564,20 @@ da: {
   wiki_open: "Wikipedia (destilleri/whisky)",
   img_broken: "Billedet er ikke tilgængeligt",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Andet",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irsk",
+  o_irish: "☘️ Irsk",
+  t_jap: "Japansk",
+  o_jap: "🎌 Japansk",
   btn_cancel: "Annuller",
   btn_save: "Gem",
   btn_add: "Tilføj",
@@ -7012,7 +7076,7 @@ fi: {
   sort_country: "↕ Maa",
   t_all: "Kaikki",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Muu",
@@ -7164,10 +7228,20 @@ fi: {
   wiki_open: "Wikipedia (tislaamo/viski)",
   img_broken: "Kuva ei ole saatavilla",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Muu",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlantilainen",
+  o_irish: "☘️ Irlantilainen",
+  t_jap: "Japanilainen",
+  o_jap: "🎌 Japanilainen",
   btn_cancel: "Peruuta",
   btn_save: "Tallenna",
   btn_add: "Lisää",
@@ -7664,7 +7738,7 @@ ru: {
   sort_country: "↕ Страна",
   t_all: "Все",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Прочее",
@@ -7816,10 +7890,20 @@ ru: {
   wiki_open: "Википедия (винокурня/виски)",
   img_broken: "Изображение недоступно",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Прочее",
+  t_bmalt: "Купажированный солод",
+  o_bmalt: "🍂 Купажированный солод",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Ирландский",
+  o_irish: "☘️ Ирландский",
+  t_jap: "Японский",
+  o_jap: "🎌 Японский",
   btn_cancel: "Отмена",
   btn_save: "Сохранить",
   btn_add: "Добавить",
@@ -8317,7 +8401,7 @@ it: {
   sort_country: "↕ Paese",
   t_all: "Tutti",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Altro",
@@ -8469,10 +8553,20 @@ it: {
   wiki_open: "Wikipedia (distilleria/whisky)",
   img_broken: "Immagine non disponibile",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Altro",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlandese",
+  o_irish: "☘️ Irlandese",
+  t_jap: "Giapponese",
+  o_jap: "🎌 Giapponese",
   btn_cancel: "Annulla",
   btn_save: "Salva",
   btn_add: "Aggiungi",
@@ -8970,7 +9064,7 @@ fr: {
   sort_country: "↕ Pays",
   t_all: "Tous",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Autre",
@@ -9122,10 +9216,20 @@ fr: {
   wiki_open: "Wikipédia (distillerie/whisky)",
   img_broken: "Image indisponible",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Autre",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlandais",
+  o_irish: "☘️ Irlandais",
+  t_jap: "Japonais",
+  o_jap: "🎌 Japonais",
   btn_cancel: "Annuler",
   btn_save: "Enregistrer",
   btn_add: "Ajouter",
@@ -9623,7 +9727,7 @@ pl: {
   sort_country: "↕ Kraj",
   t_all: "Wszystkie",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Inne",
@@ -9775,10 +9879,20 @@ pl: {
   wiki_open: "Wikipedia (destylarnia/whisky)",
   img_broken: "Obraz niedostępny",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Inne",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlandzka",
+  o_irish: "☘️ Irlandzka",
+  t_jap: "Japońska",
+  o_jap: "🎌 Japońska",
   btn_cancel: "Anuluj",
   btn_save: "Zapisz",
   btn_add: "Dodaj",
@@ -10276,7 +10390,7 @@ hu: {
   sort_country: "↕ Ország",
   t_all: "Mind",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Egyéb",
@@ -10428,10 +10542,20 @@ hu: {
   wiki_open: "Wikipédia (lepárló/whisky)",
   img_broken: "A kép nem érhető el",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Egyéb",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Ír",
+  o_irish: "☘️ Ír",
+  t_jap: "Japán",
+  o_jap: "🎌 Japán",
   btn_cancel: "Mégse",
   btn_save: "Mentés",
   btn_add: "Hozzáadás",
@@ -10929,7 +11053,7 @@ cs: {
   sort_country: "↕ Země",
   t_all: "Vše",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Ostatní",
@@ -11081,10 +11205,20 @@ cs: {
   wiki_open: "Wikipedie (palírna/whisky)",
   img_broken: "Obrázek není dostupný",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Ostatní",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irská",
+  o_irish: "☘️ Irská",
+  t_jap: "Japonská",
+  o_jap: "🎌 Japonská",
   btn_cancel: "Zrušit",
   btn_save: "Uložit",
   btn_add: "Přidat",
@@ -11582,7 +11716,7 @@ sk: {
   sort_country: "↕ Krajina",
   t_all: "Všetko",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Ostatné",
@@ -11734,10 +11868,20 @@ sk: {
   wiki_open: "Wikipédia (liehovar/whisky)",
   img_broken: "Obrázok nie je dostupný",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Ostatné",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Írska",
+  o_irish: "☘️ Írska",
+  t_jap: "Japonská",
+  o_jap: "🎌 Japonská",
   btn_cancel: "Zrušiť",
   btn_save: "Uložiť",
   btn_add: "Pridať",
@@ -12235,7 +12379,7 @@ ro: {
   sort_country: "↕ Țară",
   t_all: "Toate",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Altele",
@@ -12387,10 +12531,20 @@ ro: {
   wiki_open: "Wikipedia (distilerie/whisky)",
   img_broken: "Imagine indisponibilă",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Altele",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlandez",
+  o_irish: "☘️ Irlandez",
+  t_jap: "Japonez",
+  o_jap: "🎌 Japonez",
   btn_cancel: "Anulează",
   btn_save: "Salvează",
   btn_add: "Adaugă",
@@ -12888,7 +13042,7 @@ hr: {
   sort_country: "↕ Zemlja",
   t_all: "Sve",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Ostalo",
@@ -13040,10 +13194,20 @@ hr: {
   wiki_open: "Wikipedija (destilerija/viski)",
   img_broken: "Slika nije dostupna",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Ostalo",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irski",
+  o_irish: "☘️ Irski",
+  t_jap: "Japanski",
+  o_jap: "🎌 Japanski",
   btn_cancel: "Odustani",
   btn_save: "Spremi",
   btn_add: "Dodaj",
@@ -13541,7 +13705,7 @@ pt: {
   sort_country: "↕ País",
   t_all: "Todos",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Outros",
@@ -13693,10 +13857,20 @@ pt: {
   wiki_open: "Wikipédia (destilaria/uísque)",
   img_broken: "Imagem indisponível",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Outros",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irlandês",
+  o_irish: "☘️ Irlandês",
+  t_jap: "Japonês",
+  o_jap: "🎌 Japonês",
   btn_cancel: "Cancelar",
   btn_save: "Guardar",
   btn_add: "Adicionar",
@@ -14194,7 +14368,7 @@ no: {
   sort_country: "↕ Land",
   t_all: "Alle",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Annet",
@@ -14346,10 +14520,20 @@ no: {
   wiki_open: "Wikipedia (destilleri/whisky)",
   img_broken: "Bildet er ikke tilgjengelig",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Annet",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Irsk",
+  o_irish: "☘️ Irsk",
+  t_jap: "Japansk",
+  o_jap: "🎌 Japansk",
   btn_cancel: "Avbryt",
   btn_save: "Lagre",
   btn_add: "Legg til",
@@ -14847,7 +15031,7 @@ nl: {
   sort_country: "↕ Land",
   t_all: "Alle",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Overig",
@@ -14999,10 +15183,20 @@ nl: {
   wiki_open: "Wikipedia (distilleerderij/whisky)",
   img_broken: "Afbeelding niet beschikbaar",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Overig",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Iers",
+  o_irish: "☘️ Iers",
+  t_jap: "Japans",
+  o_jap: "🎌 Japans",
   btn_cancel: "Annuleren",
   btn_save: "Opslaan",
   btn_add: "Toevoegen",
@@ -15500,7 +15694,7 @@ el: {
   sort_country: "↕ Χώρα",
   t_all: "Όλα",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Άλλο",
@@ -15652,10 +15846,20 @@ el: {
   wiki_open: "Wikipedia (αποστακτήριο/ουίσκι)",
   img_broken: "Η εικόνα δεν είναι διαθέσιμη",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Άλλο",
+  t_bmalt: "Blended Malt",
+  o_bmalt: "🍂 Blended Malt",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Ιρλανδικό",
+  o_irish: "☘️ Ιρλανδικό",
+  t_jap: "Ιαπωνικό",
+  o_jap: "🎌 Ιαπωνικό",
   btn_cancel: "Άκυρο",
   btn_save: "Αποθήκευση",
   btn_add: "Προσθήκη",
@@ -16153,7 +16357,7 @@ uk: {
   sort_country: "↕ Країна",
   t_all: "Усі",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "Інше",
@@ -16305,10 +16509,20 @@ uk: {
   wiki_open: "Вікіпедія (винокурня/віскі)",
   img_broken: "Зображення недоступне",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ Інше",
+  t_bmalt: "Купажований солод",
+  o_bmalt: "🍂 Купажований солод",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "Ірландський",
+  o_irish: "☘️ Ірландський",
+  t_jap: "Японський",
+  o_jap: "🎌 Японський",
   btn_cancel: "Скасувати",
   btn_save: "Зберегти",
   btn_add: "Додати",
@@ -16806,7 +17020,7 @@ ja: {
   sort_country: "↕ 国",
   t_all: "すべて",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "その他",
@@ -16958,10 +17172,20 @@ ja: {
   wiki_open: "Wikipedia（蒸溜所/ウイスキー）",
   img_broken: "画像を表示できません",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ その他",
+  t_bmalt: "ブレンデッドモルト",
+  o_bmalt: "🍂 ブレンデッドモルト",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "アイリッシュ",
+  o_irish: "☘️ アイリッシュ",
+  t_jap: "ジャパニーズ",
+  o_jap: "🎌 ジャパニーズ",
   btn_cancel: "キャンセル",
   btn_save: "保存",
   btn_add: "追加",
@@ -17459,7 +17683,7 @@ ko: {
   sort_country: "↕ 국가",
   t_all: "전체",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "기타",
@@ -17611,10 +17835,20 @@ ko: {
   wiki_open: "Wikipedia (증류소/위스키)",
   img_broken: "이미지를 불러올 수 없어요",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ 기타",
+  t_bmalt: "블렌디드 몰트",
+  o_bmalt: "🍂 블렌디드 몰트",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "아이리시",
+  o_irish: "☘️ 아이리시",
+  t_jap: "재패니즈",
+  o_jap: "🎌 재패니즈",
   btn_cancel: "취소",
   btn_save: "저장",
   btn_add: "추가",
@@ -18112,7 +18346,7 @@ zh: {
   sort_country: "↕ 国家",
   t_all: "全部",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "其他",
@@ -18264,10 +18498,20 @@ zh: {
   wiki_open: "维基百科（酒厂/威士忌）",
   img_broken: "图片无法显示",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ 其他",
+  t_bmalt: "调和麦芽",
+  o_bmalt: "🍂 调和麦芽",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "爱尔兰",
+  o_irish: "☘️ 爱尔兰",
+  t_jap: "日本",
+  o_jap: "🎌 日本",
   btn_cancel: "取消",
   btn_save: "保存",
   btn_add: "添加",
@@ -18765,7 +19009,7 @@ hi: {
   sort_country: "↕ देश",
   t_all: "सभी",
   t_rot: "Single Malt",
-  t_weiss: "Bourbon / Rye",
+  t_weiss: "Bourbon",
   t_rose: "Blended",
   t_sekt: "World",
   t_other: "अन्य",
@@ -18917,10 +19161,20 @@ hi: {
   wiki_open: "विकिपीडिया (डिस्टिलरी/व्हिस्की)",
   img_broken: "तस्वीर उपलब्ध नहीं",
   o_rot: "🥃 Single Malt",
-  o_weiss: "🌽 Bourbon / Rye",
+  o_weiss: "🌽 Bourbon",
   o_rose: "🔀 Blended",
   o_sekt: "🌍 World Whisky",
   o_other: "◻️ अन्य",
+  t_bmalt: "ब्लेंडेड माल्ट",
+  o_bmalt: "🍂 ब्लेंडेड माल्ट",
+  t_rye: "Rye",
+  o_rye: "🌾 Rye",
+  t_tenn: "Tennessee",
+  o_tenn: "🔥 Tennessee",
+  t_irish: "आयरिश",
+  o_irish: "☘️ आयरिश",
+  t_jap: "जापानी",
+  o_jap: "🎌 जापानी",
   btn_cancel: "रद्द करें",
   btn_save: "सहेजें",
   btn_add: "जोड़ें",
@@ -19165,7 +19419,7 @@ function t(key, vars) {
 }
 
 function buildTypeLabels() {
-  return { alle:t('t_all'), rot:t('t_rot'), weiß:t('t_weiss'), rosé:t('t_rose'), sekt:t('t_sekt'), other:t('t_other') };
+  return { alle:t('t_all'), 'rot':t('t_rot'), bmalt:t('t_bmalt'), 'rosé':t('t_rose'), 'weiß':t('t_weiss'), rye:t('t_rye'), tenn:t('t_tenn'), irish:t('t_irish'), jap:t('t_jap'), 'sekt':t('t_sekt'), other:t('t_other') };
 }
 
 // Untere Leiste: Beschriftungen nie mitten im Wort umbrechen; zu lange Wörter (z. B. "Статистика", "Export/Import") werden verkleinert, bis sie passen
@@ -19519,7 +19773,7 @@ function showTab(name, btn) {
 // ═══════════════════════════════════════
 // KELLER
 // ═══════════════════════════════════════
-const TYPES = ['alle','rot','weiß','rosé','sekt','other'];
+const TYPES = ['alle'].concat(TYPE_ORDER);
 // Kleines Weintrauben-Symbol in der Typ-Farbe (ersetzt den farbigen Punkt)
 function grapeSvg(fill) {   // Name bleibt aus dem Ursprungsprojekt; zeichnet ein Tumbler-Glas mit Eis in der Typ-Farbe
   return `<svg width="17" height="18" viewBox="0 0 17 18" aria-hidden="true" style="display:block">
@@ -20460,7 +20714,7 @@ async function handleScan0(e) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: 'Du bist ein Whiskey-Etikett-Experte. Antworte NUR mit einem JSON-Objekt ohne Markdown-Backticks. Felder: name (Destillerie + Whiskeyname inkl. Zusatz wie Single Malt/Cask Strength), year (Abfüll- oder Destillationsjahr als Zahl oder null), type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf ' + aiLangName() + ', z.B. Schottland, oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), tempFrom und tempTo (empfohlene Trinktemperatur als untere und obere Grenze in °C, ganze Zahlen, z. B. 16 und 18, passend zu Whisky-Stil und Destillerie, oder null). Wenn etwas nicht erkennbar ist oder keine sinnvolle Schätzung möglich ist, nutze null.',
+        system: 'Du bist ein Whiskey-Etikett-Experte. Antworte NUR mit einem JSON-Objekt ohne Markdown-Backticks. Felder: name (Destillerie + Whiskeyname inkl. Zusatz wie Single Malt/Cask Strength), year (Abfüll- oder Destillationsjahr als Zahl oder null), type (rot = Single Malt, bmalt = Blended Malt, rosé = Blended Scotch/Blended, weiß = Bourbon/American, rye = Rye, tenn = Tennessee, irish = Irish Whiskey, jap = Japanese, sekt = World-Whisky z. B. Indian/Taiwan/Australia, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf ' + aiLangName() + ', z.B. Schottland, oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null), tempFrom und tempTo (empfohlene Trinktemperatur als untere und obere Grenze in °C, ganze Zahlen, z. B. 16 und 18, passend zu Whisky-Stil und Destillerie, oder null). Wenn etwas nicht erkennbar ist oder keine sinnvolle Schätzung möglich ist, nutze null.',
         messages: [{ role: 'user', content: [
           { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64 } },
           { type: 'text', text: 'Analysiere dieses Whiskey-Etikett.' }
@@ -20656,7 +20910,7 @@ async function handleWishScan(e) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: 'Du bist ein Whiskey-Etikett-Experte. Antworte NUR mit einem JSON-Objekt ohne Markdown-Backticks. Felder: name (Destillerie + Whiskeyname inkl. Zusatz wie Single Malt/Cask Strength), year (Abfüll- oder Destillationsjahr als Zahl oder null), type (rot = Single Malt, weiß = Bourbon/Rye/American, rosé = Blended, sekt = World-Whisky wie Irish/Japanese/Indian, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf ' + aiLangName() + ', z.B. Schottland, oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null). Wenn etwas nicht erkennbar ist, nutze null.',
+        system: 'Du bist ein Whiskey-Etikett-Experte. Antworte NUR mit einem JSON-Objekt ohne Markdown-Backticks. Felder: name (Destillerie + Whiskeyname inkl. Zusatz wie Single Malt/Cask Strength), year (Abfüll- oder Destillationsjahr als Zahl oder null), type (rot = Single Malt, bmalt = Blended Malt, rosé = Blended Scotch/Blended, weiß = Bourbon/American, rye = Rye, tenn = Tennessee, irish = Irish Whiskey, jap = Japanese, sekt = World-Whisky z. B. Indian/Taiwan/Australia, other = sonstige), region (Whisky-Region wie Speyside, Islay, Highlands, Kentucky oder null), land (Herkunftsland auf ' + aiLangName() + ', z.B. Schottland, oder null), grape (Destillerie oder null), age (Altersangabe in Jahren als Zahl oder null), abv (Alkoholgehalt in Prozent als Zahl oder null), cask (Fass/Reifung, z.B. Sherry, Bourbon, Port, oder null). Wenn etwas nicht erkennbar ist, nutze null.',
         messages: [{ role: 'user', content: [
           { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64 } },
           { type: 'text', text: 'Analysiere dieses Whiskey-Etikett.' }
@@ -20888,7 +21142,7 @@ function renderStats() {
     </div>
     <div class="stats-title">${t('s_bytype')}</div>
   `;
-  ['rot','weiß','rosé','sekt','other'].forEach(ty => {
+  TYPE_ORDER.filter(x => x !== 'tonic').forEach(ty => {
     const cnt = types[ty]||0;
     const pct = total > 0 ? Math.round((cnt/total)*100) : 0;
     html += `<div class="type-bar-row" onclick="goToFilter('${ty}')" style="cursor:pointer">
@@ -21012,7 +21266,7 @@ function saveHistoryEdit() {
 // REGALE (Kellerplan)
 // ═══════════════════════════════════════
 // Interne Typ-Schluessel bleiben aus dem My Whiskey Collection: rot = Single Malt, weiß = Bourbon/Rye, rosé = Blended, sekt = World (Irish/Japanese/...)
-const TYPE_FILL = { rot:'#c8801e', 'weiß':'#a8501c', 'rosé':'#d9a441', sekt:'#7a8a5c', other:'var(--text-muted)' };
+const TYPE_FILL = { rot:'#c8801e', 'weiß':'#a8501c', 'rosé':'#d9a441', sekt:'#7a8a5c', bmalt:'#e0b45a', rye:'#8c3d1a', tenn:'#6e3c1f', irish:'#5f8a4a', jap:'#b5495b', other:'var(--text-muted)' };
 let rackActive = 0;
 let rackSelectedWineId = null;  // Wein aus „Nicht zugeordnet", der gerade eingeräumt wird
 let rackFilledSlot = null;      // markiertes belegtes Fach {rack, e, p}
@@ -22612,15 +22866,15 @@ function serveByRules(g) {
       if (!food) food = eff.f;
     }
   });
-  if (g.type === 'weiß') {        // Bourbon/Rye
+  if (styleFam(g.type) === 'weiß') {        // Bourbon/Rye
     ['rocks', 'oldfashioned', 'highball'].forEach(x => { if (!ways.includes(x)) ways.push(x); });
     ['orange', 'cherry'].forEach(x => { if (!garn.includes(x)) garn.push(x); });
     if (!food) food = 'bourbon';
-  } else if (g.type === 'rosé') { // Blended
+  } else if (styleFam(g.type) === 'rosé') { // Blended
     ['highball', 'rocks'].forEach(x => { if (!ways.includes(x)) ways.push(x); });
     if (!garn.includes('lemon')) garn.push('lemon');
     if (!food) food = 'blend';
-  } else if (g.type === 'sekt') { // World
+  } else if (styleFam(g.type) === 'sekt') { // World
     ['neat', 'rocks'].forEach(x => { if (!ways.includes(x)) ways.push(x); });
     if (!food) food = 'world';
   } else {                        // Single Malt und Sonstiges
@@ -22913,14 +23167,14 @@ function renderRecipes() {
   if (!el) return;
   const favs = new Set(settings.favRecipes || []);
   const items = wines.slice();
-  const types = new Set(items.map(w => w.type));
+  const types = new Set(items.map(w => styleFam(w.type)));
   const all = recipeList().map(r => ({ id: r.id, name: t('rec_' + r.id + '_n'), ing: t('rec_' + r.id + '_ing').split('\n').filter(Boolean), steps: t('rec_' + r.id + '_steps'), glass: t('rec_' + r.id + '_glass'), styles: r.styles, own: false }))
     .concat((settings.recipes || []).map(r => ({ id: r.id, name: r.name, ing: String(r.ing || '').split('\n').filter(Boolean), steps: r.steps, glass: '', styles: [], own: true, gin: r.gin })));
   let list = all.filter(r => recFilter === 'all' || (recFilter === 'fav' && favs.has(r.id)) || (recFilter === 'own' && r.own));
   if (recMine) list = list.filter(r => r.own || r.styles.some(s => types.has(s)));
   const chip = (id, label) => `<button class="filter-chip ${recFilter === id ? 'active' : ''}" onclick="setRecFilter('${id}')">${label}</button>`;
   const cards = list.map(r => {
-    const fits = items.filter(w => r.styles.includes(w.type)).slice(0, 5).map(w => w.name);
+    const fits = items.filter(w => r.styles.includes(styleFam(w.type))).slice(0, 5).map(w => w.name);
     return `<details class="rec-card"><summary><span class="rec-name">${esc(r.name)}</span>
         <button type="button" class="rec-fav" onclick="event.preventDefault();toggleRecFav('${esc(r.id)}')" aria-label="fav">${favs.has(r.id) ? '⭐' : '☆'}</button></summary>
       ${fits.length ? `<div class="wine-region">🥃 ${esc(t('sx_rec_fits'))}: ${esc(fits.join(', '))}</div>` : ''}
