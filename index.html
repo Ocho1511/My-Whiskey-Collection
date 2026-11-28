@@ -1220,6 +1220,13 @@ input[type="file"] { display: none; }
         <div class="desc" data-i18n="exp_pdf_d">Druckfähige Übersicht</div>
       </div>
     </div>
+    <div class="export-card" onclick="exportBook()">
+      <div class="export-icon">📒</div>
+      <div class="export-info">
+        <div class="title" data-i18n="exp_book">Kellerbuch (PDF)</div>
+        <div class="desc" data-i18n="exp_book_d">Schön gestaltet, auch als Inventarliste für die Versicherung</div>
+      </div>
+    </div>
     <div class="export-card" onclick="exportJSON()">
       <div class="export-icon">💾</div>
       <div class="export-info">
@@ -3870,6 +3877,16 @@ de: {
   exp_xlsx_d: "Als .xlsx-Datei",
   exp_pdf: "PDF exportieren",
   exp_pdf_d: "Druckfähige Übersicht",
+  exp_book: "Kellerbuch (PDF)",
+  exp_book_d: "Schön gestaltet, auch als Inventarliste für die Versicherung",
+  book_title: "Kellerbuch",
+  book_sub: "Stand {d}",
+  book_loc: "Lagerort",
+  book_page: "Seite {n} von {m}",
+  book_sum: "Summe dieser Seite",
+  book_total: "Gesamtsumme",
+  book_note: "Die Werte beruhen auf deinen eigenen Preisangaben (Preis je Flasche × Anzahl). Flaschen ohne Preis gehen nicht in die Summen ein. Es ist keine Schätzung durch Dritte.",
+  book_fill: "Füllstand",
   exp_json: "JSON Backup",
   exp_json_d: "Vollständige Datensicherung",
   exp_clip: "In Zwischenablage",
@@ -4546,6 +4563,16 @@ en: {
   exp_xlsx_d: "As .xlsx file",
   exp_pdf: "Export PDF",
   exp_pdf_d: "Printable overview",
+  exp_book: "Cellar book (PDF)",
+  exp_book_d: "Nicely designed, also usable as an inventory list for insurance",
+  book_title: "Cellar book",
+  book_sub: "As of {d}",
+  book_loc: "Location",
+  book_page: "Page {n} of {m}",
+  book_sum: "Total of this page",
+  book_total: "Grand total",
+  book_note: "The values are based on your own price entries (price per bottle × number of bottles). Bottles without a price are not included in the totals. This is not an appraisal by a third party.",
+  book_fill: "Fill level",
   exp_json: "JSON backup",
   exp_json_d: "Complete data backup",
   exp_clip: "To clipboard",
@@ -5222,6 +5249,16 @@ es: {
   exp_xlsx_d: "Como archivo .xlsx",
   exp_pdf: "Exportar PDF",
   exp_pdf_d: "Vista imprimible",
+  exp_book: "Libro de bodega (PDF)",
+  exp_book_d: "Con buen diseño, también como inventario para el seguro",
+  book_title: "Libro de bodega",
+  book_sub: "A fecha de {d}",
+  book_loc: "Ubicación",
+  book_page: "Página {n} de {m}",
+  book_sum: "Suma de esta página",
+  book_total: "Suma total",
+  book_note: "Los valores se basan en tus propios precios (precio por botella × número de botellas). Las botellas sin precio no se incluyen en las sumas. No es una tasación de terceros.",
+  book_fill: "Nivel de llenado",
   exp_json: "Copia JSON",
   exp_json_d: "Copia de seguridad completa",
   exp_clip: "Al portapapeles",
@@ -5898,6 +5935,16 @@ sv: {
   exp_xlsx_d: "Som .xlsx-fil",
   exp_pdf: "Exportera PDF",
   exp_pdf_d: "Utskriftsvänlig översikt",
+  exp_book: "Källarbok (PDF)",
+  exp_book_d: "Snyggt utformad, kan även användas som inventarielista för försäkringen",
+  book_title: "Källarbok",
+  book_sub: "Per {d}",
+  book_loc: "Plats",
+  book_page: "Sida {n} av {m}",
+  book_sum: "Summa för sidan",
+  book_total: "Totalsumma",
+  book_note: "Värdena bygger på dina egna prisuppgifter (pris per flaska × antal). Flaskor utan pris ingår inte i summorna. Det är ingen värdering av tredje part.",
+  book_fill: "Fyllnadsnivå",
   exp_json: "JSON-säkerhetskopia",
   exp_json_d: "Fullständig säkerhetskopia",
   exp_clip: "Till urklipp",
@@ -6574,6 +6621,16 @@ da: {
   exp_xlsx_d: "Som .xlsx-fil",
   exp_pdf: "Eksportér PDF",
   exp_pdf_d: "Printvenlig oversigt",
+  exp_book: "Kælderbog (PDF)",
+  exp_book_d: "Flot udformet, kan også bruges som inventarliste til forsikringen",
+  book_title: "Kælderbog",
+  book_sub: "Pr. {d}",
+  book_loc: "Placering",
+  book_page: "Side {n} af {m}",
+  book_sum: "Sum for denne side",
+  book_total: "Samlet sum",
+  book_note: "Værdierne bygger på dine egne prisangivelser (pris pr. flaske × antal). Flasker uden pris indgår ikke i summerne. Det er ikke en vurdering fra tredjepart.",
+  book_fill: "Fyldningsniveau",
   exp_json: "JSON-backup",
   exp_json_d: "Fuld datasikkerhedskopi",
   exp_clip: "Til udklipsholder",
@@ -7251,6 +7308,16 @@ fi: {
   exp_xlsx_d: ".xlsx-tiedostona",
   exp_pdf: "Vie PDF",
   exp_pdf_d: "Tulostettava yhteenveto",
+  exp_book: "Kellarikirja (PDF)",
+  exp_book_d: "Siististi muotoiltu, käy myös vakuutuksen irtaimistoluettelona",
+  book_title: "Kellarikirja",
+  book_sub: "Tilanne {d}",
+  book_loc: "Sijainti",
+  book_page: "Sivu {n} / {m}",
+  book_sum: "Tämän sivun summa",
+  book_total: "Kokonaissumma",
+  book_note: "Arvot perustuvat omiin hintatietoihisi (hinta pulloa kohti × pullomäärä). Pulloja, joilla ei ole hintaa, ei lasketa mukaan summiin. Kyse ei ole kolmannen osapuolen arviosta.",
+  book_fill: "Täyttötaso",
   exp_json: "JSON-varmuuskopio",
   exp_json_d: "Täydellinen varmuuskopio",
   exp_clip: "Leikepöydälle",
@@ -7926,6 +7993,16 @@ ru: {
   exp_xlsx_d: "Как файл .xlsx",
   exp_pdf: "Экспорт PDF",
   exp_pdf_d: "Обзор для печати",
+  exp_book: "Книга погреба (PDF)",
+  exp_book_d: "Красиво оформлена, подходит и как опись для страховки",
+  book_title: "Книга погреба",
+  book_sub: "По состоянию на {d}",
+  book_loc: "Место",
+  book_page: "Страница {n} из {m}",
+  book_sum: "Сумма на странице",
+  book_total: "Общая сумма",
+  book_note: "Значения основаны на ваших собственных ценах (цена за бутылку × количество). Бутылки без цены в суммы не входят. Это не оценка третьей стороной.",
+  book_fill: "Уровень налива",
   exp_json: "Резервная копия JSON",
   exp_json_d: "Полная резервная копия",
   exp_clip: "В буфер обмена",
@@ -8602,6 +8679,16 @@ it: {
   exp_xlsx_d: "Come file .xlsx",
   exp_pdf: "Esporta PDF",
   exp_pdf_d: "Riepilogo stampabile",
+  exp_book: "Libro della cantina (PDF)",
+  exp_book_d: "Ben curato, utilizzabile anche come inventario per l’assicurazione",
+  book_title: "Libro della cantina",
+  book_sub: "Aggiornato al {d}",
+  book_loc: "Posizione",
+  book_page: "Pagina {n} di {m}",
+  book_sum: "Somma di questa pagina",
+  book_total: "Somma totale",
+  book_note: "I valori si basano sui tuoi prezzi (prezzo per bottiglia × numero di bottiglie). Le bottiglie senza prezzo non rientrano nelle somme. Non è una stima di terzi.",
+  book_fill: "Livello di riempimento",
   exp_json: "Backup JSON",
   exp_json_d: "Backup completo dei dati",
   exp_clip: "Negli appunti",
@@ -9278,6 +9365,16 @@ fr: {
   exp_xlsx_d: "En fichier .xlsx",
   exp_pdf: "Exporter PDF",
   exp_pdf_d: "Aperçu imprimable",
+  exp_book: "Livre de cave (PDF)",
+  exp_book_d: "Joliment présenté, utilisable aussi comme inventaire pour l’assurance",
+  book_title: "Livre de cave",
+  book_sub: "En date du {d}",
+  book_loc: "Emplacement",
+  book_page: "Page {n} sur {m}",
+  book_sum: "Total de cette page",
+  book_total: "Total général",
+  book_note: "Les valeurs reposent sur vos propres prix (prix par bouteille × nombre de bouteilles). Les bouteilles sans prix ne figurent pas dans les totaux. Ce n’est pas une estimation par un tiers.",
+  book_fill: "Niveau de remplissage",
   exp_json: "Sauvegarde JSON",
   exp_json_d: "Sauvegarde complète des données",
   exp_clip: "Dans le presse-papiers",
@@ -9954,6 +10051,16 @@ pl: {
   exp_xlsx_d: "Jako plik .xlsx",
   exp_pdf: "Eksportuj PDF",
   exp_pdf_d: "Podgląd do druku",
+  exp_book: "Księga piwniczki (PDF)",
+  exp_book_d: "Ładnie opracowana, nadaje się też jako wykaz do ubezpieczenia",
+  book_title: "Księga piwniczki",
+  book_sub: "Stan na {d}",
+  book_loc: "Miejsce",
+  book_page: "Strona {n} z {m}",
+  book_sum: "Suma na tej stronie",
+  book_total: "Suma ogółem",
+  book_note: "Wartości opierają się na Twoich własnych cenach (cena za butelkę × liczba butelek). Butelki bez ceny nie wchodzą do sum. To nie jest wycena osoby trzeciej.",
+  book_fill: "Poziom napełnienia",
   exp_json: "Kopia JSON",
   exp_json_d: "Pełna kopia zapasowa danych",
   exp_clip: "Do schowka",
@@ -10630,6 +10737,16 @@ hu: {
   exp_xlsx_d: ".xlsx fájlként",
   exp_pdf: "PDF exportálása",
   exp_pdf_d: "Nyomtatható áttekintés",
+  exp_book: "Pincekönyv (PDF)",
+  exp_book_d: "Szépen kialakított, biztosításhoz leltárként is használható",
+  book_title: "Pincekönyv",
+  book_sub: "Állapot: {d}",
+  book_loc: "Hely",
+  book_page: "{n}. oldal / {m}",
+  book_sum: "Az oldal összege",
+  book_total: "Végösszeg",
+  book_note: "Az értékek a saját ármegadásaidon alapulnak (palackonkénti ár × darabszám). Az ár nélküli palackok nem szerepelnek az összegekben. Nem harmadik fél becslése.",
+  book_fill: "Töltöttségi szint",
   exp_json: "JSON biztonsági mentés",
   exp_json_d: "Teljes adatmentés",
   exp_clip: "Vágólapra",
@@ -11306,6 +11423,16 @@ cs: {
   exp_xlsx_d: "Jako soubor .xlsx",
   exp_pdf: "Exportovat PDF",
   exp_pdf_d: "Přehled k tisku",
+  exp_book: "Kniha sklípku (PDF)",
+  exp_book_d: "Pěkně zpracovaná, hodí se i jako soupis pro pojištění",
+  book_title: "Kniha sklípku",
+  book_sub: "Stav k {d}",
+  book_loc: "Umístění",
+  book_page: "Strana {n} z {m}",
+  book_sum: "Součet na této straně",
+  book_total: "Celkový součet",
+  book_note: "Hodnoty vycházejí z vašich vlastních cen (cena za láhev × počet). Láhve bez ceny se do součtů nezapočítávají. Nejde o odhad třetí strany.",
+  book_fill: "Úroveň naplnění",
   exp_json: "Záloha JSON",
   exp_json_d: "Úplná záloha dat",
   exp_clip: "Do schránky",
@@ -11982,6 +12109,16 @@ sk: {
   exp_xlsx_d: "Ako súbor .xlsx",
   exp_pdf: "Exportovať PDF",
   exp_pdf_d: "Prehľad na tlač",
+  exp_book: "Kniha pivnice (PDF)",
+  exp_book_d: "Pekne spracovaná, hodí sa aj ako zoznam pre poistenie",
+  book_title: "Kniha pivnice",
+  book_sub: "Stav k {d}",
+  book_loc: "Umiestnenie",
+  book_page: "Strana {n} z {m}",
+  book_sum: "Súčet na tejto strane",
+  book_total: "Celkový súčet",
+  book_note: "Hodnoty vychádzajú z vašich vlastných cien (cena za fľašu × počet). Fľaše bez ceny sa do súčtov nezapočítavajú. Nejde o odhad tretej strany.",
+  book_fill: "Úroveň naplnenia",
   exp_json: "Záloha JSON",
   exp_json_d: "Úplná záloha dát",
   exp_clip: "Do schránky",
@@ -12658,6 +12795,16 @@ ro: {
   exp_xlsx_d: "Ca fișier .xlsx",
   exp_pdf: "Exportă PDF",
   exp_pdf_d: "Prezentare pentru tipărit",
+  exp_book: "Cartea pivniței (PDF)",
+  exp_book_d: "Frumos realizată, utilizabilă și ca inventar pentru asigurare",
+  book_title: "Cartea pivniței",
+  book_sub: "La data de {d}",
+  book_loc: "Locație",
+  book_page: "Pagina {n} din {m}",
+  book_sum: "Suma acestei pagini",
+  book_total: "Suma totală",
+  book_note: "Valorile se bazează pe prețurile tale (preț pe sticlă × număr de sticle). Sticlele fără preț nu intră în sume. Nu este o evaluare făcută de terți.",
+  book_fill: "Nivel de umplere",
   exp_json: "Backup JSON",
   exp_json_d: "Copie completă a datelor",
   exp_clip: "În clipboard",
@@ -13334,6 +13481,16 @@ hr: {
   exp_xlsx_d: "Kao .xlsx datoteka",
   exp_pdf: "Izvezi PDF",
   exp_pdf_d: "Pregled za ispis",
+  exp_book: "Knjiga podruma (PDF)",
+  exp_book_d: "Lijepo uređena, može poslužiti i kao popis za osiguranje",
+  book_title: "Knjiga podruma",
+  book_sub: "Stanje na dan {d}",
+  book_loc: "Mjesto",
+  book_page: "Stranica {n} od {m}",
+  book_sum: "Zbroj ove stranice",
+  book_total: "Ukupni zbroj",
+  book_note: "Vrijednosti se temelje na vašim vlastitim cijenama (cijena po boci × broj boca). Boce bez cijene ne ulaze u zbrojeve. To nije procjena treće strane.",
+  book_fill: "Razina napunjenosti",
   exp_json: "JSON sigurnosna kopija",
   exp_json_d: "Potpuna sigurnosna kopija",
   exp_clip: "U međuspremnik",
@@ -14010,6 +14167,16 @@ pt: {
   exp_xlsx_d: "Como ficheiro .xlsx",
   exp_pdf: "Exportar PDF",
   exp_pdf_d: "Resumo para impressão",
+  exp_book: "Livro da garrafeira (PDF)",
+  exp_book_d: "Bem apresentado, também utilizável como inventário para o seguro",
+  book_title: "Livro da garrafeira",
+  book_sub: "À data de {d}",
+  book_loc: "Local",
+  book_page: "Página {n} de {m}",
+  book_sum: "Soma desta página",
+  book_total: "Soma total",
+  book_note: "Os valores baseiam-se nos seus próprios preços (preço por garrafa × número de garrafas). As garrafas sem preço não entram nas somas. Não é uma avaliação de terceiros.",
+  book_fill: "Nível de enchimento",
   exp_json: "Cópia JSON",
   exp_json_d: "Cópia de segurança completa",
   exp_clip: "Para a área de transferência",
@@ -14686,6 +14853,16 @@ no: {
   exp_xlsx_d: "Som .xlsx-fil",
   exp_pdf: "Eksporter PDF",
   exp_pdf_d: "Utskriftsvennlig oversikt",
+  exp_book: "Kjellerbok (PDF)",
+  exp_book_d: "Pent utformet, kan også brukes som inventarliste til forsikringen",
+  book_title: "Kjellerbok",
+  book_sub: "Per {d}",
+  book_loc: "Plassering",
+  book_page: "Side {n} av {m}",
+  book_sum: "Sum for denne siden",
+  book_total: "Totalsum",
+  book_note: "Verdiene bygger på dine egne prisopplysninger (pris per flaske × antall). Flasker uten pris er ikke med i summene. Det er ikke en verdivurdering fra tredjepart.",
+  book_fill: "Fyllingsnivå",
   exp_json: "JSON-sikkerhetskopi",
   exp_json_d: "Fullstendig sikkerhetskopi",
   exp_clip: "Til utklippstavlen",
@@ -15362,6 +15539,16 @@ nl: {
   exp_xlsx_d: "Als .xlsx-bestand",
   exp_pdf: "PDF exporteren",
   exp_pdf_d: "Afdrukbaar overzicht",
+  exp_book: "Kelderboek (PDF)",
+  exp_book_d: "Mooi vormgegeven, ook bruikbaar als inventarislijst voor de verzekering",
+  book_title: "Kelderboek",
+  book_sub: "Per {d}",
+  book_loc: "Plek",
+  book_page: "Pagina {n} van {m}",
+  book_sum: "Som van deze pagina",
+  book_total: "Totaalsom",
+  book_note: "De waarden zijn gebaseerd op je eigen prijsgegevens (prijs per fles × aantal). Flessen zonder prijs tellen niet mee in de sommen. Het is geen taxatie door een derde.",
+  book_fill: "Vulniveau",
   exp_json: "JSON-back-up",
   exp_json_d: "Volledige gegevensback-up",
   exp_clip: "Naar klembord",
@@ -16038,6 +16225,16 @@ el: {
   exp_xlsx_d: "Ως αρχείο .xlsx",
   exp_pdf: "Εξαγωγή PDF",
   exp_pdf_d: "Εκτυπώσιμη επισκόπηση",
+  exp_book: "Βιβλίο κελαριού (PDF)",
+  exp_book_d: "Όμορφα σχεδιασμένο, κατάλληλο και ως κατάλογος για την ασφάλιση",
+  book_title: "Βιβλίο κελαριού",
+  book_sub: "Κατάσταση στις {d}",
+  book_loc: "Θέση",
+  book_page: "Σελίδα {n} από {m}",
+  book_sum: "Σύνολο σελίδας",
+  book_total: "Γενικό σύνολο",
+  book_note: "Οι τιμές βασίζονται στις δικές σας τιμές (τιμή ανά φιάλη × αριθμός φιαλών). Οι φιάλες χωρίς τιμή δεν περιλαμβάνονται στα σύνολα. Δεν πρόκειται για εκτίμηση τρίτου.",
+  book_fill: "Στάθμη πλήρωσης",
   exp_json: "Αντίγραφο JSON",
   exp_json_d: "Πλήρες αντίγραφο δεδομένων",
   exp_clip: "Στο πρόχειρο",
@@ -16714,6 +16911,16 @@ uk: {
   exp_xlsx_d: "Як файл .xlsx",
   exp_pdf: "Експорт PDF",
   exp_pdf_d: "Огляд для друку",
+  exp_book: "Книга погреба (PDF)",
+  exp_book_d: "Гарно оформлена, підходить і як опис для страхування",
+  book_title: "Книга погреба",
+  book_sub: "Станом на {d}",
+  book_loc: "Місце",
+  book_page: "Сторінка {n} з {m}",
+  book_sum: "Сума на сторінці",
+  book_total: "Загальна сума",
+  book_note: "Значення ґрунтуються на ваших власних цінах (ціна за пляшку × кількість). Пляшки без ціни до сум не входять. Це не оцінка третьої сторони.",
+  book_fill: "Рівень наповнення",
   exp_json: "Резервна копія JSON",
   exp_json_d: "Повна копія даних",
   exp_clip: "У буфер обміну",
@@ -17390,6 +17597,16 @@ ja: {
   exp_xlsx_d: ".xlsxファイルとして",
   exp_pdf: "PDFを書き出し",
   exp_pdf_d: "印刷用の一覧",
+  exp_book: "セラーブック（PDF）",
+  exp_book_d: "見やすく整えた一覧。保険用の財産目録としても使えます",
+  book_title: "セラーブック",
+  book_sub: "{d} 現在",
+  book_loc: "保管場所",
+  book_page: "{m} ページ中 {n} ページ",
+  book_sum: "このページの合計",
+  book_total: "総合計",
+  book_note: "金額はご自身で入力した価格（1本あたりの価格 × 本数）に基づきます。価格のないボトルは合計に含まれません。第三者による鑑定ではありません。",
+  book_fill: "充填レベル",
   exp_json: "JSONバックアップ",
   exp_json_d: "全データのバックアップ",
   exp_clip: "クリップボードへ",
@@ -18066,6 +18283,16 @@ ko: {
   exp_xlsx_d: ".xlsx 파일로",
   exp_pdf: "PDF 내보내기",
   exp_pdf_d: "인쇄용 개요",
+  exp_book: "셀러북(PDF)",
+  exp_book_d: "보기 좋게 정리되어 보험용 재고 목록으로도 쓸 수 있습니다",
+  book_title: "셀러북",
+  book_sub: "{d} 기준",
+  book_loc: "보관 위치",
+  book_page: "{m}쪽 중 {n}쪽",
+  book_sum: "이 페이지 합계",
+  book_total: "총합계",
+  book_note: "금액은 직접 입력한 가격(병당 가격 × 병 수)을 기준으로 합니다. 가격이 없는 병은 합계에 포함되지 않습니다. 제3자의 감정이 아닙니다.",
+  book_fill: "채움 수준",
   exp_json: "JSON 백업",
   exp_json_d: "전체 데이터 백업",
   exp_clip: "클립보드로",
@@ -18742,6 +18969,16 @@ zh: {
   exp_xlsx_d: "保存为 .xlsx 文件",
   exp_pdf: "导出 PDF",
   exp_pdf_d: "可打印的概览",
+  exp_book: "酒窖册（PDF）",
+  exp_book_d: "排版美观，也可用作保险的财产清单",
+  book_title: "酒窖册",
+  book_sub: "截至 {d}",
+  book_loc: "存放位置",
+  book_page: "第 {n} 页，共 {m} 页",
+  book_sum: "本页合计",
+  book_total: "总计",
+  book_note: "金额依据您自己填写的价格（每瓶价格 × 瓶数）。没有价格的瓶子不计入合计。这不是第三方的估价。",
+  book_fill: "液位",
   exp_json: "JSON 备份",
   exp_json_d: "完整数据备份",
   exp_clip: "复制到剪贴板",
@@ -19418,6 +19655,16 @@ hi: {
   exp_xlsx_d: ".xlsx फ़ाइल के रूप में",
   exp_pdf: "PDF एक्सपोर्ट",
   exp_pdf_d: "प्रिंट करने योग्य अवलोकन",
+  exp_book: "सेलर बुक (PDF)",
+  exp_book_d: "सुंदर रूप में तैयार, बीमा के लिए सूची के रूप में भी उपयोगी",
+  book_title: "सेलर बुक",
+  book_sub: "{d} तक",
+  book_loc: "स्थान",
+  book_page: "पृष्ठ {n} / {m}",
+  book_sum: "इस पृष्ठ का योग",
+  book_total: "कुल योग",
+  book_note: "मान आपकी अपनी दर्ज की गई कीमतों (प्रति बोतल कीमत × बोतलों की संख्या) पर आधारित हैं। बिना कीमत वाली बोतलें योग में शामिल नहीं हैं। यह किसी तीसरे पक्ष का मूल्यांकन नहीं है।",
+  book_fill: "भराव स्तर",
   exp_json: "JSON बैकअप",
   exp_json_d: "संपूर्ण डेटा का बैकअप",
   exp_clip: "क्लिपबोर्ड पर",
@@ -22990,6 +23237,137 @@ function importExcel(e) {
     e.target.value = '';
   };
   r.readAsArrayBuffer(file);
+}
+
+// ── Kellerbuch (PDF): gestaltete Seiten mit Zusammenfassung, nach Land gruppierter Liste, Werten und Summen (wie in der Wein-App) ──
+async function buildBookPages() {
+  const W = 1240, H = 1754, M = 90;   // A4 bei 150 dpi
+  const FB = '"Inter", system-ui, -apple-system, "Segoe UI", sans-serif', FH = '"Playfair Display", Georgia, serif';
+  try { await Promise.all(['400 22px ' + FB, '700 24px ' + FB, '700 60px ' + FH].map(f => document.fonts.load(f))); } catch (e) {}
+  const loc = dateLocale();
+  const title = composeTitles(ownerForTitles()).cellar;
+  const dateStr = new Date().toLocaleDateString(loc, { day: 'numeric', month: 'long', year: 'numeric' });
+  const money = (n) => fmtMoney(Number(n).toFixed(2));
+  const cnt = (w) => w.count || 1;
+  const val = (w) => (w.price > 0 ? w.price * cnt(w) : 0);
+  const cname = (w) => String(w.country || '').trim();
+  const list = wines.slice().sort((a, b) => ((cname(a) === '') - (cname(b) === '')) || cname(a).localeCompare(cname(b), loc) || String(a.region || '').localeCompare(String(b.region || ''), loc) || String(a.name || '').localeCompare(String(b.name || ''), loc) || ((a.year || 0) - (b.year || 0)));
+  const groups = [];
+  list.forEach(w => { const k = cname(w).toLowerCase(); let g = groups[groups.length - 1]; if (!g || g.k !== k) { g = { k, label: cname(w) || t('rack_country_none'), rows: [] }; groups.push(g); } g.rows.push(w); });
+  groups.forEach(g => { g.n = g.rows.reduce((a, w) => a + cnt(w), 0); g.v = g.rows.reduce((a, w) => a + val(w), 0); });
+  const totalN = list.reduce((a, w) => a + cnt(w), 0), totalV = list.reduce((a, w) => a + val(w), 0);
+  const pricedN = list.reduce((a, w) => a + (w.price > 0 ? cnt(w) : 0), 0);
+  const mkPage = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d'); g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H); g.textBaseline = 'alphabetic'; return { c, g }; };
+  const font = (g, w, px, fam) => { g.font = w + ' ' + px + 'px ' + (fam || FB); };
+  const fit = (g, text, maxW) => { text = String(text == null ? '' : text); if (g.measureText(text).width <= maxW) return text; while (text.length > 1 && g.measureText(text + '…').width > maxW) text = text.slice(0, -1); return text + '…'; };
+  const wrap = (g, text, maxW) => {
+    const tokens = text.indexOf(' ') >= 0 ? text.split(' ').map((w, i, a) => (i < a.length - 1 ? w + ' ' : w)) : Array.from(text);
+    const lines = []; let line = '';
+    tokens.forEach(tk => { if (line && g.measureText(line + tk).width > maxW) { lines.push(line.trimEnd()); line = tk; } else line += tk; });
+    if (line) lines.push(line.trimEnd());
+    return lines;
+  };
+  const txt = (g, s2, x, y, color, align) => { g.fillStyle = color; g.textAlign = align || 'left'; g.fillText(s2, x, y); };
+  const GOLD = '#b9972f', INK = '#1d1710', MUTE = '#6b6258', LINE = '#e4ddd0';
+  const pagesOut = [];
+
+  // ── Seite 1: Titel und Zusammenfassung ──
+  { const { c, g } = mkPage();
+    font(g, 700, 64, FH); txt(g, fit(g, title, W - 2 * M), M, M + 70, INK);
+    font(g, 400, 34, FH); txt(g, t('book_title'), M, M + 120, GOLD);
+    font(g, 400, 24); txt(g, t('book_sub', { d: dateStr }), M, M + 160, MUTE);
+    g.fillStyle = GOLD; g.fillRect(M, M + 185, W - 2 * M, 3);
+    const kp = [[String(totalN), t('pill_bottles')], [String(list.length), t('pill_wines')], [pricedN ? money(totalV) : '–', t('s_value')], [pricedN ? money(totalV / pricedN) : '–', t('s_price_avg')]];
+    const bw = (W - 2 * M - 3 * 20) / 4;
+    kp.forEach(([big, lab], i) => {
+      const x = M + i * (bw + 20), y = M + 225;
+      g.fillStyle = '#f7f2e7'; g.fillRect(x, y, bw, 140);
+      font(g, 700, 38); txt(g, fit(g, big, bw - 24), x + 14, y + 62, INK);
+      font(g, 400, 20); txt(g, fit(g, lab, bw - 24), x + 14, y + 108, MUTE);
+    });
+    let y = M + 440;
+    const section = (head, rows) => {
+      font(g, 700, 32, FH); txt(g, head, M, y, INK); y += 16;
+      g.fillStyle = LINE; g.fillRect(M, y, W - 2 * M, 2); y += 40;
+      rows.forEach(([lab, n, v]) => {
+        font(g, 400, 24); txt(g, fit(g, lab, 560), M, y, INK);
+        txt(g, n + ' ' + t('fl'), M + 700, y, MUTE, 'right');
+        txt(g, v, W - M, y, INK, 'right'); y += 44;
+      });
+      y += 28;
+    };
+    const types = TYPE_ORDER.map(ty => { const ws = list.filter(w => w.type === ty); return [TYPE_LABELS[ty] || ty, ws.reduce((a, w) => a + cnt(w), 0), ws.reduce((a, w) => a + val(w), 0)]; }).filter(r => r[1] > 0);
+    section(t('s_bytype'), types.map(([l, n, v]) => [l, n, v ? money(v) : '–']));
+    const byC = groups.slice().sort((a, b) => b.n - a.n), top = byC.slice(0, 10);
+    section(t('s_bycountry'), top.map(gr => [gr.label, gr.n, gr.v ? money(gr.v) : '–']).concat(byC.length > 10 ? [[t('s_more', { n: byC.length - 10 }), byC.slice(10).reduce((a, gr) => a + gr.n, 0), '']] : []));
+    font(g, 400, 20); wrap(g, t('book_note'), W - 2 * M).forEach((ln, i) => txt(g, ln, M, H - M - 110 + i * 28, MUTE));
+    pagesOut.push({ c, kind: 'sum' });
+  }
+
+  // ── Weinliste, nach Land gruppiert, mit Seitenumbruch ──
+  const GH = 54, WH = 66, CY = M + 150, CB = H - M - 60, avail = CB - CY;
+  const pages = []; let cur = null, used = 0;
+  const newPage = () => { cur = []; pages.push(cur); used = 0; };
+  groups.forEach(gr => {
+    if (!cur || used + GH + WH > avail) newPage();
+    cur.push({ type: 'g', gr }); used += GH;
+    gr.rows.forEach(w => {
+      if (used + WH > avail) { newPage(); cur.push({ type: 'g', gr }); used += GH; }   // neue Seite mitten in der Gruppe: Kopf wiederholen
+      cur.push({ type: 'w', w }); used += WH;
+    });
+  });
+  const N = 1 + pages.length;
+  const X = { name: M, qty: M + 464, price: M + 584, val: M + 724, loc: M + 740, win: M + 930 };
+  pages.forEach((items, pi) => {
+    const { c, g } = mkPage();
+    font(g, 700, 22, FH); txt(g, fit(g, title + ' · ' + t('book_title'), 760), M, M + 20, MUTE);
+    font(g, 400, 22); txt(g, dateStr, W - M, M + 20, MUTE, 'right');
+    g.fillStyle = GOLD; g.fillRect(M, M + 40, W - 2 * M, 3);
+    font(g, 700, 20);
+    txt(g, t('l_name'), X.name, M + 98, MUTE); txt(g, t('fl'), X.qty, M + 98, MUTE, 'right'); txt(g, t('l_price'), X.price, M + 98, MUTE, 'right');
+    txt(g, t('pill_value'), X.val, M + 98, MUTE, 'right'); txt(g, fit(g, t('book_loc'), 176), X.loc, M + 98, MUTE); txt(g, fit(g, t('book_fill'), 130), X.win, M + 98, MUTE);
+    g.fillStyle = LINE; g.fillRect(M, M + 114, W - 2 * M, 2);
+    let y = CY, pageSum = 0;
+    items.forEach(it => {
+      if (it.type === 'g') {
+        g.fillStyle = '#f5efe2'; g.fillRect(M, y, W - 2 * M, GH - 6);
+        font(g, 700, 25); txt(g, fit(g, it.gr.label, 640), M + 14, y + 33, INK);
+        font(g, 400, 22); txt(g, it.gr.n + ' ' + t('fl') + (it.gr.v ? ' · ' + money(it.gr.v) : ''), W - M - 14, y + 33, MUTE, 'right');
+        y += GH;
+      } else {
+        const w = it.w, v = val(w);
+        font(g, 700, 24); txt(g, fit(g, w.name, X.qty - X.name - 80), X.name, y + 28, INK);
+        font(g, 400, 19); txt(g, fit(g, [w.year || '', w.grape || '', w.region || ''].filter(Boolean).join(' · '), X.qty - X.name - 80), X.name, y + 54, MUTE);
+        font(g, 400, 22);
+        txt(g, String(cnt(w)), X.qty, y + 28, INK, 'right');
+        txt(g, w.price > 0 ? money(w.price) : '–', X.price, y + 28, INK, 'right');
+        font(g, 700, 22); txt(g, v ? money(v) : '–', X.val, y + 28, INK, 'right');
+        font(g, 400, 20); txt(g, fit(g, formatLocation(w) || '–', 176), X.loc, y + 28, INK);
+        txt(g, fit(g, (w.opened && w.opened.length) ? w.opened.map(o => (Math.round(o.left * 10) / 10) + ' cl').join(', ') : '–', 130), X.win, y + 28, INK);
+        g.fillStyle = LINE; g.fillRect(M, y + WH - 6, W - 2 * M, 1);
+        pageSum += v; y += WH;
+      }
+    });
+    // Fuß: Seitenzahl, Summe der Seite; auf der letzten Seite die Gesamtsumme
+    g.fillStyle = LINE; g.fillRect(M, H - M - 40, W - 2 * M, 2);
+    font(g, 400, 21); txt(g, t('book_page', { n: pi + 2, m: N }), M, H - M - 6, MUTE);
+    if (pi < pages.length - 1) { txt(g, t('book_sum') + ': ' + (pageSum ? money(pageSum) : '–'), W - M, H - M - 6, MUTE, 'right'); }
+    else { font(g, 700, 26); txt(g, t('book_total') + ': ' + (pricedN ? money(totalV) : '–'), W - M, H - M - 6, INK, 'right'); }
+    pagesOut.push({ c, kind: 'list' });
+  });
+  return pagesOut.map(p => p.c.toDataURL('image/jpeg', 0.88));
+}
+async function exportBook() {
+  if (!wines.length) { showToast(t('toast_enrich_none')); return; }
+  try { await loadLib('pdf'); } catch { showToast(t('toast_exportfail')); return; }
+  try {
+    const pages = await buildBookPages();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    pages.forEach((src, i) => { if (i) doc.addPage(); doc.addImage(src, 'JPEG', 0, 0, 210, 297, undefined, 'FAST'); });
+    await saveFile('mywhiskey-kellerbuch.pdf', doc.output('blob'));
+    showToast(t('toast_pdf'));
+  } catch (err) { exportFailed(err); }
 }
 
 async function exportPDF() {
